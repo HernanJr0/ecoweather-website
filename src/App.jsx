@@ -1,5 +1,12 @@
 import { initializeApp } from "firebase/app";
-import { collection, getFirestore, getDocs } from "firebase/firestore";
+import {
+  collection,
+  getFirestore,
+  getDocs,
+  addDoc,
+  doc,
+  deleteDoc,
+} from "firebase/firestore";
 import { useEffect, useState } from "react";
 import "./App.css";
 
@@ -17,8 +24,12 @@ export const App = () => {
   const db = getFirestore(firebaseApp);
   const userCollectionRef = collection(db, "users");
 
-  function criaUser() {
-    console.log({name, email})
+  async function criaUser() {
+    const user = await addDoc(userCollectionRef, {
+      name,
+      email,
+    });
+    console.log(user);
   }
 
   useEffect(() => {
@@ -29,19 +40,13 @@ export const App = () => {
     getUsers();
   }, []);
 
+  async function deleteUser(id) {
+    const userDoc = doc(db, "users", id);
+    await deleteDoc(userDoc);
+  }
+
   return (
     <div>
-      <ul>
-        {users.map((user) => {
-          return (
-            <div>
-              <li>{user.name}</li>
-              <li>{user.email}</li>
-              <li>{user.adriano}</li>
-            </div>
-          );
-        })}
-      </ul>
       <form id="formulario">
         <input
           type="text"
@@ -57,6 +62,18 @@ export const App = () => {
         ></input>
       </form>
       <button onClick={criaUser}>Criar Usuário</button>
+      <ul>
+        {users.map((user) => {
+          return (
+            <div>
+              <li>{user.name}</li>
+              <li>{user.email}</li>
+              <li>{user.adriano}</li>
+              <button onClick={() => deleteUser(user.id)}>Deletar</button>
+            </div>
+          );
+        })}
+      </ul>
     </div>
   );
 };
