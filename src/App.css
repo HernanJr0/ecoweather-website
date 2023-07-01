@@ -1,42 +1,89 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+#bg{
+    border-radius: 0 0 20px 20px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    position: absolute;
+    min-width: 100%;
+    max-width: 100%;
+    min-height: 100%;
+    max-height: 100%;
+    object-fit: cover;
+    object-position: center center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+#data_loc{
+    display: block;
+    margin-top: 80px;
+    width: 100%;
+    z-index: 1;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+#data{
+    width: 100%;
 }
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+#loc{
+    width: 100%;
 }
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+#clima{
+    margin-top: 40px;
+    font-size: 32px;
+    display: block;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+#data a{
+    float: left;
+    margin-left: calc(7% + 10px);
+}
+#loc a{
+    float: right;
+    margin-right: calc(7% + 10px);
 }
 
-.card {
-  padding: 2em;
+#c_clima{
+    width: 100%;
+    
+    display: flex;
+    flex-direction: column;
+    place-items: center;
+    justify-content: center;
+
+    z-index: 1;
+}
+#clima_report{
+    display: flex;
+    align-items: center;
+}
+#c_img{
+    margin-right: 10px;
+    height: 100px;
 }
 
-.read-the-docs {
-  color: #888;
+#max_min div{
+    margin-left: 10px;
+    display: flex;
+    align-items: center;
+}
+#max_min div img{
+    height: 28px;
+}
+
+#tudo{
+    display: grid;
+    position: absolute;
+    text-align: center;
+    height: 60vh;
+    width: 100%;
+}
+#stat{
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    margin-bottom: 30px;
+}
+
+#corpo{
+    margin-top: calc(60vh + 30px);
+    display: flex;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    z-index: 1;
 }
