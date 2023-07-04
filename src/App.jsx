@@ -31,7 +31,7 @@ function App() {
     function clima(){
         if(temp < 22){
             clima = climas[2]
-            c_url = 'imgNublado'
+            c_url = {imgNublado}
 
         }else if(temp < 28){
             clima = climas[1]
