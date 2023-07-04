@@ -1,7 +1,7 @@
 import Header from './Header/Header.jsx'
 import nublado from './assets/nublado.png'
 import ensolarado from './assets/ensolarado.png'
-import parc_ensolarado from './assets/nublado.png'
+import parc_ensolarado from './assets/parc_nublado.png'
 import bg from './assets/visual-banner1.png'
 import arrow_up from './assets/up-right-arrow.png'
 import arrow_down from './assets/down-right-arrow.png'
@@ -42,11 +42,11 @@ function App() {
 
         }else if(temp < 28){
             clima = climas[1]
-            c_url = ensolarado
+            c_url = parc_ensolarado
 
         }else if(temp < 34){
             clima = climas[0]
-            c_url = parc_ensolarado
+            c_url = ensolarado
 
         }
     }
