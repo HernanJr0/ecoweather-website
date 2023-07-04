@@ -1,6 +1,6 @@
 import './Header.css'
-import logo from 'src/assets/ecoweather-font-gustavo.png'
-import search from 'src/assets/search.png'
+import logo from '../assets/ecoweather-font-gustavo.png'
+import search from '../assets/search.png'
 
 function Header() {
     return (
