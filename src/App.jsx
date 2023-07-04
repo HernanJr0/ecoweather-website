@@ -60,7 +60,7 @@ function App() {
     }
 
     return (
-        <>
+        <div className="App">
             <Header/>
             <section id='tudo'>
                 <img id='bg' src={bg} alt="bg" />
@@ -96,10 +96,10 @@ function App() {
             </section>
             <section id='corpo'>
                 <div>
-                    asbdabsdubashjdbjkahsbdjhabsdjkhbasjhdbjkahsbdjhkasbdjkhbasjhkdb
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam a arcu pellentesque magna elementum porttitor in a arcu. Phasellus eget euismod tortor, in sagittis dui. Quisque ut dolor nisi. Nullam turpis augue, consequat sed risus sit amet, consectetur condimentum orci. Sed sed egestas nulla. Fusce eleifend purus et risus malesuada placerat.
                 </div>
             </section>
-        </>
+        </div>
     )
 }
 
