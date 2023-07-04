@@ -99,7 +99,6 @@ function App() {
                     asbdabsdubashjdbjkahsbdjhabsdjkhbasjhdbjkahsbdjhkasbdjkhbasjhkdb
                 </div>
             </section>
-
         </>
     )
 }
