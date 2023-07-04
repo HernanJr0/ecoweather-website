@@ -1,5 +1,6 @@
 import Header from './Header/Header.jsx'
 import './App.css'
+import imgNublado from './assets/nublado.png'
 
 function App() {
 
@@ -30,7 +31,7 @@ function App() {
     function clima(){
         if(temp < 22){
             clima = climas[2]
-            c_url = 'https://www.flaticon.com/br/icone-gratis/nublado_362374?related_id=362374&origin=pack'
+            c_url = 'imgNublado'
 
         }else if(temp < 28){
             clima = climas[1]
