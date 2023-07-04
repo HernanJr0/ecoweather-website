@@ -2,6 +2,9 @@ import Header from './Header/Header.jsx'
 import nublado from './assets/nublado.png'
 import ensolarado from './assets/ensolarado.png'
 import parc_ensolarado from './assets/nublado.png'
+import bg from './assets/visual-banner1.png'
+import arrow_up from './assets/up-right-arrow.png'
+import arrow_down from './assets/down-right-arrow.png'
 
 import './App.css'
 
@@ -60,7 +63,7 @@ function App() {
         <>
             <Header/>
             <section id='tudo'>
-                <img id='bg' src="./assets/visual-banner1.png" alt="bg" />
+                <img id='bg' src={bg} alt="bg" />
                 <div id='data_loc'>
                     <div id='data'>
                         <a>{dia}</a>
@@ -69,6 +72,8 @@ function App() {
                         <a>{loc}</a>
                     </div>
                     <h1 id='clima'>{clima}</h1>
+
+                    
                 </div>
                 <div id='c_clima'>
 
@@ -76,8 +81,8 @@ function App() {
                         <img id='c_img' src={c_url} alt='img_clima' />
                         <h1>{temp}ºC</h1>
                         <div id='max_min'>
-                            <div>{t_max}<img src='./assets/up-right-arrow.png'/></div>
-                            <div>{t_min}<img src='./assets/down-right-arrow.png'/></div>
+                            <div>{t_max}<img src={arrow_up}/></div>
+                            <div>{t_min}<img src={arrow_down}/></div>
                         </div>
                     </div>
 
@@ -94,7 +99,7 @@ function App() {
                     asbdabsdubashjdbjkahsbdjhabsdjkhbasjhdbjkahsbdjhkasbdjkhbasjhkdb
                 </div>
             </section>
-            
+
         </>
     )
 }

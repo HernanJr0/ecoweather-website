@@ -1,12 +1,15 @@
 import './Header.css'
+import logo from './assets/ecoweather-font-gustavo.png'
+import search from './assets/search.png'
+
 function Header() {
     return (
         <nav>
             <div id='topbar'>
-                <img id='logo' src='src/assets/ecoweather-font-gustavo.png' alt='logo' />
+                <img id='logo' src={logo} alt='logo' />
                 <div id='search'>
                     <input id='in-search' type='text' placeholder='Buscar' />
-                    <button id='b-search'><img src='src/assets/search.png' alt='search-icon' /></button>
+                    <button id='b-search'><img src={search} alt='search-icon' /></button>
                 </div>
             </div>
         </nav>
