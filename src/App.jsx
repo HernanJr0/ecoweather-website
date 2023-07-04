@@ -1,6 +1,10 @@
 import Header from './Header/Header.jsx'
+import nublado from './assets/nublado.png'
+import ensolarado from './assets/ensolarado.png'
+import parc_ensolarado from './assets/nublado.png'
+
 import './App.css'
-import imgNublado from './assets/nublado.png'
+
 
 function App() {
 
@@ -31,15 +35,15 @@ function App() {
     function clima(){
         if(temp < 22){
             clima = climas[2]
-            c_url = {imgNublado}
+            c_url = nublado
 
         }else if(temp < 28){
             clima = climas[1]
-            c_url = './assets/parc_ensolarado.png'
+            c_url = ensolarado
 
         }else if(temp < 34){
             clima = climas[0]
-            c_url = './assets/ensolarado.png'
+            c_url = parc_ensolarado
 
         }
     }
@@ -89,6 +93,7 @@ function App() {
                 <div>
                     asbdabsdubashjdbjkahsbdjhabsdjkhbasjhdbjkahsbdjhkasbdjkhbasjhkdb
                 </div>
+                <img src=''
             </section>
         </>
     )
