@@ -84,6 +84,6 @@
     display: flex;
     position: absolute;
     text-align: center;
-    width: 100%;
+    width: 80%;
     z-index: 1;
 }
