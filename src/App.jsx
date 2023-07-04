@@ -30,15 +30,15 @@ function App() {
     function clima(){
         if(temp < 22){
             clima = climas[2]
-            c_url = 'src/assets/nublado.png'
+            c_url = './assets/nublado.png'
 
         }else if(temp < 28){
             clima = climas[1]
-            c_url = 'src/assets/parc_ensolarado.png'
+            c_url = './assets/parc_ensolarado.png'
 
         }else if(temp < 34){
             clima = climas[0]
-            c_url = 'src/assets/ensolarado.png'
+            c_url = './assets/ensolarado.png'
 
         }
     }
@@ -55,7 +55,7 @@ function App() {
         <>
             <Header/>
             <section id='tudo'>
-                <img id='bg' src="src/assets/visual-banner1.png" alt="bg" />
+                <img id='bg' src="./assets/visual-banner1.png" alt="bg" />
                 <div id='data_loc'>
                     <div id='data'>
                         <a>{dia}</a>
@@ -71,8 +71,8 @@ function App() {
                         <img id='c_img' src={c_url} alt='img_clima' />
                         <h1>{temp}ºC</h1>
                         <div id='max_min'>
-                            <div>{t_max}<img src='src/assets/up-right-arrow.png'/></div>
-                            <div>{t_min}<img src='src/assets/down-right-arrow.png'/></div>
+                            <div>{t_max}<img src='./assets/up-right-arrow.png'/></div>
+                            <div>{t_min}<img src='./assets/down-right-arrow.png'/></div>
                         </div>
                     </div>
 
