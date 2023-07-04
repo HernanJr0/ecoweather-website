@@ -30,7 +30,7 @@ function App() {
     function clima(){
         if(temp < 22){
             clima = climas[2]
-            c_url = './assets/nublado.png'
+            c_url = 'https://www.flaticon.com/br/icone-gratis/nublado_362374?related_id=362374&origin=pack'
 
         }else if(temp < 28){
             clima = climas[1]
