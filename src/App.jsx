@@ -93,7 +93,6 @@ function App() {
                 <div>
                     asbdabsdubashjdbjkahsbdjhabsdjkhbasjhdbjkahsbdjhkasbdjkhbasjhkdb
                 </div>
-                <img src=''
             </section>
         </>
     )
