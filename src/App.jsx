@@ -5,6 +5,7 @@ import parc_ensolarado from './assets/parc_ensolarado.png'
 import bg from './assets/visual-banner1.png'
 import arrow_up from './assets/up-right-arrow.png'
 import arrow_down from './assets/down-right-arrow.png'
+import place from './assets/place.svg'
 
 import './App.css'
 
@@ -32,10 +33,10 @@ function App() {
     var clima
     var c_url
 
-    clima()
+    climaf()
 
     //setup clima
-    function clima(){
+    function climaf(){
         if(temp < 22){
             clima = climas[2]
             c_url = nublado
@@ -69,10 +70,9 @@ function App() {
                         <a>{dia}</a>
                     </div>
                     <div id='loc'>
-                        <a>{loc}</a>
+                        <a><img src={place} id='looouco'/>{loc}</a>
                     </div>
                     <h1 id='clima'>{clima}</h1>
-
                     
                 </div>
                 <div id='c_clima'>
@@ -89,9 +89,9 @@ function App() {
                     <a>sensação termica: {s_temp} ºC</a>
                 </div>
                 <div id='stat'>
-                    <a>Qualidade do ar: Razoável</a>
-                    <a>Umidade: 82%</a>
-                    <a>Vento: 9 km/h</a>
+                    <div><a>Qualidade do ar: Razoável</a></div>
+                    <div><a>Umidade: 82%</a></div>
+                    <div><a>Vento: 9 km/h</a></div>
                 </div>
             </section>
             <section id='corpo'>
