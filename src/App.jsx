@@ -95,7 +95,7 @@ function App() {
             </section>
             <section id='corpo'>
                 <div id='news'>
-                    
+                    <div></div>
                 </div>
             </section>
         </div>
