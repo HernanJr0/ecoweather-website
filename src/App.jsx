@@ -8,7 +8,7 @@ import arrow_down from './assets/down-right-arrow.png'
 import place from './assets/place.svg'
 
 import './App.css'
-
+import NewsComponent from './Noticias/Noticia.jsx'
 
 function App() {
 
@@ -60,6 +60,20 @@ function App() {
         return date;
     }
 
+    const newsWithImage = {
+        title: 'Porque o gado morre de frio? Os motivos para hipotermia dos animais no Pantanal',
+        content: 'Frio mata mais de mil cabeças de gado no Pantanal',
+        fonte: 'g1.globo.com/',
+        imageUrl: 'https://images.unsplash.com/photo-1682687982093-4773cb0dbc2e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80', // Substitua pela URL da imagem real
+    };
+
+    // // Exemplo de notícia sem imagem
+    // const newsWithoutImage = {
+    //     title: 'Notícia sem Imagem',
+    //     content: 'Conteúdo da notícia sem imagem...',
+    //     imageUrl: null,
+    // };
+
     return (
         <div className="App">
             <Header />
@@ -95,7 +109,8 @@ function App() {
             </section>
             <section id='corpo'>
                 <div id='news'>
-                    <div></div>
+                    <h1>Notícias</h1>
+                    <NewsComponent {...newsWithImage} />
                 </div>
             </section>
         </div>
