@@ -15,13 +15,16 @@ nav{
 
 #logo {
     height: 40px;
+}
+#c_logo {
+    height: 40px;
     margin-left: calc(7% + 10px);
 }
 
 #search{
     height: 30px;
     margin-left: calc(100% - 140px - 14% - 162px);
-    background-color: rgb(31, 31, 31);
+    background-color: #ffffff;
     border-radius: 25px;
     position: relative;
 }
@@ -35,6 +38,7 @@ nav{
     border: none;
     outline: none;
     background:none;
+    color: #202020;
 }
 
 #b-search{
