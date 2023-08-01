@@ -121,10 +121,27 @@ a:active {
 }
 
 #corpo {
-  margin-top: calc(60vh + 30px);
+  margin-top: calc(60vh + 10px);
   display: flex;
   position: absolute;
   text-align: center;
-  width: 80%;
+  width: 70%;
   z-index: 1;
+  text-align: start;
+}
+
+#content {
+  border-radius: 20px;
+  background-color: #303030;
+  margin: 7.5px;
+  height: fit-content;
+}
+
+#sideContent {
+  border-radius: 20px;
+  background-color: #303030;
+  padding: 15px;
+  width: 35vw;
+  margin: 7.5px;
+  min-width: 200px;
 }

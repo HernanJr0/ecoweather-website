@@ -6,9 +6,9 @@ import bg from './assets/visual-banner1.png'
 import arrow_up from './assets/up-right-arrow.png'
 import arrow_down from './assets/down-right-arrow.png'
 import place from './assets/place.svg'
+import Noticia from './Noticia/Noticia.jsx'
 
 import './App.css'
-import NewsComponent from './Noticias/Noticia.jsx'
 
 function App() {
 
@@ -60,20 +60,6 @@ function App() {
         return date;
     }
 
-    const newsWithImage = {
-        title: 'Porque o gado morre de frio? Os motivos para hipotermia dos animais no Pantanal',
-        content: 'Frio mata mais de mil cabeças de gado no Pantanal',
-        fonte: 'g1.globo.com/',
-        imageUrl: 'https://images.unsplash.com/photo-1682687982093-4773cb0dbc2e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80', // Substitua pela URL da imagem real
-    };
-
-    // // Exemplo de notícia sem imagem
-    // const newsWithoutImage = {
-    //     title: 'Notícia sem Imagem',
-    //     content: 'Conteúdo da notícia sem imagem...',
-    //     imageUrl: null,
-    // };
-
     return (
         <div className="App">
             <Header />
@@ -108,9 +94,27 @@ function App() {
 
             </section>
             <section id='corpo'>
-                <div id='news'>
-                    <h1>Notícias</h1>
-                    <NewsComponent {...newsWithImage} />
+                <div id='content'>
+                    <Noticia
+                        imagemSrc='https://images.unsplash.com/photo-1689218007849-ac313c0e55c1?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=768&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY5MDg2NDUyMQ&ixlib=rb-4.0.3&q=80&w=1366'
+                        titulo='Por que gado morre de frio? Os motivos para hipotermia dos animais no Pantanal'
+                        descricao='Frio mata mais de mil cabeças de gado no Pantanal'
+                    />
+                    <Noticia
+                        imagemSrc='https://images.unsplash.com/photo-1690061522224-97144ee72462?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=768&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY5MDg2NDcwNw&ixlib=rb-4.0.3&q=80&w=1366'
+                        titulo='Um ano das chuvas em Recife: tragédia pode voltar a ocorrer se não houver ação do poder público'
+                        descricao='Após um ano do maior desastre em Pernambuco, forte...'
+                    />
+                    <Noticia
+                        imagemSrc='https://images.unsplash.com/photo-1688619104606-4608282777bc?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=768&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY5MDg2NDk1OA&ixlib=rb-4.0.3&q=80&w=1366'
+                        titulo='Abril registra queda de 67.9% no desmatamento na Amazônia, em relação ao mesmo período em 2022'
+                        descricao='Dados do sistema Deter-B mostra 329 km² de alertas ...'
+                    />
+                </div>
+                <div id='sideContent'>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec dictum turpis porttitor dolor consectetur, in euismod risus tempus. In luctus magna vel eros bibendum malesuada. Phasellus at pretium felis. In hac habitasse platea dictumst. Sed elit libero, mattis at ex et, aliquam mattis nisi. Aliquam fermentum elit nec urna commodo elementum. Nullam quis convallis mauris.</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec dictum turpis porttitor dolor consectetur, in euismod risus tempus. In luctus magna vel eros bibendum malesuada. Phasellus at pretium felis. In hac habitasse platea dictumst. Sed elit libero, mattis at ex et, aliquam mattis nisi. Aliquam fermentum elit nec urna commodo elementum. Nullam quis convallis mauris.</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec dictum turpis porttitor dolor consectetur, in euismod risus tempus. In luctus magna vel eros bibendum malesuada. Phasellus at pretium felis. In hac habitasse platea dictumst. Sed elit libero, mattis at ex et, aliquam mattis nisi. Aliquam fermentum elit nec urna commodo elementum. Nullam quis convallis mauris.</p>
                 </div>
             </section>
         </div>
