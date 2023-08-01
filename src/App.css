@@ -136,8 +136,8 @@ a:active {
   background-color: #303030;
   margin: 7.5px;
   height: fit-content;
-  width:60%;
-  min-width:60%;
+  max-width: 70%;
+  min-width: 70%;
 }
 
 #sideContent {
@@ -145,6 +145,6 @@ a:active {
   background-color: #303030;
   padding: 15px;
   margin: 7.5px;
-  width: 40%;
-  min-width:40%;
+  max-width: 30%;
+  min-width: 30%;
 }
