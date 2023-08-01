@@ -148,4 +148,5 @@ a:active {
 }
 #sideContent p{
   margin: 22.5px;
+  word-break: break-word;
 }
