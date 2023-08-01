@@ -1,94 +1,147 @@
 .App {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
-#bg{
-    border-radius: 0 0 20px 20px;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-    position: absolute;
-    min-width: 100%;
-    max-width: 100%;
-    min-height: 100%;
-    max-height: 100%;
-    object-fit: cover;
-    object-position: center center;
+a {
+  text-decoration: none;
 }
 
-#data_loc{
-    display: block;
-    margin-top: 80px;
-    width: 100%;
-    z-index: 1;
-}
-#data{
-    width: 100%;
-}
-#loc{
-    width: 100%;
-}
-#clima{
-    margin-top: 40px;
-    font-size: 32px;
-    display: block;
-}
-#data a{
-    float: left;
-    margin-left: calc(7% + 10px);
-}
-#loc a{
-    float: right;
-    margin-right: calc(7% + 10px);
+a:link {
+  color: white;
 }
 
-#c_clima{
-    width: 100%;
-    
-    display: flex;
-    flex-direction: column;
-    place-items: center;
-    justify-content: center;
-
-    z-index: 1;
-}
-#clima_report{
-    display: flex;
-    align-items: center;
-}
-#c_img{
-    margin-right: 10px;
-    height: 100px;
+a:visited {
+  color: white;
 }
 
-#max_min div{
-    margin-left: 10px;
-    display: flex;
-    align-items: center;
-}
-#max_min div img{
-    height: 28px;
+a:hover {
+  color: #bbbbbb;
 }
 
-#tudo{
-    display: grid;
-    position: absolute;
-    text-align: center;
-    height: 60vh;
-    width: 100%;
-}
-#stat{
-    z-index: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: end;
-    margin-bottom: 30px;
+a:active {
+  color: #bbbbbb;
 }
 
-#corpo{
-    margin-top: calc(60vh + 30px);
-    display: flex;
-    position: absolute;
-    text-align: center;
-    width: 80%;
-    z-index: 1;
+#bg {
+  border-radius: 0 0 20px 20px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  position: absolute;
+  min-width: 100%;
+  max-width: 100%;
+  min-height: 100%;
+  max-height: 100%;
+  object-fit: cover;
+  object-position: center center;
+}
+
+#data_loc {
+  display: block;
+  margin-top: 80px;
+  width: 100%;
+  z-index: 1;
+}
+
+#data {
+  width: 100%;
+}
+
+#loc {
+  width: 100%;
+  background-color: white;
+}
+
+#clima {
+  margin-top: 40px;
+  font-size: 32px;
+  display: block;
+}
+
+#data a {
+  float: left;
+  margin-left: calc(7% + 10px);
+}
+
+#loc a {
+  float: right;
+  margin-right: calc(7% + 10px);
+}
+
+#looouco {
+  height: 20px;
+  margin: 0 10px 0 0;
+}
+
+#c_clima {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  place-items: center;
+  justify-content: center;
+
+  z-index: 1;
+}
+
+#clima_report {
+  display: flex;
+  align-items: center;
+  margin: 12px;
+}
+
+#c_img {
+  margin-right: 10px;
+  height: 100px;
+}
+
+#max_min div {
+  margin-left: 10px;
+  display: flex;
+  align-items: center;
+}
+
+#max_min div img {
+  height: 28px;
+}
+
+#tudo {
+  display: grid;
+  position: absolute;
+  text-align: center;
+  height: 60vh;
+  width: 100%;
+}
+
+#stat {
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  margin-bottom: 30px;
+}
+
+#corpo {
+  margin-top: calc(60vh + 10px);
+  display: flex;
+  position: absolute;
+  text-align: center;
+  width: 70%;
+  z-index: 1;
+  text-align: start;
+}
+
+#content {
+  border-radius: 20px;
+  background-color: #303030;
+  margin: 7.5px;
+  height: fit-content;
+}
+
+#sideContent {
+  border-radius: 20px;
+  background-color: #303030;
+  padding: 15px;
+  width: 35vw;
+  margin: 7.5px;
+  min-width: 200px;
 }

@@ -1,0 +1,15 @@
+#noticia {
+    border-bottom: #202020 solid 2px;
+    display: flex;
+    padding: 15px;
+  }
+  
+  #noticia img {
+    width: 40%;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+  
+  #noticiaDesc {
+    padding: 0 15px;
+  }
