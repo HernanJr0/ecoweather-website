@@ -150,8 +150,17 @@ a:active {
   margin: 22.5px;
   word-break: break-word;
 }
-@media(max-width: 600px)
+@media(max-width: 360px)
 {
   #corpo{
     flex-direction:column;
+  }
+  #content{
+    max-width: 100%;
+    min-width: 100%;
+  }
+  #sideContent{
+    max-width: 100%;
+    min-width: 100%; 
+  }
 }
