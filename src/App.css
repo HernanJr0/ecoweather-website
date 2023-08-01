@@ -135,16 +135,16 @@ a:active {
   background-color: #303030;
   margin: 7.5px;
   height: fit-content;
-  min-width: calc(70%-15px);
-  max-width: 70%;
+  width: calc(70%-15px);
+  max-width: calc(70%-15px);
 }
 
 #sideContent {
   border-radius: 20px;
   background-color: #303030;
   margin: 7.5px;
-  min-width: calc(30%-15px);
-  max-width: 30%;
+  width: calc(30%-15px);
+  max-width: calc(30%-15px);
 }
 #sideContent p{
   margin: 22.5px;
@@ -156,11 +156,11 @@ a:active {
     flex-direction:column;
   }
   #content{
-    min-width: calc(100%-15px);
+    width: calc(100%-15px);
     max-width: calc(100%-15px);
   }
   #sideContent{
-    min-width: calc(100%-15px); 
+    width: calc(100%-15px); 
     max-width: calc(100%-15px);
   }
 }
