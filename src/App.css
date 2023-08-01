@@ -143,7 +143,9 @@ a:active {
 #sideContent {
   border-radius: 20px;
   background-color: #303030;
-  margin: 22.5px;
   max-width: 30%;
   min-width: 30%;
+}
+#SideContent p{
+  margin: 22.5px;
 }
