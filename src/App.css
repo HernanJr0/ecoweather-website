@@ -135,8 +135,8 @@ a:active {
   background-color: #303030;
   margin: 7.5px;
   height: fit-content;
-  max-width: calc(70%-15px);
   min-width: calc(70%-15px);
+  max-width: 70%;
 }
 
 #sideContent {
@@ -144,7 +144,7 @@ a:active {
   background-color: #303030;
   margin: 7.5px;
   min-width: calc(30%-15px);
-  max-width: calc(30%-15px);
+  max-width: 30%;
 }
 #sideContent p{
   margin: 22.5px;
@@ -156,11 +156,11 @@ a:active {
     flex-direction:column;
   }
   #content{
-    max-width: calc(100%-15px);
     min-width: calc(100%-15px);
+    max-width: calc(100%-15px);
   }
   #sideContent{
-    max-width: calc(100%-15px);
     min-width: calc(100%-15px); 
+    max-width: calc(100%-15px);
   }
 }
