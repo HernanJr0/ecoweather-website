@@ -135,14 +135,16 @@ a:active {
   background-color: #303030;
   margin: 7.5px;
   height: fit-content;
-  width: 70%;
+  max-width: 70%;
+  min-width: 70%;
 }
 
 #sideContent {
   border-radius: 20px;
   background-color: #303030;
   margin: 7.5px;
-  width: calc(30%-30px);
+  min-width: calc(30%-30px);
+  max-width: calc(30%-30px);
 }
 #sideContent p{
   margin: 22.5px;
