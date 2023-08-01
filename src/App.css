@@ -125,7 +125,8 @@ a:active {
   display: flex;
   position: absolute;
   text-align: center;
-  width: 70%;
+  max-width: 1600px;
+  width: 100%;
   z-index: 1;
   text-align: start;
 }
