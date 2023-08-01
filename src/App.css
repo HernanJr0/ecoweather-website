@@ -153,5 +153,5 @@ a:active {
 @media(max-width: 600px)
 {
   #corpo{
-    flex-direction:row;
+    flex-direction:column;
 }
