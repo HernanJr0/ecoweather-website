@@ -6,7 +6,7 @@ const Noticia = (props) => {
         <div id='noticia'>
             <img src={props.imagemSrc} />
             <div id='noticiaDesc'>
-                <h3>{props.titulo}</h3>
+                <h2>{props.titulo}</h2>
                 <p>{props.descricao}</p>
             </div>
         </div>

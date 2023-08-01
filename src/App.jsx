@@ -96,17 +96,17 @@ function App() {
             <section id='corpo'>
                 <div id='content'>
                     <Noticia
-                        imagemSrc='https://images.unsplash.com/photo-1689218007849-ac313c0e55c1?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=768&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY5MDg2NDUyMQ&ixlib=rb-4.0.3&q=80&w=1366'
+                        imagemSrc='https://tinyurl.com/y4chnjk3'
                         titulo='Por que gado morre de frio? Os motivos para hipotermia dos animais no Pantanal'
                         descricao='Frio mata mais de mil cabeças de gado no Pantanal'
                     />
                     <Noticia
-                        imagemSrc='https://images.unsplash.com/photo-1690061522224-97144ee72462?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=768&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY5MDg2NDcwNw&ixlib=rb-4.0.3&q=80&w=1366'
+                        imagemSrc='https://tinyurl.com/222s3jhx'
                         titulo='Um ano das chuvas em Recife: tragédia pode voltar a ocorrer se não houver ação do poder público'
                         descricao='Após um ano do maior desastre em Pernambuco, forte...'
                     />
                     <Noticia
-                        imagemSrc='https://images.unsplash.com/photo-1688619104606-4608282777bc?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=768&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY5MDg2NDk1OA&ixlib=rb-4.0.3&q=80&w=1366'
+                        imagemSrc='https://tinyurl.com/mh5u8pye'
                         titulo='Abril registra queda de 67.9% no desmatamento na Amazônia, em relação ao mesmo período em 2022'
                         descricao='Dados do sistema Deter-B mostra 329 km² de alertas ...'
                     />
