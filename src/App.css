@@ -150,3 +150,8 @@ a:active {
   margin: 22.5px;
   word-break: break-word;
 }
+@media(max-width: 600px)
+{
+  #corpo{
+    flex-direction:row;
+}
