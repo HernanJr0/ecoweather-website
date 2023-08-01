@@ -137,13 +137,14 @@ a:active {
   margin: 7.5px;
   height: fit-content;
   width:60%;
+  min-width:60%;
 }
 
 #sideContent {
   border-radius: 20px;
   background-color: #303030;
   padding: 15px;
-  width: 35vw;
   margin: 7.5px;
   width: 40%;
+  min-width:40%;
 }
