@@ -124,7 +124,6 @@ a:active {
   margin-top: calc(60vh + 10px);
   display: flex;
   position: absolute;
-  text-align: center;
   max-width: 1600px;
   width: 100%;
   z-index: 1;
@@ -136,16 +135,14 @@ a:active {
   background-color: #303030;
   margin: 7.5px;
   height: fit-content;
-  max-width: 70%;
-  min-width: 70%;
+  width: 70%;
 }
 
 #sideContent {
   border-radius: 20px;
   background-color: #303030;
   margin: 7.5px;
-  max-width: 30%;
-  min-width: 30%;
+  width: calc(30%-30px);
 }
 #sideContent p{
   margin: 22.5px;
