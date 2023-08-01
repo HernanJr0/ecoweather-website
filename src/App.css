@@ -156,11 +156,11 @@ a:active {
     flex-direction:column;
   }
   #content{
-    max-width: 100%;
-    min-width: 100%;
+    max-width: calc(100%-15px);
+    min-width: calc(100%-15px);
   }
   #sideContent{
-    max-width: 100%;
-    min-width: 100%; 
+    max-width: calc(100%-15px);
+    min-width: calc(100%-15px); 
   }
 }
