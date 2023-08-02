@@ -3,20 +3,28 @@ import './Noticia.css'
 
 const Noticia = (props) => {
     return (
-        <div id='noticia'>
-            <img src={props.imagemSrc} />
-            <div id='noticiaDesc'>
-                <h2>{props.titulo}</h2>
-                <p>{props.descricao}</p>
+        <>
+            <div id='noticia'>
+                <div id='imgCont'>
+                    <img src={props.imagemSrc} />
+                </div>
+                <a href=''>
+                    <div id='noticiaDesc'>
+                        <h2 id='titulo'>{props.titulo}</h2>
+                        <p id='descricao'>{props.descricao}</p>
+                        <p id='creditos'>Fonte: {props.creditos}</p>
+                    </div>
+                </a>
             </div>
-        </div>
+        </>
     )
 }
 
 Noticia.propTypes = {
     imagemSrc: PropTypes.string,
     titulo: PropTypes.string,
-    descricao: PropTypes.string
-  };
+    descricao: PropTypes.string,
+    creditos: PropTypes.string
+};
 
 export default Noticia
