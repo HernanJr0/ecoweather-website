@@ -1,5 +1,4 @@
 #noticia {
-    border-bottom: #202020 solid 2px;
     display: flex;
     margin: 15px;
   }
@@ -20,7 +19,7 @@
   
   #noticiaDesc {
     margin: 0 15px;
-    text-size: 1.5em;
+    font-size: 1em;
   }
 
   #creditos {
