@@ -1,0 +1,13 @@
+#Footer {
+    display: flex;
+    height: 60px;
+    background-color: #303030;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+#logoGithub {
+    width: 20px;
+    height: 20px;
+}
