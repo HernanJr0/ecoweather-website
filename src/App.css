@@ -144,4 +144,5 @@ a:active {
   width: 35vw;
   margin: 7.5px;
   min-width: 200px;
+  height: fit-content;
 }
