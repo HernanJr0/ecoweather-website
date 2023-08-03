@@ -120,9 +120,10 @@ a:active {
   margin-bottom: 30px;
 }
 
-#corpo {
+#body {
   margin-top: calc(60vh + 10px);
   display: flex;
+  flex-direction: column;
   position: absolute;
   max-width: 1600px;
   width: 100%;
@@ -130,7 +131,13 @@ a:active {
   text-align: start;
 }
 
-#content {
+#conteudo {
+  display: flex;
+  margin: 0 auto;
+  width: 70%;
+}
+
+#noticias {
   border-radius: 20px;
   background-color: #303030;
   margin: 7.5px;
@@ -143,6 +150,7 @@ a:active {
   border-radius: 20px;
   background-color: #303030;
   margin: 7.5px;
+
   width: calc(30%-15px);
   max-width: calc(30%-15px);
 }
