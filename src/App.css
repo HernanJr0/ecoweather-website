@@ -173,6 +173,6 @@ body{
         width:fit-content;
     }
     #sideContent{
-        width:fit-content;
+        width:unset;
     }
 }
