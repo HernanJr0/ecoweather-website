@@ -62,77 +62,79 @@ function App() {
     }
 
     return (
-        <div className="App">
-            <Header />
-            <section id='tudo'>
-                <img id='bg' src={bg} alt="bg" />
-                <div id='data_loc'>
-                    <div id='data'>
-                        <a href=''>{dia}</a>
+        <body>
+            <div id="page">
+                <Header />
+                <section id='head'>
+                    <img id='bg' src={bg} alt="bg" />
+                    <div id='data_loc'>
+                        <div id='data'>
+                            <a href=''>{dia}</a>
+                        </div>
+                        <div id='loc'>
+                            <a href=''><img src={place} id='pin' />{loc}</a>
+                        </div>
+                        <h1 id='clima'>{clima}</h1>
                     </div>
-                    <div id='loc'>
-                        <a href=''><img src={place} id='looouco' />{loc}</a>
-                    </div>
-                    <h1 id='clima'>{clima}</h1>
-                </div>
 
-                <div id='c_clima'>
-                    <div id='clima_report'>
-                        <img id='c_img' src={c_url} alt='img_clima' />
-                        <h1>{temp}ºC</h1>
-                        <div id='max_min'>
-                            <div>{t_max}<img src={arrow_up} /></div>
-                            <div>{t_min}<img src={arrow_down} /></div>
+                    <div id='c_clima'>
+                        <div id='clima_report'>
+                            <img id='c_img' src={c_url} alt='img_clima' />
+                            <h1>{temp}ºC</h1>
+                            <div id='max_min'>
+                                <div>{t_max}<img src={arrow_up} /></div>
+                                <div>{t_min}<img src={arrow_down} /></div>
+                            </div>
+                        </div>
+                        <a href=''>sensação termica: {s_temp} ºC</a>
+                    </div>
+                    <div id='stat'>
+                        <div><a href=''>Qualidade do ar: Razoável</a></div>
+                        <div><a href=''>Umidade: 82%</a></div>
+                        <div><a href=''>Vento: 9 km/h</a></div>
+                    </div>
+                </section>
+
+                <section id='body'>
+                    <div id='conteudo'>
+                        <div id='tomatoma'>
+                            <div id='noticias'>
+                                <Noticia
+                                    imagemSrc={'https://tinyurl.com/3p2sa6at'}
+                                    titulo={'Por que gado morre de frio? Os motivos para hipotermia dos animais no Pantanal'}
+                                    descricao={'Frio mata mais de mil cabeças de gado no Pantanal'}
+                                    creditos={'g1.globo.com.br/'}
+                                />
+                                <Noticia
+                                    imagemSrc={'https://tinyurl.com/2x3ht8sh'}
+                                    titulo={'Um ano das chuvas em Recife: tragédia pode voltar a ocorrer se não houver ação do poder público'}
+                                    descricao={'Após um ano do maior desastre em Pernambuco, forte...'}
+                                    creditos={'greenpeace.org/'}
+                                />
+                                <Noticia
+                                    imagemSrc={'https://tinyurl.com/ymdu6z8r'}
+                                    titulo={'Abril registra queda de 67.9% no desmatamento na Amazônia, em relação ao mesmo período em 2022'}
+                                    descricao={'Dados do sistema Deter-B mostra 329 km² de alertas ...'}
+                                    creditos={'greenpeace.org/'}
+                                />
+                            </div>
+                        </div>
+                        <div id='sideContent'>
+                            <div id='secaoPrevisao'>
+                                <p>aaaa</p>
+                            </div>
+                            <div id='secaoAgenda'>
+                                <p>aaaa</p>
+                            </div>
+                            <div id='secaoDicas'>
+                                <p>aaaa</p>
+                            </div>
                         </div>
                     </div>
-                    <a href=''>sensação termica: {s_temp} ºC</a>
-                </div>
-                <div id='stat'>
-                    <div><a href=''>Qualidade do ar: Razoável</a></div>
-                    <div><a href=''>Umidade: 82%</a></div>
-                    <div><a href=''>Vento: 9 km/h</a></div>
-                </div>
-            </section>
-            
-            <section id='body'>
-                <div id='conteudo'>
-                    <div id='tomatoma'>
-                        <div id='noticias'>
-                            <Noticia
-                                imagemSrc={'https://tinyurl.com/3p2sa6at'}
-                                titulo={'Por que gado morre de frio? Os motivos para hipotermia dos animais no Pantanal'}
-                                descricao={'Frio mata mais de mil cabeças de gado no Pantanal'}
-                                creditos={'g1.globo.com.br/'}
-                            />
-                            <Noticia
-                                imagemSrc={'https://tinyurl.com/2x3ht8sh'}
-                                titulo={'Um ano das chuvas em Recife: tragédia pode voltar a ocorrer se não houver ação do poder público'}
-                                descricao={'Após um ano do maior desastre em Pernambuco, forte...'}
-                                creditos={'greenpeace.org/'}
-                            />
-                            <Noticia
-                                imagemSrc={'https://tinyurl.com/ymdu6z8r'}
-                                titulo={'Abril registra queda de 67.9% no desmatamento na Amazônia, em relação ao mesmo período em 2022'}
-                                descricao={'Dados do sistema Deter-B mostra 329 km² de alertas ...'}
-                                creditos={'greenpeace.org/'}
-                            />
-                        </div>
-                    </div>
-                    <div id='sideContent'>
-                        <div id='secaoPrevisao'>
-                            <p>aaaa</p>
-                        </div>
-                        <div id='secaoAgenda'>
-                            <p>aaaa</p>
-                        </div>
-                        <div id='secaoDicas'>
-                            <p>aaaa</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <Footer />
-        </div>
+                </section>
+            </div >
+                <Footer />
+        </body>
     )
 }
 

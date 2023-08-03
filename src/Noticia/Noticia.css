@@ -25,7 +25,18 @@
 }
 
 hr {
-    width: 90%;
-    margin: auto;
+    margin: 0 20px;
     border: .5px solid grey;
+}
+
+@media(max-width: 800px){
+    #noticia img {
+        height: 112px;
+        width: 160px;
+        object-fit: cover;
+        border-radius: 10px;
+    }
+    #noticiaDesc{
+        font-size: 10px;
+    }
 }
