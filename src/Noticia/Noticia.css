@@ -1,7 +1,7 @@
 #noticia {
     border-bottom: #202020 solid 2px;
     display: flex;
-    padding: 15px;
+    margin: 15px;
   }
 
   #imgCont {
@@ -19,7 +19,8 @@
   }
   
   #noticiaDesc {
-    padding: 0 15px;
+    margin: 0 15px;
+    text-size: 1.5em;
   }
 
   #creditos {

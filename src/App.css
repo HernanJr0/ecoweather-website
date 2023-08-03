@@ -125,6 +125,8 @@ a:active {
   display: flex;
   flex-direction: column;
   position: absolute;
+  max-width: 1600px;
+  width: 100%;
   z-index: 1;
   text-align: start;
 }
@@ -140,14 +142,33 @@ a:active {
   background-color: #303030;
   margin: 7.5px;
   height: fit-content;
+  width: calc(70%-15px);
+  max-width: calc(70%-15px);
 }
 
 #sideContent {
   border-radius: 20px;
   background-color: #303030;
-  padding: 15px;
-  width: 35vw;
   margin: 7.5px;
-  min-width: 200px;
-  height: fit-content;
+
+  width: calc(30%-15px);
+  max-width: calc(30%-15px);
+}
+#sideContent p{
+  margin: 22.5px;
+  word-break: break-word;
+}
+@media(max-width: 500px)
+{
+  #corpo{
+    flex-direction:column;
+  }
+  #content{
+    width: calc(100%-15px);
+    max-width: calc(100%-15px);
+  }
+  #sideContent{
+    width: calc(100%-15px); 
+    max-width: calc(100%-15px);
+  }
 }
