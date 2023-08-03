@@ -16,6 +16,7 @@ const Noticia = (props) => {
                     </div>
                 </a>
             </div>
+            <hr/>
         </>
     )
 }
