@@ -25,11 +25,11 @@ a:active {
     color: #bbbbbb;
 }
 
-body{
+#corpo {
 	min-height: 100vh;
 	position: relative;
 }
-#page{
+#page {
     padding-bottom: 60px;
 }
 
