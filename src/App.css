@@ -149,7 +149,7 @@ body{
     background-color: #303030;
     margin: 7.5px;
 
-    width: 65%;
+    width: 60%;
 }
 
 #sideContent {
@@ -157,7 +157,7 @@ body{
     background-color: #303030;
     margin: 7.5px;
 
-    width: 35%;
+    width: 40%;
 }
 
 #sideContent p {
@@ -165,13 +165,13 @@ body{
     word-break: break-word;
 }
 
-@media(max-width: 800px) {
+@media(max-width: 700px) {
     #conteudo {
         flex-direction: column;
         margin: 0 10px;
     }
     #tomatoma{
-        width:fit-content;
+        width:unset;
     }
     #sideContent{
         width:unset;

@@ -18,10 +18,16 @@
 #noticiaDesc {
     margin: 0 15px;
     font-size: 12px;
-  }
+    width: 50vw;
+}
 
-#creditos {
-    margin: 9% 0 0 0;
+
+#noticiaDesc h2, #noticiaDesc p{
+    width: calc(30vw - 50px);
+    max-width: 700px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 hr {
@@ -29,14 +35,15 @@ hr {
     border: .5px solid grey;
 }
 
-@media(max-width: 800px){
+@media(max-width: 700px) {
     #noticia img {
         height: 112px;
         width: 160px;
         object-fit: cover;
         border-radius: 10px;
     }
-    #noticiaDesc{
+
+    #noticiaDesc {
         font-size: 10px;
     }
 }

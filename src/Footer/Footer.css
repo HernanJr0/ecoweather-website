@@ -36,7 +36,7 @@
 }
 
 
-@media(max-width: 600px) {
+@media(max-width: 700px) {
     #links a {
         margin-left: 10px;
     }
