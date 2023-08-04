@@ -12,7 +12,7 @@ const Footer = () => {
                 <a href="https://github.com/HernanJr0/ecoweather-website">
                     <img src={logoGithub} class='logo' />
                 </a>
-                
+
                 <a href="">
                     <img src={logoGoogle} class='logo' />
                 </a>
