@@ -62,7 +62,7 @@ function App() {
     }
 
     return (
-        <body>
+        <div id='corpo'>
             <div id="page">
                 <Header />
                 <section id='head'>
@@ -133,8 +133,8 @@ function App() {
                     </div>
                 </section>
             </div >
-                <Footer />
-        </body>
+            <Footer />
+        </div>
     )
 }
 
