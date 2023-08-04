@@ -1,27 +1,42 @@
 #noticia {
     display: flex;
     margin: 15px;
-  }
+}
 
-  #imgCont {
-    width: 350px;
-    height: 200px;
-  }
-  
-  #noticia img {
-    width: 100%;
-    height: 100%;
-    min-width: 350px;
-    min-height: 200px;
+#imgCont {
+    height: fit-content;
+    width: fit-content;
+}
+
+#noticia img {
+    height: 140px;
+    width: 200px;
     object-fit: cover;
     border-radius: 10px;
-  }
-  
-  #noticiaDesc {
+}
+
+#noticiaDesc {
     margin: 0 15px;
-    font-size: 1em;
+    font-size: 12px;
   }
 
-  #creditos {
+#creditos {
     margin: 9% 0 0 0;
-  }
+}
+
+hr {
+    margin: 0 20px;
+    border: .5px solid grey;
+}
+
+@media(max-width: 800px){
+    #noticia img {
+        height: 112px;
+        width: 160px;
+        object-fit: cover;
+        border-radius: 10px;
+    }
+    #noticiaDesc{
+        font-size: 10px;
+    }
+}

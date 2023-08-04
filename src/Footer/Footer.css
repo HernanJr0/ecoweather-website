@@ -1,13 +1,32 @@
+:root{
+    --tamanhokkkkk-seila: ;
+}
 #Footer {
-    display: flex;
-    height: 60px;
-    background-color: #303030;
+    position: absolute;
+    bottom: 0;
     width: 100%;
-    justify-content: center;
+    height: 60px;
+    display: flex;
+    background-color: #303030;
     align-items: center;
 }
 
-#logoGithub {
+#devmsg{
+    margin-right: calc((50% / 3) - 140px);
+    width: 100%;
+    text-align: end;
+}
+
+#links{
+    width: 50%;
+    max-width: 50%;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+#links a {
+    margin-left: 15px;
     width: 20px;
     height: 20px;
 }
