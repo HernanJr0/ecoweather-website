@@ -1,17 +1,29 @@
-import Header from './Header/Header.jsx'
-import nublado from './assets/nublado.png'
-import ensolarado from './assets/ensolarado.png'
-import parc_ensolarado from './assets/parc_ensolarado.png'
-import bg from './assets/visual-banner1.png'
-import arrow_up from './assets/up-right-arrow.png'
-import arrow_down from './assets/down-right-arrow.png'
-import place from './assets/place.svg'
-import Noticia from './Noticia/Noticia.jsx'
-import Footer from './Footer/Footer.jsx'
+import Header from './Header/Header.jsx';
+import Noticia from './Noticia/Noticia.jsx';
+import Footer from './Footer/Footer.jsx';
+import './App.css';
 
-import './App.css'
+import nublado from './assets/nublado.png';
+import ensolarado from './assets/ensolarado.png';
+import parc_ensolarado from './assets/parc_ensolarado.png';
+import bg0 from './assets/banner0.png';
+import bg1 from './assets/banner1.png'
+import arrow_up from './assets/up-right-arrow.png';
+import arrow_down from './assets/down-right-arrow.png';
+import place from './assets/place.svg';
 
 function App() {
+
+    const date = new Date()
+    const hora = date.getHours()
+
+    let bg
+
+    if (hora <= 6 || hora >= 18) {
+        bg = bg0
+    } else {
+        bg = bg1
+    }
 
     //data
     var dia = custom_date()

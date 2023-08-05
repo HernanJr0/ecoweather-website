@@ -6,20 +6,18 @@
     display: flex;
     background-color: #303030;
     align-items: center;
+    justify-content: center;
 }
 
 #devmsg{
-    width: 100%;
     min-width: fit-content;
     text-align: end;
 }
 
 #links{
-    width: 100%;
+    margin: 0 0 0 50px;
+    min-width: 140px;
     height: 20px;
-    max-width: 50%;
-    min-width: 100px;
-
     display: flex;
     justify-content: center;
 }
