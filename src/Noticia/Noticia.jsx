@@ -6,13 +6,13 @@ const Noticia = (props) => {
         <>
             <div id='noticia'>
                 <div id='imgCont'>
-                    <img src={props.imagemSrc} />
+                    <img src={props.imagemSrc}/>
                 </div>
-                <a href=''>
+                <a href={props.linkNoticia} target='_blank' rel='noreferrer'>
                     <div id='noticiaDesc'>
+                        <p id='creditos'>Fonte: {props.creditos}</p>
                         <h2 id='titulo'>{props.titulo}</h2>
                         <p id='descricao'>{props.descricao}</p>
-                        <p id='creditos'>Fonte: {props.creditos}</p>
                     </div>
                 </a>
             </div>
@@ -22,6 +22,7 @@ const Noticia = (props) => {
 }
 
 Noticia.propTypes = {
+    linkNoticia: PropTypes.string,
     imagemSrc: PropTypes.string,
     titulo: PropTypes.string,
     descricao: PropTypes.string,

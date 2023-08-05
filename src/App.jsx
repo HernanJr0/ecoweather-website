@@ -97,27 +97,28 @@ function App() {
 
                 <section id='body'>
                     <div id='conteudo'>
-                        <div id='tomatoma'>
-                            <div id='noticias'>
-                                <Noticia
-                                    imagemSrc={'https://tinyurl.com/3p2sa6at'}
-                                    titulo={'Por que gado morre de frio? Os motivos para hipotermia dos animais no Pantanal'}
-                                    descricao={'Frio mata mais de mil cabeças de gado no Pantanal'}
-                                    creditos={'g1.globo.com.br/'}
-                                />
-                                <Noticia
-                                    imagemSrc={'https://tinyurl.com/2x3ht8sh'}
-                                    titulo={'Um ano das chuvas em Recife: tragédia pode voltar a ocorrer se não houver ação do poder público'}
-                                    descricao={'Após um ano do maior desastre em Pernambuco, forte...'}
-                                    creditos={'greenpeace.org/'}
-                                />
-                                <Noticia
-                                    imagemSrc={'https://tinyurl.com/ymdu6z8r'}
-                                    titulo={'Abril registra queda de 67.9% no desmatamento na Amazônia, em relação ao mesmo período em 2022'}
-                                    descricao={'Dados do sistema Deter-B mostra 329 km² de alertas ...'}
-                                    creditos={'greenpeace.org/'}
-                                />
-                            </div>
+                        <div id='noticias'>
+                            <Noticia
+                                imagemSrc={'https://tinyurl.com/3p2sa6at'}
+                                linkNoticia={'https://g1.globo.com/ms/mato-grosso-do-sul/noticia/2023/06/17/por-que-gado-morre-de-frio-entenda-os-motivos-para-hipotermia-dos-animais-no-pantanal.ghtml'}
+                                titulo={'Por que gado morre de frio? Os motivos para hipotermia dos animais no Pantanal'}
+                                descricao={'Mais de 1 mil cabeças de gado morreram de frio em Mato Grosso do Sul nos últimos dias. De acordo com especialistas, as mortes dos animais estão atreladas a uma severa hipotermia e o gado pantaneiro pode sofrer ainda mais com o frio.'}
+                                creditos={'g1.globo.com.br/'}
+                            />
+                            <Noticia
+                                imagemSrc={'https://tinyurl.com/2x3ht8sh'}
+                                linkNoticia={'https://www.greenpeace.org/brasil/imprensa/um-ano-das-chuvas-em-recife-tragedia-pode-voltar-a-ocorrer-se-nao-houver-acao-do-poder-publico/'}
+                                titulo={'Um ano das chuvas em Recife: tragédia pode voltar a ocorrer se não houver ação do poder público'}
+                                descricao={'Após um ano do maior desastre em Pernambuco, fortes chuvas deixam o Estado novamente em alerta. Greenpeace Brasil apoia a revisão do Plano Nacional de Adaptação para evitar novos desastres'}
+                                creditos={'greenpeace.org/'}
+                            />
+                            <Noticia
+                                imagemSrc={'https://tinyurl.com/ymdu6z8r'}
+                                linkNoticia={'https://www.greenpeace.org/brasil/imprensa/abril-registra-queda-de-67-9-no-desmatamento-na-amazonia-em-relacao-ao-mesmo-periodo-em-2022/'}
+                                titulo={'Abril registra queda de 67.9% no desmatamento na Amazônia, em relação ao mesmo período em 2022'}
+                                descricao={'Abril registra queda de 67.9% no desmatamento na Amazônia, em relação ao mesmo período em 2022.'}
+                                creditos={'greenpeace.org/'}
+                            />
                         </div>
                         <div id='sideContent'>
                             <div id='secaoPrevisao'>
