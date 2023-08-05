@@ -144,7 +144,7 @@ a:active {
     max-width: 1600px;
 }
 
-#tomatoma{
+#noticias{
     border-radius: 20px;
     background-color: #303030;
     margin: 7.5px;
@@ -170,7 +170,7 @@ a:active {
         flex-direction: column;
         margin: 0 10px;
     }
-    #tomatoma{
+    #noticias{
         width:fit-content;
     }
     #sideContent{

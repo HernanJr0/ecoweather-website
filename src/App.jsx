@@ -97,27 +97,25 @@ function App() {
 
                 <section id='body'>
                     <div id='conteudo'>
-                        <div id='tomatoma'>
-                            <div id='noticias'>
-                                <Noticia
-                                    imagemSrc={'https://tinyurl.com/3p2sa6at'}
-                                    titulo={'Por que gado morre de frio? Os motivos para hipotermia dos animais no Pantanal'}
-                                    descricao={'Frio mata mais de mil cabeças de gado no Pantanal'}
-                                    creditos={'g1.globo.com.br/'}
-                                />
-                                <Noticia
-                                    imagemSrc={'https://tinyurl.com/2x3ht8sh'}
-                                    titulo={'Um ano das chuvas em Recife: tragédia pode voltar a ocorrer se não houver ação do poder público'}
-                                    descricao={'Após um ano do maior desastre em Pernambuco, forte...'}
-                                    creditos={'greenpeace.org/'}
-                                />
-                                <Noticia
-                                    imagemSrc={'https://tinyurl.com/ymdu6z8r'}
-                                    titulo={'Abril registra queda de 67.9% no desmatamento na Amazônia, em relação ao mesmo período em 2022'}
-                                    descricao={'Dados do sistema Deter-B mostra 329 km² de alertas ...'}
-                                    creditos={'greenpeace.org/'}
-                                />
-                            </div>
+                        <div id='noticias'>
+                            <Noticia
+                                imagemSrc={'https://tinyurl.com/3p2sa6at'}
+                                titulo={'Por que gado morre de frio? Os motivos para hipotermia dos animais no Pantanal'}
+                                descricao={'Frio mata mais de mil cabeças de gado no Pantanal'}
+                                creditos={'g1.globo.com.br/'}
+                            />
+                            <Noticia
+                                imagemSrc={'https://tinyurl.com/2x3ht8sh'}
+                                titulo={'Um ano das chuvas em Recife: tragédia pode voltar a ocorrer se não houver ação do poder público'}
+                                descricao={'Após um ano do maior desastre em Pernambuco, forte...'}
+                                creditos={'greenpeace.org/'}
+                            />
+                            <Noticia
+                                imagemSrc={'https://tinyurl.com/ymdu6z8r'}
+                                titulo={'Abril registra queda de 67.9% no desmatamento na Amazônia, em relação ao mesmo período em 2022'}
+                                descricao={'Dados do sistema Deter-B mostra 329 km² de alertas ...'}
+                                creditos={'greenpeace.org/'}
+                            />
                         </div>
                         <div id='sideContent'>
                             <div id='secaoPrevisao'>
