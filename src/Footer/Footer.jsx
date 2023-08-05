@@ -11,19 +11,19 @@ const Footer = () => {
             <div id='links'>
                 <div>
                     <a href="https://github.com/HernanJr0/ecoweather-website" id='git'>
-                        <img src={logoGithub} class='logo'/>
+                        <img src={logoGithub} className='logo'/>
                     </a>
 
                     <a href="">
-                        <img src={logoGoogle} class='logo' />
+                        <img src={logoGoogle} className='logo' />
                     </a>
 
                     <a href="">
-                        <img src={logoInstagram} class='logo' />
+                        <img src={logoInstagram} className='logo' />
                     </a>
 
                     <a href="">
-                        <img src={logoLinkedIn} class='logo' />
+                        <img src={logoLinkedIn} className='logo' />
                     </a>
                 </div>
             </div>

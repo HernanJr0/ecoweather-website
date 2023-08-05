@@ -26,9 +26,10 @@ a:active {
 }
 
 #corpo {
-	min-height: 100vh;
-	position: relative;
+    min-height: 100vh;
+    position: relative;
 }
+
 #page {
     padding-bottom: 60px;
 }
@@ -144,12 +145,11 @@ a:active {
     max-width: 1600px;
 }
 
-#noticias{
+#noticias {
     border-radius: 20px;
     background-color: #303030;
     margin: 7.5px;
-
-    width: 65%;
+    width: 55vw;
 }
 
 #sideContent {
@@ -170,10 +170,12 @@ a:active {
         flex-direction: column;
         margin: 0 10px;
     }
-    #noticias{
-        width:fit-content;
+
+    #noticias {
+        width: fit-content;
     }
-    #sideContent{
-        width:unset;
+
+    #sideContent {
+        width: unset;
     }
 }
