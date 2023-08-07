@@ -16,10 +16,9 @@
 }
 
 #links{
-    min-width: 140px;
     height: 20px;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     margin: 0 0 0 6px;
 }
 
@@ -36,9 +35,6 @@
 
 
 @media(max-width: 600px) {
-    #links a {
-        margin-left: 10px;
-    }
     #devmsg{
         font-size: 15px;
     }
