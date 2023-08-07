@@ -142,7 +142,7 @@ a:active {
 #conteudo {
     display: flex;
     margin: 0 30px;
-    max-width: 1600px;
+    max-width: 1300px;
 }
 
 #noticias {
@@ -150,6 +150,7 @@ a:active {
     background-color: #303030;
     margin: 7.5px;
     width: 55vw;
+    height: fit-content
 }
 
 #sideContent {
@@ -157,16 +158,25 @@ a:active {
     background-color: #303030;
     margin: 7.5px;
     width: 35%;
+    max-width: 330px;
+    height: fit-content;
 }
 
-#sideContent p {
-    margin: 22.5px;
-    word-break: break-word;
+#noticiasTitulo{
+    margin: 10px 0px;
+    font-size: 28px;
+    text-align: center;
+}
+
+#noticias hr {
+    margin: 0 20px;
+    border: 1px solid #202020;
 }
 
 @media(max-width: 800px) {
     #conteudo {
         flex-direction: column;
+        align-items: center;
         margin: 0 10px;
     }
 
