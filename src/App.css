@@ -69,6 +69,7 @@ a:active {
 }
 
 #clima {
+    margin: 0 auto;
     margin-top: 40px;
     font-size: 32px;
     display: block;
@@ -162,7 +163,7 @@ a:active {
     height: fit-content;
 }
 
-#noticiasTitulo{
+#noticiasTitulo {
     margin: 10px 0px;
     font-size: 28px;
     text-align: center;
@@ -174,6 +175,10 @@ a:active {
 }
 
 @media(max-width: 800px) {
+    #clima {
+        width: 60%;
+    }
+
     #conteudo {
         flex-direction: column;
         align-items: center;

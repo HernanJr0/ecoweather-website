@@ -23,18 +23,17 @@
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
+    max-width: 100%;
 }
 
 #noticiaTitulo {
     max-width: calc(41vw - 230px);
 }
 
-@media(max-width: 800px) {
+@media (max-width: 800px) {
     #noticiaImg {
         height: 112px;
         width: 160px;
-        object-fit: cover;
-        border-radius: 10px;
     }
 
     #noticiaDescricao {
