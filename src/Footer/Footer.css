@@ -12,6 +12,7 @@
 #devmsg{
     min-width: fit-content;
     text-align: end;
+    font-size: 13px;
 }
 
 #links{
