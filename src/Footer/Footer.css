@@ -12,20 +12,21 @@
 #devmsg{
     min-width: fit-content;
     text-align: end;
+    font-size: 13px;
 }
 
 #links{
-    margin: 0 0 0 20px;
     min-width: 140px;
     height: 20px;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    margin: 0 0 0 6px;
 }
 
 #links a {
     width: 20px;
     height: 20px;
-    margin-left: 15px;
+    margin-right: 15px;
 }
 
 .logo{

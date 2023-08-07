@@ -1,6 +1,8 @@
 import Header from './Header/Header.jsx';
 import Noticia from './Noticia/Noticia.jsx';
 import Footer from './Footer/Footer.jsx';
+import Atalho from './Atalho/Atalho.jsx'
+import Previsao from './Previsao/Previsao.jsx'
 import './App.css';
 
 import nublado from './assets/nublado.png';
@@ -110,6 +112,8 @@ function App() {
                 <section id='body'>
                     <div id='conteudo'>
                         <div id='noticias'>
+                            <p id='noticiasTitulo'>Notícias</p>
+                            <hr/>
                             <Noticia
                                 imagemSrc={'https://tinyurl.com/3p2sa6at'}
                                 linkNoticia={'https://g1.globo.com/ms/mato-grosso-do-sul/noticia/2023/06/17/por-que-gado-morre-de-frio-entenda-os-motivos-para-hipotermia-dos-animais-no-pantanal.ghtml'}
@@ -133,14 +137,20 @@ function App() {
                             />
                         </div>
                         <div id='sideContent'>
-                            <div id='secaoPrevisao'>
-                                <p>aaaa</p>
-                            </div>
-                            <div id='secaoAgenda'>
-                                <p>aaaa</p>
-                            </div>
-                            <div id='secaoDicas'>
-                                <p>aaaa</p>
+                            <Previsao />
+                            <div id='atalhos'>
+                                <Atalho
+                                    titulo={'Dicas'}
+                                    descricao={'Veja aqui dicas de como cuidar do meio ambiente com pequenas ações no dia a dia'}
+                                    imagem={'https://cdn-icons-png.flaticon.com/512/361/361892.png'}
+                                    link={''}
+                                />
+                                <Atalho
+                                    titulo={'Agenda'}
+                                    descricao={'Planeje seus eventos, atividade ou lembretes em um só lugar'}
+                                    imagem={'https://cdn-icons-png.flaticon.com/512/363/363485.png'}
+                                    link={''}
+                                />
                             </div>
                         </div>
                     </div>
