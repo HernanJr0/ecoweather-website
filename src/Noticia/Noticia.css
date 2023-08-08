@@ -38,7 +38,7 @@
         min-width: calc(100% - 10px);
         max-width: calc(100%- 10px);
         height: 180px;
-        margin: 0 5px;
+        margin: 2px 5px;
     }
 /* 
     .noticiaDescricao {
