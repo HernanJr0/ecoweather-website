@@ -193,6 +193,7 @@ a:active {
     }
 
     #sideContent {
+        max-width: unset;
         width: unset;
     }
 }
