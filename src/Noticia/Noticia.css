@@ -37,6 +37,7 @@
     .noticiaImgCont, .noticiaImg {
         min-width: calc(100% - 20px);
         max-width: calc(100%- 20px);
+        height: 180px;
         margin: 0 10px;
     }
 /* 
