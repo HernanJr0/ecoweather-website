@@ -1,31 +1,40 @@
-import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import './Noticia.css'
 
-const Noticia = (props) => {
-    return (
-        <>
-            <div id='noticia'>
-                <div id='imgCont'>
-                    <img src={props.imagemSrc} />
-                </div>
-                <a href=''>
-                    <div id='noticiaDesc'>
-                        <h2 id='titulo'>{props.titulo}</h2>
-                        <p id='descricao'>{props.descricao}</p>
-                        <p id='creditos'>Fonte: {props.creditos}</p>
-                    </div>
-                </a>
-            </div>
-            <hr/>
-        </>
-    )
-}
+class Noticia extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            Noticia: {
+                titulo: this.props.titulo,
+                descricao: this.props.descricao,
+                creditos: this.props.creditos,
+                linkNoticia: this.props.linkNoticia,
+                imagemSrc: this.props.imagemSrc
+            }
+        }
+        
+    }
 
-Noticia.propTypes = {
-    imagemSrc: PropTypes.string,
-    titulo: PropTypes.string,
-    descricao: PropTypes.string,
-    creditos: PropTypes.string
-};
+    render() {
+        return (
+            <>
+                <div id='noticia'>
+                    <div id='imgCont'>
+                        <img src={this.state.Noticia.imagemSrc} />
+                    </div>
+                    <a href={this.state.Noticia.linkNoticia} target='_blank' rel='noreferrer'>
+                        <div id='noticiaDesc'>
+                            <p id='creditos'>Fonte: {this.state.Noticia.creditos}</p>
+                            <h2 id='titulo'>{this.state.Noticia.titulo}</h2>
+                            <p id='descricao'>{this.state.Noticia.descricao}</p>
+                        </div>
+                    </a>
+                </div>
+                <hr />
+            </>
+        )
+    }
+}
 
 export default Noticia
