@@ -35,10 +35,10 @@
     }
 
     .noticiaImgCont, .noticiaImg {
-        min-width: calc(100% - 20px);
-        max-width: calc(100%- 20px);
+        min-width: calc(100% - 10px);
+        max-width: calc(100%- 10px);
         height: 180px;
-        margin: 0 10px;
+        margin: 0 5px;
     }
 /* 
     .noticiaDescricao {
