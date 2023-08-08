@@ -1,31 +1,39 @@
-import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import './Noticia.css'
 
-const Noticia = (props) => {
-    return (
-        <div id='noticiaCont'>
-            <div id='noticia'>
-                <div id='noticiaImgCont'>
-                    <img src={props.imagemSrc} id='noticiaImg' />
-                </div>
-                <a href={props.linkNoticia} target='_blank' rel='noreferrer'>
-                    <div id='noticiaDesc'>
-                        <p id='noticiaCreditos'>Fonte: {props.creditos}</p>
-                        <h2 id='noticiaTitulo'>{props.titulo}</h2>
-                        <p id='noticiaDescricao'>{props.descricao}</p>
+class Noticia extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            Noticia: {
+                titulo: this.props.titulo,
+                descricao: this.props.descricao,
+                creditos: this.props.creditos,
+                linkNoticia: this.props.linkNoticia,
+                imagemSrc: this.props.imagemSrc
+            }
+        }
+        this.noticia = this.state.Noticia
+    }
+
+    render() {
+        return (
+            <div className='noticiaCont'>
+                <div className='noticia'>
+                    <div className='noticiaImgCont'>
+                        <img className='noticiaImg' src={this.noticia.imagemSrc} />
                     </div>
-                </a>
+                    <a className='link' href={this.noticia.linkNoticia} target='_blank' rel='noreferrer'>
+                        <div className='noticiaDesc'>
+                            <p className='noticiaCreditos'>Fonte: {this.noticia.creditos}</p>
+                            <h2 className='noticiaTitulo'>{this.noticia.titulo}</h2>
+                            <p className='noticiaDescricao'>{this.noticia.descricao}</p>
+                        </div>
+                    </a>
+                </div>
+                <hr />
             </div>
-        </div>
-    )
+        )
+    }
 }
-
-Noticia.propTypes = {
-    linkNoticia: PropTypes.string,
-    imagemSrc: PropTypes.string,
-    titulo: PropTypes.string,
-    descricao: PropTypes.string,
-    creditos: PropTypes.string
-};
-
 export default Noticia
