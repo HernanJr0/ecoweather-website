@@ -20,9 +20,7 @@ class Noticia extends Component {
         return (
             <div className='noticiaCont'>
                 <div className='noticia'>
-                    <div className='noticiaImgCont'>
-                        <img className='noticiaImg' src={this.noticia.imagemSrc} />
-                    </div>
+                    <img className='noticiaImg' src={this.noticia.imagemSrc} />
                     <a className='link' href={this.noticia.linkNoticia} target='_blank' rel='noreferrer'>
                         <div className='noticiaDesc'>
                             <p className='noticiaCreditos'>Fonte: {this.noticia.creditos}</p>
