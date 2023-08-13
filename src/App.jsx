@@ -5,16 +5,13 @@ import './App.css'
 import Header from './Header/Header.jsx';
 import Noticia from './Noticia/Noticia.jsx';
 import Footer from './Footer/Footer.jsx';
-import Atalho from './Atalho/Atalho.jsx'
 import Clima from './Clima/Clima.jsx'
-import Previsao from './Previsao/Previsao.jsx'
 
 import './App.css';
 
 function App() {
 
     const date = new Date()
-    const hora = date.getHours()
 
     /*    //data
         var dia = custom_date()
@@ -81,7 +78,7 @@ function App() {
         }
     
         climaf()
-        } */
+        } 
     //data atual
     function custom_date() {
         let today = new Date();
@@ -89,10 +86,10 @@ function App() {
         let custom_days = ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"];
         let date = custom_days[today.getDay()] + ", " + today.getDate() + " de " + custom_months[today.getMonth()];
         return date;
-    }
+    }*/
 
     return (
-        <body>
+        <div>
             <div id="page">
                 <Header />
 
@@ -141,7 +138,7 @@ function App() {
                 </section>
             </div >
             <Footer />
-        </body>
+        </div>
     )
 }
 
