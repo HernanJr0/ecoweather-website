@@ -112,8 +112,7 @@ function App() {
                 <section id='body'>
                     <div id='conteudo'>
                         <div id='noticias'>
-                            <p id='noticiasTitulo'>Notícias</p>
-                            <hr/>
+                            <p id='noticiasTitulo'><b>Notícias</b></p>
                             <Noticia
                                 imagemSrc={'https://tinyurl.com/3p2sa6at'}
                                 linkNoticia={'https://g1.globo.com/ms/mato-grosso-do-sul/noticia/2023/06/17/por-que-gado-morre-de-frio-entenda-os-motivos-para-hipotermia-dos-animais-no-pantanal.ghtml'}

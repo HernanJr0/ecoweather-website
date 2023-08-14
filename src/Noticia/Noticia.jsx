@@ -5,31 +5,31 @@ class Noticia extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            Noticia: {
-                titulo: this.props.titulo,
-                descricao: this.props.descricao,
-                creditos: this.props.creditos,
-                linkNoticia: this.props.linkNoticia,
-                imagemSrc: this.props.imagemSrc
-            }
+            titulo: this.props.titulo,
+            descricao: this.props.descricao,
+            creditos: this.props.creditos,
+            linkNoticia: this.props.linkNoticia,
+            imagemSrc: this.props.imagemSrc
         }
-        this.noticia = this.state.Noticia
     }
 
     render() {
         return (
-            <div className='noticiaCont'>
-                <div className='noticia'>
-                    <img className='noticiaImg' src={this.noticia.imagemSrc} />
-                    <a className='link' href={this.noticia.linkNoticia} target='_blank' rel='noreferrer'>
-                        <div className='noticiaDesc'>
-                            <p className='noticiaCreditos'>Fonte: {this.noticia.creditos}</p>
-                            <h2 className='noticiaTitulo'>{this.noticia.titulo}</h2>
-                            <p className='noticiaDescricao'>{this.noticia.descricao}</p>
+            <div>
+                <hr />
+                <div className='noticiaCont'>
+                    <a className='link' href={this.state.linkNoticia} target='_blank' rel='noreferrer'>
+
+                        <div className='noticia'>
+                            <img className='noticiaImg' src={this.state.imagemSrc} />
+                            <div className='noticiaDesc'>
+                                <p className='noticiaCreditos'>Fonte: {this.state.creditos}</p>
+                                <h2 className='noticiaTitulo'>{this.state.titulo}</h2>
+                                <p className='noticiaDescricao'>{this.state.descricao}</p>
+                            </div>
                         </div>
                     </a>
                 </div>
-                <hr />
             </div>
         )
     }
