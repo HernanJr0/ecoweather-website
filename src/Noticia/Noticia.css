@@ -33,11 +33,12 @@
     .noticia{
         flex-direction: column;
     }
-
-    .noticiaImgCont, .noticiaImg {
-        min-width: calc(100% - 20px);
-        max-width: calc(100%- 20px);
-        margin: 0 10px;
+    
+    .noticiaImg {
+        min-width: calc(100% - 12px);
+        max-width: calc(100%- 12px);
+        height: 180px;
+        margin: 8px 12px;
     }
 /* 
     .noticiaDescricao {
