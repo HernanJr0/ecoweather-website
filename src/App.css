@@ -33,7 +33,7 @@ a:active {
 #page {
     padding-bottom: 60px;
 }
-
+/* 
 #head {
     display: grid;
     text-align: center;
@@ -132,7 +132,7 @@ a:active {
     justify-content: end;
     margin-bottom: 30px;
 }
-
+ */
 #body {
     width: 100%;
     margin-top: 10px;
