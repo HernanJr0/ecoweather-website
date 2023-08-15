@@ -4,7 +4,6 @@ import Footer from './Components/Footer/Footer.jsx';
 import Atalho from './Components/Atalho/Atalho.jsx'
 import Previsao from './Components/Previsao/Previsao.jsx'
 import './App.css';
-
 import Clima from './Components/Clima/Clima.jsx'
 
 function App() {
