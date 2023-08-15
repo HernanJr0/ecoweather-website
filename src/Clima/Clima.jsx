@@ -136,7 +136,7 @@ class Clima extends Component {
                     <div>Qualidade do ar: Razoável</div>
 
                     <div id='humid'>Umidade: {this.state.humid}%</div>
-                    <div id='vento'>Vento: {this.state.vento} km/h</div>
+                    <div id='vento'>Vento: {this.state.vento*3.6} km/h</div>
                 </div>
             </div>
         )
