@@ -108,7 +108,7 @@ function App() {
                                     titulo={'Dicas'}
                                     descricao={'Veja aqui dicas de como cuidar do meio ambiente com pequenas ações no dia a dia'}
                                     imagem={'https://cdn-icons-png.flaticon.com/512/361/361892.png'}
-                                    link={''}
+                                    link={'/Teste'}
                                 />
                                 <Atalho
                                     titulo={'Agenda'}

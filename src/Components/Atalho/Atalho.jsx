@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import './Atalho.css'
 
 class Atalho extends Component {
@@ -21,7 +22,7 @@ class Atalho extends Component {
                         <p>{this.state.descricao}</p>
                         <img src={this.state.imagem} id='atalhoImg' />
                     </div>
-                    <a id='atalhoLink' href={this.state.link}>Ver mais...</a>
+                    <Link id='atalhoLink' to={this.state.link}>Ver mais...</Link>
                 </div>
             </div>
         )
