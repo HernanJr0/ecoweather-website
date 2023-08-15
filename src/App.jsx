@@ -5,17 +5,11 @@ import Atalho from './Atalho/Atalho.jsx'
 import Previsao from './Previsao/Previsao.jsx'
 import './App.css';
 
-import nublado from './assets/nublado.png';
-import ensolarado from './assets/ensolarado.png';
-import parc_ensolarado from './assets/parc_ensolarado.png';
-import bg0 from './assets/banner0.png';
-import bg1 from './assets/banner1.png'
-import arrow_up from './assets/up-right-arrow.png';
-import arrow_down from './assets/down-right-arrow.png';
-import place from './assets/place.svg';
+import Clima from './Clima/Clima.jsx'
 
 function App() {
-
+    
+    /* 
     const date = new Date()
     const hora = date.getHours()
 
@@ -74,46 +68,18 @@ function App() {
         let date = custom_days[today.getDay()] + ", " + today.getDate() + " de " + custom_months[today.getMonth()];
         return date;
     }
-
+ */
     return (
         <div id='corpo'>
             <div id="page">
                 <Header />
-                <section id='head'>
-                    <img id='bg' src={bg} alt="bg" />
-                    <div id='data_loc'>
-                        <div id='data'>
-                            <a href=''>{dia}</a>
-                        </div>
-                        <div id='loc'>
-                            <a href=''><img src={place} id='pin' />{loc}</a>
-                        </div>
-                        <h1 id='clima'>{clima}</h1>
-                    </div>
-
-                    <div id='c_clima'>
-                        <div id='clima_report'>
-                            <img id='c_img' src={c_url} alt='img_clima' />
-                            <h1>{temp}ºC</h1>
-                            <div id='max_min'>
-                                <div>{t_max}<img src={arrow_up} /></div>
-                                <div>{t_min}<img src={arrow_down} /></div>
-                            </div>
-                        </div>
-                        <a href=''>sensação termica: {s_temp} ºC</a>
-                    </div>
-                    <div id='stat'>
-                        <div><a href=''>Qualidade do ar: Razoável</a></div>
-                        <div><a href=''>Umidade: 82%</a></div>
-                        <div><a href=''>Vento: 9 km/h</a></div>
-                    </div>
-                </section>
+                
+                <Clima/>
 
                 <section id='body'>
                     <div id='conteudo'>
                         <div id='noticias'>
-                            <p id='noticiasTitulo'>Notícias</p>
-                            <hr/>
+                            <p id='noticiasTitulo'><b>Notícias</b></p>
                             <Noticia
                                 imagemSrc={'https://tinyurl.com/3p2sa6at'}
                                 linkNoticia={'https://g1.globo.com/ms/mato-grosso-do-sul/noticia/2023/06/17/por-que-gado-morre-de-frio-entenda-os-motivos-para-hipotermia-dos-animais-no-pantanal.ghtml'}
