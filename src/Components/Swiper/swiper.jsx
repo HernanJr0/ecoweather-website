@@ -16,9 +16,9 @@ const swiper = () => {
     return (
         <Swiper
             // install Swiper modules
-            modules={[Pagination,A11y, EffectCards]}
-            pagination = {{clickable:true}}
-            /*loop={true}*/
+            modules={[/*Pagination*/,A11y, EffectCards]}
+            /*pagination = {{clickable:true}}*/
+            loop={true}
             grabCursor={true}
             slidesPerView={1}
             /*Swiper={(swiper) => console.log(swiper)}
