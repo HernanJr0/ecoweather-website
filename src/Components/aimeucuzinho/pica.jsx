@@ -36,10 +36,10 @@ const swiper = () => {
             }}*/
             creativeEffect={{
                 prev: {
-                    translate: [-200, 0, -400],
+                    translate: [-250, 0, -400],
                 },
                 next: {
-                    translate: [200, 0, -400],
+                    translate: [250, 0, -400],
                 },
             }}
 
