@@ -10,7 +10,7 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/effect-creative';
 
-import './cu.css';
+import './Slide.css';
 
 const swiper = () => {
     return (

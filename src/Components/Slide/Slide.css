@@ -3,6 +3,13 @@
     max-width: 300px;
     border-radius: 15px;
 }
+.swiper-pagination-bullet{
+    background-color: #383838;
+    opacity:unset;
+}
+.swiper-pagination-bullet-active{
+    background-color: #536eba;
+}
 
 /* .swiper-slide img{
     width: 100%;
