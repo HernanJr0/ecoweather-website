@@ -12,7 +12,7 @@ import 'swiper/css/effect-creative';
 
 import './Swiper.css';
 
-const swiper = () => {
+const Swiper = () => {
     return (
         <Swiper
             // install Swiper modules
@@ -71,4 +71,4 @@ const swiper = () => {
     )
 
 }
-export default swiper
+export default Swiper
