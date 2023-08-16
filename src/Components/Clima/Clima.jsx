@@ -1,18 +1,18 @@
 import React, { Component } from 'react'
 import './Clima.css'
 
-import bg0 from '../assets/banner0.png';
-import bg1 from '../assets/banner1.png';
+import bg0 from '../../assets/banner0.png';
+import bg1 from '../../assets/banner1.png';
 
-import calendar from '../assets/calendar.png';
-import pin from '../assets/pin.png';
+import calendar from '../../assets/calendar.png';
+import pin from '../../assets/pin.png';
 
-import nublado from '../assets/nublado.png';
-import ensolarado from '../assets/ensolarado.png';
-import parc_ensolarado from '../assets/parc_ensolarado.png';
+import nublado from '../../assets/nublado.png';
+import ensolarado from '../../assets/ensolarado.png';
+import parc_ensolarado from '../../assets/parc_ensolarado.png';
 
-import arrow_up from '../assets/up-right-arrow.png';
-import arrow_down from '../assets/down-right-arrow.png';
+import arrow_up from '../../assets/up-right-arrow.png';
+import arrow_down from '../../assets/down-right-arrow.png';
 
 class Clima extends Component {
     constructor(props) {
