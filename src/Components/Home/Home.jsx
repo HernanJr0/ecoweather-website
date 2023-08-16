@@ -1,7 +1,7 @@
 import './Home.css';
 import Noticia from '../Noticia/Noticia.jsx';
 import Clima from '../Clima/Clima.jsx'
-import Swiper from '../Swiper/Swiper.jsx'
+import Aibolsonaro from '../aimeucuzinho/pica.jsx'
 
 function Home() {
 
@@ -97,7 +97,7 @@ function Home() {
                         </div>
                         <div id='sideContent'>
 
-                            <Swiper/>
+                            <Aibolsonaro/>
 
                             {/* <Previsao />
                             <div id='atalhos'>
