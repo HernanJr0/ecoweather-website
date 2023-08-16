@@ -1,4 +1,4 @@
-import logoGithub from '../assets/Github.svg'
+import logoGithub from '../../assets/Github.svg'
 import './Footer.css'
 
 const Footer = () => {
