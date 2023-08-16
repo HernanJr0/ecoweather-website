@@ -42,7 +42,7 @@ class Clima extends Component {
     weatherBallon(CityID) {
         let key = 'd3afafb4de8d7a76ad9ced3bed938d51';
 
-        fetch('https://api.openweathermap.org/data/2.5/weather?id=' + CityID + '&appid=' + key)
+        fetch('https://api.openweathermap.org/data/2.5/weather?lang=pt_br&id=' + CityID + '&appid=' + key)
 
             .then((resp) => { return resp.json() })
             .then((data) => {
@@ -79,7 +79,7 @@ class Clima extends Component {
 
         this.setState({
             loc: d.name,
-            clima: d.weather[0].main,
+            clima: d.weather[0].description,
             temp: t,
             max_temp: max_t,
             min_temp: min_t,
@@ -136,7 +136,7 @@ class Clima extends Component {
                     <div>Qualidade do ar: Razoável</div>
 
                     <div id='humid'>Umidade: {this.state.humid}%</div>
-                    <div id='vento'>Vento: {this.state.vento*3.6} km/h</div>
+                    <div id='vento'>Vento: {(this.state.vento*3.6).toFixed(1)} km/h</div>
                 </div>
             </div>
         )

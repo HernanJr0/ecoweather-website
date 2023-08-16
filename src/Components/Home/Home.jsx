@@ -4,6 +4,8 @@ import Previsao from '../Previsao/Previsao.jsx'
 import './Home.css';
 import Clima from '../Clima/Clima.jsx'
 
+import Swiper from '../Swiper/swiper.jsx';
+
 function Home() {
     
     /* 
@@ -97,7 +99,10 @@ function Home() {
                             />
                         </div>
                         <div id='sideContent'>
-                            <Previsao />
+
+                            <Swiper/>
+
+                            {/* <Previsao />
                             <div id='atalhos'>
                                 <Atalho
                                     titulo={'Dicas'}
@@ -111,7 +116,7 @@ function Home() {
                                     imagem={'https://cdn-icons-png.flaticon.com/512/363/363485.png'}
                                     link={''}
                                 />
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                 </section>

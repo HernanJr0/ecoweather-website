@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import './Atalho.css'
 
+
 class Atalho extends Component {
     constructor(props) {
         super(props)
@@ -15,6 +16,8 @@ class Atalho extends Component {
     render() {
         return (
             <div id='Atalho' >
+
+
                 <div id='atalhoCont'>
                     <h2 id='atalhoTitulo'>{this.state.titulo}</h2>
                     <hr />
