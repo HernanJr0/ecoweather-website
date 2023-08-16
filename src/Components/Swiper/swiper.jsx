@@ -16,7 +16,7 @@ const swiper = () => {
     return (
         <Swiper
             // install Swiper modules
-            modules={[/*Pagination*/,A11y, EffectCards]}
+            modules={[/*Pagination,*/A11y, EffectCards]}
             /*pagination = {{clickable:true}}*/
             loop={true}
             grabCursor={true}
