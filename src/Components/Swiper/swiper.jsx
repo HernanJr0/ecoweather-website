@@ -27,8 +27,8 @@ const swiper = () => {
 
             effect={'cards'}
             cardsEffect={{
-                slideShadows:false
-                
+                slideShadows: false,
+                perSlideOffset: 6
             }}
         /* creativeEffect={{
                     prev: {
