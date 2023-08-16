@@ -17,15 +17,15 @@ const Previsao = () => {
                         <div id='previsaoHorarios'>
                             <div>
                                 <img src={imgClimaManha} className='previsaoTempo' />
-                                <p>Manhã</p>
+                                <div>Manhã</div>
                             </div>
                             <div>
                                 <img src={imgClimaTarde} className='previsaoTempo' />
-                                <p>Tarde</p>
+                                <div>Tarde</div>
                             </div>
                             <div>
                                 <img src={imgClimaNoite} className='previsaoTempo' />
-                                <p>Noite</p>
+                                <div>Noite</div>
                             </div>
                         </div>
                     </div>

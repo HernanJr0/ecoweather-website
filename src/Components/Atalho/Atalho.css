@@ -2,11 +2,12 @@
     background-color: #202020;
     /* margin: 15px; */
     border-radius: 10px;
+    height: 230px;
 }
 
 #atalhoCont {
-    margin: 15px;
-    padding: 15px 0 15px 0;
+    /* margin: 0 15px; */
+    padding: 15px;
 }
 
 #atalhoDesc {

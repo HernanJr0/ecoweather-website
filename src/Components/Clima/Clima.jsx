@@ -20,6 +20,7 @@ class Clima extends Component {
 
         this.state = {
             dia: this.custom_date(),
+            cimg: '',
             loc: '',
             clima: '',
             temp: '',
@@ -41,13 +42,12 @@ class Clima extends Component {
 
     weatherBallon(CityID) {
         let key = 'd3afafb4de8d7a76ad9ced3bed938d51';
-
         fetch('https://api.openweathermap.org/data/2.5/weather?lang=pt_br&id=' + CityID + '&appid=' + key)
 
             .then((resp) => { return resp.json() })
             .then((data) => {
-                console.log(data)
                 this.drawWeather(data)
+                console.log(data)
             }) // Convert data to json
             .catch(function () {
                 // catch any errors
@@ -55,31 +55,30 @@ class Clima extends Component {
     }
 
     drawWeather(d) {
-        let c_img
+        let c_img = 'http://openweathermap.org/img/w/' + d.weather[0].icon + '.png'
 
         let t = Math.round(parseFloat(d.main.temp) - 273.15);
         let max_t = Math.round(parseFloat(d.main.temp_max) - 273.15);
         let min_t = Math.round(parseFloat(d.main.temp_min) - 273.15);
         let feel = Math.round(parseFloat(d.main.feels_like) - 273.15);
 
+        if (new Date().getHours > 7 && new Date().getHours < 19) {
+            document.querySelector('#bg').src = bg0;
+        } else {
+            document.querySelector('#bg').src = bg1;
+        }
+
         //TODO
         //arruma isso aq manokkkkkk
         //{
-        if (t < 22) {
-            c_img = nublado
-
-        } else if (t < 28) {
-            c_img = parc_ensolarado
-
-        } else if (t < 34) {
-            c_img = ensolarado
-
-        }
+            
         //} 
 
+        // console.log(d.weather.)
         this.setState({
             loc: d.name,
             clima: d.weather[0].description,
+            cimg: c_img,
             temp: t,
             max_temp: max_t,
             min_temp: min_t,
@@ -87,8 +86,6 @@ class Clima extends Component {
             humid: d.main.humidity,
             vento: d.wind.speed
         });
-
-        document.querySelector('#c_img').src = c_img;
     }
 
     custom_date() {
@@ -102,7 +99,7 @@ class Clima extends Component {
     render() {
         return (
             <div id='head'>
-                <img id='bg' src={bg1} alt="bg" />
+                <img id='bg' alt="bg" />
                 <div id='data_loc'>
                     <div id='pegakkk'>
                         <div id='data'>
@@ -122,7 +119,7 @@ class Clima extends Component {
 
                 <div id='c_clima'>
                     <div id='clima_report'>
-                        <img id='c_img' alt='img_clima' />
+                        <img id='c_img' src = {this.state.cimg} alt='img_clima' />
                         <h1 id='temp'>{this.state.temp}ºC</h1>
                         <div id='max_min'>
                             <div>{this.state.max_temp}ºC<img src={arrow_up} /></div>
@@ -136,7 +133,7 @@ class Clima extends Component {
                     <div>Qualidade do ar: Razoável</div>
 
                     <div id='humid'>Umidade: {this.state.humid}%</div>
-                    <div id='vento'>Vento: {(this.state.vento*3.6).toFixed(1)} km/h</div>
+                    <div id='vento'>Vento: {(this.state.vento * 3.6).toFixed(1)} km/h</div>
                 </div>
             </div>
         )

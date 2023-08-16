@@ -22,7 +22,7 @@ class Atalho extends Component {
                     <h2 id='atalhoTitulo'>{this.state.titulo}</h2>
                     <hr />
                     <div id='atalhoDesc'>
-                        <p>{this.state.descricao}</p>
+                        <div>{this.state.descricao}</div>
                         <img src={this.state.imagem} id='atalhoImg' />
                     </div>
                     <Link id='atalhoLink' to={this.state.link}>Ver mais...</Link>

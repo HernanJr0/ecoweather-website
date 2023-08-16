@@ -1,4 +1,4 @@
-import { Pagination, A11y, EffectCards } from 'swiper/modules';
+import { Pagination, A11y, EffectCreative } from 'swiper/modules';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 
@@ -8,34 +8,37 @@ import Previsao from '../Previsao/Previsao.jsx'
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/pagination';
-import 'swiper/css/effect-cards';
+import 'swiper/css/effect-creative';
 
-import './swiper.css';
+import './Swiper.css';
 
 const swiper = () => {
     return (
         <Swiper
             // install Swiper modules
-            modules={[/*Pagination,*/A11y, EffectCards]}
-            /*pagination = {{clickable:true}}*/
+            modules={[Pagination, A11y, EffectCreative]}
+            pagination={{ clickable: true }}
             loop={true}
             grabCursor={true}
             slidesPerView={1}
+            spaceBetween={15}
             /*Swiper={(swiper) => console.log(swiper)}
             onSlideChange={() => console.log('slide change')}*/
 
             effect={'cards'}
-            cardsEffect={{
-                slideShadows: false
+            /*cardsEffect={{
+                slideShadows: true,
+                perSlideOffset: 8,
+                perSlideRotate: 0
+            }}*/
+            creativeEffect={{
+                prev: {
+                    translate: [0, 0, -200],
+                },
+                next: {
+                    translate: ['100%', 0, 0],
+                },
             }}
-        /* creativeEffect={{
-                    prev: {
-                        translate: [0, 0, -200],
-                    },
-                    next: {
-                        translate: ['100%', 0, 0],
-                    },
-                }}  */
 
         >
 
