@@ -75,5 +75,6 @@ a:active {
 
     #sideContent {
         width: unset;
+        padding: 15px;
     }
 }
