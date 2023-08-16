@@ -97,7 +97,7 @@ function Home() {
                         </div>
                         <div id='sideContent'>
 
-                            <Swiper />
+                            <Swiper/>
 
                             {/* <Previsao />
                             <div id='atalhos'>
