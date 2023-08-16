@@ -1,4 +1,4 @@
-import { Scrollbar, A11y, EffectCards } from 'swiper/modules';
+import { Pagination, A11y, EffectCards } from 'swiper/modules';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 
@@ -7,9 +7,7 @@ import Previsao from '../Previsao/Previsao.jsx'
 
 // Import Swiper styles
 import 'swiper/css';
-import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-import 'swiper/css/scrollbar';
 import 'swiper/css/effect-cards';
 
 import './swiper.css';
@@ -18,8 +16,8 @@ const swiper = () => {
     return (
         <Swiper
             // install Swiper modules
-            modules={[Scrollbar, A11y, EffectCards]}
-            scrollbar={{ draggable: true }}
+            modules={[Pagination,A11y, EffectCards]}
+            pagination = {{clickable:true}}
             loop={true}
             grabCursor={true}
             spaceBetween={10}
