@@ -18,17 +18,15 @@ const swiper = () => {
             // install Swiper modules
             modules={[Pagination,A11y, EffectCards]}
             pagination = {{clickable:true}}
-            loop={true}
+            /*loop={true}*/
             grabCursor={true}
-            spaceBetween={10}
             slidesPerView={1}
-            Swiper={(swiper) => console.log(swiper)}
-            onSlideChange={() => console.log('slide change')}
+            /*Swiper={(swiper) => console.log(swiper)}
+            onSlideChange={() => console.log('slide change')}*/
 
             effect={'cards'}
             cardsEffect={{
-                slideShadows: false,
-                perSlideOffset: 6
+                slideShadows: false
             }}
         /* creativeEffect={{
                     prev: {
