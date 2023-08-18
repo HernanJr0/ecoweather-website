@@ -1,7 +1,7 @@
 #head {
     display: grid;
     text-align: center;
-    height: 52vh;
+    height: 60vh;
     width: 100%;
 }
 
@@ -11,8 +11,8 @@
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     min-width: 100%;
     max-width: 100%;
-    min-height: 52vh;
-    max-height: 52vh;
+    min-height: 60vh;
+    max-height: 60vh;
     object-fit: cover;
     object-position: center center;
 }

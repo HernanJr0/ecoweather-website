@@ -1,11 +1,10 @@
-import Noticia from '../Noticia/Noticia.jsx';
-import Atalho from '../Atalho/Atalho.jsx'
-import Previsao from '../Previsao/Previsao.jsx'
 import './Home.css';
+import Noticia from '../Noticia/Noticia.jsx';
 import Clima from '../Clima/Clima.jsx'
+import Slide from '../Slide/Slide.jsx'
 
 function Home() {
-    
+
     /* 
     const date = new Date()
     const hora = date.getHours()
@@ -69,7 +68,7 @@ function Home() {
     return (
         <div id='corpo'>
             <div id="page">
-                <Clima/>
+                <Clima />
                 <section id='body'>
                     <div id='conteudo'>
                         <div id='noticias'>
@@ -97,7 +96,10 @@ function Home() {
                             />
                         </div>
                         <div id='sideContent'>
-                            <Previsao />
+
+                            <Slide/>
+
+                            {/* <Previsao />
                             <div id='atalhos'>
                                 <Atalho
                                     titulo={'Dicas'}
@@ -111,7 +113,7 @@ function Home() {
                                     imagem={'https://cdn-icons-png.flaticon.com/512/363/363485.png'}
                                     link={''}
                                 />
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                 </section>
