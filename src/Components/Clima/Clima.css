@@ -26,6 +26,7 @@
 }
 
 #data_loc {
+    width: 100%;
     display: flex;
     flex-direction: column;
     margin-top: 20px;
@@ -71,7 +72,7 @@
 }
 
 #clima_report {
-    margin-bottom: 5px;
+    margin-bottom: 7px;
     background-color: rgba(224, 240, 255, 0.27);
 
     display: flex;
@@ -106,10 +107,12 @@
 }
 
 #stat {
+    margin: auto;
+    width: fit-content;
     z-index: 1;
     display: flex;
     flex-direction: column;
     justify-content: end;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
