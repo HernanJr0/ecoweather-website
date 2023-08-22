@@ -96,7 +96,7 @@
     font-size: 48px;
 }
 
-#max_min div {
+/* #max_min div {
     margin-left: 10px;
     display: flex;
     align-items: center;
@@ -104,7 +104,7 @@
 
 #max_min div img {
     height: 28px;
-}
+} */
 
 #stat {
     margin: auto;
