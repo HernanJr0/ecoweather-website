@@ -70,11 +70,12 @@ class Clima extends Component {
         let min_t = Math.round(parseFloat(d.main.temp_min) - 273.15);
         let feel = Math.round(parseFloat(d.main.feels_like) - 273.15);
 
-        if (new Date().getHours > 7 && new Date().getHours < 19) {
-            document.querySelector('#bg').src = bg0;
-        } else {
+        if (new Date().getHours >= 6 && new Date().getHours <= 18) {
             document.querySelector('#bg').src = bg1;
+        } else {
+            document.querySelector('#bg').src = bg0;
         }
+        
 
         //TODO
         //arruma isso aq manokkkkkk
