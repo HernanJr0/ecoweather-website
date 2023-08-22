@@ -72,6 +72,7 @@ class Clima extends Component {
 
         if (new Date().getHours() >= 6 && new Date().getHours() <= 18) {
             document.querySelector('#bg').src = 'http://source.unsplash.com/960x540/?' + d.weather[0].description + this.state.loc;
+            console.log(this.state.loc)
         } else {
             document.querySelector('#bg').src = 'http://source.unsplash.com/960x540/?night-' + d.weather[0].description + this.state.loc;
         }
