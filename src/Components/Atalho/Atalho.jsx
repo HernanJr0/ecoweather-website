@@ -13,6 +13,7 @@ class Atalho extends Component {
       link: this.props.link,
     };
   }
+  
   render() {
     return (
       <div id="Atalho">
