@@ -5,18 +5,9 @@ import bg0 from '../../assets/banner0.png';
 import bg1 from '../../assets/banner1.png';
 
 import calendar from '../../assets/calendar.png';
-import pin from '../../assets/pin.png';
-import place from '../../assets/place.svg';
 
-import nublado from '../../assets/nublado.png';
-import ensolarado from '../../assets/ensolarado.png';
-import parc_ensolarado from '../../assets/parc_ensolarado.png';
-
-import arrow_up from '../../assets/up-right-arrow.png';
-import arrow_down from '../../assets/down-right-arrow.png';
-
-import { TextField } from '@mui/material';
-import InputAdornment from '@mui/material/InputAdornment';
+import { IconButton, TextField } from '@mui/material';
+import PlaceIcon from '@mui/icons-material/Place';
 
 class Clima extends Component {
     constructor(props) {
@@ -114,7 +105,7 @@ class Clima extends Component {
     } */
 
     enter(e) {
-        if (e.keyCode == 13) {
+        if (e.key == 'Enter') {
             let city = e.target.value;
             this.setState({ loc: city });
             this.weatherBallon(e.target.value)
@@ -128,19 +119,24 @@ class Clima extends Component {
                 <div id='data_loc'>
                     <div id='pegakkk'>
                         <div id='data'>
-                            {this.state.dia}<img id='calendar' src={calendar} />
+                            <img id='calendar' src={calendar} />{this.state.dia}
                         </div>
 
                         <div id='loc'>
-                            <TextField className='city' /* value={this.state.loc} */
-                                InputProps={{
-                                    startAdornment: <InputAdornment position='start'><img id='pin' src={pin} /></InputAdornment>,
-                                }}
+                            <TextField id='i-city'
                                 onChange={this.CityChanged}
                                 onKeyDown={this.enter}
 
+                                variant='outlined'
                                 label='Cidade'
-                                variant='filled'
+                                size='small'
+                                InputProps={{
+                                    endAdornment: (
+                                        <IconButton edge='end'>
+                                            <PlaceIcon/>
+                                        </IconButton>
+                                    ),
+                                }}
                             />
                         </div>
                     </div>
@@ -151,15 +147,16 @@ class Clima extends Component {
                     <div id='clima_report'>
                         <img id='c_img' src={this.state.cimg} alt='img_clima' />
                         <div>
-                            {this.state.loc}
+                            <div id='city'>{this.state.loc}</div>
                             <h1 id='temp'>{this.state.temp}ºC</h1>
                         </div>
+                    </div>{/* 
                         <div id='max_min'>
                             <div>{this.state.max_temp}ºC<img src={arrow_up} /></div>
                             <div>{this.state.min_temp}ºC<img src={arrow_down} /></div>
-                        </div>
-                    </div>
-                    <div id='feel'>Sensação termica: {this.state.s_ter}ºC</div>
+                        </div> */}
+                    <div id='feel'>Sensação: {this.state.s_ter}ºC</div>
+
                 </div>
                 <div id='stat'>
                     {/* porreessaakkkkkkkk */}

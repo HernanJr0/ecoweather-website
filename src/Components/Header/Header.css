@@ -12,8 +12,8 @@ nav {
   align-items: center;
   justify-content: space-between;
   padding: 10px 0;
-  width: 80%;
-  margin: 0 auto;
+  width: 85%;
+  margin: auto;
 }
 
 #logo {
@@ -22,11 +22,10 @@ nav {
 
 #c_logo {
   height: 40px;
-  margin-right: 40px;
 }
 
 #search {
-  width: 100px;
+  width: 70px;
   transition: width 300ms;
 }
 
