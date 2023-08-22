@@ -9,14 +9,24 @@ import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 
+import { createTheme,ThemeProvider } from "@mui/material";
+
 const App = () => {
-  return (
-    <div id="App">
-      <Header />
-      <Outlet />
-      <Footer />
-      <Analytics/>
-    </div>
-  );
+    const darkTheme = createTheme({
+        palette: {
+            mode: "dark",
+        },
+    });
+
+    return (
+        <div id="App">
+            <ThemeProvider theme={darkTheme}>
+                <Header />
+                <Outlet />
+                <Footer />
+                <Analytics />
+            </ThemeProvider>
+        </div>
+    );
 };
 export default App;
