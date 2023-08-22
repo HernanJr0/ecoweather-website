@@ -6,6 +6,7 @@ import bg1 from '../../assets/banner1.png';
 
 import calendar from '../../assets/calendar.png';
 import pin from '../../assets/pin.png';
+import place from '../../assets/place.svg';
 
 import nublado from '../../assets/nublado.png';
 import ensolarado from '../../assets/ensolarado.png';
@@ -14,6 +15,9 @@ import parc_ensolarado from '../../assets/parc_ensolarado.png';
 import arrow_up from '../../assets/up-right-arrow.png';
 import arrow_down from '../../assets/down-right-arrow.png';
 
+import { TextField } from '@mui/material';
+import InputAdornment from '@mui/material/InputAdornment';
+
 class Clima extends Component {
     constructor(props) {
         super(props)
@@ -21,7 +25,7 @@ class Clima extends Component {
         this.state = {
             dia: this.custom_date(),
             cimg: '',
-            loc: '',
+            loc: 'Manaus',
             clima: '',
             temp: '',
             max_temp: '',
@@ -31,18 +35,22 @@ class Clima extends Component {
             vento: '',
         }
 
+        this.enter = this.enter.bind(this)
+        // this.CityChanged = this.CityChanged.bind(this)
+
         this.custom_date = this.custom_date.bind(this)
         this.drawWeather = this.drawWeather.bind(this)
         this.weatherBallon = this.weatherBallon.bind(this)
     }
 
     componentDidMount() {
-        this.weatherBallon(3663517)
+        this.weatherBallon(this.state.loc)
     }
 
-    weatherBallon(CityID) {
+
+    weatherBallon(city) {
         let key = 'd3afafb4de8d7a76ad9ced3bed938d51';
-        fetch('https://api.openweathermap.org/data/2.5/weather?lang=pt_br&id=' + CityID + '&appid=' + key)
+        fetch('https://api.openweathermap.org/data/2.5/weather?lang=pt_br&q=' + city + '&appid=' + key)
 
             .then((resp) => { return resp.json() })
             .then((data) => {
@@ -55,23 +63,24 @@ class Clima extends Component {
     }
 
     drawWeather(d) {
-        let c_img = 'http://openweathermap.org/img/w/' + d.weather[0].icon + '.png'
+        let c_img = 'http://openweathermap.org/img/wn/' + d.weather[0].icon + '.png'
 
         let t = Math.round(parseFloat(d.main.temp) - 273.15);
         let max_t = Math.round(parseFloat(d.main.temp_max) - 273.15);
         let min_t = Math.round(parseFloat(d.main.temp_min) - 273.15);
         let feel = Math.round(parseFloat(d.main.feels_like) - 273.15);
 
-        if (new Date().getHours > 7 && new Date().getHours < 19) {
-            document.querySelector('#bg').src = bg0;
+        if (new Date().getHours >= 6 && new Date().getHours <= 18) {
+            document.querySelector('#bg').src = 'http://source.unsplash.com/960x540/?day-' + d.weather[0].description;
         } else {
-            document.querySelector('#bg').src = bg1;
+            document.querySelector('#bg').src = 'http://source.unsplash.com/960x540/?night-' + d.weather[0].description;
         }
+
 
         //TODO
         //arruma isso aq manokkkkkk
         //{
-            
+
         //} 
 
         // console.log(d.weather.)
@@ -96,6 +105,21 @@ class Clima extends Component {
         return date;
     }
 
+    /* CityChanged(e) {
+        //let city = this.state.loc;
+        //city[e.target.name] = e.target.value;
+        let city = e.target.value;
+        this.setState({ loc: city });
+    } */
+
+    enter(e) {
+        if (e.keyCode == 13) {
+            let city = e.target.value;
+            this.setState({ loc: city });
+            this.weatherBallon(e.target.value)
+        }
+    }
+
     render() {
         return (
             <div id='head'>
@@ -103,24 +127,32 @@ class Clima extends Component {
                 <div id='data_loc'>
                     <div id='pegakkk'>
                         <div id='data'>
-                            <a href=''>
-                                {this.state.dia}<img id='calendar' src={calendar} />
-                            </a>
+                            {this.state.dia}<img id='calendar' src={calendar} />
                         </div>
 
                         <div id='loc'>
-                            <a href=''>
-                                <img id='pin' src={pin} />{this.state.loc}
-                            </a>
+                            <TextField className='city' /* value={this.state.loc} */
+                                InputProps={{
+                                    startAdornment: <InputAdornment position='start'><img id='pin' src={pin} /></InputAdornment>,
+                                }}
+                                onChange={this.CityChanged}
+                                onKeyDown={this.enter}
+
+                                label='Cidade'
+                                variant='filled'
+                            />
                         </div>
                     </div>
-                    <h1 id='clima'>{this.state.clima}</h1>
+                    <h1 id='clima'>{this.state.clima.split('  ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')}</h1>
                 </div>
 
                 <div id='c_clima'>
                     <div id='clima_report'>
-                        <img id='c_img' src = {this.state.cimg} alt='img_clima' />
-                        <h1 id='temp'>{this.state.temp}ºC</h1>
+                        <img id='c_img' src={this.state.cimg} alt='img_clima' />
+                        <div>
+                            {this.state.loc}
+                            <h1 id='temp'>{this.state.temp}ºC</h1>
+                        </div>
                         <div id='max_min'>
                             <div>{this.state.max_temp}ºC<img src={arrow_up} /></div>
                             <div>{this.state.min_temp}ºC<img src={arrow_down} /></div>
@@ -140,3 +172,4 @@ class Clima extends Component {
     }
 }
 export default Clima
+

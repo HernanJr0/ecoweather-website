@@ -1,4 +1,3 @@
-
 .noticia {
     display: flex;
     place-items: center;
@@ -19,7 +18,7 @@
     min-width: 200px;
     max-width: 200px;
 
-    margin: 5px 0 5px 15px;
+    margin: 0 0 0 10px;
 
     object-fit: cover;
     object-position: center center;
@@ -43,7 +42,7 @@
 }
 
 hr{
-    margin: 0 10px;
+    margin: 5px 10px;
 }
 
 @media (max-width: 510px) {
@@ -54,11 +53,8 @@ hr{
     
     .noticiaImg {
         min-height: 180px;
-        max-height: 180px;
-        margin: 10px 0 10px;
         min-width: calc(100% - 20px);
-        max-width: 100%;
-        height: 180px;
+        margin: 0 0 10px 0;
     }
 
     .noticiaTitulo {
