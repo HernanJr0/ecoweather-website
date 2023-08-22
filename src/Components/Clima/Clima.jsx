@@ -71,9 +71,9 @@ class Clima extends Component {
         let feel = Math.round(parseFloat(d.main.feels_like) - 273.15);
 
         if (new Date().getHours >= 6 && new Date().getHours <= 18) {
-            document.querySelector('#bg').src = 'http://source.unsplash.com/940x560/?day-' + d.weather[0].description;
+            document.querySelector('#bg').src = 'http://source.unsplash.com/960x540/?day-' + d.weather[0].description;
         } else {
-            document.querySelector('#bg').src = 'http://source.unsplash.com/940x560/?night-' + d.weather[0].description;
+            document.querySelector('#bg').src = 'http://source.unsplash.com/960x540/?night-' + d.weather[0].description;
         }
 
 
