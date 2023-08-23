@@ -1,62 +1,71 @@
 #head {
     display: grid;
     text-align: center;
-    height: 60vh;
+
+    height: 65vh;
     width: 100%;
 }
 
 #bg {
-    opacity: 0.75;
+    opacity: 0.60;
     position: absolute;
     border-radius: 0 0 20px 20px;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     min-width: 100%;
     max-width: 100%;
-    min-height: 60vh;
-    max-height: 60vh;
+    min-height: 65vh;
+    max-height: 65vh;
     object-fit: cover;
     object-position: center center;
 }
 
+#pegakkk {
+    margin: 0 auto;
+    width: 85%;
+    display: flex;
+    justify-content: space-between;
+}
+
 #data_loc {
+    width: 100%;
     display: flex;
     flex-direction: column;
     margin-top: 20px;
     z-index: 1;
 }
 
-#pegakkk {
-    display: flex;
-    justify-content: space-between;
+#i-city {
+    width: 45px;
+    transition: width 300ms;
 }
 
-#data {margin-left: calc(7% + 10px)}
-#loc {margin-right: calc(7% + 10px)}
+#i-city:focus {
+    width: 100px;
+}
 
-#loc , #data {
+#data,
+#loc {
     display: flex;
     place-items: center;
 }
 
-#calendar{margin-left:8px;}
-#pin{margin-right: 8px;}
-
-#calendar,
-#pin {
-    height: 20px;
+#calendar {margin-right: 8px;}
+#calendar{
+    min-height: 25px;
+    min-width: 24px;
+    max-height: 25px;
+    max-width: 24px;
 }
 
 #clima {
-    margin-top: 40px;
+    margin: 2vh 0;
     font-size: 32px;
     display: block;
 }
 
 #c_clima {
-    width: 100%;
+    margin: auto;
 
-    display: flex;
-    flex-direction: column;
     align-self: center;
     place-items: center;
 
@@ -64,23 +73,31 @@
 }
 
 #clima_report {
+    margin-bottom: 7px;
+    background-color: rgba(224, 240, 255, 0.27);
+
     display: flex;
     align-items: center;
-    margin: 12px;
-
     padding-right: 15px;
-    background-color: rgba(224, 240, 255, 0.27);
     border-radius: 30px;
 }
 
 #c_img {
-    margin-right: 10px;
-    height: 100px;
+    margin-right: 15px;
+    height: 105px;
     background-color: rgba(224, 240, 255, 0.27);
-    border-radius: 30px 0 0 30px;
+    border-radius: 30px;
 }
 
-#max_min div {
+#city{
+    font-size: 18px;
+}
+
+#temp{
+    font-size: 48px;
+}
+
+/* #max_min div {
     margin-left: 10px;
     display: flex;
     align-items: center;
@@ -88,16 +105,25 @@
 
 #max_min div img {
     height: 28px;
-}
+} */
 
 #stat {
+    margin: auto;
+    width: fit-content;
     z-index: 1;
     display: flex;
     flex-direction: column;
     justify-content: end;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
-.city{
-    width: 180px;
-}
+ @media(max-height: 558px){
+    #head{
+        min-height: calc(100vh - 60px);
+        max-height: calc(100vh - 60px);
+    }
+    #bg{
+        min-height: calc(100vh - 60px);
+        max-height: calc(100vh - 60px);
+    }
+} 
