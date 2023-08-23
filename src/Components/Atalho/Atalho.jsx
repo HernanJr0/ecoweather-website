@@ -25,7 +25,7 @@ class Atalho extends Component {
             <img src={this.state.imagem} id="atalhoImg" />
           </div>
           <Link id="atalhoLink" to={this.state.link}>
-            <Button variant="text">Ver mais...</Button>
+            <Button variant="outlined">Ver mais...</Button>
           </Link>
         </div>
       </div>

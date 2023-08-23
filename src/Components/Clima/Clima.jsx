@@ -128,12 +128,13 @@ class Clima extends Component {
                                 onKeyDown={this.enter}
 
                                 variant='outlined'
-                                label='Cidade'
                                 size='small'
                                 InputProps={{
                                     endAdornment: (
-                                        <IconButton edge='end'>
-                                            <PlaceIcon/>
+                                        <IconButton edge='end' onClick={() => {
+                                            document.querySelector('#i-city').focus()
+                                        }}>
+                                            <PlaceIcon />
                                         </IconButton>
                                     ),
                                 }}

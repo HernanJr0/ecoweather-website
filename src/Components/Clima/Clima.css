@@ -28,18 +28,19 @@
 
 #data_loc {
     width: 100%;
-    display: flex;
-    flex-direction: column;
     margin-top: 20px;
     z-index: 1;
 }
 
 #i-city {
-    width: 45px;
+    width: 0;
+    padding-left: 1px;
+    border: none;
     transition: width 300ms;
 }
 
 #i-city:focus {
+    padding-left: 14px;
     width: 100px;
 }
 
@@ -58,13 +59,13 @@
 }
 
 #clima {
-    margin: 2vh 0;
     font-size: 32px;
     display: block;
 }
 
 #c_clima {
-    margin: auto;
+    margin: 0 auto;
+    margin-top: 10px;
 
     align-self: center;
     place-items: center;
@@ -117,7 +118,7 @@
     margin-bottom: 20px;
 }
 
- @media(max-height: 558px){
+ @media(max-height: 550px){
     #head{
         min-height: calc(100vh - 60px);
         max-height: calc(100vh - 60px);
