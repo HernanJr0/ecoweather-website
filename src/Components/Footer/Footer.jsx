@@ -6,11 +6,9 @@ const Footer = () => {
         <div id='Footer'>
             <p id='devmsg'>Made with ❤️ by: Eco Weather Team |</p>
             <div id='links'>
-                <div>
-                    <a href="https://github.com/HernanJr0/ecoweather-website" id='git'>
-                        <img src={logoGithub} className='logo' />
-                    </a>
-                </div>
+                <a href="https://github.com/HernanJr0/ecoweather-website" id='git'>
+                    <img src={logoGithub} className='logo' />
+                </a>
             </div>
         </div>
     )
