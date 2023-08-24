@@ -31,7 +31,7 @@ const Previsao = () => {
             </div>
           </div>
           <Link id="previsaoLink" to="">
-            <Button variant="outlined">Ver mais...</Button>
+            <Button variant="outlined" size="small">Ver mais...</Button>
           </Link>
         </div>
       </div>

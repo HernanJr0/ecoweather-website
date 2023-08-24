@@ -168,14 +168,12 @@ function Home() {
                             </div>
                             <div id='seila'>
                                 <Previsao />
-                                <br />
                                 <Atalho
                                     titulo={'Dicas'}
                                     descricao={'Veja aqui dicas de como cuidar do meio ambiente com pequenas ações no dia a dia'}
                                     imagem={'https://cdn-icons-png.flaticon.com/512/361/361892.png'}
                                     link={'/Dicas'}
                                 />
-                                <br />
                                 <Atalho
                                     titulo={'Agenda'}
                                     descricao={'Planeje seus eventos, atividade ou lembretes em um só lugar'}

@@ -37,12 +37,6 @@ a:active {
     border: 1px solid #202020;
 }
 
-#l-noticia{
-    border-radius: 15px;
-    height: 728px;
-    overflow: auto;
-}
-
 #noticias {
     border-radius: 20px;
     background-color: #303030;
@@ -50,6 +44,12 @@ a:active {
     padding: 10px;
     width: 60%;
     height: fit-content;
+}
+
+#l-noticia{
+    border-radius: 15px;
+    height: 650px;
+    overflow: auto;
 }
 
 #noticiasTitulo {
@@ -94,7 +94,7 @@ a:active {
     }
 
     #sideContent {
-        width: calc(100% - 60px);
-        padding: 15px;
+        width: calc(100% - 45px);
+        padding: 15px 15px 0 15px;
     }
 }
