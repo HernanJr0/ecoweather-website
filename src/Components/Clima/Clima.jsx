@@ -38,7 +38,6 @@ class Clima extends Component {
         this.weatherBallon(this.state.loc)
     }
 
-
     weatherBallon(city) {
         let key = 'd3afafb4de8d7a76ad9ced3bed938d51';
         fetch('https://api.openweathermap.org/data/2.5/weather?lang=pt_br&q=' + city + '&appid=' + key)
@@ -128,12 +127,13 @@ class Clima extends Component {
                                 onKeyDown={this.enter}
 
                                 variant='outlined'
-                                label='Cidade'
                                 size='small'
                                 InputProps={{
                                     endAdornment: (
-                                        <IconButton edge='end'>
-                                            <PlaceIcon/>
+                                        <IconButton edge='end' onClick={() => {
+                                            document.querySelector('#i-city').focus()
+                                        }}>
+                                            <PlaceIcon />
                                         </IconButton>
                                     ),
                                 }}

@@ -1,12 +1,12 @@
 #Atalho {
     background-color: #202020;
     /* margin: 15px; */
+    margin-bottom: 15px;
     border-radius: 10px;
     height: 230px;
 }
 
 #atalhoCont {
-    /* margin: 0 15px; */
     padding: 15px;
 }
 
