@@ -1,11 +1,11 @@
 import { useState } from 'react'
 import "./Header.css";
 import logo from "../../assets/ecoLogoWhite.svg";
-import search_black from "../../assets/search_black.svg";
 
 import { Link } from "react-router-dom";
 import { IconButton, TextField } from '@mui/material';
 import Search from '@mui/icons-material/Search'
+import Account from '@mui/icons-material/AccountCircle'
 
 function Header() {
 
@@ -16,7 +16,7 @@ function Header() {
                     <img id="logo" src={logo} alt="logo" />
                 </Link>
 
-                <TextField
+                {/* <TextField
                     id='search'
                     label="Buscar"
                     variant="outlined"
@@ -28,7 +28,13 @@ function Header() {
                             </IconButton>
                         ),
                     }}
-                />
+                /> */}
+
+                <Link to="/Auth">
+                    <IconButton>
+                        <Account />
+                    </IconButton>
+                </Link>
             </div>
         </nav>
     );

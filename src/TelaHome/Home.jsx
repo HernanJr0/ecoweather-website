@@ -1,9 +1,9 @@
 import './Home.css';
-import Noticia from '../Noticia/Noticia.jsx';
-import Clima from '../Clima/Clima.jsx'
-import Atalho from '../Atalho/Atalho.jsx'
-import Previsao from '../Previsao/Previsao.jsx'
-import Slide from '../Slide/Slide.jsx'
+import Noticia from '../Components/Noticia/Noticia.jsx';
+import Clima from '../Components/Clima/Clima.jsx'
+import Atalho from '../Components/Atalho/Atalho.jsx'
+import Previsao from '../Components/Previsao/Previsao.jsx'
+import Slide from '../Components/Slide/Slide.jsx'
 
 function Home() {
 
