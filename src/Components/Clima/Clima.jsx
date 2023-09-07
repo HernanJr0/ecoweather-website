@@ -60,11 +60,13 @@ class Clima extends Component {
         let min_t = Math.round(parseFloat(d.main.temp_min) - 273.15);
         let feel = Math.round(parseFloat(d.main.feels_like) - 273.15);
 
+        let valoresCLima = (this.state.loc + '-' +  d.weather[0].description ).normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\s/g, "-");
+
         if (new Date().getHours() >= 6 && new Date().getHours() <= 18) {
-            document.querySelector('#bg').src = 'http://source.unsplash.com/960x540/?' + /*d.weather[0].description + "-" +*/ this.state.loc;
+            document.querySelector('#bg').src = 'http://source.unsplash.com/random/?' + valoresClima
             console.log(this.state.loc)
         } else {
-            document.querySelector('#bg').src = 'http://source.unsplash.com/960x540/?' + /*d.weather[0].description + "-" +*/ this.state.loc + '-night';
+            document.querySelector('#bg').src = 'http://source.unsplash.com/random/?noite-' + valoresCLima
         }
 
 
