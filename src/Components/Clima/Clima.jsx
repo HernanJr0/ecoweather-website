@@ -41,10 +41,7 @@ class Clima extends Component {
             .then((resp) => { return resp.json() })
             .then((data) => {
                 this.drawWeather(data)
-            }) // Convert data to json
-            .catch(function () {
-                // catch any errors
-            });
+            })
     }
 
     drawWeather(d) {
@@ -57,10 +54,12 @@ class Clima extends Component {
         */
         let feel = Math.round(parseFloat(d.main.feels_like) - 273.15);
 
+        let valoresClima = (this.state.loc + '-' +  d.weather[0].description ).normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\s/g, "-");
+
         if (new Date().getHours() >= 6 && new Date().getHours() <= 18) {
-            document.querySelector('#bg').src = 'http://source.unsplash.com/960x540/?' + /*d.weather[0].description + "-" +*/ this.state.loc + '-' + d.sys.country + '-day';
+            document.querySelector('#bg').src = 'http://source.unsplash.com/random/?' + valoresClima
         } else {
-            document.querySelector('#bg').src = 'http://source.unsplash.com/960x540/?' + /*d.weather[0].description + "-" +*/ this.state.loc + '-' + d.sys.country + '-night';
+            document.querySelector('#bg').src = 'http://source.unsplash.com/random/?night-' + valoresClima
         }
 
 
