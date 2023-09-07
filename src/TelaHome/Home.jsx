@@ -174,12 +174,6 @@ function Home() {
                                     imagem={'https://cdn-icons-png.flaticon.com/512/361/361892.png'}
                                     link={'/Dicas'}
                                 />
-                                <Atalho
-                                    titulo={'Agenda'}
-                                    descricao={'Planeje seus eventos, atividade ou lembretes em um só lugar'}
-                                    imagem={'https://cdn-icons-png.flaticon.com/512/363/363485.png'}
-                                    link={''}
-                                />
                             </div>
                         </div>
                     </div>
