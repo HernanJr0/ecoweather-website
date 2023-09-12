@@ -54,7 +54,7 @@ class Clima extends Component {
         */
         let feel = Math.round(parseFloat(d.main.feels_like) - 273.15);
 
-        let valoresClima = (this.state.loc + '-' +  d.weather[0].description ).normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\s/g, "-");
+        let valoresClima = (this.state.loc + '-' + d.weather[0].description).normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\s/g, "-");
 
         if (new Date().getHours() >= 6 && new Date().getHours() <= 18) {
             document.querySelector('#bg').src = 'http://source.unsplash.com/random/?' + valoresClima
@@ -104,30 +104,28 @@ class Clima extends Component {
         return (
             <div id='head'>
                 <img id='bg' alt="bg" />
-                <div id='data_loc'>
+                <div id='header'>
                     <div id='pegakkk'>
                         <div id='data'>
                             <img id='calendar' src={calendar} />{this.state.dia}
                         </div>
 
-                        <div id='loc'>
-                            <TextField id='i-city'
-                                onChange={this.CityChanged}
-                                onKeyDown={this.enter}
+                        <TextField id='i-city'
+                            onChange={this.CityChanged}
+                            onKeyDown={this.enter}
 
-                                variant='outlined'
-                                size='small'
-                                InputProps={{
-                                    endAdornment: (
-                                        <IconButton edge='end' onClick={() => {
-                                            document.querySelector('#i-city').focus()
-                                        }}>
-                                            <PlaceIcon />
-                                        </IconButton>
-                                    ),
-                                }}
-                            />
-                        </div>
+                            variant='outlined'
+                            size='small'
+                            InputProps={{
+                                endAdornment: (
+                                    <IconButton edge='end' onClick={() => {
+                                        document.querySelector('#i-city').focus()
+                                    }}>
+                                        <PlaceIcon />
+                                    </IconButton>
+                                ),
+                            }}
+                        />
                     </div>
                     <h1 id='clima'>{this.state.clima.charAt(0).toUpperCase() + this.state.clima.slice(1)}</h1>
                 </div>

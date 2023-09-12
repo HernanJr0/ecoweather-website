@@ -12,16 +12,16 @@ nav {
   align-items: center;
   justify-content: space-between;
   padding: 10px 0;
-  width: 85%;
+  width: 90%;
   margin: auto;
 }
 
 #logo {
-  height: 40px;
+  height: 35px;
 }
 
 #c_logo {
-  height: 40px;
+  height: 35px;
 }
 
 #search {
