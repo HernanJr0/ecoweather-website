@@ -3,7 +3,7 @@ import '../../Components/Noticia/GridNoticia.css'
 import { useState } from "react";
 
 function GridNoticia() {
-    const [items = [0,1,2], setItems] = useState([])
+    const [items = [0,1,2,3,5,6,7], setItems] = useState([])
 
 
     window.onload = () => {
