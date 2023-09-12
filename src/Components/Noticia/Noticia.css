@@ -27,7 +27,7 @@
 
 .noticiaDesc {
     font-size: 14px;
-    margin: 0 15px;
+    margin: 0 12px;
 }
 
 .noticiaTitulo,
@@ -45,7 +45,7 @@ hr{
     margin: 3px 10px;
 }
 
-@media (max-width: 510px) {
+@media (max-width: 550px) {
 
     .noticia{
         flex-direction: column;
@@ -53,7 +53,7 @@ hr{
     
     .noticiaImg {
         min-height: 180px;
-        min-width: calc(100% - 20px);
+        min-width: calc(100% - 15px);
         margin: 0 0 10px 0;
     }
 
