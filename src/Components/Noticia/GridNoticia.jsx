@@ -15,15 +15,22 @@ function GridNoticia() {
             })
     };
 
+    function call() {
+        try {
+            items.map((item, i) => (
+                <Noticia key={i} item={item} />
+            ))
+        }catch{
+
+        }
+
+    }
+
     return (
         <div>
             <p id='noticiasTitulo'><b>Notícias</b></p>
 
-            {
-                items.map((item, i) => (
-                    <Noticia key={i} item={item} />
-                ))
-            }
+            { call() }
         </div >
     )
 }
