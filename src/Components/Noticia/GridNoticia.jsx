@@ -3,7 +3,7 @@ import '../../Components/Noticia/GridNoticia.css'
 import { useState } from "react";
 
 function GridNoticia() {
-    const [items, setItems] = useState([])
+    const [items = [0,1,2], setItems] = useState([])
 
 
     window.onload = () => {
@@ -15,22 +15,15 @@ function GridNoticia() {
             })
     };
 
-    function call() {
-        try {
-            items.map((item, i) => (
-                <Noticia key={i} item={item} />
-            ))
-        }catch{
-
-        }
-
-    }
-
     return (
         <div>
             <p id='noticiasTitulo'><b>Notícias</b></p>
 
-            { call() }
+            {
+                items.map((item, i) => (
+                    <Noticia key={i} item={item} />
+                ))
+            }
         </div >
     )
 }
