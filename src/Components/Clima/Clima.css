@@ -2,6 +2,9 @@
     display: grid;
     text-align: center;
 
+    background-color: black;
+    border-radius: 0 0 20px 20px;
+
     height: 65vh;
     width: 100%;
 }
@@ -21,14 +24,15 @@
 
 #pegakkk {
     margin: 0 auto;
-    width: 85%;
+    width: 90%;
     display: flex;
     justify-content: space-between;
 }
 
-#data_loc {
+#header {
     width: 100%;
-    margin-top: 20px;
+    height: fit-content;
+    margin-top: 15px;
     z-index: 1;
 }
 
@@ -44,23 +48,24 @@
     width: 100px;
 }
 
-#data,
-#loc {
+
+
+#data {
     display: flex;
     place-items: center;
 }
 
-#calendar {margin-right: 8px;}
+#calendar {margin-right: 6px;}
 #calendar{
-    min-height: 25px;
-    min-width: 24px;
-    max-height: 25px;
-    max-width: 24px;
+    min-height: 22px;
+    min-width: 21px;
+    max-height: 22px;
+    max-width: 21px;
 }
 
 #clima {
+    margin-top: 15px;
     font-size: 32px;
-    display: block;
 }
 
 #c_clima {
@@ -68,7 +73,6 @@
     margin-top: 10px;
 
     align-self: center;
-    place-items: center;
 
     z-index: 1;
 }
@@ -118,7 +122,7 @@
     margin-bottom: 20px;
 }
 
- @media(max-height: 550px){
+ @media(max-height: 600px){
     #head{
         min-height: calc(100vh - 60px);
         max-height: calc(100vh - 60px);

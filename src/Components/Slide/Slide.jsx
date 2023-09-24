@@ -58,14 +58,14 @@ const swiper = () => {
                 />
             </SwiperSlide>
 
-            <SwiperSlide>
+            {/* <SwiperSlide>
                 <Atalho
                     titulo={'Agenda'}
                     descricao={'Planeje seus eventos, atividade ou lembretes em um só lugar'}
                     imagem={'https://cdn-icons-png.flaticon.com/512/363/363485.png'}
                     link={''}
                 />
-            </SwiperSlide>
+            </SwiperSlide> */}
 
         </Swiper >
     )

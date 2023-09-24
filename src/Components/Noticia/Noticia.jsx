@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
 import './Noticia.css'
 
-class Noticia extends Component {
+ class Noticia extends Component {
     constructor(props) {
         super(props)
+        
         this.state = {
-            titulo: this.props.titulo,
-            descricao: this.props.descricao,
-            creditos: this.props.creditos,
-            linkNoticia: this.props.linkNoticia,
-            imagemSrc: this.props.imagemSrc
+            titulo: this.props.item.title,
+            descricao: this.props.item.description,
+            creditos: this.props.item.creditos,
+            linkNoticia: this.props.item.source.name,
+            imagemSrc: this.props.item.urlToImage
         }
     }
 
@@ -18,14 +19,23 @@ class Noticia extends Component {
             <div>
                 <hr />
                 <div className='noticiaCont'>
-                    <a className='link' href={this.state.linkNoticia} target='_blank' rel='noreferrer'>
-
+                    <a className='link' href={this.props.item.url} target='_blank' rel='noreferrer'>
                         <div className='noticia'>
-                            <img className='noticiaImg' src={this.state.imagemSrc} />
+
+                            <img className='noticiaImg' src={this.props.item.urlToImage} alt={this.props.item.title}/>
+
                             <div className='noticiaDesc'>
-                                <p className='noticiaCreditos'>Fonte: {this.state.creditos}</p>
-                                <h2 className='noticiaTitulo'>{this.state.titulo}</h2>
-                                <p className='noticiaDescricao'>{this.state.descricao}</p>
+                                <p className='noticiaCreditos'>
+                                    Fonte: {this.props.item.source.name}
+                                </p>
+
+                                <h2 className='noticiaTitulo'>
+                                    {this.props.item.title}
+                                </h2>
+
+                                <p className='noticiaDescricao'>
+                                    {this.props.item.description}
+                                </p>
                             </div>
                         </div>
                     </a>
@@ -33,5 +43,5 @@ class Noticia extends Component {
             </div>
         )
     }
-}
+}  
 export default Noticia

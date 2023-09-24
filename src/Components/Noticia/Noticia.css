@@ -4,8 +4,8 @@
 }
 
 .noticiaCont{
-    padding: 10px 0;
-    border-radius: 20px;
+    padding: 7px 0;
+    border-radius: 18px;
 }
 
 .noticiaCont:hover{
@@ -18,7 +18,7 @@
     min-width: 200px;
     max-width: 200px;
 
-    margin: 0 0 0 10px;
+    margin: 0 0 0 7px;
 
     object-fit: cover;
     object-position: center center;
@@ -27,7 +27,7 @@
 
 .noticiaDesc {
     font-size: 14px;
-    margin: 0 15px;
+    margin: 0 12px;
 }
 
 .noticiaTitulo,
@@ -42,10 +42,10 @@
 }
 
 hr{
-    margin: 5px 10px;
+    margin: 3px 10px;
 }
 
-@media (max-width: 510px) {
+@media (max-width: 550px) {
 
     .noticia{
         flex-direction: column;
@@ -53,7 +53,7 @@ hr{
     
     .noticiaImg {
         min-height: 180px;
-        min-width: calc(100% - 20px);
+        min-width: calc(100% - 15px);
         margin: 0 0 10px 0;
     }
 

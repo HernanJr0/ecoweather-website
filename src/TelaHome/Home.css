@@ -27,7 +27,6 @@ a:active {
 
 #conteudo {
     display: flex;
-    margin: 0 30px;
     width: calc(100% - 80px);
     max-width: 1600px;
     justify-content: center;
@@ -40,32 +39,22 @@ a:active {
 #noticias {
     border-radius: 20px;
     background-color: #303030;
+    
     margin: 7.5px;
-    padding: 10px;
+    padding: 7.5px;
+
     width: 60%;
     height: fit-content;
-}
-
-#l-noticia{
-    border-radius: 15px;
-    height: 650px;
-    overflow: auto;
-}
-
-#noticiasTitulo {
-    margin: 10px 0px;
-    font-size: 28px;
-    text-align: center;
 }
 
 #sideContent {
     border-radius: 20px;
     background-color: #303030;
-    margin: 7.5px;
-    padding: 15px;
+    padding: 15px 15px 0;
     width: 40%;
     max-width: 350px;
     height: fit-content;
+    margin: 7.5px;
 }
 
 #merda{
@@ -86,7 +75,6 @@ a:active {
         flex-direction:column-reverse;
         align-items: center;
         width: 100%;
-        margin: 0 10px;
     }
 
     #noticias {
