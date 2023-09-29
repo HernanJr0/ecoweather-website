@@ -1,11 +1,11 @@
 import './Home.css';
 
-import Clima from '../Components/Clima/Clima.jsx'
-import Atalho from '../Components/Atalho/Atalho.jsx'
-import Previsao from '../Components/Previsao/Previsao.jsx'
-import Slide from '../Components/Slide/Slide.jsx'
+import Clima from '../../Components/Clima/Clima.jsx'
+import Atalho from '../../Components/Atalho/Atalho.jsx'
+import Previsao from '../../Components/Previsao/Previsao.jsx'
+import Slide from '../../Components/Slide/Slide.jsx'
 
-import Noticias from '../Components/Noticia/GridNoticia.jsx';
+import Noticias from '../../Components/Noticia/GridNoticia.jsx';
 
 function Home() {
     
@@ -116,6 +116,12 @@ function Home() {
                                     descricao={'Veja aqui dicas de como cuidar do meio ambiente com pequenas ações no dia a dia'}
                                     imagem={'https://cdn-icons-png.flaticon.com/512/361/361892.png'}
                                     link={'/Dicas'}
+                                />
+                                <Atalho
+                                    titulo={'Galeria'}
+                                    descricao={'Um acervo de fotos que mostram a beleza da nossa natureza'}
+                                    imagem={'https://cdn-icons-png.flaticon.com/512/2659/2659360.png'}
+                                    link={'/Galeria'}
                                 />
                             </div>
                         </div>
