@@ -1,9 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
-import Home from "./TelaHome/Home.jsx";
-import Dicas from "./TelaDicas/Dicas.jsx";
-import Auth from "./TelaAuth/Auth.jsx"
+import Home from "./Telas/TelaHome/Home.jsx";
+import Dicas from "./Telas/TelaDicas/Dicas.jsx";
+import Auth from "./Telas/TelaAuth/Auth.jsx"
+import Galeria from "./Telas/TelaGaleria/Galeria.jsx"
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
       {
         path: "/Auth",
         element: <Auth />
+      },
+      {
+        path: "/Galeria",
+        element: <Galeria/>
       }
     ]
   },
