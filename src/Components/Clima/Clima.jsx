@@ -95,7 +95,7 @@ class Clima extends Component {
     render() {
         return (
             <div id='head'>
-                <img id='bg' alt="bg" />
+                <img id='bg'/>
                 <div id='header'>
                     <div id='pegakkk'>
 
