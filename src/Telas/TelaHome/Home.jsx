@@ -2,13 +2,13 @@ import './Home.css';
 
 import Clima from '../../Components/Clima/Clima.jsx'
 import Atalho from '../../Components/Atalho/Atalho.jsx'
-import Previsao from '../../Components/Previsao/Previsao.jsx'
+import AtalhoPrev from '../../Components/AtalhoPrev/AtalhoPrev.jsx'
 import Slide from '../../Components/Slide/Slide.jsx'
 
 import Noticias from '../../Components/Noticia/GridNoticia.jsx';
 
 function Home() {
-    
+
     /* 
     const date = new Date()
     const hora = date.getHours()
@@ -69,7 +69,7 @@ function Home() {
         return date;
     }
  */
-    
+
     return (
         <div id='corpo'>
             <div id="page">
@@ -78,7 +78,7 @@ function Home() {
                     <div id='conteudo'>
                         <div id='noticias'>
 
-                            <Noticias/>
+                            <Noticias />
 
                             {/* 
                             <Noticia
@@ -110,18 +110,18 @@ function Home() {
                                 <Slide />
                             </div>
                             <div id='seila'>
-                                <Previsao />
+                                <AtalhoPrev />
                                 <Atalho
                                     titulo={'Dicas'}
                                     descricao={'Veja aqui dicas de como cuidar do meio ambiente com pequenas ações no dia a dia'}
                                     imagem={'https://cdn-icons-png.flaticon.com/512/361/361892.png'}
-                                    link={'/Dicas'}
+                                    link={'/dicas'}
                                 />
                                 <Atalho
                                     titulo={'Galeria'}
                                     descricao={'Um acervo de fotos que mostram a beleza da nossa natureza'}
                                     imagem={'https://cdn-icons-png.flaticon.com/512/2659/2659360.png'}
-                                    link={'/Galeria'}
+                                    link={'/galeria'}
                                 />
                             </div>
                         </div>

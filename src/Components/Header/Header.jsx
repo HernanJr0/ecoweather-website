@@ -30,7 +30,7 @@ function Header() {
                     }}
                 /> */}
 
-                <Link to="/Auth">
+                <Link to="/auth">
                     <IconButton>
                         <Account />
                     </IconButton>

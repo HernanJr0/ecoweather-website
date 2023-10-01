@@ -5,6 +5,8 @@ import Home from "./Telas/TelaHome/Home.jsx";
 import Dicas from "./Telas/TelaDicas/Dicas.jsx";
 import Auth from "./Telas/TelaAuth/Auth.jsx"
 import Galeria from "./Telas/TelaGaleria/Galeria.jsx"
+import ListaDez from "./Telas/TelaDicas/ListaDez/ListaDez.jsx"
+import Previsao from "./Telas/TelaPrevisão/Previsao.jsx"
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
@@ -12,22 +14,30 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
-    children: [
+    children: [ 
       {
         path: "/",
         element: <Home />,
       },
       {
-        path: "/Dicas",
-        element: <Dicas />,
+        path: "/dicas",
+        element: <Dicas />
       },
       {
-        path: "/Auth",
+        path: "/dicas/as-dez-dicas",
+        element: <ListaDez />
+      },
+      {
+        path: "/auth",
         element: <Auth />
       },
       {
-        path: "/Galeria",
-        element: <Galeria/>
+        path: "/galeria",
+        element: <Galeria />
+      },
+      {
+        path: "/previsao",
+        element: <Previsao />
       }
     ]
   },
