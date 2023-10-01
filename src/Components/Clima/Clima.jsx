@@ -23,8 +23,7 @@ class Clima extends Component {
             min_temp: '', */
         }
 
-        this.enter = this.enter.bind(this)
-        // this.CityChanged = this.CityChanged.bind(this)
+        this.enterCity = this.enterCity.bind(this)
 
         this.custom_date = this.custom_date.bind(this)
         this.drawWeather = this.drawWeather.bind(this)
@@ -85,14 +84,7 @@ class Clima extends Component {
         return date;
     }
 
-    /* CityChanged(e) {
-        //let city = this.state.loc;
-        //city[e.target.name] = e.target.value;
-        let city = e.target.value;
-        this.setState({ loc: city });
-    } */
-
-    enter(e) {
+    enterCity(e) {
         if (e.key == 'Enter') {
             let city = e.target.value;
             this.setState({ loc: city });
@@ -106,13 +98,13 @@ class Clima extends Component {
                 <img id='bg' alt="bg" />
                 <div id='header'>
                     <div id='pegakkk'>
+
                         <div id='data'>
                             <img id='calendar' src={calendar} />{this.state.dia}
                         </div>
 
                         <TextField id='i-city'
-                            onChange={this.CityChanged}
-                            onKeyDown={this.enter}
+                            onKeyDown={this.enterCity}
 
                             variant='outlined'
                             size='small'
@@ -126,6 +118,7 @@ class Clima extends Component {
                                 ),
                             }}
                         />
+
                     </div>
                     <h1 id='clima'>{this.state.clima.charAt(0).toUpperCase() + this.state.clima.slice(1)}</h1>
                 </div>
@@ -161,4 +154,3 @@ class Clima extends Component {
     }
 }
 export default Clima
-
