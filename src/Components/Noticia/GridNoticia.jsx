@@ -8,6 +8,9 @@ class GridNoticia extends Component {
         super(props)
 
         this.state = {
+
+            loc: this.props.locale,
+
             items: [{
                 author:
                     "Alessandro Di Lorenzo",
@@ -44,16 +47,31 @@ class GridNoticia extends Component {
                     "https://dinheirama.com/wp-content/uploads/2023/09/20230908-lula.jpg"
             }]
         }
+
+        this.newsBallon = this.newsBallon.bind(this)
     }
 
     componentDidMount() {
-        fetch("https://newsapi.org/v2/everything?q=meio-ambiente" + "&searchIn=title" + "&sortBy=relevancy" + "&pageSize=10" + "&language=pt" + "&apiKey=cd3417de6c7b4ae38a0cff0124696c5d")
+        this.newsBallon(this.state.loc)
+    };
+
+    componentDidUpdate(prevProps, prevState) {
+        if (prevProps.locale !== this.props.locale) {
+            var seila = this.props.locale
+
+            this.newsBallon(seila)
+        }
+    }
+
+    newsBallon(city) {
+        fetch("https://newsapi.org/v2/everything?q=" + city + "&searchIn=title" + "&sortBy=relevancy" + "&pageSize=10" + "&language=pt" + "&apiKey=cd3417de6c7b4ae38a0cff0124696c5d")
             .then((resp) => { return resp.json() })
             .then((data) => {
                 this.setState({ items: data.articles })
                 console.log(data)
             })
-    };
+    }
+
 
     render() {
 
@@ -69,6 +87,7 @@ class GridNoticia extends Component {
             </div >
         )
     }
+
 }
 
 export default GridNoticia

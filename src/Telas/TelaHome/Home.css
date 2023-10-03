@@ -25,6 +25,57 @@ a:active {
     justify-content: center;
 }
 
+#containerpega{
+    position: fixed;
+    width: 100%;
+    z-index: 2;
+}
+
+#blur{
+    height: 40px;
+    background-color: rgba(139, 139, 139, 0.219);
+    backdrop-filter: blur(10px);
+}
+
+#pegakkk {
+     position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2; 
+
+    width: 90%;
+    display: flex;
+    margin: 0 auto;
+    justify-content: space-between;
+}
+
+#calendar {margin-right: 6px;}
+#calendar{
+    min-height: 22px;
+    min-width: 21px;
+    max-height: 22px;
+    max-width: 21px;
+}
+
+#data {
+    display: flex;
+    place-items: center;
+}
+
+#i-city {
+    width: 0;
+    padding-left: 1px;
+    border: none;
+    transition: width 300ms;
+}
+
+#i-city:focus {
+    padding-left: 14px;
+    width: 100px;
+}
+
+
 #conteudo {
     display: flex;
     width: calc(100% - 80px);

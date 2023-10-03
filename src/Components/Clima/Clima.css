@@ -5,6 +5,9 @@
     background-color: black;
     border-radius: 0 0 20px 20px;
 
+    place-items: center;
+    justify-items: center;
+
     height: 65vh;
     width: 100%;
 }
@@ -22,63 +25,20 @@
     object-position: center center;
 }
 
-#pegakkk {
-    margin: 0 auto;
-    width: 90%;
-    display: flex;
-    justify-content: space-between;
-}
 
-#header {
-    width: 100%;
+#clima {
     height: fit-content;
-    margin-top: 15px;
+    
+    font-size: 32px;
     z-index: 1;
 }
 
-#i-city {
-    width: 0;
-    padding-left: 1px;
-    border: none;
-    transition: width 300ms;
-}
-
-#i-city:focus {
-    padding-left: 14px;
-    width: 100px;
-}
-
-
-
-#data {
-    display: flex;
-    place-items: center;
-}
-
-#calendar {margin-right: 6px;}
-#calendar{
-    min-height: 22px;
-    min-width: 21px;
-    max-height: 22px;
-    max-width: 21px;
-}
-
-#clima {
-    margin-top: 15px;
-    font-size: 32px;
-}
-
 #c_clima {
-    margin: 0 auto;
-    margin-top: 10px;
-
-    align-self: center;
-
     z-index: 1;
 }
 
 #clima_report {
-    margin-bottom: 7px;
+    margin-bottom: 5px;
     background-color: rgba(224, 240, 255, 0.27);
 
     display: flex;
@@ -113,13 +73,11 @@
 } */
 
 #stat {
-    margin: auto;
-    width: fit-content;
-    z-index: 1;
+    margin-bottom: 10px;
     display: flex;
     flex-direction: column;
-    justify-content: end;
-    margin-bottom: 20px;
+    align-self: end;
+    z-index: 1;
 }
 
  @media(max-height: 600px){

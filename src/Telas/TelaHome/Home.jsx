@@ -7,8 +7,15 @@ import Slide from '../../Components/Slide/Slide.jsx'
 
 import Noticias from '../../Components/Noticia/GridNoticia.jsx';
 
+import calendar from '../../assets/calendar.png';
+
+import { IconButton, TextField } from '@mui/material';
+import PlaceIcon from '@mui/icons-material/Place';
+
+import { useEffect, useState } from 'react';
+
 function Home() {
-    
+
     /* 
     const date = new Date()
     const hora = date.getHours()
@@ -69,16 +76,65 @@ function Home() {
         return date;
     }
  */
-    
+    const [locale, setLocale] = useState("Manaus");
+
+    function custom_date() {
+        let today = new Date();
+        let custom_months = ["Jan", "Fev", "Mar", "Abr", "Mao", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"];
+        let custom_days = ["Dom", "Seg", "Ter", "Qua", "Qui", "Sexta", "Sáb"];
+        let date = custom_days[today.getDay()] + ", " + today.getDate() + " de " + custom_months[today.getMonth()];
+        return date;
+    }
+
+
+
+    function enterCity(e) {
+        if (e.key == 'Enter') {
+            setLocale(e.target.value)
+
+            /* this.setState({ loc: city });
+            this.weatherBallon(e.target.value) */
+        }
+    }
+
+
     return (
         <div id='corpo'>
             <div id="page">
-                <Clima />
+
+                <div id='containerpega'>
+                    <div id='blur'/>
+                    <div id='pegakkk'>
+
+                        <div id='data'>
+                            <img id='calendar' src={calendar} />{custom_date()}
+                        </div>
+
+                        <TextField id='i-city'
+                            onKeyDown={enterCity}
+
+                            variant='outlined'
+                            size='small'
+                            InputProps={{
+                                endAdornment: (
+                                    <IconButton edge='end' onClick={() => {
+                                        document.querySelector('#i-city').focus()
+                                    }}>
+                                        <PlaceIcon />
+                                    </IconButton>
+                                ),
+                            }}
+                        />
+                    </div>
+                </div>
+
+                <Clima locale={locale} />
+
                 <section id='body'>
                     <div id='conteudo'>
                         <div id='noticias'>
 
-                            <Noticias/>
+                            <Noticias locale={locale} />
 
                             {/* 
                             <Noticia
