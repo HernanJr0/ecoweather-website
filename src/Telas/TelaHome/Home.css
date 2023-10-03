@@ -33,7 +33,7 @@ a:active {
 
 #blur{
     height: 40px;
-    background-color: rgba(139, 139, 139, 0.219);
+    background-color: rgba(75, 75, 75, 0.5);
     backdrop-filter: blur(10px);
 }
 

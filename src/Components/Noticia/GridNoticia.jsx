@@ -11,7 +11,7 @@ class GridNoticia extends Component {
 
             loc: this.props.locale,
 
-            items: [{
+            /* items: [{
                 author:
                     "Alessandro Di Lorenzo",
                 content:
@@ -45,7 +45,7 @@ class GridNoticia extends Component {
                     "https://dinheirama.com/no-g20-lula-vai-discutir-combustiveis-meio-ambiente-e-pobreza/",
                 urlToImage:
                     "https://dinheirama.com/wp-content/uploads/2023/09/20230908-lula.jpg"
-            }]
+            }] */
         }
 
         this.newsBallon = this.newsBallon.bind(this)

@@ -106,13 +106,13 @@ class Clima extends Component {
                             <h1 id='temp'>{this.state.temp}ºC</h1>
                         </div>
                     </div>
+                    <div id='feel'>Sensação: {this.state.s_ter}ºC</div>
                     {/*
                     <div id='max_min'>
                         <div>{this.state.max_temp}ºC<img src={arrow_up} /></div>
                         <div>{this.state.min_temp}ºC<img src={arrow_down} /></div>
                     </div>
                     */}
-                    <div id='feel'>Sensação: {this.state.s_ter}ºC</div>
 
                 </div>
                 <div id='stat'>
