@@ -3,7 +3,7 @@ import { Pagination, A11y, EffectCreative } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import Atalho from '../Atalho/Atalho.jsx'
-import Previsao from '../Previsao/Previsao.jsx'
+import AtalhoPrev from '../AtalhoPrev/AtalhoPrev.jsx'
 
 // Import Swiper styles
 import 'swiper/css';
@@ -46,7 +46,7 @@ const swiper = () => {
         >
 
             <SwiperSlide>
-                <Previsao />
+                <AtalhoPrev />
             </SwiperSlide>
 
             <SwiperSlide>

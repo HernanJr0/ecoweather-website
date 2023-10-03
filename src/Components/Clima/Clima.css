@@ -12,6 +12,11 @@
     width: 100%;
 }
 
+#head * {
+    margin: 0;
+    padding: 0;
+}
+
 #bg {
     opacity: 0.60;
     position: absolute;
