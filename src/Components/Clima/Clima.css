@@ -10,6 +10,8 @@
 
     height: 65vh;
     width: 100%;
+
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
 }
 
 #bg {
@@ -27,7 +29,7 @@
 
 
 #clima {
-    margin-top: 40px;
+    margin-top: 70px;
     height: fit-content;
     
     font-size: 32px;
@@ -46,6 +48,7 @@
     align-items: center;
     padding-right: 15px;
     border-radius: 30px;
+    
 }
 
 #c_img {

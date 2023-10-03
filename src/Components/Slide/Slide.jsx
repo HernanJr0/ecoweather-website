@@ -58,6 +58,14 @@ const swiper = () => {
                 />
             </SwiperSlide>
 
+            <SwiperSlide>
+                <Atalho
+                    titulo={'Galeria'}
+                    descricao={'Um acervo de fotos que mostram a beleza da nossa natureza'}
+                    imagem={'https://cdn-icons-png.flaticon.com/512/2659/2659360.png'}
+                    link={'/galeria'}
+                />
+            </SwiperSlide>
             {/* <SwiperSlide>
                 <Atalho
                     titulo={'Agenda'}
