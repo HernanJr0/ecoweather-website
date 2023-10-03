@@ -79,10 +79,15 @@ class GridNoticia extends Component {
             <div>
                 <p id='noticiasTitulo'><b>Notícias</b></p>
 
+
                 {
-                    this.state.items.map((item, i) => (
-                        <Noticia key={i} item={item} />
-                    ))
+                    () => {
+                        if (this.state.items != null) {
+                            this.state.items.map((item, i) => (
+                                <Noticia key={i} item={item} />
+                            ))
+                        }
+                    }
                 }
             </div >
         )
