@@ -25,33 +25,29 @@ a:active {
     justify-content: center;
 }
 
-#containerpega{
-    position: fixed;
+#containerpega {
     width: 100%;
+
+    background-color: rgba(149, 155, 160, 0.3);
+    backdrop-filter: blur(10px);
+    
+    position: fixed;
     z-index: 2;
 }
 
-#blur{
-    height: 40px;
-    background-color: rgba(75, 75, 75, 0.5);
-    backdrop-filter: blur(10px);
-}
-
 #pegakkk {
-     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 2; 
-
     width: 90%;
-    display: flex;
     margin: 0 auto;
+
+    display: flex;
     justify-content: space-between;
 }
 
-#calendar {margin-right: 6px;}
-#calendar{
+#calendar {
+    margin-right: 6px;
+}
+
+#calendar {
     min-height: 22px;
     min-width: 21px;
     max-height: 22px;
@@ -90,7 +86,7 @@ a:active {
 #noticias {
     border-radius: 20px;
     background-color: #303030;
-    
+
     margin: 7.5px;
     padding: 7.5px;
 
@@ -108,22 +104,22 @@ a:active {
     margin: 7.5px;
 }
 
-#merda{
+#merda {
     display: none;
 }
 
 @media(max-width: 940px) {
-    
-    #merda{
+
+    #merda {
         display: unset;
     }
 
-    #seila{
-        display: none ;
+    #seila {
+        display: none;
     }
 
     #conteudo {
-        flex-direction:column-reverse;
+        flex-direction: column-reverse;
         align-items: center;
         width: 100%;
     }

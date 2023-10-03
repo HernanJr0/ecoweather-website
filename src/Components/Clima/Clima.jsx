@@ -91,7 +91,6 @@ class Clima extends Component {
         return (
             <div id='head'>
                 <img id='bg' alt="bg" />
-
                 <h1 id='clima'>
                     {this.state.clima.charAt(0).toUpperCase() + this.state.clima.slice(1)}
                 </h1>
@@ -108,12 +107,11 @@ class Clima extends Component {
                     </div>
                     <div id='feel'>Sensação: {this.state.s_ter}ºC</div>
                     {/*
-                    <div id='max_min'>
+                        <div id='max_min'>
                         <div>{this.state.max_temp}ºC<img src={arrow_up} /></div>
                         <div>{this.state.min_temp}ºC<img src={arrow_down} /></div>
-                    </div>
-                    */}
-
+                        </div>
+                        */}
                 </div>
                 <div id='stat'>
                     {/* porreessaakkkkkkkk */}
@@ -122,7 +120,6 @@ class Clima extends Component {
                     <div id='humid'>Umidade: {this.state.humid}%</div>
                     <div id='vento'>Vento: {(this.state.vento * 1).toFixed(1)} m/s</div>
                 </div>
-
             </div>
         )
     }

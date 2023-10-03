@@ -103,8 +103,6 @@ function Home() {
             <div id="page">
 
                 <div id='containerpega'>
-                    <div id='blur'/>
-
                     <div id='pegakkk'>
                         <div id='data'>
                             <img id='calendar' src={calendar} />{custom_date()}
@@ -126,7 +124,6 @@ function Home() {
                             }}
                         />
                     </div>
-                    
                 </div>
 
                 <Clima locale={locale} />
