@@ -1,0 +1,46 @@
+#Previsao {
+    background-color: #202020;
+    /* margin: 15px; */
+    margin-bottom: 15px;
+    border-radius: 10px;
+    height: 230px;
+}
+
+#previsaoCont {
+    padding: 15px;
+}
+
+#previsaoDesc {
+    margin: 20px 5px;
+}
+
+#previsaoTitulo {
+    margin: 0 0 10px 5px;
+}
+
+#previsaoCont hr {
+    border: 1px solid #303030;
+}
+
+#previsaoImg {
+    width: 51px;
+    margin: 5% 0 5% 10px
+}
+
+#previsaoLink {
+    margin: 0 0 15px 5px;
+    width: 70%;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+#previsaoHorarios {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.previsaoTempo {
+    width: 52px;
+    height: 52px;
+}

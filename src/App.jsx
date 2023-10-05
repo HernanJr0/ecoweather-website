@@ -19,6 +19,7 @@ const App = () => {
     //         mode: "dark",
     //     },
     // });
+
     return (
         <div id="App">
             <AuthGoogleProvider>
@@ -34,8 +35,6 @@ const App = () => {
 
             </AuthGoogleProvider>
         </div>
-    )
-}
-
-
-export default App
+    );
+};
+export default App;

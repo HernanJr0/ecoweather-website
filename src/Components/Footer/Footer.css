@@ -1,0 +1,41 @@
+#Footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    display: flex;
+    background-color: #303030;
+    align-items: center;
+    justify-content: center;
+}
+
+#devmsg{
+    min-width: fit-content;
+    text-align: end;
+    font-size: 13px;
+}
+
+#links{
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    margin: 0 0 0 6px;
+}
+
+#links a {
+    width: 20px;
+    height: 20px;
+}
+
+.logo{
+    width: 20px;
+    height: 20px;
+}
+
+
+@media(max-width: 600px) {
+    #devmsg{
+        font-size: 15px;
+    }
+    
+}

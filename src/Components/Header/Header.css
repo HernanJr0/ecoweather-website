@@ -1,0 +1,34 @@
+nav {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1040;
+  background-color: #303030;
+}
+
+#topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+  width: 90%;
+  margin: auto;
+}
+
+#logo {
+  height: 35px;
+}
+
+#c_logo {
+  height: 35px;
+}
+
+#search {
+  width: 70px;
+  transition: width 300ms;
+}
+
+#search:focus {
+  width: 170px;
+}

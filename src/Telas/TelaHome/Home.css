@@ -1,0 +1,135 @@
+a {
+    text-decoration: none;
+}
+
+a:link {
+    color: white;
+}
+
+a:visited {
+    color: white;
+}
+
+a:hover {
+    color: #bbbbbb;
+}
+
+a:active {
+    color: #bbbbbb;
+}
+
+#body {
+    width: 100%;
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+#containerpega {
+    width: 100%;
+
+    background-color: rgba(149, 155, 160, 0.3);
+    backdrop-filter: blur(10px);
+    
+    position: fixed;
+    z-index: 2;
+}
+
+#pegakkk {
+    width: 90%;
+    margin: 0 auto;
+
+    display: flex;
+    justify-content: space-between;
+}
+
+#calendar {
+    margin-right: 6px;
+}
+
+#calendar {
+    min-height: 22px;
+    min-width: 21px;
+    max-height: 22px;
+    max-width: 21px;
+}
+
+#data {
+    display: flex;
+    place-items: center;
+}
+
+#i-city {
+    width: 0;
+    padding-left: 1px;
+    border: none;
+    transition: width 300ms;
+}
+
+#i-city:focus {
+    padding-left: 14px;
+    width: 100px;
+}
+
+
+#conteudo {
+    display: flex;
+    width: calc(100% - 80px);
+    max-width: 1600px;
+    justify-content: center;
+}
+
+#noticias hr {
+    border: 1px solid #202020;
+}
+
+#noticias {
+    border-radius: 20px;
+    background-color: #303030;
+
+    margin: 7.5px;
+    padding: 7.5px;
+
+    width: 60%;
+    height: fit-content;
+}
+
+#sideContent {
+    border-radius: 20px;
+    background-color: #303030;
+    padding: 15px 15px 0;
+    width: 40%;
+    max-width: 350px;
+    height: fit-content;
+    margin: 7.5px;
+}
+
+#merda {
+    display: none;
+}
+
+@media(max-width: 940px) {
+
+    #merda {
+        display: unset;
+    }
+
+    #seila {
+        display: none;
+    }
+
+    #conteudo {
+        flex-direction: column-reverse;
+        align-items: center;
+        width: 100%;
+    }
+
+    #noticias {
+        width: unset;
+    }
+
+    #sideContent {
+        width: calc(100% - 45px);
+        padding: 15px 15px 0 15px;
+    }
+}
