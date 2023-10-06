@@ -13,6 +13,10 @@ import { getAuth } from "firebase/auth"
 import { useEffect, useState } from "react";
 import { TextField, InputAdornment, Button } from "@mui/material";
 import { Person, Email } from "@mui/icons-material";
+import { Login } from "./Login";
+import { useContext } from "react"
+import { Navigate } from "react-router-dom"
+import { AuthGoogleContext } from "../../contexts/authGoogle"
 
 // const firebaseApp = initializeApp({
 //     apiKey: "AIzaSyDYfNOUrNRYL54saMHsTIhyVWubkmR9i_s",
@@ -21,46 +25,53 @@ import { Person, Email } from "@mui/icons-material";
 // });
 
 export const Auth = () => {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    // const [users, setUsers] = useState([]);
+    const [users, setUsers] = useState([]);
+    const [email, setEmail] = useState([]);
+    const [password, setPassword] = useState([]);
 
-    const db = getFirestore(firebaseApp);
-    const userCollectionRef = collection(db, "users");
+    {// const db = getFirestore(firebaseApp);
+        // const userCollectionRef = collection(db, "users");
 
 
-    // window.onload = () => {
-    // }
+        // window.onload = () => {
+        // }
 
-    async function criaUser() {
+        // async function criaUser() {
 
-        if (email && password != "") {
-            const user = await addDoc(userCollectionRef, {
-                email,
-                password,
-            });
-            console.log(user);
-            alert('Conta criada com sucesso!')
-            document.cookie = `email= ${email}; Secure`;
-            document.cookie = `; Secure`
-        } else {
-            alert('Falha ao criar conta!')
-        }
+        //     if (email && password != "") {
+        //         const user = await addDoc(userCollectionRef, {
+        //             email,
+        //             password,
+        //         });
+        //         console.log(user);
+        //         alert('Conta criada com sucesso!')
+        //         document.cookie = `email= ${email}; Secure`;
+        //         document.cookie = `; Secure`
+        //     } else {
+        //         alert('Falha ao criar conta!')
+        //     }
+        // }
+
+        //   useEffect(() => {
+        //     const getUsers = async () => {
+        //       const data = await getDocs(userCollectionRef);
+        //       setUsers(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+        //     };
+        //     getUsers();
+        //   }, [userCollectionRef]);
+
+        // async function deleteUser(id) {
+        //   const userDoc = doc(db, "users", id);
+        //   await deleteDoc(userDoc);
+        // }
     }
 
-    //   useEffect(() => {
-    //     const getUsers = async () => {
-    //       const data = await getDocs(userCollectionRef);
-    //       setUsers(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-    //     };
-    //     getUsers();
-    //   }, [userCollectionRef]);
+    const { createAccount, signInAccount, signed} = useContext(AuthGoogleContext)
 
-    // async function deleteUser(id) {
-    //   const userDoc = doc(db, "users", id);
-    //   await deleteDoc(userDoc);
-    // }
-
+    async function login() {
+        await createAccount(emailField.value,passwordField.value)
+        await signInAccount(emailField.value,passwordField.value)
+    }
 
     return (
         <div>
@@ -101,7 +112,8 @@ export const Auth = () => {
                         required
                     />
                 </div>
-                <Button variant="outlined" onClick={criaUser}>Criar Usuário</Button>
+                <Button variant="outlined" onClick={login} >Criar Usuário</Button>
+                <Login />
             </form>
             {/* <ul>
         {users.map((user) => {

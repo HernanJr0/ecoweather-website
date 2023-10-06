@@ -24,6 +24,7 @@ const App = () => {
         <div id="App">
             <AuthGoogleProvider>
             <Router />
+            
                 {/* <div id="App">
                 <ThemeProvider theme={darkTheme}>
                     <Header />

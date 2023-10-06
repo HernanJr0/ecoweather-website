@@ -29,14 +29,20 @@ export const Router = () => {
         <BrowserRouter>
             <Fragment>
                 <ThemeProvider theme={darkTheme}>
-                <Header />
-                <Routes>
-                    <Route path="/" element={<Login />} />
-                    <Route path="/home" element={<PrivateRoutes />}>
-                        <Route path="/home" element={<Home />} />
-                    </Route>
-                </Routes>
-                <Footer />
+                    <Header />
+
+                    <Routes>
+                        <Route path="/" element={<Auth />} />
+                        <Route path="/home" element={<PrivateRoutes />}>
+                            <Route path="/home" element={<Home />} />
+                            <Route path="/home/dicas" element={<Dicas />} />
+                            <Route path="/home/dicas/as-dez-dicas" element={<ListaDez />} />
+                            <Route path="/home/galeria" element={<Galeria />} />
+                            <Route path="/home/previsao" element={<Previsao />} />
+                        </Route>
+                    </Routes>
+                    
+                    <Footer />
                 </ThemeProvider>
             </Fragment>
         </BrowserRouter>

@@ -1,7 +1,8 @@
 import { createContext, useEffect, useState } from "react";
-import { GoogleAuthProvider, getAuth, signInWithPopup, } from "firebase/auth";
+import { GoogleAuthProvider, getAuth, signInWithPopup, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth";
 import { app } from "../service/firebaseConfig.jsx"
 import { Navigate } from "react-router-dom";
+
 const provider = new GoogleAuthProvider()
 
 export const AuthGoogleContext = createContext({})
@@ -21,6 +22,48 @@ export const AuthGoogleProvider = ({ children }) => {
         }
         loadStorageData()
     })
+
+    const createAccount = (email, password) => {
+        createUserWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                // // Signed in 
+                // const credential = GoogleAuthProvider.credentialFromResult(result);
+                // const token = credential.accessToken;
+                // const user = userCredential.user;
+                // setUser(user)
+                // sessionStorage.setItem("@AuthFirebase:token", token)
+                // sessionStorage.setItem("@AuthFirebase:user", JSON.stringify(user))
+                // ...
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                // ..
+                // console.log(errorMessage)
+            });
+    }
+
+    const signInAccount = (email, password) => {
+        signInWithEmailAndPassword(auth, email, password)
+            .then((result) => {
+                // Signed in 
+                console.log(result)
+
+                const user = result.user;
+                const token = user.accessToken;
+                setUser(user)
+                sessionStorage.setItem("@AuthFirebase:token", token)
+                sessionStorage.setItem("@AuthFirebase:user", JSON.stringify(user))
+
+                // ...
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                console.log(errorMessage)
+            });
+        return <Navigate to="/home" />
+    }
 
     const signInGoogle = () => {
         signInWithPopup(auth, provider)
@@ -42,10 +85,10 @@ export const AuthGoogleProvider = ({ children }) => {
                 // The AuthCredential type that was used.
                 const credential = GoogleAuthProvider.credentialFromError(error);
                 // ...
-                // console.log(errorCode)
-                //console.log(errorMessage)
-                //console.log(email)
-                //console.log(credential)
+                console.log(errorCode)
+                // console.log(errorMessage)
+                // console.log(email)
+                // console.log(credential)
             }
             );
     }
@@ -61,6 +104,8 @@ export const AuthGoogleProvider = ({ children }) => {
             value={{
                 signed: !!user,
                 user,
+                createAccount,
+                signInAccount,
                 signInGoogle,
                 signOut
             }}

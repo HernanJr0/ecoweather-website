@@ -29,7 +29,7 @@ class GridNoticia extends Component {
     }
 
     newsBallon(city) {
-        fetch("https://newsapi.org/v2/everything?q=" + city + "&searchIn=title" + "&sortBy=relevancy" + "&pageSize=10" + "&language=pt" + "&apiKey=cd3417de6c7b4ae38a0cff0124696c5d")
+        fetch("https://newsapi.org/v2/everything?q=" + city + " &searchIn=title" + "&sortBy=relevancy" + "&pageSize=10" + "&language=pt" + "&apiKey=cd3417de6c7b4ae38a0cff0124696c5d")
             .then((resp) => { return resp.json() })
             .then((data) => {
                 this.setState({ items: data.articles })

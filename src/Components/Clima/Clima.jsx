@@ -40,11 +40,13 @@ class Clima extends Component {
 
     componentDidMount() {
         this.weatherBallon(this.state.loc)
-
     }
 
     componentDidUpdate(prevProps, prevState) {
         if (prevProps.locale !== this.props.locale) {
+            this.setState({
+                loc: this.props.locale,
+            })
             this.weatherBallon(this.props.locale)
         }
     }
@@ -71,7 +73,7 @@ class Clima extends Component {
 
         let feel = Math.round(parseFloat(d.main.feels_like) - 273.15);
 
-        let valoresClima = (this.state.loc + '-' + d.weather[0].description).normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\s/g, "-");
+        let valoresClima = (d.name + '-' + d.weather[0].description).normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\s/g, "-");
 
         if (new Date().getHours() >= 6 && new Date().getHours() <= 18) {
             document.querySelector('#bg').src = 'http://source.unsplash.com/random/?' + valoresClima
