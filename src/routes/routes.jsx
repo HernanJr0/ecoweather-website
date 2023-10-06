@@ -1,6 +1,7 @@
 import React, { Fragment, StrictMode } from "react";
 import ReactDOM from "react-dom/client";
 //import App from "./App.jsx";
+import { Analytics } from "@vercel/analytics/react";
 import Home from "../Telas/TelaHome/Home.jsx";
 import Dicas from "../Telas/TelaDicas/Dicas.jsx";
 import Auth from "../Telas/TelaAuth/Auth.jsx"
@@ -41,8 +42,8 @@ export const Router = () => {
                             <Route path="/home/previsao" element={<Previsao />} />
                         </Route>
                     </Routes>
-                    
                     <Footer />
+                    <Analytics/>
                 </ThemeProvider>
             </Fragment>
         </BrowserRouter>
