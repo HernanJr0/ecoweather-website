@@ -1,22 +1,22 @@
-import { initializeApp } from "firebase/app";
 import './Auth.css';
-import {
-    collection,
-    getFirestore,
-    getDocs,
-    addDoc,
-    doc,
-    deleteDoc,
-} from "firebase/firestore";
-import { getAuth } from "firebase/auth"
 
 import { useEffect, useState } from "react";
 import { TextField, InputAdornment, Button } from "@mui/material";
 import { Person, Email } from "@mui/icons-material";
 import { Login } from "./Login";
 import { useContext } from "react"
-import { Navigate } from "react-router-dom"
 import { AuthGoogleContext } from "../../contexts/authGoogle"
+
+// import {
+//     collection,
+//     getFirestore,
+//     getDocs,
+//     addDoc,
+//     doc,
+//     deleteDoc,
+// } from "firebase/firestore";
+// import { getAuth } from "firebase/auth"
+// import { initializeApp } from "firebase/app";
 
 // const firebaseApp = initializeApp({
 //     apiKey: "AIzaSyDYfNOUrNRYL54saMHsTIhyVWubkmR9i_s",
@@ -66,11 +66,18 @@ export const Auth = () => {
         // }
     }
 
-    const { createAccount, signInAccount, signed} = useContext(AuthGoogleContext)
+    const { createAccount, signInAccount } = useContext(AuthGoogleContext)
 
     async function login() {
-        await createAccount(emailField.value,passwordField.value)
-        await signInAccount(emailField.value,passwordField.value)
+        await createAccount(emailField.value, passwordField.value)
+
+        setTimeout(
+            () => {
+                signInAccount(emailField.value, passwordField.value)
+                console.log("pega")
+            },
+            1000
+        );
     }
 
     return (
