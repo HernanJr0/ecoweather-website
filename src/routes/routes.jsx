@@ -7,6 +7,7 @@ import Galeria from "../Telas/TelaGaleria/Galeria.jsx"
 import ListaDez from "../Telas/TelaDicas/ListaDez/ListaDez.jsx"
 import Previsao from "../Telas/TelaPrevisão/Previsao.jsx"
 import { createTheme, ThemeProvider } from "@mui/material";
+import { Analytics } from "@vercel/analytics/react";
 
 import "../index.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
@@ -39,6 +40,7 @@ export const Router = () => {
                         </Route>
                     </Routes>
                     <Footer />
+                    <Analytics/>
 
                 </ThemeProvider>
             </Fragment>

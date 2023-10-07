@@ -25,7 +25,7 @@ import { AuthGoogleContext } from "../../contexts/authGoogle"
 // });
 
 export const Auth = () => {
-    const [users, setUsers] = useState([]);
+    // const [users, setUsers] = useState([]);
     const [email, setEmail] = useState([]);
     const [password, setPassword] = useState([]);
 
