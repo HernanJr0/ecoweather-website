@@ -1,17 +1,17 @@
 #head {
-    display: grid;
+    width: 100%;
+    height: 65vh;
+
+    display: flex;
+    flex-direction: column;
+
+    place-items: center;
     text-align: center;
 
+    justify-content: space-between;
     background-color: black;
     border-radius: 0 0 20px 20px;
 
-    height: 65vh;
-    width: 100%;
-}
-
-#head * {
-    margin: 0;
-    padding: 0;
 }
 
 #bg {
@@ -27,84 +27,44 @@
     object-position: center center;
 }
 
-#pegakkk {
-    margin: 0 auto;
-    width: 90%;
-    display: flex;
-    justify-content: space-between;
-}
 
-#header {
-    width: 100%;
+#clima {
+    margin-top: 50px;
     height: fit-content;
-    margin-top: 15px;
+
+    font-size: 32px;
     z-index: 1;
 }
 
-#i-city {
-    width: 0;
-    height: 40px;
-    padding-left: 1px;
-    border: none;
-    transition: width 300ms;
-}
-
-#i-city:focus {
-    padding-left: 14px;
-    width: 100px;
-}
-
-
-
-#data {
-    display: flex;
-    place-items: center;
-}
-
-#calendar {margin-right: 6px;}
-#calendar{
-    min-height: 22px;
-    min-width: 21px;
-    max-height: 22px;
-    max-width: 21px;
-}
-
-#clima {
-    margin-top: 15px;
-    font-size: 32px;
-}
-
 #c_clima {
-    margin: 0 auto;
-    margin-top: 10px;
-
-    align-self: center;
-
     z-index: 1;
 }
 
 #clima_report {
-    margin-bottom: 7px;
+    margin-bottom: 5px;
     background-color: rgba(224, 240, 255, 0.27);
+
+    backdrop-filter: blur(5px);
 
     display: flex;
     align-items: center;
     padding-right: 15px;
     border-radius: 30px;
+
 }
 
 #c_img {
     margin-right: 15px;
     height: 105px;
     background-color: rgba(224, 240, 255, 0.27);
-    border-radius: 30px;
+    border-radius: 30px 0 0 30px;
 }
 
-#city{
+#city {
     font-size: 18px;
 }
 
-#temp{
+#temp {
     font-size: 48px;
 }
 
@@ -119,22 +79,20 @@
 } */
 
 #stat {
-    margin: auto;
-    width: fit-content;
-    z-index: 1;
+    margin-bottom: 10px;
     display: flex;
     flex-direction: column;
-    justify-content: end;
-    margin-bottom: 20px;
+    z-index: 1;
 }
 
- @media(max-height: 600px){
-    #head{
+@media(max-height: 600px) {
+    #head {
         min-height: calc(100vh - 60px);
         max-height: calc(100vh - 60px);
     }
-    #bg{
+
+    #bg {
         min-height: calc(100vh - 60px);
         max-height: calc(100vh - 60px);
     }
-} 
+}

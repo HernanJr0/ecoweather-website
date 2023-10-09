@@ -1,19 +1,18 @@
 import React, { Component } from 'react'
 import './Clima.css'
 
-import calendar from '../../assets/calendar.png';
+/* import calendar from '../../assets/calendar.png';
 
 import { IconButton, TextField } from '@mui/material';
-import PlaceIcon from '@mui/icons-material/Place';
+import PlaceIcon from '@mui/icons-material/Place'; */
 
 class Clima extends Component {
     constructor(props) {
         super(props)
 
         this.state = {
-            dia: this.custom_date(),
             cimg: '',
-            loc: 'Manaus',
+            loc: this.props.locale,
             clima: '',
             temp: '',
             s_ter: '',
@@ -23,9 +22,6 @@ class Clima extends Component {
             min_temp: '', */
         }
 
-        this.enterCity = this.enterCity.bind(this)
-
-        this.custom_date = this.custom_date.bind(this)
         this.drawWeather = this.drawWeather.bind(this)
         this.weatherBallon = this.weatherBallon.bind(this)
     }
@@ -34,12 +30,21 @@ class Clima extends Component {
         this.weatherBallon(this.state.loc)
     }
 
+    componentDidUpdate(prevProps, prevState) {
+        if (prevProps.locale !== this.props.locale) {
+            var seila = this.props.locale
+
+            this.weatherBallon(seila)
+        }
+    }
+
     weatherBallon(city) {
         let key = 'd3afafb4de8d7a76ad9ced3bed938d51';
         fetch('https://api.openweathermap.org/data/2.5/weather?lang=pt_br&q=' + city + '&appid=' + key)
             .then((resp) => { return resp.json() })
             .then((data) => {
                 this.drawWeather(data)
+                console.log(data)
             })
     }
 
@@ -47,10 +52,12 @@ class Clima extends Component {
         let c_img = 'http://openweathermap.org/img/wn/' + d.weather[0].icon + '.png'
 
         let t = Math.round(parseFloat(d.main.temp) - 273.15);
+
         /* 
         let max_t = Math.round(parseFloat(d.main.temp_max) - 273.15);
         let min_t = Math.round(parseFloat(d.main.temp_min) - 273.15);
         */
+
         let feel = Math.round(parseFloat(d.main.feels_like) - 273.15);
 
         let valoresClima = (this.state.loc + '-' + d.weather[0].description).normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\s/g, "-");
@@ -71,57 +78,23 @@ class Clima extends Component {
             s_ter: feel,
             humid: d.main.humidity,
             vento: d.wind.speed
+
             /* max_temp: max_t,
             min_temp: min_t, */
         });
+
     }
 
-    custom_date() {
-        let today = new Date();
-        let custom_months = ["Jan", "Fev", "Mar", "Abr", "Mao", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"];
-        let custom_days = ["Dom", "Seg", "Ter", "Qua", "Qui", "Sexta", "Sáb"];
-        let date = custom_days[today.getDay()] + ", " + today.getDate() + " de " + custom_months[today.getMonth()];
-        return date;
-    }
 
-    enterCity(e) {
-        if (e.key == 'Enter') {
-            let city = e.target.value;
-            this.setState({ loc: city });
-            this.weatherBallon(e.target.value)
-        }
-    }
 
     render() {
         return (
             <div id='head'>
-                <img id='bg'/>
-                <div id='header'>
-                    <div id='pegakkk'>
+                <img id='bg' alt="bg" />
+                <h1 id='clima'>
+                    {this.state.clima.charAt(0).toUpperCase() + this.state.clima.slice(1)}
+                </h1>
 
-                        <div id='data'>
-                            <img id='calendar' src={calendar} />{this.state.dia}
-                        </div>
-
-                        <TextField id='i-city'
-                            onKeyDown={this.enterCity}
-
-                            variant='outlined'
-                            size='small'
-                            InputProps={{
-                                endAdornment: (
-                                    <IconButton edge='end' onClick={() => {
-                                        document.querySelector('#i-city').focus()
-                                    }}>
-                                        <PlaceIcon />
-                                    </IconButton>
-                                ),
-                            }}
-                        />
-
-                    </div>
-                    <h1 id='clima'>{this.state.clima.charAt(0).toUpperCase() + this.state.clima.slice(1)}</h1>
-                </div>
 
                 {/*vvvv slide pra cidades favoritas vvvv*/}
                 <div id='c_clima'>
@@ -132,14 +105,13 @@ class Clima extends Component {
                             <h1 id='temp'>{this.state.temp}ºC</h1>
                         </div>
                     </div>
+                    <div id='feel'>Sensação: {this.state.s_ter}ºC</div>
                     {/*
-                    <div id='max_min'>
+                        <div id='max_min'>
                         <div>{this.state.max_temp}ºC<img src={arrow_up} /></div>
                         <div>{this.state.min_temp}ºC<img src={arrow_down} /></div>
-                    </div>
-                    */}
-                    <div id='feel'>Sensação: {this.state.s_ter}ºC</div>
-
+                        </div>
+                        */}
                 </div>
                 <div id='stat'>
                     {/* porreessaakkkkkkkk */}
@@ -148,7 +120,6 @@ class Clima extends Component {
                     <div id='humid'>Umidade: {this.state.humid}%</div>
                     <div id='vento'>Vento: {(this.state.vento * 1).toFixed(1)} m/s</div>
                 </div>
-
             </div>
         )
     }
