@@ -11,7 +11,7 @@ class GridNoticia extends Component {
 
             loc: this.props.locale,
 
-            items: []
+            items: null
         }
 
         this.newsBallon = this.newsBallon.bind(this)

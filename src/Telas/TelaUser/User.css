@@ -1,0 +1,43 @@
+#usercard {
+  width: 100%;
+  height: 300px;
+
+  background-color: rgb(20, 20, 20);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.664);
+}
+
+#usercard div {
+  width: 90%;
+  margin: 0 auto;
+  height: 300px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  place-items: end;
+}
+
+#usercard div h2 {
+  height: 300px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  place-items: end;
+  margin-bottom: 7px;
+}
+
+#userbg {
+  width: 100%;
+  height: 250px;
+  position: absolute;
+  object-fit: cover;
+  object-position: center center;
+}
+
+#pfp {
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+}
+#usercard * {
+  z-index: 1;
+}

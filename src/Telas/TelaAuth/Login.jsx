@@ -6,7 +6,7 @@ import Auth from "./Auth"
 
 export const Login = () => {
 
-    const { signInGoogle, signed } = useContext(AuthGoogleContext)
+    const { signInGoogle, signed, user } = useContext(AuthGoogleContext)
 
     async function loginGoogle() {
         await signInGoogle()

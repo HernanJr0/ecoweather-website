@@ -28,7 +28,7 @@ function Header() {
                     }}
                 /> */}
 
-                <Link to="/">
+                <Link to="/home/user">
                     <IconButton>
                         <Account />
                     </IconButton>

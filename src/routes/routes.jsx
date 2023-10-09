@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 
 import Home from "../Telas/TelaHome/Home.jsx";
+import User from "../Telas/TelaUser/User.jsx";
 import Dicas from "../Telas/TelaDicas/Dicas.jsx";
 import Auth from "../Telas/TelaAuth/Auth.jsx"
 import Galeria from "../Telas/TelaGaleria/Galeria.jsx"
@@ -33,6 +34,7 @@ export const Router = () => {
                         <Route path="/" element={<Auth />}/>
                         <Route path="/home" element={<PrivateRoutes />}>
                             <Route path="/home" element={<Home />} />
+                            <Route path="/home/user" element={<User />} />
                             <Route path="/home/dicas" element={<Dicas />} />
                             <Route path="/home/dicas/as-dez-dicas" element={<ListaDez />} />
                             <Route path="/home/galeria" element={<Galeria />} />
