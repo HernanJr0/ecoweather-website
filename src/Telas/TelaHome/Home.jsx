@@ -104,7 +104,6 @@ function Home() {
         return date;
     }
 
-
     function enterCity(e) {
         if (e.key == 'Enter') {
             if (e.target.value != null) {
