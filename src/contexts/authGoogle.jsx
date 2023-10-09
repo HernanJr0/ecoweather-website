@@ -94,7 +94,7 @@ export const AuthGoogleProvider = ({ children }) => {
     }
 
     function signOut() {
-        sessionStorage.clear();
+        localStorage.clear();
         setUser(null)
         return <Navigate to="/" />
     }
