@@ -11,7 +11,7 @@ class GridNoticia extends Component {
 
             loc: this.props.locale,
 
-            items: []
+            items: null
         }
 
         this.newsBallon = this.newsBallon.bind(this)
@@ -24,14 +24,13 @@ class GridNoticia extends Component {
 
     componentDidUpdate(prevProps, prevState) {
         if (prevProps.locale !== this.props.locale) {
-            var seila = this.props.locale
-
-            this.newsBallon(seila)
+            this.newsBallon(this.props.locale)
         }
     }
 
     newsBallon(city) {
-        fetch("https://newsapi.org/v2/everything?q=" + city + "&searchIn=title" + "&sortBy=relevancy" + "&pageSize=10" + "&language=pt" + "&apiKey=cd3417de6c7b4ae38a0cff0124696c5d")
+        fetch("https://newsapi.org/v2/everything?q=" + city + " &searchIn=title" + "&sortBy=relevancy" + "&pageSize=10" + "&language=pt" + "&apiKey=cd3417de6c7b4ae38a0cff0124696c5d")
+
             .then((resp) => { return resp.json() })
             .then((data) => {
                 this.setState({ items: data.articles })

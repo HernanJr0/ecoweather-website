@@ -12,11 +12,13 @@ import calendar from '../../assets/calendar.png';
 import { IconButton, TextField } from '@mui/material';
 import PlaceIcon from '@mui/icons-material/Place';
 
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import { AuthGoogleContext } from '../../contexts/authGoogle';
 
 function Home() {
 
-    /* 
+
+    {/*  
     const date = new Date()
     const hora = date.getHours()
 
@@ -75,8 +77,24 @@ function Home() {
         let date = custom_days[today.getDay()] + ", " + today.getDate() + " de " + custom_months[today.getMonth()];
         return date;
     }
- */
-    const [locale, setLocale] = useState("Manaus");
+    */}
+    const checkCity = document.cookie
+        .split("; ")
+        .find((row) => row.startsWith("city="))
+        ?.split("=")[1];
+
+
+    if (checkCity == '' || checkCity == undefined || checkCity == null) {
+        document.cookie = `city=manaus;Secure`
+        // console.log(document.cookie)
+    }
+
+    const city = document.cookie
+        .split("; ")
+        .find((row) => row.startsWith("city="))
+        ?.split("=")[1];
+
+    const [locale, setLocale] = useState(city)
 
     function custom_date() {
         let today = new Date();
@@ -86,17 +104,20 @@ function Home() {
         return date;
     }
 
-
-
     function enterCity(e) {
         if (e.key == 'Enter') {
-            setLocale(e.target.value)
+            if (e.target.value != null) {
+                setLocale(e.target.value)
 
-            /* this.setState({ loc: city });
-            this.weatherBallon(e.target.value) */
+                document.cookie = `city = ${e.target.value};Secure`
+
+                /* this.setState({ loc: city });
+                this.weatherBallon(e.target.value) */
+            } else {
+                alert("este espaço nao pode ficar em branco")
+            }
         }
     }
-
 
     return (
         <div id='corpo'>
@@ -169,13 +190,13 @@ function Home() {
                                     titulo={'Dicas'}
                                     descricao={'Veja aqui dicas de como cuidar do meio ambiente com pequenas ações no dia a dia'}
                                     imagem={'https://cdn-icons-png.flaticon.com/512/361/361892.png'}
-                                    link={'/dicas'}
+                                    link={'/home/dicas'}
                                 />
                                 <Atalho
                                     titulo={'Galeria'}
                                     descricao={'Um acervo de fotos que mostram a beleza da nossa natureza'}
                                     imagem={'https://cdn-icons-png.flaticon.com/512/2659/2659360.png'}
-                                    link={'/galeria'}
+                                    link={'/home/galeria'}
                                 />
                             </div>
                         </div>

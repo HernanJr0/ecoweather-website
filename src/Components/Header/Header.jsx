@@ -1,10 +1,9 @@
-import { useState } from 'react'
+
 import "./Header.css";
 import logo from "../../assets/ecoLogoWhite.svg";
 
 import { Link } from "react-router-dom";
-import { IconButton, TextField } from '@mui/material';
-import Search from '@mui/icons-material/Search'
+import { IconButton } from '@mui/material';
 import Account from '@mui/icons-material/AccountCircle'
 
 function Header() {
@@ -30,7 +29,7 @@ function Header() {
                     }}
                 /> */}
 
-                <Link to="/auth">
+                <Link to="/home/user">
                     <IconButton>
                         <Account />
                     </IconButton>

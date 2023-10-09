@@ -18,6 +18,7 @@ class Clima extends Component {
             s_ter: '',
             humid: '',
             vento: '',
+            news: []
             /* max_temp: '',
             min_temp: '', */
         }
@@ -26,15 +27,27 @@ class Clima extends Component {
         this.weatherBallon = this.weatherBallon.bind(this)
     }
 
+    // CityCookie() {
+    //     if (document.cookie != null && document.cookie != '') {
+    //         const cookieValue = document.cookie
+    //             .split("; ")
+    //             .find((row) => row.startsWith("city="))
+    //             ?.split("=")[1];
+
+    //         return cookieValue
+    //     }
+    // }
+
     componentDidMount() {
         this.weatherBallon(this.state.loc)
     }
 
     componentDidUpdate(prevProps, prevState) {
         if (prevProps.locale !== this.props.locale) {
-            var seila = this.props.locale
-
-            this.weatherBallon(seila)
+            this.setState({
+                loc: this.props.locale,
+            })
+            this.weatherBallon(this.props.locale)
         }
     }
 
@@ -60,7 +73,7 @@ class Clima extends Component {
 
         let feel = Math.round(parseFloat(d.main.feels_like) - 273.15);
 
-        let valoresClima = (this.state.loc + '-' + d.weather[0].description).normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\s/g, "-");
+        let valoresClima = (d.name + '-' + d.weather[0].description).normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\s/g, "-");
 
         if (new Date().getHours() >= 6 && new Date().getHours() <= 18) {
             document.querySelector('#bg').src = 'http://source.unsplash.com/random/?' + valoresClima
@@ -82,7 +95,8 @@ class Clima extends Component {
             /* max_temp: max_t,
             min_temp: min_t, */
         });
-
+        
+        // document.cookie = `city= ${this.state.loc}; Secure`
     }
 
 
