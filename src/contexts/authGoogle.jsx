@@ -14,8 +14,8 @@ export const AuthGoogleProvider = ({ children }) => {
 
     useEffect(() => {
         const loadStorageData = () => {
-            const sessionUser = sessionStorage.getItem("@AuthFirebase:user")
-            const sessionToken = sessionStorage.getItem("@AuthFirebase:token")
+            const sessionUser = localStorage.getItem("@AuthFirebase:user")
+            const sessionToken = localStorage.getItem("@AuthFirebase:token")
             if (sessionToken && sessionUser) {
                 setUser(sessionUser)
             }
@@ -52,8 +52,8 @@ export const AuthGoogleProvider = ({ children }) => {
                 const user = result.user;
                 const token = user.accessToken;
                 setUser(user)
-                sessionStorage.setItem("@AuthFirebase:token", token)
-                sessionStorage.setItem("@AuthFirebase:user", JSON.stringify(user))
+                localStorage.setItem("@AuthFirebase:token", token)
+                localStorage.setItem("@AuthFirebase:user", JSON.stringify(user))
 
                 // ...
             })
@@ -73,8 +73,8 @@ export const AuthGoogleProvider = ({ children }) => {
                 const user = result.user;
 
                 setUser(user)
-                sessionStorage.setItem("@AuthFirebase:token", token)
-                sessionStorage.setItem("@AuthFirebase:user", JSON.stringify(user))
+                localStorage.setItem("@AuthFirebase:token", token)
+                localStorage.setItem("@AuthFirebase:user", JSON.stringify(user))
 
             }).catch((error) => {
                 // Handle Errors here.
