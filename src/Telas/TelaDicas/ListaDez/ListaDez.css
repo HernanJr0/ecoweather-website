@@ -26,3 +26,9 @@
 #listaDicas img {
     width: 100%;
 }
+
+@media(max-width: 940px) {
+    #listaDicas {
+        width: 90%
+    }
+}

@@ -1,8 +1,12 @@
+import './TelaAuth.css'
+import Auth from "./Auth"
+
 import { useContext } from "react"
 import { Navigate } from "react-router-dom"
 import { AuthGoogleContext } from "../../contexts/authGoogle"
-
-import Auth from "./Auth"
+import { Button, InputAdornment } from "@mui/material"
+import GoogleIcon from '@mui/icons-material/Google';
+import { Margin } from "@mui/icons-material";
 
 export const Login = () => {
 
@@ -13,8 +17,10 @@ export const Login = () => {
     }
     if (!signed) {
         return (
-            <div>
-                <button onClick={() => loginGoogle()}> login w google</button>
+            <div id='btnGoogle'>
+                <Button variant="outlined"
+                    startIcon={<GoogleIcon />}
+                    onClick={() => loginGoogle()}> Continuar com Google</Button>
             </div>
         )
     } else {

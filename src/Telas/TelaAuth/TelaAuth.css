@@ -12,5 +12,13 @@
 }
 
 #senhaCont {
-    margin: 30px;
+    margin-top: 30px;
+}
+
+#campos {
+    margin: 25px;
+}
+
+#btnGoogle {
+    margin: 20px;
 }

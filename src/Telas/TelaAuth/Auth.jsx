@@ -1,4 +1,4 @@
-import './Auth.css';
+import './TelaAuth.css';
 
 import { useEffect, useState } from "react";
 import { TextField, InputAdornment, Button } from "@mui/material";
@@ -85,41 +85,43 @@ export const Auth = () => {
 
             <form id="formulario">
                 <h1>Criar Conta</h1>
-                <TextField
-                    id="emailField"
-                    variant="outlined"
-                    type="email"
-                    label="Email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    InputProps={{
-                        startAdornment: (
-                            <InputAdornment position="start">
-                                <Email />
-                            </InputAdornment>
-                        ),
-                    }}
-                    required
-                />
-                <div id="senhaCont">
+                <div id='campos'>
                     <TextField
-                        id="passwordField"
+                        id="emailField"
                         variant="outlined"
-                        type="password"
-                        label="Senha"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
+                        type="email"
+                        label="Email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
                         InputProps={{
                             startAdornment: (
                                 <InputAdornment position="start">
-                                    <Person />
+                                    <Email />
                                 </InputAdornment>
                             ),
                         }}
                         required
                     />
+                    <div id="senhaCont">
+                        <TextField
+                            id="passwordField"
+                            variant="outlined"
+                            type="password"
+                            label="Senha"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            InputProps={{
+                                startAdornment: (
+                                    <InputAdornment position="start">
+                                        <Person />
+                                    </InputAdornment>
+                                ),
+                            }}
+                            required
+                        />
+                    </div>
                 </div>
-                <Button variant="outlined" onClick={login} >Criar Usuário</Button>
+                <Button variant="contained" onClick={login} >Criar Usuário</Button>
                 <Login />
             </form>
             {/* <ul>
