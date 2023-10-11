@@ -74,9 +74,8 @@ export const Auth = () => {
         setTimeout(
             () => {
                 signInAccount(emailField.value, passwordField.value)
-                console.log("pega")
             },
-            1000
+            40
         );
     }
 

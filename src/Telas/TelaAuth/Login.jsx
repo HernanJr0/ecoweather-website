@@ -6,7 +6,7 @@ import { AuthGoogleContext } from "../../contexts/authGoogle"
 import { Button } from "@mui/material"
 import GoogleIcon from '@mui/icons-material/Google';
 
-export const Login = () => {
+export function Login() {
 
     const { signInGoogle, signed } = useContext(AuthGoogleContext)
 
