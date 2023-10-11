@@ -1,0 +1,89 @@
+#prevPage {
+    height: calc(100vh - 150px);
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    background-image: url('https://source.unsplash.com/1366x768/?Manaus');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#prevPage::before {
+    content: "";
+    background-color: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+#prevCont {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+}
+
+#prev1 {
+    padding: 20px 30px;
+    width: calc(40vw - 60px);
+    margin: 10px;
+    text-align: center;
+    border-radius: 16px;
+
+    background: rgba(149, 155, 160, 0.3);
+    backdrop-filter: blur(10px);
+}
+
+#prev1Center {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+#prev1img {
+    width: 5vw;
+}
+
+#prev2 {
+    padding: 20px 30px;
+    width: calc(40vw - 60px);
+    margin: 10px;
+    border-radius: 16px;
+
+    background: rgba(149, 155, 160, 0.3);
+    backdrop-filter: blur(10px);
+}
+
+#prev2Dias {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    margin-top: 10px;
+}
+
+#prev2Dias img {
+    width: 4vw;
+}
+
+#prev3 {
+    padding: 30px;
+    width: calc(40vw - 60px);
+    margin: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    border-radius: 16px;
+
+    background: rgba(149, 155, 160, 0.3);
+    backdrop-filter: blur(10px);
+}
+
+#prevInfosSide {
+    text-align: center;
+    width: 119px;
+    word-wrap: break-word;
+}
