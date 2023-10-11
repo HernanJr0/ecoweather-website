@@ -6,11 +6,13 @@ import './Noticia.css'
         super(props)
         
         this.state = {
-            titulo: this.props.item.title,
-            descricao: this.props.item.description,
             creditos: this.props.item.creditos,
-            linkNoticia: this.props.item.source.name,
-            imagemSrc: this.props.item.urlToImage
+            titulo: this.props.item.title,
+            descricao: this.props.item.body,
+
+            link: this.props.item.url,
+            fonte: this.props.item.source.uri,
+            imagemSrc: this.props.item.image
         }
     }
 
@@ -19,22 +21,22 @@ import './Noticia.css'
             <div>
                 <hr />
                 <div className='noticiaCont'>
-                    <a className='link' href={this.props.item.url} target='_blank' rel='noreferrer'>
+                    <a className='link' href={this.state.link} target='_blank' rel='noreferrer'>
                         <div className='noticia'>
 
-                            <img className='noticiaImg' src={this.props.item.urlToImage} alt={this.props.item.title}/>
+                            <img className='noticiaImg' src={this.state.imagemSrc} alt={this.state.titulo}/>
 
                             <div className='noticiaDesc'>
                                 <p className='noticiaCreditos'>
-                                    Fonte: {this.props.item.source.name}
+                                    Fonte: {this.state.fonte}
                                 </p>
 
                                 <h2 className='noticiaTitulo'>
-                                    {this.props.item.title}
+                                    {this.state.titulo}
                                 </h2>
 
                                 <p className='noticiaDescricao'>
-                                    {this.props.item.description}
+                                    {this.state.descricao}
                                 </p>
                             </div>
                         </div>

@@ -74,54 +74,54 @@ export const Auth = () => {
         setTimeout(
             () => {
                 signInAccount(emailField.value, passwordField.value)
-                console.log("pega")
             },
-            1000
+            40
         );
     }
 
     return (
-        <div>
-
-            <form id="formulario">
-                <h1>Criar Conta</h1>
-                <TextField
-                    id="emailField"
-                    variant="outlined"
-                    type="email"
-                    label="Email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    InputProps={{
-                        startAdornment: (
-                            <InputAdornment position="start">
-                                <Email />
-                            </InputAdornment>
-                        ),
-                    }}
-                    required
-                />
-                <div id="senhaCont">
-                    <TextField
-                        id="passwordField"
-                        variant="outlined"
-                        type="password"
-                        label="Senha"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        InputProps={{
-                            startAdornment: (
-                                <InputAdornment position="start">
-                                    <Person />
-                                </InputAdornment>
-                            ),
-                        }}
-                        required
-                    />
-                </div>
-                <Button variant="outlined" onClick={login} >Criar Usuário</Button>
-                <Login />
-            </form>
+        <div id="formulario">
+            <h1>Criar Conta</h1>
+            <TextField
+                id="emailField"
+                variant="outlined"
+                type="email"
+                label="Email"
+                value={email}
+                margin='normal'
+                onChange={(e) => setEmail(e.target.value)}
+                InputProps={{
+                    startAdornment: (
+                        <InputAdornment position="start">
+                            <Email />
+                        </InputAdornment>
+                    ),
+                }}
+                required
+            />
+            <TextField
+                id="passwordField"
+                variant="outlined"
+                type="password"
+                label="Senha"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                onKeyDown={(e) => {
+                    if (e.key == 'Enter') {
+                        document.getElementById("patatatata").click()
+                    }
+                }}
+                InputProps={{
+                    startAdornment: (
+                        <InputAdornment position="start">
+                            <Person />
+                        </InputAdornment>
+                    ),
+                }}
+                required
+            />
+            <Button id='patatatata' variant="outlined" onClick={login}>Criar Usuário</Button>
+            <Login />
             {/* <ul>
         {users.map((user) => {
           return (
