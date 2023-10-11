@@ -1,16 +1,14 @@
 import './TelaAuth.css'
-import Auth from "./Auth"
 
 import { useContext } from "react"
 import { Navigate } from "react-router-dom"
 import { AuthGoogleContext } from "../../contexts/authGoogle"
-import { Button, InputAdornment } from "@mui/material"
+import { Button } from "@mui/material"
 import GoogleIcon from '@mui/icons-material/Google';
-import { Margin } from "@mui/icons-material";
 
 export const Login = () => {
 
-    const { signInGoogle, signed, user } = useContext(AuthGoogleContext)
+    const { signInGoogle, signed } = useContext(AuthGoogleContext)
 
     async function loginGoogle() {
         await signInGoogle()

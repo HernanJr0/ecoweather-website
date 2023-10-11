@@ -110,6 +110,11 @@ export const Auth = () => {
                             label="Senha"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
+                            onKeyDown={(e) => {
+                                if (e.key == 'Enter') {
+                                    document.getElementById("btnCriar").click()
+                                }
+                            }}
                             InputProps={{
                                 startAdornment: (
                                     <InputAdornment position="start">
@@ -121,7 +126,7 @@ export const Auth = () => {
                         />
                     </div>
                 </div>
-                <Button variant="contained" onClick={login} >Criar Usuário</Button>
+                <Button id='btnCriar' variant="contained" onClick={login} >Criar Usuário</Button>
                 <Login />
             </form>
             {/* <ul>
