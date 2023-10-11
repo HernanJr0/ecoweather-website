@@ -1,8 +1,8 @@
 import Noticia from '../../Components/Noticia/Noticia.jsx';
 import '../../Components/Noticia/GridNoticia.css'
-import React, { Component } from 'react'
+import { PureComponent } from 'react'
 
-class GridNoticia extends Component {
+class GridNoticia extends PureComponent {
 
     constructor(props) {
         super(props)
@@ -34,7 +34,7 @@ class GridNoticia extends Component {
 
     componentDidUpdate(prevProps, prevState) {
         if (prevProps.locale !== this.props.locale) {
-            this.setState({items:null})
+            this.setState({ items: null })
             this.newsBallon(this.props.locale)
         }
     }
@@ -58,7 +58,6 @@ class GridNoticia extends Component {
     }
 
     render() {
-
         return (
             <div>
                 <p id='noticiasTitulo'><b>Notícias</b></p>
