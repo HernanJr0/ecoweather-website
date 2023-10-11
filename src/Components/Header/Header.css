@@ -32,3 +32,12 @@ nav {
 #search:focus {
   width: 170px;
 }
+
+#account {
+  padding: 7px;
+}
+
+#account img {
+  height: 36px;
+  border-radius: 50%;
+}

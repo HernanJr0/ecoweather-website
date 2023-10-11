@@ -4,9 +4,48 @@ import logo from "../../assets/ecoLogoWhite.svg";
 
 import { Link } from "react-router-dom";
 import { IconButton } from '@mui/material';
-import Account from '@mui/icons-material/AccountCircle'
+// import Account from '@mui/icons-material/AccountCircle'
+import { AuthGoogleContext } from "../../contexts/authGoogle";
+import { useContext } from "react"
 
 function Header() {
+
+    const { /* user,  */signed } = useContext(AuthGoogleContext)
+
+    // function useri() {
+    //     if (signed) {
+    //         while (user != undefined && user != "[object Object]") {
+    //             userLOG = JSON.parse(user)
+    //             console.log(userLOG)
+
+    //             return (
+    //                 <Link to="/home/user">
+    //                     <IconButton id="account">
+    //                         {/* <Account /> */}
+    //                         <img src={userLOG.photoURL} />
+    //                     </IconButton>
+    //                 </Link>
+    //             )
+    //         }
+    //     }
+
+    // }
+
+    function useri() {
+        if (signed) {
+                var userLOG = JSON.parse(localStorage.getItem("@AuthFirebase:user"))
+
+                return (
+                    <Link to="/home/user">
+                        <IconButton id="account">
+                            {/* <Account /> */}
+                            <img src={userLOG.photoURL} />
+                        </IconButton>
+                    </Link>
+                )
+            
+        }
+    }
 
     return (
         <nav>
@@ -29,11 +68,7 @@ function Header() {
                     }}
                 /> */}
 
-                <Link to="/home/user">
-                    <IconButton>
-                        <Account />
-                    </IconButton>
-                </Link>
+                {useri()}
             </div>
         </nav>
     );

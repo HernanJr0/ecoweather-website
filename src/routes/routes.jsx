@@ -1,5 +1,3 @@
-import React, { Fragment } from "react";
-
 import Home from "../Telas/TelaHome/Home.jsx";
 import User from "../Telas/TelaUser/User.jsx";
 import Dicas from "../Telas/TelaDicas/Dicas.jsx";
@@ -26,26 +24,24 @@ export const Router = () => {
 
     return (
         <BrowserRouter>
-            <Fragment>
-                <ThemeProvider theme={darkTheme}>
+            <ThemeProvider theme={darkTheme}>
 
-                    <Header />
-                    <Routes>
-                        <Route path="/" element={<Auth />}/>
-                        <Route path="/home" element={<PrivateRoutes />}>
-                            <Route path="/home" element={<Home />} />
-                            <Route path="/home/user" element={<User />} />
-                            <Route path="/home/dicas" element={<Dicas />} />
-                            <Route path="/home/dicas/as-dez-dicas" element={<ListaDez />} />
-                            <Route path="/home/galeria" element={<Galeria />} />
-                            <Route path="/home/previsao" element={<Previsao />} />
-                        </Route>
-                    </Routes>
-                    <Footer />
-                    <Analytics/>
-
-                </ThemeProvider>
-            </Fragment>
+                <Header />
+                <Routes>
+                    <Route path="/" element={<Auth />} />
+                    <Route path="/home" element={<PrivateRoutes />}>
+                        <Route path="/home" element={<Home />} />
+                        <Route path="/home/user" element={<User />} />
+                        <Route path="/home/dicas" element={<Dicas />} />
+                        <Route path="/home/dicas/as-dez-dicas" element={<ListaDez />} />
+                        <Route path="/home/galeria" element={<Galeria />} />
+                        <Route path="/home/previsao" element={<Previsao />} />
+                    </Route>
+                </Routes>
+                <Footer />
+                <Analytics />
+                
+            </ThemeProvider>
         </BrowserRouter>
     )
 }

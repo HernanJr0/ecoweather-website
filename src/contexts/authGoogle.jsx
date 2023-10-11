@@ -13,27 +13,19 @@ export const AuthGoogleProvider = ({ children }) => {
     const [user, setUser] = useState(null)
 
     useEffect(() => {
-        const loadStorageData = () => {
-            const sessionUser = localStorage.getItem("@AuthFirebase:user")
-            const sessionToken = localStorage.getItem("@AuthFirebase:token")
-            if (sessionToken && sessionUser) {
-                setUser(sessionUser)
-            }
+        const storageUser = localStorage.getItem("@AuthFirebase:user")
+        const storageToken = localStorage.getItem("@AuthFirebase:token")
+        if (storageToken && storageUser) {
+            setUser(storageUser)
         }
-        loadStorageData()
+        console.log("vai")
     })
 
     const createAccount = (email, password) => {
         createUserWithEmailAndPassword(auth, email, password)
-            .then((userCredential) => {
-                // // Signed in 
-                // const credential = GoogleAuthProvider.credentialFromResult(result);
-                // const token = credential.accessToken;
-                // const user = userCredential.user;
-                // setUser(user)
-                // sessionStorage.setItem("@AuthFirebase:token", token)
-                // sessionStorage.setItem("@AuthFirebase:user", JSON.stringify(user))
-                // ...
+            .then((result) => {
+                console.log(result)
+
             })
             .catch((error) => {
                 const errorCode = error.code;
@@ -48,9 +40,9 @@ export const AuthGoogleProvider = ({ children }) => {
             .then((result) => {
                 // Signed in 
                 console.log(result)
-
                 const user = result.user;
                 const token = user.accessToken;
+
                 setUser(user)
                 localStorage.setItem("@AuthFirebase:token", token)
                 localStorage.setItem("@AuthFirebase:user", JSON.stringify(user))
@@ -62,7 +54,7 @@ export const AuthGoogleProvider = ({ children }) => {
                 const errorMessage = error.message;
                 console.log(errorMessage)
             });
-        return <Navigate to="/home" />
+        return <Navigate to="/" />
     }
 
     const signInGoogle = () => {
@@ -89,8 +81,7 @@ export const AuthGoogleProvider = ({ children }) => {
                 // console.log(errorMessage)
                 // console.log(email)
                 // console.log(credential)
-            }
-            );
+            });
     }
 
     function signOut() {
