@@ -1,4 +1,4 @@
-import './Auth.css';
+import './TelaAuth.css';
 
 import { useEffect, useState } from "react";
 import { TextField, InputAdornment, Button } from "@mui/material";
@@ -80,48 +80,54 @@ export const Auth = () => {
     }
 
     return (
-        <div id="formulario">
-            <h1>Criar Conta</h1>
-            <TextField
-                id="emailField"
-                variant="outlined"
-                type="email"
-                label="Email"
-                value={email}
-                margin='normal'
-                onChange={(e) => setEmail(e.target.value)}
-                InputProps={{
-                    startAdornment: (
-                        <InputAdornment position="start">
-                            <Email />
-                        </InputAdornment>
-                    ),
-                }}
-                required
-            />
-            <TextField
-                id="passwordField"
-                variant="outlined"
-                type="password"
-                label="Senha"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                onKeyDown={(e) => {
-                    if (e.key == 'Enter') {
-                        document.getElementById("patatatata").click()
-                    }
-                }}
-                InputProps={{
-                    startAdornment: (
-                        <InputAdornment position="start">
-                            <Person />
-                        </InputAdornment>
-                    ),
-                }}
-                required
-            />
-            <Button id='patatatata' variant="outlined" onClick={login}>Criar Usuário</Button>
-            <Login />
+        <div>
+
+            <form id="formulario">
+                <h1>Criar Conta</h1>
+                <div id='campos'>
+                    <TextField
+                        id="emailField"
+                        variant="outlined"
+                        type="email"
+                        label="Email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        InputProps={{
+                            startAdornment: (
+                                <InputAdornment position="start">
+                                    <Email />
+                                </InputAdornment>
+                            ),
+                        }}
+                        required
+                    />
+                    <div id="senhaCont">
+                        <TextField
+                            id="passwordField"
+                            variant="outlined"
+                            type="password"
+                            label="Senha"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            onKeyDown={(e) => {
+                                if (e.key == 'Enter') {
+                                    document.getElementById("btnCriar").click()
+                                }
+                            }}
+                            InputProps={{
+                                startAdornment: (
+                                    <InputAdornment position="start">
+                                        <Person />
+                                    </InputAdornment>
+                                ),
+                            }}
+                            required
+                        />
+                    </div>
+                </div>
+                <Button id='btnCriar' variant="contained" onClick={login} >Criar Usuário</Button>
+                <Login />
+            </form>
             {/* <ul>
         {users.map((user) => {
           return (
