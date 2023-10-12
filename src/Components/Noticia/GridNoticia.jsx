@@ -20,7 +20,7 @@ class GridNoticia extends PureComponent {
 
 
     newsBallon(city) {
-        // fetch("https://www.newsapi.ai/api/v1/article/getArticles?query=%7B%22%24query%22%3A%7B%22%24and%22%3A%5B%7B%22categoryUri%22%3A%22news%2FEnvironment%22%7D%2C%7B%22locationUri%22%3A%22http%3A%2F%2Fen.wikipedia.org%2Fwiki%2F" + (city.charAt(0).toUpperCase() + city.slice(1)).trim() + "%22%7D%5D%7D%2C%22%24filter%22%3A%7B%22forceMaxDataTimeWindow%22%3A%2231%22%2C%22startSourceRankPercentile%22%3A0%2C%22endSourceRankPercentile%22%3A100%2C%22isDuplicate%22%3A%22skipDuplicates%22%7D%7D&resultType=articles&articlesSortBy=date&includeArticleEventUri=false&apiKey=414197e9-bf3c-4d3c-a7ab-387b544c81d0")
+        // fetch("https://www.newsapi.ai/api/v1/article/getArticles?query=%7B%22%24query%22%3A%7B%22%24and%22%3A%5B%7B%22categoryUri%22%3A%22news%2FEnvironment%22%7D%2C%7B%22locationUri%22%3A%22http%3A%2F%2Fen.wikipedia.org%2Fwiki%2F"+ city.charAt(0).toUpperCase() + city.slice(1) +"%22%7D%5D%7D%2C%22%24filter%22%3A%7B%22forceMaxDataTimeWindow%22%3A%2231%22%2C%22startSourceRankPercentile%22%3A0%2C%22endSourceRankPercentile%22%3A100%2C%22isDuplicate%22%3A%22skipDuplicates%22%7D%7D&resultType=articles&articlesSortBy=date&includeArticleEventUri=false&apiKey=414197e9-bf3c-4d3c-a7ab-387b544c81d0")
         //     .then((resp) => { return resp.json() })
         //     .then((data) => {
         //         console.log(data);

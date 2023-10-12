@@ -29,7 +29,7 @@ const AtalhoPrev = () => {
               </div>
             </div>
           </div>
-          <Link id="previsaoLink" to="/previsao">
+          <Link id="previsaoLink" to="/home/previsao">
             <Button variant="outlined" size="small">Ver mais...</Button>
           </Link>
         </div>
