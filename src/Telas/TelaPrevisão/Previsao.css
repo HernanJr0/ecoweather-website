@@ -23,12 +23,12 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 80%;
+    width: 40vw;
 }
 
 #prev1 {
     padding: 20px 30px;
-    width: calc(40vw - 60px);
+    width: 100%;
     margin: 10px;
     text-align: center;
     border-radius: 16px;
@@ -39,17 +39,18 @@
 
 #prev1Center {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: space-around;
 }
 
-#prev1img {
-    width: 5vw;
+#prevImgs {
+    width: 4vw;
 }
 
 #prev2 {
     padding: 20px 30px;
-    width: calc(40vw - 60px);
+    width: 100%;
     margin: 10px;
     border-radius: 16px;
 
@@ -59,31 +60,42 @@
 
 #prev2Dias {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-around;
     text-align: center;
     margin-top: 10px;
 }
 
-#prev2Dias img {
-    width: 4vw;
-}
 
-#prev3 {
+#prevInfos {
     padding: 30px;
-    width: calc(40vw - 60px);
+    width: 100%;
     margin: 10px;
+
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
-    border-radius: 16px;
+    flex-wrap: wrap;
 
+    border-radius: 16px;
     background: rgba(149, 155, 160, 0.3);
     backdrop-filter: blur(10px);
 }
 
-#prevInfosSide {
-    text-align: center;
+#prevInfos1 {
     width: 119px;
     word-wrap: break-word;
+}
+
+@media(max-width: 1000px) {
+    #prevCont {
+        width: 60vw;
+    }
+    #prevInfos2 {
+        margin-top: 20px;
+    }
+    #prevImgs {
+        width: 40px;
+    }
 }
