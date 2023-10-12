@@ -1,7 +1,5 @@
-import { Button } from '@mui/material'
 import { Air, WaterDrop, BubbleChart, ArrowUpward, ArrowDownward } from '@mui/icons-material'
 import './Previsao.css'
-import { Link } from 'react-router-dom'
 
 const Previsao = () => {
 
@@ -14,7 +12,7 @@ const Previsao = () => {
                     </h2>
                     <div id='prev1Center'>
                         <div>
-                            <img id='prev1img' src='https://cdn-icons-png.flaticon.com/512/362/362404.png' />
+                            <img id='prevImgs' src='https://cdn-icons-png.flaticon.com/512/362/362404.png' />
                             <h2>Trovoadas</h2>
                         </div>
                         <div id='prev1CenterLeft'>
@@ -26,8 +24,8 @@ const Previsao = () => {
                     </div>
                 </section>
 
-                <section id='prev3'>
-                    <div id='prevInfosSide'>
+                <section id='prevInfos'>
+                    <div id='prevInfos1'>
                         <p>
                             <ArrowUpward sx={{ color: 'red' }} />
                             Máxima: 38°
@@ -37,7 +35,7 @@ const Previsao = () => {
                             Mínima: 24°
                         </p>
                     </div>
-                    <div id='prevInfos'>
+                    <div id='prevInfos2'>
                         <p >
                             <BubbleChart /> Qualidade do ar: Péssimo
                         </p>
@@ -54,19 +52,19 @@ const Previsao = () => {
                     <h2>Previsão diária</h2>
                     <div id='prev2Dias'>
                         <div>
-                            <img src='https://cdn-icons-png.flaticon.com/512/362/362404.png' />
+                            <img id='prevImgs' src='https://cdn-icons-png.flaticon.com/512/362/362404.png' />
                             <p>SEGUNDA</p>
                         </div>
                         <div>
-                            <img src='https://cdn-icons-png.flaticon.com/512/362/362406.png' />
+                            <img id='prevImgs' src='https://cdn-icons-png.flaticon.com/512/362/362406.png' />
                             <p>TERÇA</p>
                         </div>
                         <div>
-                            <img src='https://cdn-icons-png.flaticon.com/512/362/362374.png' />
+                            <img id='prevImgs' src='https://cdn-icons-png.flaticon.com/512/362/362374.png' />
                             <p>QUARTA</p>
                         </div>
                         <div>
-                            <img src='https://cdn-icons-png.flaticon.com/512/362/362404.png' />
+                            <img id='prevImgs' src='https://cdn-icons-png.flaticon.com/512/362/362404.png' />
                             <p>QUINTA</p>
                         </div>
                     </div>
