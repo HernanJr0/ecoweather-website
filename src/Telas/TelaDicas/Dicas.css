@@ -1,0 +1,8 @@
+#dicasPage {
+    display: flex;
+    justify-content: center;
+}
+
+#dicasCont {
+    width: 75vw;
+}
