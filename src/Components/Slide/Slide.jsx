@@ -15,6 +15,7 @@ import './Slide.css';
 const swiper = () => {
     return (
         <Swiper
+            id='widget-swiper'
             // install Swiper modules
             modules={[Pagination, A11y, EffectCreative]}
             pagination={{

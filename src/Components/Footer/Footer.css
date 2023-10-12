@@ -5,26 +5,25 @@
     height: 60px;
     display: flex;
     background-color: #303030;
-    align-items: center;
     justify-content: center;
 }
 
 #devmsg{
-    min-width: fit-content;
-    text-align: end;
+    height: min-content;
+    line-height: 60px;
     font-size: 13px;
 }
 
 #links{
-    height: 20px;
     display: flex;
     justify-content: center;
     margin: 0 0 0 6px;
+    height: 100%;
 }
 
 #links a {
-    width: 20px;
     height: 20px;
+    place-self: center;
 }
 
 .logo{
@@ -37,5 +36,4 @@
     #devmsg{
         font-size: 15px;
     }
-    
 }
