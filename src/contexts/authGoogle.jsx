@@ -3,6 +3,16 @@ import { GoogleAuthProvider, getAuth, signInWithPopup, signInWithEmailAndPasswor
 import { app } from "../service/firebaseConfig.jsx"
 import { Navigate } from "react-router-dom";
 
+
+import {
+    collection,
+    getFirestore,
+    getDocs,
+    addDoc,
+    doc,
+    deleteDoc,
+} from "firebase/firestore";
+
 const provider = new GoogleAuthProvider()
 
 export const AuthGoogleContext = createContext({})
@@ -12,26 +22,34 @@ export const AuthGoogleProvider = ({ children }) => {
     const auth = getAuth(app);
     const [user, setUser] = useState(null)
 
+    //   useEffect(() => {
+    //     const getUsers = async () => {
+    //       const data = await getDocs(userCollectionRef);
+    //       setUsers(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    //     };
+    //     getUsers();
+    //   }, [userCollectionRef]);
+
     useEffect(() => {
         const storageUser = localStorage.getItem("@AuthFirebase:user")
         const storageToken = localStorage.getItem("@AuthFirebase:token")
         if (storageToken && storageUser) {
             setUser(storageUser)
         }
-        console.log("vai")
     })
 
     const createAccount = (email, password) => {
         createUserWithEmailAndPassword(auth, email, password)
             .then((result) => {
-                console.log(result)
-
             })
             .catch((error) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
                 // ..
-                // console.log(errorMessage)
+                if(errorCode=="auth/invalid-email")
+                alert("POE UM EMAIL E UMA SENHA QUE EXISTE, OTARIO")
+            
+                console.log(errorCode)
             });
     }
 
@@ -39,7 +57,6 @@ export const AuthGoogleProvider = ({ children }) => {
         signInWithEmailAndPassword(auth, email, password)
             .then((result) => {
                 // Signed in 
-                console.log(result)
                 const user = result.user;
                 const token = user.accessToken;
 
@@ -52,7 +69,7 @@ export const AuthGoogleProvider = ({ children }) => {
             .catch((error) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
-                console.log(errorMessage)
+                //console.log(errorMessage)
             });
         return <Navigate to="/" />
     }
@@ -72,16 +89,27 @@ export const AuthGoogleProvider = ({ children }) => {
                 // Handle Errors here.
                 const errorCode = error.code;
                 const errorMessage = error.message;
+
                 // The email of the user's account used.
                 const email = error.customData.email;
                 // The AuthCredential type that was used.
                 const credential = GoogleAuthProvider.credentialFromError(error);
-                // ...
-                console.log(errorCode)
+                
+                console.log(errorMessage)
                 // console.log(errorMessage)
                 // console.log(email)
                 // console.log(credential)
             });
+    }
+    //const userCollectionRef = collection(db, "users");
+
+    const addCity = async (cidade) => {
+        //adiciona cidade
+        await addDoc(userCollectionRef, cidade);
+    }
+    const delCity = async (cidade) => {
+        //remove cidade
+        await deleteDoc(userCollectionRef, cidade);
     }
 
     function signOut() {
