@@ -187,16 +187,10 @@ function Home() {
                             <div id='seila'>
                                 <AtalhoPrev />
                                 <Atalho
-                                    titulo={'Dicas'}
-                                    descricao={'Veja aqui dicas de como cuidar do meio ambiente com pequenas ações no dia a dia'}
+                                    titulo={'Conteudos'}
+                                    descricao={'Acesse aqui conteúdos sobre o meio ambiente'}
                                     imagem={'https://cdn-icons-png.flaticon.com/512/361/361892.png'}
                                     link={'/home/dicas'}
-                                />
-                                <Atalho
-                                    titulo={'Galeria'}
-                                    descricao={'Um acervo de fotos que mostram a beleza da nossa natureza'}
-                                    imagem={'https://cdn-icons-png.flaticon.com/512/2659/2659360.png'}
-                                    link={'/home/galeria'}
                                 />
                             </div>
                         </div>
