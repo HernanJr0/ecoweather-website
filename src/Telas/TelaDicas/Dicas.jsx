@@ -5,10 +5,12 @@ import { Label } from '@mui/icons-material'
 
 const Dicas = () => {
   return (
-    <div>
-      <Link to={'/home/dicas/as-dez-dicas'}>
-        <Button variant='outlined'>Acessar</Button>
-      </Link>
+    <div id='dicasPage'>
+      <div id='dicasCont'>
+        <Link to={'/home/dicas/as-dez-dicas'}>
+          <Button variant='outlined'>Acessar</Button>
+        </Link>
+      </div>
     </div>
   )
 }

@@ -30,10 +30,3 @@
     width: 20px;
     height: 20px;
 }
-
-
-@media(max-width: 600px) {
-    #devmsg{
-        font-size: 15px;
-    }
-}
