@@ -1,6 +1,7 @@
 import { AuthGoogleContext } from "../../contexts/authGoogle"
 import { useContext } from "react"
 import "./User.css"
+import { Button } from "@mui/material";
 
 function User() {
 
@@ -11,8 +12,6 @@ function User() {
     var userLOG = JSON.parse(localStorage.getItem("@AuthFirebase:user"))
     userLOGname = userLOG.displayName
 
-    var x = null
-
     return (
         <div>
             <div id="usercard">
@@ -22,7 +21,7 @@ function User() {
                     <img src={userLOG.photoURL} id="pfp" />
                 </div>
             </div>
-            <button onClick={signOut}>Sair</button>
+            <Button onClick={signOut} variant="outlined" color="error">Sair</Button>
         </div>
     )
 }

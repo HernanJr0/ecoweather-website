@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;700&display=swap');
 :root {
-  line-height: 1.5;
   font-weight: 400;
 
   color-scheme: light dark;
@@ -17,9 +16,4 @@
 *{
     font-family: 'Open Sans', sans-serif;
     margin: 0;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
 }

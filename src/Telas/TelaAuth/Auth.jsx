@@ -15,6 +15,7 @@ import { AuthGoogleContext } from "../../contexts/authGoogle"
 //     doc,
 //     deleteDoc,
 // } from "firebase/firestore";
+
 // import { getAuth } from "firebase/auth"
 // import { initializeApp } from "firebase/app";
 
@@ -33,9 +34,6 @@ export const Auth = () => {
         // const userCollectionRef = collection(db, "users");
 
 
-        // window.onload = () => {
-        // }
-
         // async function criaUser() {
 
         //     if (email && password != "") {
@@ -43,10 +41,9 @@ export const Auth = () => {
         //             email,
         //             password,
         //         });
+
         //         console.log(user);
         //         alert('Conta criada com sucesso!')
-        //         document.cookie = `email= ${email}; Secure`;
-        //         document.cookie = `; Secure`
         //     } else {
         //         alert('Falha ao criar conta!')
         //     }
@@ -75,7 +72,7 @@ export const Auth = () => {
             () => {
                 signInAccount(emailField.value, passwordField.value)
             },
-            40
+            1000
         );
     }
 

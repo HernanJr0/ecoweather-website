@@ -5,16 +5,15 @@
     display: flex;
     flex-direction: column;
 
-    place-items: center;
+    align-items: center;
     text-align: center;
 
     justify-content: space-between;
     background-color: black;
     border-radius: 0 0 20px 20px;
-
 }
 
-#bg {
+.bg {
     opacity: 0.60;
     position: absolute;
     border-radius: 0 0 20px 20px;
@@ -35,6 +34,7 @@
 
 #c_clima {
     z-index: 1;
+    width: fit-content;
 }
 
 #clima_report {
@@ -77,19 +77,43 @@
 
 #stat {
     margin-bottom: 10px;
-    display: flex;
-    flex-direction: column;
     z-index: 1;
 }
 
+#starcont{
+    flex-wrap: wrap;
+    position: absolute;
+    display: flex;
+    
+    width: calc(100% - 10px);
+    height: calc(67vh - 10px);
+
+    place-content: end;
+    margin-right: 10px;
+}
+
+
 @media(max-height: 600px) {
     #head {
-        min-height: calc(100vh - 60px);
-        max-height: calc(100vh - 60px);
+        height: calc(100vh - 70px);
     }
 
-    #bg {
-        min-height: calc(100vh - 60px);
-        max-height: calc(100vh - 60px);
+    .bg {
+        /* min-height: calc(100vh - 60px);
+        max-height: calc(100vh - 60px); */
+        height: calc(100vh - 70px);
     }
+    #starcont{
+        height: calc(100vh - 70px - 10px);
+    }
+}
+
+#clima-swiper{
+    height: 67vh;
+    width: 100%;
+    border-radius: 15px;
+}
+
+.clima-swiper-slide{
+    width: 100%;
 }

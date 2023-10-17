@@ -1,6 +1,11 @@
 import React, { Component } from 'react'
 import './Clima.css'
+import StarIcon from '@mui/icons-material/Star';
+import StarBorderIcon from '@mui/icons-material/StarBorder';
 
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { yellow } from '@mui/material/colors';
+import { Checkbox } from '@mui/material';
 /* import calendar from '../../assets/calendar.png';
 
 import { IconButton, TextField } from '@mui/material';
@@ -17,14 +22,14 @@ class Clima extends Component {
             temp: '',
             s_ter: '',
             humid: '',
-            vento: '',
-            news: []
+            vento: ''
             /* max_temp: '',
             min_temp: '', */
         }
 
         this.drawWeather = this.drawWeather.bind(this)
         this.weatherBallon = this.weatherBallon.bind(this)
+        this.handleFav = this.handleFav.bind(this)
     }
 
     // CityCookie() {
@@ -76,9 +81,9 @@ class Clima extends Component {
         let valoresClima = (d.name + '-' + d.weather[0].description).normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\s/g, "-");
 
         if (new Date().getHours() >= 6 && new Date().getHours() <= 18) {
-            document.querySelector('#bg').src = 'http://source.unsplash.com/random/?' + valoresClima
+            document.getElementsByClassName('bg')[0].src = 'http://source.unsplash.com/random/?' + valoresClima
         } else {
-            document.querySelector('#bg').src = 'http://source.unsplash.com/random/?night-' + valoresClima
+            document.getElementsByClassName('bg')[0].src = 'http://source.unsplash.com/random/?night-' + valoresClima
         }
 
 
@@ -95,16 +100,28 @@ class Clima extends Component {
             /* max_temp: max_t,
             min_temp: min_t, */
         });
-        
         // document.cookie = `city= ${this.state.loc}; Secure`
     }
 
+    handleFav(e) {
+        if (e.target.checked) {
+            //registra
 
+        }else{
+            //remove
+            
+        }
+    }
 
     render() {
         return (
+            /* 
+                        <Swiper id='clima-swiper'>
+                            <SwiperSlide className='clima-swiper-slide'> */
+
             <div id='head'>
-                <img id='bg' alt="bg" />
+                <img className='bg' alt="bg" />
+
                 <h1 id='clima'>
                     {this.state.clima.charAt(0).toUpperCase() + this.state.clima.slice(1)}
                 </h1>
@@ -133,8 +150,32 @@ class Clima extends Component {
 
                     <div id='humid'>Umidade: {this.state.humid}%</div>
                     <div id='vento'>Vento: {(this.state.vento * 1).toFixed(1)} m/s</div>
+
+
+
+                </div>
+                <div id='starcont'>
+                    <Checkbox
+                        id='starIcon'
+                        onChange={this.handleFav}
+                        icon={<StarBorderIcon />}
+                        checkedIcon={<StarIcon />}
+
+                        sx={{
+                            color: yellow[0],
+                            '&.Mui-checked': {
+                                color: yellow[600],
+                            },
+                            '& .MuiSvgIcon-root': { fontSize: 28 }
+                        }}
+                    />
                 </div>
             </div>
+            /* 
+            </SwiperSlide>
+
+            
+        </Swiper> */
         )
     }
 }
