@@ -12,7 +12,7 @@ const Dicas = () => {
           titulo={'As dez dicas'}
           descricao={'Veja 10 dicas simples para cuidar do meio ambiente que podem fazer diferença se aplicadas no seu dia a dia'}
           link={'/home/dicas/as-dez-dicas'}
-          bg={'https://tinyurl.com/2zcatdzs'}
+          bg={'https://tinyurl.com/2p8pzy8z'}
         />
         <AtalhoDicas
           titulo={'Endereços'}
@@ -22,15 +22,15 @@ const Dicas = () => {
         />
         <AtalhoDicas
           titulo={'Empresas'}
-          descricao={'Encontre endereços úteis de empresas/serviços ecologicos'}
+          descricao={'Conheça empresas de confiança e que se preocupam com o planeta'}
           link={''}
-          bg={'https://tinyurl.com/37rtyktr'}
+          bg={'https://tinyurl.com/339emfs4'}
         />
         <AtalhoDicas
           titulo={'Galeria'}
           descricao={'Fotos e imagens para apreciar o meio ambiente'}
           link={''}
-          bg={'https://tinyurl.com/346mehna'}
+          bg={'https://tinyurl.com/ym4bra9c'}
         />
       </div>
     </div>
