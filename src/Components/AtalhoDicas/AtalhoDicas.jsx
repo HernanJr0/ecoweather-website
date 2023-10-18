@@ -17,7 +17,7 @@ class AtalhoDicas extends Component {
 
     render() {
         return (
-            <div id='AtalhoDicasCont' style={{ background: `url(${this.props.bg})` }}>
+            <div id='AtalhoDicasCont' style={{ background: `url(${this.props.bg})`}}>
                 <h2 id='AtDiTi'>{this.state.titulo}</h2>
                 <p id='AtDiDe'>{this.state.descricao}</p>
                 <Link id='AtDiLi' to={this.state.link}>

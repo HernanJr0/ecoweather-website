@@ -6,3 +6,10 @@
 #dicasCont {
     width: 50vw;
 }
+
+@media(max-width: 940px) {
+    #dicasCont {
+        width: auto;
+        padding: 0 15px;
+    }
+}
