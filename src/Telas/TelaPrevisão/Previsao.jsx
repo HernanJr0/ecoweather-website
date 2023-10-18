@@ -1,77 +1,61 @@
-import { Air, WaterDrop, BubbleChart, ArrowUpward, ArrowDownward } from '@mui/icons-material'
 import './Previsao.css'
+import TopButtons from './Components/TopButtons'
+import Inputs from './Components/Inputs'
+import TimeAndLocation from './Components/TimeAndLocation'
+import TemperaturaEDetalhes from './Components/TemperaturaEDetalhes'
+import CompPrevisao from './Components/CompPrevisao'
+import getFormattedWeatherData from '../../service/weatherService'
+import { useEffect, useState } from 'react'
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Previsao = () => {
 
+    const [query, setQuery] = useState({ q: 'Manaus' })
+    const [units, setUnits] = useState('metric')
+    const [weather, setWeather] = useState(null)
+
+    useEffect(() => {
+        const fetchWeather = async () => {
+            const message = query.q ? query.q : 'current location.'
+
+            toast.info('Consultando o clima de ' + message + '...')
+
+            await getFormattedWeatherData({ ...query, units }).then(data => {
+
+                toast.success(`Clima de ${data.name}, ${data.country} consultado com sucesso`)
+
+                setWeather(data)
+            })
+        }
+
+        fetchWeather()
+    }, [query, units])
+
+    const formatBackground = () => {
+        if (!weather) return 'from-cyan-700 to-blue-700'
+        const threshold = units === 'metric' ? 20 : 60
+        if (weather.temp <= threshold) return 'from-cyan-700 to-blue-700'
+
+        // return 'from-yellow-700 to-orange-700'
+    }
+
     return (
-        <div id='prevPage'>
-            <div id='prevCont'>
-                <section id='prev1'>
-                    <h2>
-                        Manaus
-                    </h2>
-                    <div id='prev1Center'>
-                        <div>
-                            <img id='prevImgs' src='https://cdn-icons-png.flaticon.com/512/362/362404.png' />
-                            <h2>Trovoadas</h2>
-                        </div>
-                        <div id='prev1CenterLeft'>
-                            <h1>38°</h1>
-                            <h2>
-                                Sensação: 41°
-                            </h2>
-                        </div>
-                    </div>
-                </section>
+        <div className={`mx-auto max-w-screen-md mt-4 py-5 px-32 bg-gradient-to-br from-cyan-700 to-blue-700 h-fit ${formatBackground()}`}>
+            <TopButtons setQuery={setQuery} />
+            <Inputs setQuery={setQuery} units={units} setUnits={setUnits} />
 
-                <section id='prevInfos'>
-                    <div id='prevInfos1'>
-                        <p>
-                            <ArrowUpward sx={{ color: 'red' }} />
-                            Máxima: 38°
-                        </p>
-                        <p>
-                            <ArrowDownward sx={{ color: 'dodgerBlue' }} />
-                            Mínima: 24°
-                        </p>
-                    </div>
-                    <div id='prevInfos2'>
-                        <p >
-                            <BubbleChart /> Qualidade do ar: Péssimo
-                        </p>
-                        <p>
-                            <WaterDrop /> Umidade: 50%
-                        </p>
-                        <p>
-                            <Air /> Vento: 0.3 m/s
-                        </p>
-                    </div>
-                </section>
+            {weather && (
+                <div>
+                    <TimeAndLocation weather={weather} />
+                    <TemperaturaEDetalhes weather={weather} />
 
-                <section id='prev2'>
-                    <h2>Previsão diária</h2>
-                    <div id='prev2Dias'>
-                        <div>
-                            <img id='prevImgs' src='https://cdn-icons-png.flaticon.com/512/362/362404.png' />
-                            <p>SEGUNDA</p>
-                        </div>
-                        <div>
-                            <img id='prevImgs' src='https://cdn-icons-png.flaticon.com/512/362/362406.png' />
-                            <p>TERÇA</p>
-                        </div>
-                        <div>
-                            <img id='prevImgs' src='https://cdn-icons-png.flaticon.com/512/362/362374.png' />
-                            <p>QUARTA</p>
-                        </div>
-                        <div>
-                            <img id='prevImgs' src='https://cdn-icons-png.flaticon.com/512/362/362404.png' />
-                            <p>QUINTA</p>
-                        </div>
-                    </div>
-                </section>
-
-
-            </div>
+                    <CompPrevisao title="a cada hora" items={weather.hourly} />
+                    <CompPrevisao title="a cada dia" items={weather.daily} />
+                </div>
+            )}
+            <ToastContainer autoClose={5000} theme='colored' newestOnTop={true} />
         </div>
     )
 }
