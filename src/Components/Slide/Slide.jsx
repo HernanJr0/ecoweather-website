@@ -52,13 +52,13 @@ const swiper = () => {
 
             <SwiperSlide>
                 <Atalho
-                    titulo={'Dicas'}
-                    descricao={'Veja aqui dicas de como cuidar do meio ambiente com pequenas ações no dia a dia'}
+                    titulo={'Conteudos'}
+                    descricao={'Acesse aqui conteúdos sobre o meio ambiente'}
                     imagem={'https://cdn-icons-png.flaticon.com/512/361/361892.png'}
-                    link={'/Dicas'}
+                    link={'/home/dicas'}
                 />
             </SwiperSlide>
-
+            {/* 
             <SwiperSlide>
                 <Atalho
                     titulo={'Galeria'}
@@ -67,7 +67,7 @@ const swiper = () => {
                     link={'/galeria'}
                 />
             </SwiperSlide>
-            {/* <SwiperSlide>
+            <SwiperSlide>
                 <Atalho
                     titulo={'Agenda'}
                     descricao={'Planeje seus eventos, atividade ou lembretes em um só lugar'}
