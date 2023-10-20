@@ -40,9 +40,9 @@ const Previsao = () => {
 
         // return 'from-yellow-700 to-orange-700'
     }
-
+/* max-w-screen-md */
     return (
-        <div className={`mx-auto max-w-screen-md mt-4 py-5 px-32 bg-gradient-to-br from-cyan-700 to-blue-700 h-fit ${formatBackground()}`}>
+        <div className={`clima2 mx-auto py-1 bg-gradient-to-br from-cyan-700 to-blue-700 h-fit ${formatBackground()}`}>
             <TopButtons setQuery={setQuery} />
             <Inputs setQuery={setQuery} units={units} setUnits={setUnits} />
 

@@ -1,0 +1,9 @@
+.clima2 {
+  padding: 6%;
+  width: 70%;
+}
+@media (max-width: 700px) {
+  .clima2 {
+    width: 100%;
+  }
+}
