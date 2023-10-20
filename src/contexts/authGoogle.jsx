@@ -3,16 +3,6 @@ import { GoogleAuthProvider, getAuth, signInWithPopup, signInWithEmailAndPasswor
 import { app } from "../service/firebaseConfig.jsx"
 import { Navigate } from "react-router-dom";
 
-
-import {
-    collection,
-    getFirestore,
-    getDocs,
-    addDoc,
-    doc,
-    deleteDoc,
-} from "firebase/firestore";
-
 const provider = new GoogleAuthProvider()
 
 export const AuthGoogleContext = createContext({})
@@ -20,6 +10,7 @@ export const AuthGoogleContext = createContext({})
 export const AuthGoogleProvider = ({ children }) => {
 
     const auth = getAuth(app);
+
     const [user, setUser] = useState(null)
 
     //   useEffect(() => {
@@ -46,9 +37,9 @@ export const AuthGoogleProvider = ({ children }) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
                 // ..
-                if(errorCode=="auth/invalid-email")
-                alert("POE UM EMAIL E UMA SENHA QUE EXISTE, OTARIO")
-            
+                if (errorCode == "auth/invalid-email")
+                    alert("POE UM EMAIL E UMA SENHA QUE EXISTE, OTARIO")
+
                 console.log(errorCode)
             });
     }
@@ -94,23 +85,50 @@ export const AuthGoogleProvider = ({ children }) => {
                 const email = error.customData.email;
                 // The AuthCredential type that was used.
                 const credential = GoogleAuthProvider.credentialFromError(error);
-                
+
                 console.log(errorMessage)
                 // console.log(errorMessage)
                 // console.log(email)
                 // console.log(credential)
             });
     }
-    //const userCollectionRef = collection(db, "users");
 
-    const addCity = async (cidade) => {
-        //adiciona cidade
-        await addDoc(userCollectionRef, cidade);
-    }
-    const delCity = async (cidade) => {
-        //remove cidade
-        await deleteDoc(userCollectionRef, cidade);
-    }
+
+
+
+
+    // const db = getDatabase();
+    // const userCollectionRef = ref(db, "users", id);
+    
+    // const [city, setCity] = useState(null)
+
+    // useEffect(() => {
+    //     const getCities = async () => {
+    //         const data = await getDocs(userCollectionRef);
+    //         setCity(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    //     };
+    //     getCities();
+    // }, [userCollectionRef]);
+
+    // const cidades = () => {
+    //     return city.map((user) => {
+    //         return user
+    //     })
+    // }
+
+    // const addCity = async (cidade) => {
+    //     //adiciona cidade
+    //     await addDoc(userCollectionRef, cidade);
+    // }
+    // const delCity = async (cidade) => {
+    //     //remove cidade
+    //     await deleteDoc(userCollectionRef, cidade);
+    // }
+
+
+
+
+
 
     function signOut() {
         localStorage.clear();
