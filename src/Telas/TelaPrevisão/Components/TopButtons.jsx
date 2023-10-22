@@ -17,11 +17,7 @@ function TopButtons({ setQuery }) {
         },
         {
             id: 4,
-            title: 'Toronto'
-        },
-        {
-            id: 5,
-            title: 'Munich'
+            title: 'Paris'
         }
     ]
 

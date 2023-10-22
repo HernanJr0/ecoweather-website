@@ -10,21 +10,22 @@ import { Checkbox } from '@mui/material';
 
 import { IconButton, TextField } from '@mui/material';
 import PlaceIcon from '@mui/icons-material/Place'; */
+var val = ''
+var prevCity = ''
+var key = 'd3afafb4de8d7a76ad9ced3bed938d51';
 
 class Clima extends Component {
     constructor(props) {
         super(props)
 
         this.state = {
-            cimg: '',
             loc: this.props.locale,
             clima: '',
             temp: '',
             s_ter: '',
             humid: '',
-            vento: ''
-            /* max_temp: '',
-            min_temp: '', */
+            vento: '',
+            cimg: ''
         }
 
         this.drawWeather = this.drawWeather.bind(this)
@@ -32,49 +33,37 @@ class Clima extends Component {
         this.handleFav = this.handleFav.bind(this)
     }
 
-    // CityCookie() {
-    //     if (document.cookie != null && document.cookie != '') {
-    //         const cookieValue = document.cookie
-    //             .split("; ")
-    //             .find((row) => row.startsWith("city="))
-    //             ?.split("=")[1];
-
-    //         return cookieValue
-    //     }
-    // }
-
     componentDidMount() {
         this.weatherBallon(this.state.loc)
+        prevCity = this.state.loc
     }
 
     componentDidUpdate(prevProps, prevState) {
         if (prevProps.locale !== this.props.locale) {
-            this.setState({
-                loc: this.props.locale,
-            })
+            // this.setState({loc: this.props.locale})
             this.weatherBallon(this.props.locale)
         }
     }
 
     weatherBallon(city) {
-        let key = 'd3afafb4de8d7a76ad9ced3bed938d51';
-        fetch('https://api.openweathermap.org/data/2.5/weather?lang=pt_br&q=' + city + '&appid=' + key)
-            .then((resp) => { return resp.json() })
-            .then((data) => {
-                this.drawWeather(data)
-                console.log(data)
-            })
+        if (city != prevCity) {
+            fetch('https://api.openweathermap.org/data/2.5/weather?lang=pt_br&q=' + city + '&appid=' + key)
+                .then((resp) => { return resp.json() })
+                .then((data) => {
+                    this.drawWeather(data)
+                    val = data
+                    console.log(data)
+                })
+            prevCity = city
+        } else {
+            this.drawWeather(val)
+        }
     }
 
     drawWeather(d) {
         let c_img = 'http://openweathermap.org/img/wn/' + d.weather[0].icon + '.png'
 
         let t = Math.round(parseFloat(d.main.temp) - 273.15);
-
-        /* 
-        let max_t = Math.round(parseFloat(d.main.temp_max) - 273.15);
-        let min_t = Math.round(parseFloat(d.main.temp_min) - 273.15);
-        */
 
         let feel = Math.round(parseFloat(d.main.feels_like) - 273.15);
 
@@ -91,11 +80,11 @@ class Clima extends Component {
         this.setState({
             loc: d.name,
             clima: d.weather[0].description,
-            cimg: c_img,
             temp: t,
             s_ter: feel,
             humid: d.main.humidity,
-            vento: d.wind.speed
+            vento: d.wind.speed,
+            cimg: c_img
 
             /* max_temp: max_t,
             min_temp: min_t, */
@@ -107,17 +96,16 @@ class Clima extends Component {
         if (e.target.checked) {
             //registra
 
-        }else{
+        } else {
             //remove
-            
+
         }
     }
 
     render() {
         return (
-            /* 
-                        <Swiper id='clima-swiper'>
-                            <SwiperSlide className='clima-swiper-slide'> */
+            /* <Swiper id='clima-swiper'>
+                <SwiperSlide className='clima-swiper-slide'> */
 
             <div id='head'>
                 <img className='bg' alt="bg" />
@@ -127,7 +115,6 @@ class Clima extends Component {
                 </h1>
 
 
-                {/*vvvv slide pra cidades favoritas vvvv*/}
                 <div id='c_clima'>
                     <div id='clima_report'>
                         <img id='c_img' src={this.state.cimg} alt='img_clima' />
@@ -137,21 +124,14 @@ class Clima extends Component {
                         </div>
                     </div>
                     <div id='feel'>Sensação: {this.state.s_ter}ºC</div>
-                    {/*
-                        <div id='max_min'>
-                        <div>{this.state.max_temp}ºC<img src={arrow_up} /></div>
-                        <div>{this.state.min_temp}ºC<img src={arrow_down} /></div>
-                        </div>
-                        */}
                 </div>
+
                 <div id='stat'>
                     {/* porreessaakkkkkkkk */}
                     <div>Qualidade do ar: Razoável</div>
 
                     <div id='humid'>Umidade: {this.state.humid}%</div>
                     <div id='vento'>Vento: {(this.state.vento * 1).toFixed(1)} m/s</div>
-
-
 
                 </div>
                 <div id='starcont'>
@@ -171,10 +151,9 @@ class Clima extends Component {
                     />
                 </div>
             </div>
-            /* 
-            </SwiperSlide>
 
-            
+
+            /* </SwiperSlide>
         </Swiper> */
         )
     }
