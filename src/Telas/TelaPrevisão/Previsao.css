@@ -1,8 +1,18 @@
+.previsaoCont {
+  height: calc(100vh - 150px);
+}
+
 .clima2 {
+  margin: 10px 0 0 0;
   padding: 6%;
   width: 70%;
 }
-@media (max-width: 700px) {
+
+@media (max-width: 800px) {
+  .previsaoCont {
+    height: auto;
+  }
+
   .clima2 {
     width: 100%;
   }

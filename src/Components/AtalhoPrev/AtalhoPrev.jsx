@@ -10,7 +10,7 @@ const AtalhoPrev = () => {
   return (
     <>
       <div id="Previsao">
-        <div id="previsaoCont">
+        <div id="prevCont">
           <h2 id="previsaoTitulo">Previsao do tempo</h2>
           <hr />
           <div id="previsaoDesc">

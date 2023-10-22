@@ -33,29 +33,24 @@ const Previsao = () => {
         fetchWeather()
     }, [query, units])
 
-    const formatBackground = () => {
-        if (!weather) return 'from-cyan-700 to-blue-700'
-        const threshold = units === 'metric' ? 20 : 60
-        if (weather.temp <= threshold) return 'from-cyan-700 to-blue-700'
-
-        // return 'from-yellow-700 to-orange-700'
-    }
-/* max-w-screen-md */
     return (
-        <div className={`clima2 mx-auto py-1 bg-gradient-to-br from-cyan-700 to-blue-700 h-fit ${formatBackground()}`}>
-            <TopButtons setQuery={setQuery} />
-            <Inputs setQuery={setQuery} units={units} setUnits={setUnits} />
+        <div className='previsaoCont bg-gradient-to-br from-sky-800 to-sky-400'>
+            <div className='clima2 mx-auto py-1 h-fit '>
+                <TopButtons setQuery={setQuery} />
+                <Inputs setQuery={setQuery} units={units} setUnits={setUnits} />
 
-            {weather && (
-                <div>
-                    <TimeAndLocation weather={weather} />
-                    <TemperaturaEDetalhes weather={weather} />
+                {weather && (
+                    <div>
+                        <TimeAndLocation weather={weather} />
+                        <TemperaturaEDetalhes weather={weather} />
 
-                    <CompPrevisao title="a cada hora" items={weather.hourly} />
-                    <CompPrevisao title="a cada dia" items={weather.daily} />
-                </div>
-            )}
-            <ToastContainer autoClose={5000} theme='colored' newestOnTop={true} />
+                        <CompPrevisao title="a cada hora" items={weather.hourly} />
+                        <CompPrevisao title="a cada dia" items={weather.daily} />
+                    </div>
+                )}
+
+                <ToastContainer autoClose={5000} theme='colored' newestOnTop={true} />
+            </div>
         </div>
     )
 }
