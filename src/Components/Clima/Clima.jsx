@@ -67,7 +67,7 @@ class Clima extends Component {
 
         let feel = Math.round(parseFloat(d.main.feels_like) - 273.15);
 
-        let valoresClima = (d.name + '-' + d.weather[0].description).normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\s/g, "-");
+        let valoresClima = (d.name).normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\s/g, "-");
 
         if (new Date().getHours() >= 6 && new Date().getHours() <= 18) {
             document.getElementsByClassName('bg')[0].src = 'http://source.unsplash.com/random/?' + valoresClima

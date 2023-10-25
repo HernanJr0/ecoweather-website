@@ -88,7 +88,7 @@
     width: calc(100% - 10px);
     height: calc(67vh - 10px);
 
-    place-content: end;
+    place-content: flex-end;
     margin-right: 10px;
 }
 

@@ -1,30 +1,28 @@
 #Dicas {
     display: flex;
     justify-content: center;
-    margin-bottom: 20px;
-}
-
-#cont {
-    display: flex;
-    justify-content: center;
-    width: calc(100% - 80px);
-    max-width: 1600px;
 }
 
 #listaDicas {
     width: 50%;
 }
 
+#listaDicas p {
+    margin: 10px;
+}
+
+#listaDicas li {
+    list-style: disc;
+    margin: 10px 30px;
+}
+
 #listaDicas h1 {
     font-size: 38px;
+    margin: 10px;
 }
 
 #listaDicas label {
     font-size: small;
-}
-
-#listaDicas img {
-    width: 100%;
 }
 
 @media(max-width: 940px) {

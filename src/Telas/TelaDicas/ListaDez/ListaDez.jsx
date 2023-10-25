@@ -2,24 +2,31 @@ import "./ListaDez.css";
 
 const ListaDez = () => {
   return (
-    <div id="Dicas">
-      <div id="cont">
+    <div className="flex justify-center">
+      <div className="flex justify-center">
         <section id="listaDicas">
           <h1>Viver de Forma Sustentável: Dicas para Cuidar do Meio Ambiente e da Sua Saúde</h1>
-          <img src="https://tinyurl.com/9kf95ywy" />
-          <label id="creditos">Jan Kopřiva - @koprivak.art</label>
-          <p>
-            O meio ambiente é um patrimônio que todos compartilhamos, e cuidar dele é essencial para garantir um futuro sustentável para as gerações futuras. Além disso, viver de forma ecológica também pode contribuir para uma vida mais saudável e equilibrada. Nesta página, reunimos algumas dicas e informações valiosas sobre como cuidar do meio ambiente e viver uma vida mais ecológica e saudável.
-          </p>
+
+          <div id="listaDezCapa" className="flex items-center">
+            <p>
+              O meio ambiente é um recurso compartilhado que requer cuidado para um futuro sustentável. Viver de forma ecológica não apenas preserva o ambiente, mas também promove uma vida mais saudável. Neste guia, apresentamos dicas e informações para cuidar do meio ambiente e adotar um estilo de vida sustentável.
+            </p>
+            <div>
+              <img src="https://tinyurl.com/9kf95ywy" />
+              <label id="creditos">Jan Kopřiva - @koprivak.art</label>
+            </div>
+          </div>
+
+          <div>
+            <h2>
+              1. Reduza, Reutilize, Recicle
+            </h2>
+            <p>
+              A famosa tríade "Reduza, Reutilize, Recicle" é a base da sustentabilidade. Ao reduzir o consumo, reutilizar produtos e reciclar materiais, você reduzirá a quantidade de lixo que vai parar em aterros sanitários e contribuirá para a conservação de recursos naturais.
+            </p>
+          </div>
 
           <h2>
-            1. Reduza, Reutilize, Recicle
-          </h2>
-          <p>
-            A famosa tríade "Reduza, Reutilize, Recicle" é a base da sustentabilidade. Ao reduzir o consumo, reutilizar produtos e reciclar materiais, você reduzirá a quantidade de lixo que vai parar em aterros sanitários e contribuirá para a conservação de recursos naturais.
-          </p>
-          <h2>
-
             2. Economize Energia
           </h2>
           <ul>

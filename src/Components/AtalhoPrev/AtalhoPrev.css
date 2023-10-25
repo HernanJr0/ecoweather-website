@@ -6,7 +6,7 @@
     height: 230px;
 }
 
-#previsaoCont {
+#prevCont {
     padding: 15px;
 }
 
@@ -18,7 +18,7 @@
     margin: 0 0 10px 5px;
 }
 
-#previsaoCont hr {
+#prevCont hr {
     border: 1px solid #303030;
 }
 
