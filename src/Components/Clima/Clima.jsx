@@ -70,9 +70,9 @@ class Clima extends Component {
         let valoresClima = (d.name).normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\s/g, "-");
 
         if (new Date().getHours() >= 6 && new Date().getHours() <= 18) {
-            document.getElementsByClassName('bg')[0].src = 'http://source.unsplash.com/random/?day-' + valoresClima
+            document.getElementsByClassName('bg')[0].src = 'http://source.unsplash.com/random/?' + valoresClima + '-day'
         } else {
-            document.getElementsByClassName('bg')[0].src = 'http://source.unsplash.com/random/?night-' + valoresClima
+            document.getElementsByClassName('bg')[0].src = 'http://source.unsplash.com/random/?' + valoresClima + '-night'
         }
 
 
