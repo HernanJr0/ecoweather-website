@@ -33,17 +33,19 @@ function Header() {
 
     function useri() {
         if (signed) {
-                var userLOG = JSON.parse(localStorage.getItem("@AuthFirebase:user"))
+            var userLOG = JSON.parse(localStorage.getItem("@AuthFirebase:user"))
 
-                return (
-                    <Link to="/home/user">
-                        <IconButton id="account">
-                            {/* <Account /> */}
-                            <img src={userLOG.photoURL} />
-                        </IconButton>
-                    </Link>
-                )
-            
+            const userImage = userLOG.photoURL || 'https://tinyurl.com/5kub7nce';
+
+            return (
+                <Link to="/home/user">
+                    <IconButton id="account">
+                        {/* <Account /> */}
+                        <img id="usrIcon" src={userImage} />
+                    </IconButton>
+                </Link>
+            )
+
         }
     }
 
