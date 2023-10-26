@@ -118,7 +118,7 @@ class Clima extends Component {
                 <div id='c_clima'>
                     <div id='clima_report'>
                         <img id='c_img' src={this.state.cimg} alt='img_clima' />
-                        <div>
+                        <div id='pala'>
                             <div id='city'>{this.state.loc}</div>
                             <h1 id='temp'>{this.state.temp}ºC</h1>
                         </div>
@@ -146,7 +146,7 @@ class Clima extends Component {
                             '&.Mui-checked': {
                                 color: yellow[600],
                             },
-                            '& .MuiSvgIcon-root': { fontSize: 28 }
+                            '& .MuiSvgIcon-root': { fontSize: 30 }
                         }}
                     />
                 </div>

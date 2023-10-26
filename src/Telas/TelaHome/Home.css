@@ -74,8 +74,8 @@ a:active {
 
 #conteudo {
     display: flex;
-    width: calc(100% - 80px);
-    max-width: 1600px;
+    width: calc(100% - 40px);
+    margin-top: 7.5px;
     justify-content: center;
 }
 
@@ -91,6 +91,7 @@ a:active {
     padding: 7.5px;
 
     width: 60%;
+    max-width: 800px;
     height: fit-content;
 }
 
@@ -98,8 +99,8 @@ a:active {
     border-radius: 20px;
     background-color: #303030;
     padding: 15px 15px 0;
-    width: 40%;
-    max-width: 350px;
+    width: 50%;
+    max-width: 300px;
     height: fit-content;
     margin: 7.5px;
 }
@@ -108,7 +109,7 @@ a:active {
     display: none;
 }
 
-@media(max-width: 940px) {
+@media(max-width: 900px) {
 
     #merda {
         display: unset;
@@ -121,7 +122,7 @@ a:active {
     #conteudo {
         flex-direction: column-reverse;
         align-items: center;
-        width: 100%;
+        width: calc(100% - 20px);
     }
 
     #noticias {

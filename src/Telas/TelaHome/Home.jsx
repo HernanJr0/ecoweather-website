@@ -192,7 +192,15 @@ function Home() {
                                     imagem={'https://cdn-icons-png.flaticon.com/512/361/361892.png'}
                                     link={'/home/dicas'}
                                 />
+                                <Atalho
+                                    titulo={'Dicas'}
+                                    descricao={'Veja aqui dicas sobre o meio ambiente'}
+                                    imagem={'https://cdn-icons-png.flaticon.com/512/361/361892.png'}
+                                    link={'/home/dicas'}
+                                />
+                                {/* arrumar paths */}
                             </div>
+
                         </div>
                     </div>
                 </section>
