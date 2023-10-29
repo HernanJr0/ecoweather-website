@@ -3,18 +3,23 @@ import './Clima.css'
 import StarIcon from '@mui/icons-material/Star';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 
-import { Swiper, SwiperSlide } from 'swiper/react';
 import { yellow } from '@mui/material/colors';
 import { Checkbox } from '@mui/material';
+
 /* import calendar from '../../assets/calendar.png';
 
 import { IconButton, TextField } from '@mui/material';
 import PlaceIcon from '@mui/icons-material/Place'; */
+import { AuthGoogleContext } from '../../contexts/authGoogle';
+
 var val = ''
 var prevCity = ''
 var key = 'd3afafb4de8d7a76ad9ced3bed938d51';
 
 class Clima extends Component {
+
+    static contextType = AuthGoogleContext
+
     constructor(props) {
         super(props)
 
@@ -25,7 +30,8 @@ class Clima extends Component {
             s_ter: '',
             humid: '',
             vento: '',
-            cimg: ''
+            cimg: '',
+            fav: false
         }
 
         this.drawWeather = this.drawWeather.bind(this)
@@ -60,7 +66,9 @@ class Clima extends Component {
         }
     }
 
-    drawWeather(d) {
+    async drawWeather(d) {
+        const { checkCity } = this.context
+
         let c_img = 'http://openweathermap.org/img/wn/' + d.weather[0].icon + '.png'
 
         let t = Math.round(parseFloat(d.main.temp) - 273.15);
@@ -70,9 +78,9 @@ class Clima extends Component {
         let valoresClima = (d.name).normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\s/g, "-");
 
         if (new Date().getHours() >= 6 && new Date().getHours() <= 18) {
-            document.getElementsByClassName('bg')[0].src = 'http://source.unsplash.com/random/?' + valoresClima + '-day'
+            document.getElementsByClassName('bg')[0].src = 'http://source.unsplash.com/random/?' + valoresClima + '-dia'
         } else {
-            document.getElementsByClassName('bg')[0].src = 'http://source.unsplash.com/random/?' + valoresClima + '-night'
+            document.getElementsByClassName('bg')[0].src = 'http://source.unsplash.com/random/?' + valoresClima + '-noite'
         }
 
 
@@ -89,16 +97,25 @@ class Clima extends Component {
             /* max_temp: max_t,
             min_temp: min_t, */
         });
+
+        if (await checkCity(d.name)) {
+            this.setState({ fav: true })
+        } else {
+            this.setState({ fav: false })
+        }
         // document.cookie = `city= ${this.state.loc}; Secure`
     }
 
-    handleFav(e) {
+    handleFav = name => e => {
+        this.setState({ [name]: e.target.checked });
+  
+        const { addCity, delCity } = this.context
         if (e.target.checked) {
             //registra
-
+            addCity(this.state.loc)
         } else {
             //remove
-
+            delCity(this.state.loc)
         }
     }
 
@@ -137,7 +154,8 @@ class Clima extends Component {
                 <div id='starcont'>
                     <Checkbox
                         id='starIcon'
-                        onChange={this.handleFav}
+                        onChange={this.handleFav('fav')}
+                        checked={this.state.fav}
                         icon={<StarBorderIcon />}
                         checkedIcon={<StarIcon />}
 

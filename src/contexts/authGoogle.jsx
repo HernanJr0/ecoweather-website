@@ -1,15 +1,21 @@
-import { createContext, useEffect, useState } from "react";
-import { GoogleAuthProvider, getAuth, signInWithPopup, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth";
 import { app } from "../service/firebaseConfig.jsx"
 import { Navigate } from "react-router-dom";
 
-const provider = new GoogleAuthProvider()
+import 'firebase/firestore';
+import { GoogleAuthProvider, getAuth, signInWithPopup, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth";
 
-export const AuthGoogleContext = createContext({})
+import { createContext, useEffect, useState } from "react";
+
+import { getFirestore, doc, deleteDoc, getDoc, setDoc, collection } from "firebase/firestore";
+
+const provider = new GoogleAuthProvider()
 
 export const AuthGoogleProvider = ({ children }) => {
 
+    const db = getFirestore(app);
     const auth = getAuth(app);
+
+    const userCollectionRef = collection(db, "users");
 
     const [user, setUser] = useState(null)
 
@@ -29,9 +35,15 @@ export const AuthGoogleProvider = ({ children }) => {
         }
     })
 
-    const createAccount = (email, password) => {
+    const createAccount = async (email, password) => {
         createUserWithEmailAndPassword(auth, email, password)
             .then((result) => {
+                const user = result.user
+
+                setDoc(doc(db, "users", user.uid), {
+                    username: user.displayName || "user"
+                })
+                console.log(user)
             })
             .catch((error) => {
                 const errorCode = error.code;
@@ -40,7 +52,7 @@ export const AuthGoogleProvider = ({ children }) => {
                 if (errorCode == "auth/invalid-email")
                     alert("POE UM EMAIL E UMA SENHA QUE EXISTE, OTARIO")
 
-                console.log(errorCode)
+                console.log(error)
             });
     }
 
@@ -54,7 +66,7 @@ export const AuthGoogleProvider = ({ children }) => {
                 setUser(user)
                 localStorage.setItem("@AuthFirebase:token", token)
                 localStorage.setItem("@AuthFirebase:user", JSON.stringify(user))
-
+                console.log(user)
                 // ...
             })
             .catch((error) => {
@@ -76,6 +88,10 @@ export const AuthGoogleProvider = ({ children }) => {
                 localStorage.setItem("@AuthFirebase:token", token)
                 localStorage.setItem("@AuthFirebase:user", JSON.stringify(user))
 
+                setDoc(doc(db, "users", user.uid), {
+                    username: user.displayName
+                })
+
             }).catch((error) => {
                 // Handle Errors here.
                 const errorCode = error.code;
@@ -94,42 +110,38 @@ export const AuthGoogleProvider = ({ children }) => {
     }
 
 
+    const addCity = (city) => {
+        const u = JSON.parse(user)
 
+        setDoc(doc(db, "users", u.uid, "cities", city), {
+            nome: city
+        })
+    }
 
+    const delCity = (city) => {
+        const u = JSON.parse(user)
 
-    // const db = getDatabase();
-    // const userCollectionRef = ref(db, "users", id);
+        deleteDoc(doc(db, "users", u.uid, "cities", city))
+    }
+
+    const checkCity = async (city) => {
+        const u = JSON.parse(user)
+
+        const docRef = doc(db, "users", u.uid, "cities", city);
+        const docSnap = await getDoc(docRef);
+
+        var x
+
+        if (docSnap.exists()) {
+            x = true
+        } else {
+            // docSnap.data() will be undefined in this case
+            console.log("No such document!");
+            x = false
+        }
+        return x
+    }
     
-    // const [city, setCity] = useState(null)
-
-    // useEffect(() => {
-    //     const getCities = async () => {
-    //         const data = await getDocs(userCollectionRef);
-    //         setCity(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-    //     };
-    //     getCities();
-    // }, [userCollectionRef]);
-
-    // const cidades = () => {
-    //     return city.map((user) => {
-    //         return user
-    //     })
-    // }
-
-    // const addCity = async (cidade) => {
-    //     //adiciona cidade
-    //     await addDoc(userCollectionRef, cidade);
-    // }
-    // const delCity = async (cidade) => {
-    //     //remove cidade
-    //     await deleteDoc(userCollectionRef, cidade);
-    // }
-
-
-
-
-
-
     function signOut() {
         localStorage.clear();
         setUser(null)
@@ -139,15 +151,20 @@ export const AuthGoogleProvider = ({ children }) => {
     return (
         <AuthGoogleContext.Provider
             value={{
-                signed: !!user,
                 user,
+                signed: !!user,
+                signInGoogle,
                 createAccount,
                 signInAccount,
-                signInGoogle,
-                signOut
+                signOut,
+                checkCity,
+                addCity,
+                delCity
             }}
         >
             {children}
         </AuthGoogleContext.Provider>
     )
 }
+
+export const AuthGoogleContext = createContext({})

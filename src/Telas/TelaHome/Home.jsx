@@ -12,8 +12,7 @@ import calendar from '../../assets/calendar.png';
 import { IconButton, TextField } from '@mui/material';
 import PlaceIcon from '@mui/icons-material/Place';
 
-import { useContext, useEffect, useState } from 'react';
-import { AuthGoogleContext } from '../../contexts/authGoogle';
+import { useState } from 'react';
 
 function Home() {
 
