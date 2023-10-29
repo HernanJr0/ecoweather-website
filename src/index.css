@@ -17,10 +17,6 @@
   margin: 0;
 }
 
-h1{
-    font-weight: 800
-}
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* @tailwind base; */
+/* @tailwind components; */
+/* @tailwind utilities; */

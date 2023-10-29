@@ -16,7 +16,7 @@
 }
 
 #usercard div h2 {
-    line-height: 50px;
+  line-height: 50px;
 }
 
 #userbg {
@@ -37,10 +37,10 @@
 }
 
 @media (min-width: 900px) {
-    #userbg{
-        height: 200px;
-    }
-    #usercard div{
-        height: 250px;
-    }
+  #userbg {
+    height: 200px;
+  }
+  #usercard div {
+    height: 250px;
+  }
 }

@@ -12,8 +12,7 @@ import calendar from '../../assets/calendar.png';
 import { IconButton, TextField } from '@mui/material';
 import PlaceIcon from '@mui/icons-material/Place';
 
-import { useContext, useEffect, useState } from 'react';
-import { AuthGoogleContext } from '../../contexts/authGoogle';
+import { useState } from 'react';
 
 function Home() {
 
@@ -192,7 +191,15 @@ function Home() {
                                     imagem={'https://cdn-icons-png.flaticon.com/512/361/361892.png'}
                                     link={'/home/dicas'}
                                 />
+                                <Atalho
+                                    titulo={'Dicas'}
+                                    descricao={'Veja aqui dicas sobre o meio ambiente'}
+                                    imagem={'https://cdn-icons-png.flaticon.com/512/361/361892.png'}
+                                    link={'/home/dicas'}
+                                />
+                                {/* arrumar paths */}
                             </div>
+
                         </div>
                     </div>
                 </section>
