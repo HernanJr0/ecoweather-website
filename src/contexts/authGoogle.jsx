@@ -1,72 +1,83 @@
-import { app } from "../service/firebaseConfig.jsx"
+import { app } from "../service/firebaseConfig.jsx";
 import { Navigate } from "react-router-dom";
 
-import 'firebase/firestore';
-import { GoogleAuthProvider, getAuth, signInWithPopup, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth";
+import "firebase/firestore";
+import {
+    GoogleAuthProvider,
+    getAuth,
+    signInWithPopup,
+    signInWithEmailAndPassword,
+    createUserWithEmailAndPassword,
+} from "firebase/auth";
 
 import { createContext, useEffect, useState } from "react";
 
-import { getFirestore, doc, deleteDoc, getDoc, setDoc, collection } from "firebase/firestore";
+import {
+    getFirestore,
+    doc,
+    deleteDoc,
+    getDoc,
+    getDocs,
+    setDoc,
+    collection,
+} from "firebase/firestore";
 
-const provider = new GoogleAuthProvider()
+const provider = new GoogleAuthProvider();
 
 export const AuthGoogleProvider = ({ children }) => {
-
     const db = getFirestore(app);
     const auth = getAuth(app);
 
-    const userCollectionRef = collection(db, "users");
-
-    const [user, setUser] = useState(null)
-
-    //   useEffect(() => {
-    //     const getUsers = async () => {
-    //       const data = await getDocs(userCollectionRef);
-    //       setUsers(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-    //     };
-    //     getUsers();
-    //   }, [userCollectionRef]);
+    const [user, setUser] = useState(null);
 
     useEffect(() => {
-        const storageUser = localStorage.getItem("@AuthFirebase:user")
-        const storageToken = localStorage.getItem("@AuthFirebase:token")
+        const storageUser = localStorage.getItem("@AuthFirebase:user");
+        const storageToken = localStorage.getItem("@AuthFirebase:token");
         if (storageToken && storageUser) {
-            setUser(storageUser)
+            setUser(storageUser);
         }
-    })
+    });
 
     const createAccount = async (email, password) => {
         createUserWithEmailAndPassword(auth, email, password)
             .then((result) => {
-                const user = result.user
+                const user = result.user;
 
                 setDoc(doc(db, "users", user.uid), {
-                    username: user.displayName || "user"
-                })
-                console.log(user)
+                    username: user.displayName || "user",
+                });
+                console.log(user);
             })
             .catch((error) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
                 // ..
                 if (errorCode == "auth/invalid-email")
-                    alert("POE UM EMAIL E UMA SENHA QUE EXISTE, OTARIO")
+                    alert("POE UM EMAIL E UMA SENHA QUE EXISTE, OTARIO");
 
-                console.log(error)
+                console.log(error);
             });
-    }
+    };
 
     const signInAccount = (email, password) => {
         signInWithEmailAndPassword(auth, email, password)
-            .then((result) => {
-                // Signed in 
-                const user = result.user;
-                const token = user.accessToken;
+            .then(async (result) => {
+                // Signed in
+                const u = result.user;
+                const token = u.accessToken;
 
-                setUser(user)
-                localStorage.setItem("@AuthFirebase:token", token)
-                localStorage.setItem("@AuthFirebase:user", JSON.stringify(user))
-                console.log(user)
+                setUser(JSON.stringify(u));
+                localStorage.setItem("@AuthFirebase:user", JSON.stringify(u));
+                localStorage.setItem("@AuthFirebase:token", token);
+
+                const docRef = doc(db, "users", u.uid);
+                const docSnap = await getDoc(docRef);
+
+                if (!docSnap.exists()) {
+                    setDoc(doc(db, "users", u.uid), {
+                        username: u.displayName || "user",
+                    });
+                }
                 // ...
             })
             .catch((error) => {
@@ -74,25 +85,28 @@ export const AuthGoogleProvider = ({ children }) => {
                 const errorMessage = error.message;
                 //console.log(errorMessage)
             });
-        return <Navigate to="/" />
-    }
+        return <Navigate to="/" />;
+    };
 
     const signInGoogle = () => {
         signInWithPopup(auth, provider)
             .then((result) => {
-                const credential = GoogleAuthProvider.credentialFromResult(result);
+                const credential =
+                    GoogleAuthProvider.credentialFromResult(result);
                 const token = credential.accessToken;
-                const user = result.user;
+                const u = result.user;
 
-                setUser(user)
-                localStorage.setItem("@AuthFirebase:token", token)
-                localStorage.setItem("@AuthFirebase:user", JSON.stringify(user))
+                setUser(JSON.stringify(u));
+                localStorage.setItem("@AuthFirebase:user", JSON.stringify(u));
+                localStorage.setItem("@AuthFirebase:token", token);
+
+                console.log(user);
 
                 setDoc(doc(db, "users", user.uid), {
-                    username: user.displayName
-                })
-
-            }).catch((error) => {
+                    username: user.displayName,
+                });
+            })
+            .catch((error) => {
                 // Handle Errors here.
                 const errorCode = error.code;
                 const errorMessage = error.message;
@@ -100,52 +114,53 @@ export const AuthGoogleProvider = ({ children }) => {
                 // The email of the user's account used.
                 const email = error.customData.email;
                 // The AuthCredential type that was used.
-                const credential = GoogleAuthProvider.credentialFromError(error);
+                const credential =
+                    GoogleAuthProvider.credentialFromError(error);
 
-                console.log(errorMessage)
+                console.log(errorMessage);
                 // console.log(errorMessage)
                 // console.log(email)
                 // console.log(credential)
             });
-    }
-
+    };
 
     const addCity = (city) => {
-        const u = JSON.parse(user)
+        const u = JSON.parse(user);
 
         setDoc(doc(db, "users", u.uid, "cities", city), {
-            nome: city
-        })
-    }
+            nome: city,
+        });
+    };
 
     const delCity = (city) => {
-        const u = JSON.parse(user)
+        const u = JSON.parse(user);
 
-        deleteDoc(doc(db, "users", u.uid, "cities", city))
-    }
+        deleteDoc(doc(db, "users", u.uid, "cities", city));
+    };
 
-    const checkCity = async (city) => {
-        const u = JSON.parse(user)
+    const isCityFav = async (city) => {
+        const u = JSON.parse(user);
 
         const docRef = doc(db, "users", u.uid, "cities", city);
         const docSnap = await getDoc(docRef);
 
-        var x
+        var x;
 
         if (docSnap.exists()) {
-            x = true
+            x = true;
         } else {
             // docSnap.data() will be undefined in this case
             console.log("No such document!");
-            x = false
+            x = false;
         }
-        return x
-    }
-    
+        return x;
+    };
+
     function signOut() {
+        document.cookie = `city=;Secure`;
         localStorage.clear();
-        setUser(null)
-        return <Navigate to="/" />
+        setUser(null);
+        return <Navigate to="/" />;
     }
 
     return (
@@ -153,18 +168,20 @@ export const AuthGoogleProvider = ({ children }) => {
             value={{
                 user,
                 signed: !!user,
+
                 signInGoogle,
                 createAccount,
                 signInAccount,
                 signOut,
-                checkCity,
+
+                isCityFav,
                 addCity,
                 delCity
             }}
         >
             {children}
         </AuthGoogleContext.Provider>
-    )
-}
+    );
+};
 
-export const AuthGoogleContext = createContext({})
+export const AuthGoogleContext = createContext({});
