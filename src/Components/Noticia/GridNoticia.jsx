@@ -1,25 +1,23 @@
-import Noticia from '../../Components/Noticia/Noticia.jsx';
-import '../../Components/Noticia/GridNoticia.css'
-import { PureComponent } from 'react'
+import Noticia from "../../Components/Noticia/Noticia.jsx";
+import "../../Components/Noticia/GridNoticia.css";
+import { PureComponent } from "react";
 
-var val = ''
-var prevCity = ''
+var val = "";
+var prevCity = "";
+
 class GridNoticia extends PureComponent {
-
     constructor(props) {
-        super(props)
+        super(props);
 
         this.state = {
-
             loc: this.props.locale,
 
-            items: null
-        }
+            items: null,
+        };
 
-        this.newsBallon = this.newsBallon.bind(this)
-        this.loadnews = this.loadnews.bind(this)
+        this.newsBallon = this.newsBallon.bind(this);
+        this.loadnews = this.loadnews.bind(this);
     }
-
 
     newsBallon(city) {
         // if (city != prevCity) {
@@ -37,14 +35,14 @@ class GridNoticia extends PureComponent {
     }
 
     componentDidMount() {
-        this.newsBallon(this.state.loc)
-        prevCity = this.state.loc
-    };
+        this.newsBallon(this.state.loc);
+        prevCity = this.state.loc;
+    }
 
     componentDidUpdate(prevProps, prevState) {
         if (prevProps.locale !== this.props.locale) {
-            this.setState({ items: null })
-            this.newsBallon(this.props.locale)
+            this.setState({ items: null });
+            this.newsBallon(this.props.locale);
         }
     }
 
@@ -62,21 +60,19 @@ class GridNoticia extends PureComponent {
         if (this.state.items != null) {
             return this.state.items.map((item, i) => (
                 <Noticia key={i} item={item} />
-            ))
+            ));
         }
     }
 
     render() {
         return (
             <div>
-                <h2 id='noticiasTitulo'>Notícias</h2>
+                <h2 id="noticiasTitulo">Notícias</h2>
 
                 {this.loadnews()}
-
-            </div >
-        )
+            </div>
+        );
     }
-
 }
 
-export default GridNoticia
+export default GridNoticia;
