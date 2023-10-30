@@ -113,7 +113,7 @@ class Clima extends Component {
 
         if (d.name != this.state.loc || bg == "" || bg == null)
             await fetch(
-                "http://source.unsplash.com/random/?" + valoresClima + tempo
+                "https://source.unsplash.com/random/?" + valoresClima + tempo
             ).then((result) => {
                 bg = result.url;
             });
