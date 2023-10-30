@@ -1,14 +1,14 @@
-#dicasPage {
+#infoContPage {
     display: flex;
     justify-content: center;
 }
 
-#dicasCont {
+#infoContCont {
     width: 50vw;
 }
 
 @media(max-width: 940px) {
-    #dicasCont {
+    #infoContCont {
         width: auto;
         padding: 0 15px;
     }
