@@ -3,10 +3,11 @@
 
 import "./App.css";
 
-import { AuthGoogleProvider } from "./contexts/authGoogle";
-import { Router } from "./routes/routes"
+import {AuthGoogleProvider} from "./contexts/authGoogle";
+import {Router} from "./routes/routes"
 
-const App = () => {
+const App=() => {
+
     return (
         <div id="App">
             <AuthGoogleProvider>

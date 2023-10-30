@@ -16,7 +16,6 @@ import { useState } from 'react';
 
 function Home() {
 
-
     {/*  
     const date = new Date()
     const hora = date.getHours()
@@ -77,6 +76,7 @@ function Home() {
         return date;
     }
     */}
+    
     const checkCity = document.cookie
         .split("; ")
         .find((row) => row.startsWith("city="))
@@ -105,7 +105,7 @@ function Home() {
 
     function enterCity(e) {
         if (e.key == 'Enter') {
-            if (e.target.value != null) {
+            if (e.target.value != '') {
                 setLocale(e.target.value)
 
                 document.cookie = `city = ${e.target.value};Secure`

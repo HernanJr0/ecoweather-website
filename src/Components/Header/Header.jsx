@@ -10,7 +10,7 @@ import { useContext } from "react"
 
 function Header() {
 
-    const { /* user,  */signed } = useContext(AuthGoogleContext)
+    const { user, signed } = useContext(AuthGoogleContext)
 
     // function useri() {
     //     if (signed) {
@@ -33,17 +33,13 @@ function Header() {
 
     function useri() {
         if (signed) {
-            var userLOG = JSON.parse(localStorage.getItem("@AuthFirebase:user"))
+            var userLOG = JSON.parse(user)
+
 
             const userImage = userLOG.photoURL || 'https://tinyurl.com/5kub7nce';
 
             return (
-                <Link to="/home/user">
-                    <IconButton id="account">
-                        {/* <Account /> */}
-                        <img id="usrIcon" src={userImage} />
-                    </IconButton>
-                </Link>
+                < img id="usrIcon" src={userImage} />
             )
 
         }
@@ -70,7 +66,11 @@ function Header() {
                     }}
                 /> */}
 
-                {useri()}
+                <Link to="/home/user">
+                    <IconButton id="account">
+                        {useri()}
+                    </IconButton>
+                </Link>
             </div>
         </nav>
     );
