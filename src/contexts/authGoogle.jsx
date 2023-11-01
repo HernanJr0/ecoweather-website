@@ -90,9 +90,8 @@ export const AuthGoogleProvider = ({ children }) => {
 
     const signInGoogle = () => {
         signInWithPopup(auth, provider)
-            .then((result) => {
-                const credential =
-                    GoogleAuthProvider.credentialFromResult(result);
+            .then(async (result) => {
+                const credential = GoogleAuthProvider.credentialFromResult(result);
                 const token = credential.accessToken;
                 const u = result.user;
 
@@ -100,7 +99,16 @@ export const AuthGoogleProvider = ({ children }) => {
                 localStorage.setItem("@AuthFirebase:user", JSON.stringify(u));
                 localStorage.setItem("@AuthFirebase:token", token);
 
-                console.log(user);
+                const docRef = doc(db, "users", u.uid);
+                const docSnap = await getDoc(docRef);
+
+                if (!docSnap.exists()) {
+                    setDoc(doc(db, "users", u.uid), {
+                        username: u.displayName || "user",
+                    });
+                }
+
+                console.log(result);
 
                 setDoc(doc(db, "users", user.uid), {
                     username: user.displayName,
