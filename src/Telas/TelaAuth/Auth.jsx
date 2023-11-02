@@ -1,12 +1,14 @@
 import './TelaAuth.css';
 
 import { useEffect, useState } from "react";
-import { TextField, InputAdornment, Button } from "@mui/material";
+import { TextField, InputAdornment, IconButton, Button } from "@mui/material";
 import { Person, Email } from "@mui/icons-material";
 import { Login } from "./Login";
 import { useContext } from "react"
 import { AuthGoogleContext } from "../../contexts/authGoogle"
 
+import { Visibility } from "@mui/icons-material";
+import { VisibilityOff } from "@mui/icons-material";
 // import {
 //     collection,
 //     getFirestore,
@@ -26,47 +28,57 @@ import { AuthGoogleContext } from "../../contexts/authGoogle"
 // });
 
 export const Auth = () => {
+
+    /* 
+    const db = getFirestore(firebaseApp);
+    const userCollectionRef = collection(db, "users");
+
+
+    async function criaUser() {
+
+        if (email && password != "") {
+            const user = await addDoc(userCollectionRef, {
+                email,
+                password,
+            });
+
+            console.log(user);
+            alert('Conta criada com sucesso!')
+        } else {
+            alert('Falha ao criar conta!')
+        }
+    }
+
+      useEffect(() => {
+        const getUsers = async () => {
+          const data = await getDocs(userCollectionRef);
+          setUsers(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+        };
+        getUsers();
+      }, [userCollectionRef]);
+
+    async function deleteUser(id) {
+      const userDoc = doc(db, "users", id);
+      await deleteDoc(userDoc);
+    } 
+    */
+
     // const [users, setUsers] = useState([]);
+    const [user, setUser] = useState([]);
     const [email, setEmail] = useState([]);
     const [password, setPassword] = useState([]);
 
-    {// const db = getFirestore(firebaseApp);
-        // const userCollectionRef = collection(db, "users");
-
-
-        // async function criaUser() {
-
-        //     if (email && password != "") {
-        //         const user = await addDoc(userCollectionRef, {
-        //             email,
-        //             password,
-        //         });
-
-        //         console.log(user);
-        //         alert('Conta criada com sucesso!')
-        //     } else {
-        //         alert('Falha ao criar conta!')
-        //     }
-        // }
-
-        //   useEffect(() => {
-        //     const getUsers = async () => {
-        //       const data = await getDocs(userCollectionRef);
-        //       setUsers(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-        //     };
-        //     getUsers();
-        //   }, [userCollectionRef]);
-
-        // async function deleteUser(id) {
-        //   const userDoc = doc(db, "users", id);
-        //   await deleteDoc(userDoc);
-        // }
-    }
+    const [showPassword, setShowPassword] = useState(false);
 
     const { createAccount, signInAccount } = useContext(AuthGoogleContext)
 
+    const handleClickShowPassword = () => setShowPassword(!showPassword);
+
+    
+
+
     async function login() {
-        await createAccount(emailField.value, passwordField.value)
+        await createAccount(userField.value, emailField.value, passwordField.value)
 
         setTimeout(
             () => {
@@ -82,27 +94,55 @@ export const Auth = () => {
             <form id="formulario">
                 <h1>Criar Conta</h1>
                 <div id='campos'>
-                    <TextField
-                        id="emailField"
-                        variant="outlined"
-                        type="email"
-                        label="Email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        InputProps={{
-                            startAdornment: (
-                                <InputAdornment position="start">
-                                    <Email />
-                                </InputAdornment>
-                            ),
-                        }}
-                        required
-                    />
+
+                    {/* 
+                    <div id="imgCont">
+                        <img id="imgField" src={'https://tinyurl.com/5kub7nce'} onClick={clica} />
+                        <input id="inputFile" type="file" onChange={handleIMG} />
+                    </div> 
+                    */}
+
+                    <div id="userCont">
+                        <TextField
+                            id="userField"
+                            variant="outlined"
+                            label="User"
+                            value={user}
+                            onChange={(e) => setUser(e.target.value)}
+                            InputProps={{
+                                startAdornment: (
+                                    <InputAdornment position="start">
+                                        <Person />
+                                    </InputAdornment>
+                                ),
+                            }}
+                        />
+                    </div>
+
+                    <div id="emailCont">
+                        <TextField
+                            id="emailField"
+                            variant="outlined"
+                            type="email"
+                            label="Email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            InputProps={{
+                                startAdornment: (
+                                    <InputAdornment position="start">
+                                        <Email />
+                                    </InputAdornment>
+                                ),
+                            }}
+                            required
+                        />
+                    </div>
+
                     <div id="senhaCont">
                         <TextField
                             id="passwordField"
                             variant="outlined"
-                            type="password"
+                            type={showPassword ? 'text' : 'password'}
                             label="Senha"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
@@ -112,10 +152,12 @@ export const Auth = () => {
                                 }
                             }}
                             InputProps={{
-                                startAdornment: (
-                                    <InputAdornment position="start">
-                                        <Person />
-                                    </InputAdornment>
+                                endAdornment: (
+                                    <IconButton
+                                        aria-label="toggle password visibility"
+                                        onClick={handleClickShowPassword}>
+                                        {showPassword ? <Visibility /> : <VisibilityOff />}
+                                    </IconButton>
                                 ),
                             }}
                             required

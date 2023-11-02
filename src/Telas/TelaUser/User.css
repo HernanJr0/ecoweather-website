@@ -32,6 +32,11 @@
   width: 100px;
   border-radius: 50%;
 }
+
+#inputFile {
+  display: none
+}
+
 #usercard * {
   z-index: 1;
 }
@@ -40,8 +45,11 @@
   margin: 30px 0 0 30px;
 }
 
-#sair{
-  float: right;
+#buttons{
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  margin: 20px auto 0;
 }
 
 @media (min-width: 900px) {
