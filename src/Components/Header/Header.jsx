@@ -33,10 +33,8 @@ function Header() {
 
     function useri() {
         if (signed) {
-            var userLOG = JSON.parse(user)
-
-
-            const userImage = userLOG.photoURL || 'https://tinyurl.com/5kub7nce';
+            
+            const userImage = user.photoURL || 'https://tinyurl.com/5kub7nce';
 
             return (
                 < img id="usrIcon" src={userImage} />

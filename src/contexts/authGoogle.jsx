@@ -8,6 +8,7 @@ import {
     signInWithPopup,
     signInWithEmailAndPassword,
     createUserWithEmailAndPassword,
+    updateProfile
 } from "firebase/auth";
 
 import { createContext, useEffect, useState } from "react";
@@ -17,36 +18,69 @@ import {
     doc,
     deleteDoc,
     getDoc,
-    getDocs,
     setDoc,
     collection,
+
 } from "firebase/firestore";
+
 
 const provider = new GoogleAuthProvider();
 
 export const AuthGoogleProvider = ({ children }) => {
+
     const db = getFirestore(app);
     const auth = getAuth(app);
 
     const [user, setUser] = useState(null);
 
+    const userRef = collection(db, "users")
+
     useEffect(() => {
         const storageUser = localStorage.getItem("@AuthFirebase:user");
         const storageToken = localStorage.getItem("@AuthFirebase:token");
         if (storageToken && storageUser) {
-            setUser(storageUser);
+            setUser(JSON.parse(storageUser));
         }
-    });
+    },[]);
 
-    const createAccount = async (email, password) => {
+    async function checkUser(user) {
+        const docSnap = await getDoc(doc(db, "users", user.uid));
+
+        if (!docSnap.exists()) {
+            setDoc(doc(userRef, user.uid), {
+                username: user.displayName || "user",
+            })
+        }
+    }
+
+    const createAccount = async (username, email, password) => {
         createUserWithEmailAndPassword(auth, email, password)
             .then((result) => {
-                const user = result.user;
+                const u = result.user;
 
-                setDoc(doc(db, "users", user.uid), {
-                    username: user.displayName || "user",
+                {
+                    // getDownloadURL(ref(storage, 'images/stars.jpg'))
+                    //     .then((url) => {
+
+                    //     })
+
+                    // uploadBytes(ref(storage, u.uid), pfp)
+                    //     .then((snapshot) => {
+                    //         console.log("success")
+                    //     })
+                }
+
+                if (username != '') {
+                    updateProfile(u, {
+                        displayName: username,
+                    })
+                }
+
+                setDoc(doc(db, "users", u.uid), {
+                    username: username || "user",
                 });
-                console.log(user);
+
+                console.log(u);
             })
             .catch((error) => {
                 const errorCode = error.code;
@@ -66,18 +100,11 @@ export const AuthGoogleProvider = ({ children }) => {
                 const u = result.user;
                 const token = u.accessToken;
 
-                setUser(JSON.stringify(u));
+                setUser(u);
                 localStorage.setItem("@AuthFirebase:user", JSON.stringify(u));
                 localStorage.setItem("@AuthFirebase:token", token);
 
-                const docRef = doc(db, "users", u.uid);
-                const docSnap = await getDoc(docRef);
-
-                if (!docSnap.exists()) {
-                    setDoc(doc(db, "users", u.uid), {
-                        username: u.displayName || "user",
-                    });
-                }
+                checkUser(u)
                 // ...
             })
             .catch((error) => {
@@ -85,6 +112,7 @@ export const AuthGoogleProvider = ({ children }) => {
                 const errorMessage = error.message;
                 //console.log(errorMessage)
             });
+
         return <Navigate to="/" />;
     };
 
@@ -92,27 +120,17 @@ export const AuthGoogleProvider = ({ children }) => {
         signInWithPopup(auth, provider)
             .then(async (result) => {
                 const credential = GoogleAuthProvider.credentialFromResult(result);
+
                 const token = credential.accessToken;
                 const u = result.user;
 
-                setUser(JSON.stringify(u));
+                setUser(u);
                 localStorage.setItem("@AuthFirebase:user", JSON.stringify(u));
                 localStorage.setItem("@AuthFirebase:token", token);
 
-                const docRef = doc(db, "users", u.uid);
-                const docSnap = await getDoc(docRef);
+                console.log(u);
 
-                if (!docSnap.exists()) {
-                    setDoc(doc(db, "users", u.uid), {
-                        username: u.displayName || "user",
-                    });
-                }
-
-                console.log(result);
-
-                setDoc(doc(db, "users", user.uid), {
-                    username: user.displayName,
-                });
+                checkUser(u)
             })
             .catch((error) => {
                 // Handle Errors here.
@@ -122,8 +140,7 @@ export const AuthGoogleProvider = ({ children }) => {
                 // The email of the user's account used.
                 const email = error.customData.email;
                 // The AuthCredential type that was used.
-                const credential =
-                    GoogleAuthProvider.credentialFromError(error);
+                const credential = GoogleAuthProvider.credentialFromError(error);
 
                 console.log(errorMessage);
                 // console.log(errorMessage)
@@ -133,24 +150,23 @@ export const AuthGoogleProvider = ({ children }) => {
     };
 
     const addCity = (city) => {
-        const u = JSON.parse(user);
+        const u = user;
 
-        setDoc(doc(db, "users", u.uid, "cities", city), {
+        setDoc(doc(userRef, u.uid, "cities", city), {
             nome: city,
         });
     };
 
     const delCity = (city) => {
-        const u = JSON.parse(user);
+        const u = user;
 
-        deleteDoc(doc(db, "users", u.uid, "cities", city));
+        deleteDoc(doc(userRef, u.uid, "cities", city));
     };
 
     const isCityFav = async (city) => {
-        const u = JSON.parse(user);
+        const u = user;
 
-        const docRef = doc(db, "users", u.uid, "cities", city);
-        const docSnap = await getDoc(docRef);
+        const docSnap = await getDoc(doc(userRef, u.uid, "cities", city));
 
         var x;
 
