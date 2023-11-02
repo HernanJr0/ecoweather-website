@@ -1,9 +1,9 @@
 import Home from "../Telas/TelaHome/Home.jsx";
 import User from "../Telas/TelaUser/User.jsx";
-import Dicas from "../Telas/TelaDicas/Dicas.jsx";
+import Informacoes from "../Telas/TelaInformacoes/Informacoes.jsx";
+import Conteudos from '../Telas/TelaConteudos/Conteudos.jsx'
 import Auth from "../Telas/TelaAuth/Auth.jsx"
-import Galeria from "../Telas/TelaGaleria/Galeria.jsx"
-import ListaDez from "../Telas/TelaDicas/ListaDez/ListaDez.jsx"
+import ListaDez from "../Telas/TelaConteudos/ListaDez/ListaDez.jsx"
 import Previsao from "../Telas/TelaPrevisão/Previsao.jsx"
 import { createTheme, ThemeProvider } from "@mui/material";
 import { Analytics } from "@vercel/analytics/react";
@@ -32,9 +32,9 @@ export const Router = () => {
                     <Route path="/home" element={<PrivateRoutes />}>
                         <Route path="/home" element={<Home />} />
                         <Route path="/home/user" element={<User />} />
-                        <Route path="/home/dicas" element={<Dicas />} />
-                        <Route path="/home/dicas/as-dez-dicas" element={<ListaDez />} />
-                        <Route path="/home/galeria" element={<Galeria />} />
+                        <Route path="/home/conteudos" element={<Conteudos />} />
+                        <Route path="/home/conteudos/as-dez-dicas" element={<ListaDez />} />
+                        <Route path="/home/informacoes" element={<Informacoes />} />
                         <Route path="/home/previsao" element={<Previsao />} />
                     </Route>
                 </Routes>
