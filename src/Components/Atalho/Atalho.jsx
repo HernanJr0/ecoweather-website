@@ -13,21 +13,19 @@ class Atalho extends Component {
       link: this.props.link,
     };
   }
-  
+
   render() {
     return (
       <div id="Atalho">
-        <div id="atalhoCont">
-          <h2 id="atalhoTitulo">{this.state.titulo}</h2>
-          <hr />
-          <div id="atalhoDesc">
-            <div>{this.state.descricao}</div>
-            <img src={this.state.imagem} id="atalhoImg" />
-          </div>
-          <Link id="atalhoLink" to={this.state.link}>
-            <Button variant="outlined" size="small">Ver mais...</Button>
-          </Link>
+        <h2 id="atalhoTitulo">{this.state.titulo}</h2>
+        <hr />
+        <div id="atalhoDesc">
+          <div>{this.state.descricao}</div>
+          <img src={this.state.imagem} id="atalhoImg" />
         </div>
+        <Link id="atalhoLink" to={this.state.link}>
+          <Button variant="outlined" size="small">Ver mais...</Button>
+        </Link>
       </div>
     );
   }

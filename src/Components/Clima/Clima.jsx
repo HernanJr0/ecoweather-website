@@ -24,9 +24,7 @@ class Clima extends Component {
         super(props);
 
         this.state = {
-            loc:
-                this.props.locale.charAt(0).toUpperCase() +
-                this.props.locale.slice(1),
+            loc: this.props.locale,
             clima: "",
             temp: "",
             s_ter: "",
@@ -40,6 +38,17 @@ class Clima extends Component {
         this.drawWeather = this.drawWeather.bind(this);
         this.weatherBallon = this.weatherBallon.bind(this);
         this.handleFav = this.handleFav.bind(this);
+        this.checkCity = this.checkCity.bind(this);
+    }
+
+    async checkCity(d) {
+        const { isCityFav } = this.context;
+
+        if (await isCityFav(d.name)) {
+            this.setState({ fav: true });
+        } else {
+            this.setState({ fav: false });
+        }
     }
 
     componentDidMount() {
@@ -57,40 +66,36 @@ class Clima extends Component {
     weatherBallon(city) {
         if (city != prevCity) {
             fetch(
-                "https://api.openweathermap.org/data/2.5/weather?lang=pt_br&q=" +
-                    city +
-                    "&appid=" +
-                    key
-            )
-                .then((resp) => {
+                "https://api.openweathermap.org/data/2.5/weather?lang=pt_br&q=" + city + "&appid=" + key)
+                .then(resp => {
                     return resp.json();
                 })
-                .then((data) => {
+                .then(async (data) => {
                     if (data.cod == 404) {
                         alert("Este lugar não foi encontrado");
                     } else {
-                        this.drawWeather(data);
+                        prevCity = data.name
+
                         val = data;
+
+                        this.drawWeather(data);
+
+                        this.checkCity(data)
+
                         console.log(data);
                     }
                 })
                 .catch((error) => {
                     console.log(error);
                 });
-            prevCity = city;
         } else {
             this.drawWeather(val);
+            this.checkCity(val)
         }
     }
 
-    async drawWeather(d) {
-        const { isCityFav } = this.context;
 
-        if (await isCityFav(d.name)) {
-            this.setState({ fav: true });
-        } else {
-            this.setState({ fav: false });
-        }
+    async drawWeather(d) {
 
         let c_img =
             "http://openweathermap.org/img/wn/" + d.weather[0].icon + ".png";
@@ -111,13 +116,13 @@ class Clima extends Component {
             tempo = "-noite";
         }
 
-        if (d.name != this.state.loc || bg == "" || bg == null)
+        if (d.name != this.state.loc || bg == "" || bg == null) {
             await fetch(
                 "https://source.unsplash.com/random/?" + valoresClima + tempo
             ).then((result) => {
                 bg = result.url;
             });
-
+        }
         this.setState({
             loc: d.name,
             clima: d.weather[0].description,

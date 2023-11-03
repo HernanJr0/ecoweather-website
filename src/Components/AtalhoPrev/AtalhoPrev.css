@@ -1,13 +1,10 @@
 #Previsao {
     background-color: #202020;
     /* margin: 15px; */
-    margin-bottom: 15px;
     border-radius: 10px;
-    height: 230px;
-}
-
-#prevCont {
     padding: 15px;
+    margin-bottom: 15px;
+    height: 200px;
 }
 
 #previsaoDesc {
@@ -18,7 +15,7 @@
     margin: 0 0 10px 5px;
 }
 
-#prevCont hr {
+#Previsao hr {
     border: 1px solid #303030;
 }
 

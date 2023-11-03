@@ -1,16 +1,19 @@
 #widget-swiper{
-    height: 255px;
+    height: 250px;
     max-width: 350px;
     border-radius: 15px;
 }
 
 .swiper-pagination{
-    height: 20px;
+    bottom: 0px !important;
 }
 
 .swiper-pagination-bullet{
     background-color: #4d4d4d;
     opacity:unset;
+    height: 10px;
+    width: 10px;
+    margin: 0 5px !important;
 }
 .swiper-pagination-bullet-active{
     background-color: #536eba;

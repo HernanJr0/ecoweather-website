@@ -102,7 +102,6 @@ a:active {
   padding: 15px 15px 0;
   width: 50%;
   max-width: 300px;
-  height: fit-content;
   margin: 7.5px;
 }
 
@@ -131,6 +130,6 @@ a:active {
 
   #sideContent {
     width: calc(100% - 45px);
-    padding: 15px 15px 0 15px;
+    padding: 15px 15px 0;
   }
 }

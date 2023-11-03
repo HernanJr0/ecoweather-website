@@ -10,29 +10,27 @@ const AtalhoPrev = () => {
   return (
     <>
       <div id="Previsao">
-        <div id="prevCont">
-          <h2 id="previsaoTitulo">Previsao do tempo</h2>
-          <hr />
-          <div id="previsaoDesc">
-            <div id="previsaoHorarios">
-              <div>
-                <img src={imgClimaManha} className="previsaoTempo" />
-                <div>Manhã</div>
-              </div>
-              <div>
-                <img src={imgClimaTarde} className="previsaoTempo" />
-                <div>Tarde</div>
-              </div>
-              <div>
-                <img src={imgClimaNoite} className="previsaoTempo" />
-                <div>Noite</div>
-              </div>
+        <h2 id="previsaoTitulo">Previsao do tempo</h2>
+        <hr />
+        <div id="previsaoDesc">
+          <div id="previsaoHorarios">
+            <div>
+              <img src={imgClimaManha} className="previsaoTempo" />
+              <div>Manhã</div>
+            </div>
+            <div>
+              <img src={imgClimaTarde} className="previsaoTempo" />
+              <div>Tarde</div>
+            </div>
+            <div>
+              <img src={imgClimaNoite} className="previsaoTempo" />
+              <div>Noite</div>
             </div>
           </div>
-          <Link id="previsaoLink" to="/home/previsao">
-            <Button variant="outlined" size="small">Ver mais...</Button>
-          </Link>
         </div>
+        <Link id="previsaoLink" to="/home/previsao">
+          <Button variant="outlined" size="small">Ver mais...</Button>
+        </Link>
       </div>
     </>
   );

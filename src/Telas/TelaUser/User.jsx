@@ -11,10 +11,15 @@ import {
 } from "firebase/firestore";
 
 import {
-    getStorage,
-    ref,
-    uploadBytes,
-    getDownloadURL
+	getAuth,
+	updateProfile,
+} from "firebase/auth";
+
+import {
+	getStorage,
+	ref,
+	uploadBytes,
+	getDownloadURL,
 } from "firebase/storage";
 
 import { useState, useEffect } from "react";
@@ -22,6 +27,7 @@ import { useState, useEffect } from "react";
 function User() {
 
 	const db = getFirestore(app);
+    const auth = getAuth(app);
 	const storage = getStorage(app)
 
 	const { user, signOut } = useContext(AuthGoogleContext);
@@ -33,11 +39,23 @@ function User() {
 	const [cities, setCities] = useState([])
 	const citiesCollectionRef = collection(db, "users", user.uid, "cities");
 
-	const save = () => {
-		uploadBytes(ref(storage, user.uid), inputFile.files[0])
-		    .then((snapshot) => {
-		        console.log("success")
-		    })
+	const save = async () => {
+		await uploadBytes(ref(storage, 'users_pfp/' + user.uid), inputFile.files[0])
+			.then((snapshot) => {
+				console.log("success")
+			})
+
+		getDownloadURL(ref(storage, 'users_pfp/' + user.uid))
+			.then((url) => {
+				updateProfile(auth.currentUser, {
+					photoURL: url
+				})
+				console.log('success')
+			})
+			.catch((error) => {
+				console.log(error)
+				// Handle any errors
+			});
 	}
 
 	const handleIMG = (e) => {
@@ -76,7 +94,7 @@ function User() {
 				<div>
 					<h2>{username}</h2>
 					<img src={userImage} id="pfp" onClick={clica} />
-					<input id="inputFile" type="file" onChange={handleIMG} />
+					<input id="inputFile" type="file" accept=".png, .jpg, .gif" onChange={handleIMG} />
 
 				</div>
 			</div>

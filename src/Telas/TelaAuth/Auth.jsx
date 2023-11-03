@@ -95,13 +95,6 @@ export const Auth = () => {
                 <h1>Criar Conta</h1>
                 <div id='campos'>
 
-                    {/* 
-                    <div id="imgCont">
-                        <img id="imgField" src={'https://tinyurl.com/5kub7nce'} onClick={clica} />
-                        <input id="inputFile" type="file" onChange={handleIMG} />
-                    </div> 
-                    */}
-
                     <div id="userCont">
                         <TextField
                             id="userField"

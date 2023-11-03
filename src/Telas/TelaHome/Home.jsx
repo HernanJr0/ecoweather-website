@@ -84,7 +84,7 @@ function Home() {
 
 
     if (checkCity == '' || checkCity == undefined || checkCity == null) {
-        document.cookie = `city=manaus;Secure`
+        document.cookie = `city=Manaus;Secure`
         // console.log(document.cookie)
     }
 
@@ -106,9 +106,10 @@ function Home() {
     function enterCity(e) {
         if (e.key == 'Enter') {
             if (e.target.value != '') {
-                setLocale(e.target.value)
+                const cidade = e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1)
+                setLocale(cidade)
 
-                document.cookie = `city = ${e.target.value};Secure`
+                document.cookie = `city = ${cidade};Secure`
 
                 /* this.setState({ loc: city });
                 this.weatherBallon(e.target.value) */
