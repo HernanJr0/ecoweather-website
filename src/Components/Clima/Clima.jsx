@@ -168,9 +168,6 @@ class Clima extends Component {
                 </div>
 
                 <div id="stat">
-                    {/* porreessaakkkkkkkk */}
-                    <div>Qualidade do ar: Razoável</div>
-
                     <div id="humid">Umidade: {this.state.humid}%</div>
                     <div id="vento">
                         Vento: {(this.state.vento * 1).toFixed(1)} m/s
