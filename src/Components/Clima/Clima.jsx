@@ -97,8 +97,7 @@ class Clima extends Component {
 
     async drawWeather(d) {
 
-        let c_img =
-            "http://openweathermap.org/img/wn/" + d.weather[0].icon + ".png";
+        let c_img = "http://openweathermap.org/img/wn/" + d.weather[0].icon + ".png";
 
         let t = Math.round(parseFloat(d.main.temp) - 273.15);
 
@@ -173,12 +172,16 @@ class Clima extends Component {
                 </div>
 
                 <div id="stat">
+                    {/* porreessaakkkkkkkk */}
+                    <div>Qualidade do ar: Razoável</div>
+
                     <div id="humid">Umidade: {this.state.humid}%</div>
                     <div id="vento">
                         Vento: {(this.state.vento * 1).toFixed(1)} m/s
                     </div>
                 </div>
-                <div id="starcont">
+
+                <div id="starCont">
                     <Checkbox
                         id="starIcon"
                         onChange={this.handleFav("fav")}
@@ -190,7 +193,7 @@ class Clima extends Component {
                             "&.Mui-checked": {
                                 color: yellow[600],
                             },
-                            "& .MuiSvgIcon-root": { fontSize: 30 },
+                            "& .MuiSvgIcon-root": { fontSize: 32 },
                         }}
                     />
                 </div>

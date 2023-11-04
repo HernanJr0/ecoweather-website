@@ -1,19 +1,69 @@
 import React, { Component } from 'react';
 import './Noticia.css'
 
- class Noticia extends Component {
+import { Checkbox } from "@mui/material";
+import { red } from "@mui/material/colors";
+
+import BookmarkIcon from "@mui/icons-material/Bookmark";
+import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
+
+import { AuthGoogleContext } from "../../contexts/authGoogle";
+
+class Noticia extends Component {
+    static contextType = AuthGoogleContext;
+
     constructor(props) {
         super(props)
-        
-        this.state = {
-            creditos: this.props.item.creditos,
-            titulo: this.props.item.title,
-            descricao: this.props.item.body,
 
-            link: this.props.item.url,
-            fonte: this.props.item.source.uri,
-            imagemSrc: this.props.item.image
+        this.state = {
+            
+            uri: this.props.item.uri,
+            title: this.props.item.title,
+            body: this.props.item.body,
+
+            url: this.props.item.url,
+            source: this.props.source,
+            image: this.props.item.image,
+            
+            /* uri: this.props.uri,
+            titulo: this.props.titulo,
+            descricao: this.props.descricao,
+
+            link: this.props.link,
+            fonte: this.props.fonte,
+            imagemSrc: this.props.imagemSrc, */
+            fav: false
         }
+        this.state.handleFav = this.handleFav.bind(this);
+        this.state.checkNews = this.checkNews.bind(this)
+    }
+
+    handleFav = (name) => (e) => {
+        this.setState({ [name]: e.target.checked });
+
+        const { addNews, delNews } = this.context;
+
+        if (e.target.checked) {
+            //registra
+            addNews(this.state);
+        } else {
+            //remove
+            delNews(this.state);
+        }
+    };
+
+    async checkNews(d) {
+        const { isNewsFav } = this.context;
+
+        if (await isNewsFav(d)) {
+            this.setState({ fav: true });
+        } else {
+            this.setState({ fav: false });
+        }
+    }
+
+    componentDidMount(){
+        this.checkNews(this.state.uri)
     }
 
     render() {
@@ -21,22 +71,39 @@ import './Noticia.css'
             <div>
                 <hr />
                 <div className='noticiaCont'>
-                    <a className='link' href={this.state.link} target='_blank' rel='noreferrer'>
+                    <a className='link' href={this.state.url} target='_blank' rel='noreferrer'>
                         <div className='noticia'>
 
-                            <img className='noticiaImg' src={this.state.imagemSrc} alt={this.state.titulo}/>
+                            <div id="bookmarkCont">
+                                <Checkbox
+                                    id="bookmarkIcon"
+                                    onChange={this.handleFav("fav")}
+                                    checked={this.state.fav}
+                                    icon={<BookmarkBorderIcon />}
+                                    checkedIcon={<BookmarkIcon />}
+                                    sx={{
+                                        color: red[0],
+                                        "&.Mui-checked": {
+                                            color: red[400],
+                                        },
+                                        "& .MuiSvgIcon-root": { fontSize: 30 },
+                                    }}
+                                />
+                            </div>
+                            
+                            <img className='noticiaImg' src={this.state.image} alt={this.state.title} />
 
                             <div className='noticiaDesc'>
                                 <p className='noticiaCreditos'>
-                                    Fonte: {this.state.fonte}
+                                    Fonte: {this.state.source}
                                 </p>
 
                                 <h2 className='noticiaTitulo'>
-                                    {this.state.titulo}
+                                    {this.state.title}
                                 </h2>
 
                                 <p className='noticiaDescricao'>
-                                    {this.state.descricao}
+                                    {this.state.body}
                                 </p>
                             </div>
                         </div>
@@ -45,5 +112,5 @@ import './Noticia.css'
             </div>
         )
     }
-}  
+}
 export default Noticia

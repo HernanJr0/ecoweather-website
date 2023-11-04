@@ -41,7 +41,7 @@ export const AuthGoogleProvider = ({ children }) => {
         if (storageToken && storageUser) {
             setUser(JSON.parse(storageUser));
         }
-    },[]);
+    }, []);
 
     async function checkUser(user) {
         const docSnap = await getDoc(doc(db, "users", user.uid));
@@ -150,23 +150,50 @@ export const AuthGoogleProvider = ({ children }) => {
     };
 
     const addCity = (city) => {
-        const u = user;
-
-        setDoc(doc(userRef, u.uid, "cities", city), {
+        setDoc(doc(userRef, user.uid, "cities", city), {
             nome: city,
         });
     };
 
     const delCity = (city) => {
-        const u = user;
-
-        deleteDoc(doc(userRef, u.uid, "cities", city));
+        deleteDoc(doc(userRef, user.uid, "cities", city));
     };
 
     const isCityFav = async (city) => {
-        const u = user;
+        const docSnap = await getDoc(doc(userRef, user.uid, "cities", city));
 
-        const docSnap = await getDoc(doc(userRef, u.uid, "cities", city));
+        var x;
+
+        if (docSnap.exists()) {
+            x = true;
+        } else {
+            // docSnap.data() will be undefined in this case
+            console.log("No such document!");
+            x = false;
+        }
+        return x;
+    };
+
+    const addNews = (news) => {
+        setDoc(doc(userRef, user.uid, "news", news.uri), {
+
+            uri: news.uri,
+            title: news.title,
+            body: news.body,
+
+            url: news.url,
+            source: news.source,
+            image: news.image,
+            fav: news.fav
+        });
+    };
+
+    const delNews = (news) => {
+        deleteDoc(doc(userRef, user.uid, "news", news.uri));
+    };
+
+    const isNewsFav = async (news) => {
+        const docSnap = await getDoc(doc(userRef, user.uid, "news", news));
 
         var x;
 
@@ -200,7 +227,12 @@ export const AuthGoogleProvider = ({ children }) => {
 
                 isCityFav,
                 addCity,
-                delCity
+                delCity,
+
+
+                isNewsFav,
+                addNews,
+                delNews
             }}
         >
             {children}

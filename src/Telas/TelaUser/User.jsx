@@ -1,8 +1,11 @@
 import { app } from "../../service/firebaseConfig.jsx";
 import { AuthGoogleContext } from "../../contexts/authGoogle";
 import { useContext } from "react";
-import "./User.css";
 import { Button } from "@mui/material";
+
+import { useState, useEffect } from "react";
+
+import Noticia from "../../Components/Noticia/Noticia.jsx";
 
 import {
 	collection,
@@ -22,12 +25,12 @@ import {
 	getDownloadURL,
 } from "firebase/storage";
 
-import { useState, useEffect } from "react";
 
+import "./User.css";
 function User() {
 
 	const db = getFirestore(app);
-    const auth = getAuth(app);
+	const auth = getAuth(app);
 	const storage = getStorage(app)
 
 	const { user, signOut } = useContext(AuthGoogleContext);
@@ -35,9 +38,11 @@ function User() {
 	const username = user.displayName || "User";
 	const userImage = user.photoURL || "https://tinyurl.com/5kub7nce";
 
-
 	const [cities, setCities] = useState([])
+	const [news, setNews] = useState([])
+
 	const citiesCollectionRef = collection(db, "users", user.uid, "cities");
+	const newsCollectionRef = collection(db, "users", user.uid, "news");
 
 	const save = async () => {
 		await uploadBytes(ref(storage, 'users_pfp/' + user.uid), inputFile.files[0])
@@ -79,9 +84,15 @@ function User() {
 		const getCities = async () => {
 			const data = await getDocs(citiesCollectionRef);
 			setCities(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-			console.log("kk")
+			console.log("cidade")
+		};
+		const getNews = async () => {
+			const data = await getDocs(newsCollectionRef);
+			setNews(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+			console.log("noticia")
 		};
 		getCities();
+		getNews();
 	}, []);
 
 	return (
@@ -100,12 +111,26 @@ function User() {
 			</div>
 
 			<div id="l-cities">
-				<h2 id="header">Cidades Favoritas</h2>
-				<ul id="">
+				<h2>Cidades Favoritas</h2>
+				<ul>
 					{
 						cities.map((city, i) => {
 							return (
 								<li key={i}>{city.nome}</li>
+							);
+						})
+					}
+				</ul>
+			</div>
+			<div id="l-news">
+				<h2>Noticias Salvas</h2>
+				<ul>
+					{
+						news.map((news, i) => {
+							return (
+								<li key={i}>
+									<Noticia item={news} source={news.source}/>
+								</li>
 							);
 						})
 					}

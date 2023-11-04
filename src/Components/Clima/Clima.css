@@ -80,7 +80,7 @@
     z-index: 1;
 }
 
-#starcont {
+#starCont {
     position: absolute;
     top: calc(70vh + 70px - 48px - 10px);
     right: 10px;

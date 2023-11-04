@@ -7,6 +7,8 @@ import Slide from '../../Components/Slide/Slide.jsx'
 
 import Noticias from '../../Components/Noticia/GridNoticia.jsx';
 
+// import Noticia from '../../Components/Noticia/Noticia.jsx'
+
 import calendar from '../../assets/calendar.png';
 
 import { IconButton, TextField } from '@mui/material';
@@ -76,7 +78,7 @@ function Home() {
         return date;
     }
     */}
-    
+
     const checkCity = document.cookie
         .split("; ")
         .find((row) => row.startsWith("city="))
@@ -155,29 +157,33 @@ function Home() {
 
                             <Noticias locale={locale} />
 
-                            {/* 
+                            {/* <h2>Noticias</h2>
+
                             <Noticia
                                 imagemSrc={'https://tinyurl.com/3p2sa6at'}
-                                linkNoticia={'https://g1.globo.com/ms/mato-grosso-do-sul/noticia/2023/06/17/por-que-gado-morre-de-frio-entenda-os-motivos-para-hipotermia-dos-animais-no-pantanal.ghtml'}
                                 titulo={'Por que gado morre de frio? Os motivos para hipotermia dos animais no Pantanal'}
                                 descricao={'Mais de 1 mil cabeças de gado morreram de frio em Mato Grosso do Sul nos últimos dias. De acordo com especialistas, as mortes dos animais estão atreladas a uma severa hipotermia e o gado pantaneiro pode sofrer ainda mais com o frio.'}
-                                creditos={'g1.globo.com.br/'}
+                                link={'https://g1.globo.com/ms/mato-grosso-do-sul/noticia/2023/06/17/por-que-gado-morre-de-frio-entenda-os-motivos-para-hipotermia-dos-animais-no-pantanal.ghtml'}
+                                fonte={'g1.globo.com.br/'}
+                                uri={'09876'}
                             />
                             <Noticia
                                 imagemSrc={'https://tinyurl.com/2x3ht8sh'}
-                                linkNoticia={'https://www.greenpeace.org/brasil/imprensa/um-ano-das-chuvas-em-recife-tragedia-pode-voltar-a-ocorrer-se-nao-houver-acao-do-poder-publico/'}
+                                link={'https://www.greenpeace.org/brasil/imprensa/um-ano-das-chuvas-em-recife-tragedia-pode-voltar-a-ocorrer-se-nao-houver-acao-do-poder-publico/'}
                                 titulo={'Um ano das chuvas em Recife: tragédia pode voltar a ocorrer se não houver ação do poder público'}
                                 descricao={'Após um ano do maior desastre em Pernambuco, fortes chuvas deixam o Estado novamente em alerta. Greenpeace Brasil apoia a revisão do Plano Nacional de Adaptação para evitar novos desastres'}
-                                creditos={'greenpeace.org/'}
+                                fonte={'greenpeace.org/'}
+                                uri={'54321'}
                             />
                             <Noticia
                                 imagemSrc={'https://tinyurl.com/ymdu6z8r'}
-                                linkNoticia={'https://www.greenpeace.org/brasil/imprensa/abril-registra-queda-de-67-9-no-desmatamento-na-amazonia-em-relacao-ao-mesmo-periodo-em-2022/'}
+                                link={'https://www.greenpeace.org/brasil/imprensa/abril-registra-queda-de-67-9-no-desmatamento-na-amazonia-em-relacao-ao-mesmo-periodo-em-2022/'}
                                 titulo={'Abril registra queda de 67.9% no desmatamento na Amazônia, em relação ao mesmo período em 2022'}
                                 descricao={'Abril registra queda de 67.9% no desmatamento na Amazônia, em relação ao mesmo período em 2022.'}
-                                creditos={'greenpeace.org/'}
-                            />
-                            */}
+                                fonte={'greenpeace.org/'}
+                                uri={'23456'}
+                            /> */}
+
 
                         </div>
                         <div id='sideContent'>
