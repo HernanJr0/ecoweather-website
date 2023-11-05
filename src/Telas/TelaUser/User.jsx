@@ -6,6 +6,10 @@ import { Button } from "@mui/material";
 import { useState, useEffect } from "react";
 
 import Noticia from "../../Components/Noticia/Noticia.jsx";
+import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
+
+import { IconButton } from "@mui/material";
+import { red } from "@mui/material/colors";
 
 import {
 	collection,
@@ -13,27 +17,14 @@ import {
 	getDocs,
 } from "firebase/firestore";
 
-import {
-	getAuth,
-	updateProfile,
-} from "firebase/auth";
-
-import {
-	getStorage,
-	ref,
-	uploadBytes,
-	getDownloadURL,
-} from "firebase/storage";
-
 
 import "./User.css";
+
 function User() {
 
 	const db = getFirestore(app);
-	const auth = getAuth(app);
-	const storage = getStorage(app)
 
-	const { user, signOut } = useContext(AuthGoogleContext);
+	const { user, xgpfp, delItem, signOut } = useContext(AuthGoogleContext);
 
 	const username = user.displayName || "User";
 	const userImage = user.photoURL || "https://tinyurl.com/5kub7nce";
@@ -44,59 +35,49 @@ function User() {
 	const citiesCollectionRef = collection(db, "users", user.uid, "cities");
 	const newsCollectionRef = collection(db, "users", user.uid, "news");
 
-	const save = async () => {
-		await uploadBytes(ref(storage, 'users_pfp/' + user.uid), inputFile.files[0])
-			.then((snapshot) => {
-				console.log("success")
-			})
-
-		getDownloadURL(ref(storage, 'users_pfp/' + user.uid))
-			.then((url) => {
-				updateProfile(auth.currentUser, {
-					photoURL: url
-				})
-				console.log('success')
-			})
-			.catch((error) => {
-				console.log(error)
-				// Handle any errors
-			});
-	}
+	var newpfp
 
 	const handleIMG = (e) => {
-		var selectedFile = e.target.files[0];
 		var reader = new FileReader();
-
 		var imgtag = document.getElementById("pfp");
+
+		var selectedFile = e.target.files[0];
+		newpfp = e.target.files[0]
+
+		reader.readAsDataURL(selectedFile);
 
 		reader.onload = (e) => {
 			imgtag.src = e.target.result;
 		};
-
-		reader.readAsDataURL(selectedFile);
 	}
 
-	function clica() {
-		document.getElementById("inputFile").click()
+	const deleteCity = (city) => {
+		//remove
+		console.log('lixo')
+		delItem("cities", city);
+	};
+
+	function save() {
+		xgpfp(newpfp)
 	}
 
 	useEffect(() => {
 		const getCities = async () => {
 			const data = await getDocs(citiesCollectionRef);
 			setCities(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-			console.log("cidade")
 		};
 		const getNews = async () => {
 			const data = await getDocs(newsCollectionRef);
 			setNews(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-			console.log("noticia")
 		};
 		getCities();
 		getNews();
-	}, []);
+		console.log('aiai')
+	}, [cities]);
+
 
 	return (
-		<div>
+		<div id="userCont">
 			<div id="usercard">
 				<img
 					id="userbg"
@@ -104,7 +85,11 @@ function User() {
 				/>
 				<div>
 					<h2>{username}</h2>
-					<img src={userImage} id="pfp" onClick={clica} />
+
+					<label htmlFor="inputFile">
+						<img src={userImage} id="pfp" />
+					</label>
+
 					<input id="inputFile" type="file" accept=".png, .jpg, .gif" onChange={handleIMG} />
 
 				</div>
@@ -116,20 +101,41 @@ function User() {
 					{
 						cities.map((city, i) => {
 							return (
-								<li key={i}>{city.nome}</li>
-							);
+								<li key={i}>
+
+									<IconButton
+										id="deleteIcon"
+										onClick={() => deleteCity(city.nome)}
+									>
+										<RemoveCircleIcon />
+									</IconButton>
+									{city.nome}
+
+								</li>
+							)
 						})
 					}
 				</ul>
 			</div>
 			<div id="l-news">
-				<h2>Noticias Salvas</h2>
 				<ul>
+					<h2>Notícias Salvas</h2>
 					{
 						news.map((news, i) => {
 							return (
 								<li key={i}>
-									<Noticia item={news} source={news.source}/>
+									<Noticia
+										item={news}
+										source={news.source}
+
+									/* url={news.url}
+									uri={news.uri}
+									image={news.image}
+									title={news.title}
+									body={news.body}
+									source={news.source} */
+
+									/>
 								</li>
 							);
 						})

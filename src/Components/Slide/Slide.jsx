@@ -54,20 +54,20 @@ const swiper = () => {
                 <Atalho
                     titulo={'Conteudos'}
                     descricao={'Acesse aqui conteúdos sobre o meio ambiente'}
-                    imagem={'https://cdn-icons-png.flaticon.com/512/361/361892.png'}
-                    link={'/home/dicas'}
+                    imagem={'https://cdn-icons-png.flaticon.com/512/363/363256.png'}
+                    link={'/home/conteudos'}
                 />
             </SwiperSlide>
-            
+
             <SwiperSlide>
                 <Atalho
-                    titulo={'Dicas'}
-                    descricao={'Veja aqui dicas sobre o meio ambiente'}
+                    titulo={'Informações'}
+                    descricao={'Veja informações e dicas úteis'}
                     imagem={'https://cdn-icons-png.flaticon.com/512/361/361892.png'}
-                    link={'/home/dicas'}
-                />
+                    link={'/home/informacoes'} />
                 {/* arrumar paths */}
             </SwiperSlide>
+
             {/* 
             <SwiperSlide>
                 <Atalho
@@ -84,7 +84,8 @@ const swiper = () => {
                     imagem={'https://cdn-icons-png.flaticon.com/512/363/363485.png'}
                     link={''}
                 />
-            </SwiperSlide> */}
+            </SwiperSlide>
+            */}
 
         </Swiper >
     )

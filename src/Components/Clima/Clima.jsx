@@ -40,17 +40,7 @@ class Clima extends Component {
         this.handleFav = this.handleFav.bind(this);
         this.checkCity = this.checkCity.bind(this);
     }
-
-    async checkCity(d) {
-        const { isCityFav } = this.context;
-
-        if (await isCityFav(d.name)) {
-            this.setState({ fav: true });
-        } else {
-            this.setState({ fav: false });
-        }
-    }
-
+    
     componentDidMount() {
         this.weatherBallon(this.state.loc);
         prevCity = this.state.loc;
@@ -62,6 +52,29 @@ class Clima extends Component {
             this.weatherBallon(this.props.locale);
         }
     }
+
+    async checkCity(d) {
+        const { isItemFav } = this.context;
+
+        if (await isItemFav("cities", d.name)) {
+            this.setState({ fav: true });
+        } else {
+            this.setState({ fav: false });
+        }
+    }
+
+    handleFav = (name) => (e) => {
+        this.setState({ [name]: e.target.checked });
+
+        const { addCity, delItem } = this.context;
+        if (e.target.checked) {
+            //registra
+            addCity(this.state.loc);
+        } else {
+            //remove
+            delItem("cities", this.state.loc);
+        }
+    };
 
     weatherBallon(city) {
         if (city != prevCity) {
@@ -133,19 +146,6 @@ class Clima extends Component {
             wall: bg,
         });
     }
-
-    handleFav = (name) => (e) => {
-        this.setState({ [name]: e.target.checked });
-
-        const { addCity, delCity } = this.context;
-        if (e.target.checked) {
-            //registra
-            addCity(this.state.loc);
-        } else {
-            //remove
-            delCity(this.state.loc);
-        }
-    };
 
     render() {
         return (

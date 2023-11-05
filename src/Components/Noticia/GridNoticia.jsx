@@ -45,20 +45,26 @@ class GridNoticia extends PureComponent {
         }
     }
 
-    // newsBallon(city) {
-    //     fetch("https://newsapi.org/v2/everything?q=" + city + " &searchIn=title" + "&sortBy=relevancy" + "&pageSize=10" + "&language=pt" + "&apiKey=cd3417de6c7b4ae38a0cff0124696c5d")
+    /* newsBallon(city) {
+        if (city != prevCity) {
+            fetch("https://newsapi.org/v2/everything?q=" + city + " &searchIn=title" + "&sortBy=relevancy" + "&pageSize=10" + "&language=pt" + "&apiKey=cd3417de6c7b4ae38a0cff0124696c5d")
 
-    //         .then((resp) => { return resp.json() })
-    //         .then((data) => {
-    //             this.setState({ items: data.articles })
-    //             console.log(data)
-    //         })
-    // }
+                .then((resp) => { return resp.json() })
+                .then((data) => {
+                    val = data.articles.results
+                    this.setState({ items: data.articles })
+                    console.log(data)
+                })
+            prevCity = this.state.loc
+        } else {
+            this.setState({ items: val })
+        }
+    } */
 
     loadnews() {
         if (this.state.items != null) {
             return this.state.items.map((item, i) => (
-                <Noticia key={i} item={item} source={item.source.uri}/>
+                <Noticia key={i} item={item} source={item.source.uri} />
             ));
         }
     }

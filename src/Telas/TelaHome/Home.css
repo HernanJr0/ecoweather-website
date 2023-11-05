@@ -80,29 +80,27 @@ a:active {
   justify-content: center;
 }
 
-#noticias hr {
-  border: 1px solid #202020;
-}
-
 #noticias {
   border-radius: 20px;
   background-color: #303030;
 
   margin: 7.5px;
   padding: 7.5px;
-
   width: 60%;
   max-width: 800px;
   height: fit-content;
 }
 
 #sideContent {
+  width: 50%;
+  height: fit-content;
+  
+  max-width: 300px;
+  padding: 15px 15px 0;
+  margin: 7.5px;
+
   border-radius: 20px;
   background-color: #303030;
-  padding: 15px 15px 0;
-  width: 50%;
-  max-width: 300px;
-  margin: 7.5px;
 }
 
 #merda {

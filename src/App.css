@@ -1,6 +1,6 @@
 #App {
     position: relative;
     height: fit-content;
-    min-height: calc(100vh - 140px);
-    padding: 70px 0 70px;
+    min-height: calc(100vh - 150px);
+    padding: 70px 0 80px;
 }

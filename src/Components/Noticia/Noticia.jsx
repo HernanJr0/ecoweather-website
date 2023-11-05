@@ -16,23 +16,25 @@ class Noticia extends Component {
         super(props)
 
         this.state = {
-            
-            uri: this.props.item.uri,
+
+            image: this.props.item.image,
             title: this.props.item.title,
             body: this.props.item.body,
 
+            uri: this.props.item.uri,
             url: this.props.item.url,
             source: this.props.source,
-            image: this.props.item.image,
-            
-            /* uri: this.props.uri,
-            titulo: this.props.titulo,
-            descricao: this.props.descricao,
 
-            link: this.props.link,
-            fonte: this.props.fonte,
-            imagemSrc: this.props.imagemSrc, */
             fav: false
+
+            /* image: this.props.item.image,
+            title: this.props.item.title,
+            body: this.props.item.body,
+
+            uri: this.props.item.uri,
+            url: this.props.item.url,
+            source: this.props.source, */
+
         }
         this.state.handleFav = this.handleFav.bind(this);
         this.state.checkNews = this.checkNews.bind(this)
@@ -41,28 +43,28 @@ class Noticia extends Component {
     handleFav = (name) => (e) => {
         this.setState({ [name]: e.target.checked });
 
-        const { addNews, delNews } = this.context;
+        const { addNews, delItem } = this.context;
 
         if (e.target.checked) {
             //registra
             addNews(this.state);
         } else {
             //remove
-            delNews(this.state);
+            delItem("news", this.state);
         }
     };
 
     async checkNews(d) {
-        const { isNewsFav } = this.context;
+        const { isItemFav } = this.context;
 
-        if (await isNewsFav(d)) {
+        if (await isItemFav("news", d)) {
             this.setState({ fav: true });
         } else {
             this.setState({ fav: false });
         }
     }
 
-    componentDidMount(){
+    componentDidMount() {
         this.checkNews(this.state.uri)
     }
 
@@ -70,45 +72,43 @@ class Noticia extends Component {
         return (
             <div>
                 <hr />
-                <div className='noticiaCont'>
-                    <a className='link' href={this.state.url} target='_blank' rel='noreferrer'>
-                        <div className='noticia'>
+                <a href={this.state.url} target='_blank' rel='noreferrer'>
+                    <div className='noticia'>
 
-                            <div id="bookmarkCont">
-                                <Checkbox
-                                    id="bookmarkIcon"
-                                    onChange={this.handleFav("fav")}
-                                    checked={this.state.fav}
-                                    icon={<BookmarkBorderIcon />}
-                                    checkedIcon={<BookmarkIcon />}
-                                    sx={{
-                                        color: red[0],
-                                        "&.Mui-checked": {
-                                            color: red[400],
-                                        },
-                                        "& .MuiSvgIcon-root": { fontSize: 30 },
-                                    }}
-                                />
-                            </div>
-                            
-                            <img className='noticiaImg' src={this.state.image} alt={this.state.title} />
-
-                            <div className='noticiaDesc'>
-                                <p className='noticiaCreditos'>
-                                    Fonte: {this.state.source}
-                                </p>
-
-                                <h2 className='noticiaTitulo'>
-                                    {this.state.title}
-                                </h2>
-
-                                <p className='noticiaDescricao'>
-                                    {this.state.body}
-                                </p>
-                            </div>
+                        <div id="bookmarkCont">
+                            <Checkbox
+                                id="bookmarkIcon"
+                                onChange={this.handleFav("fav")}
+                                checked={this.state.fav}
+                                icon={<BookmarkBorderIcon />}
+                                checkedIcon={<BookmarkIcon />}
+                                sx={{
+                                    color: red[0],
+                                    "&.Mui-checked": {
+                                        color: red[400],
+                                    },
+                                    "& .MuiSvgIcon-root": { fontSize: 30 },
+                                }}
+                            />
                         </div>
-                    </a>
-                </div>
+
+                        <img className='noticiaImg' src={this.state.image} alt={this.state.title} />
+
+                        <div className='noticiaDesc'>
+                            <p className='noticiaCreditos'>
+                                Fonte: {this.state.source}
+                            </p>
+
+                            <h2 className='noticiaTitulo'>
+                                {this.state.title}
+                            </h2>
+
+                            <p className='noticiaDescricao'>
+                                {this.state.body}
+                            </p>
+                        </div>
+                    </div>
+                </a>
             </div>
         )
     }

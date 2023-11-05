@@ -3,13 +3,14 @@
     position: relative;
     display: flex;
     place-items: center;
+    border-radius: 19px;
 }
 
-.noticiaCont {
-    border-radius: 18px;
+hr{
+  border: 1px solid #202020;
 }
 
-.noticiaCont:hover {
+.noticia:hover {
     background-color: #202020;
 }
 

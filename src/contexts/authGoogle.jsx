@@ -24,12 +24,20 @@ import {
 } from "firebase/firestore";
 
 
+import {
+	getStorage,
+	ref,
+	uploadBytes,
+	getDownloadURL,
+} from "firebase/storage";
+
 const provider = new GoogleAuthProvider();
 
 export const AuthGoogleProvider = ({ children }) => {
 
     const db = getFirestore(app);
     const auth = getAuth(app);
+	const storage = getStorage(app)
 
     const [user, setUser] = useState(null);
 
@@ -53,22 +61,43 @@ export const AuthGoogleProvider = ({ children }) => {
         }
     }
 
+    const signInGoogle = () => {
+        signInWithPopup(auth, provider)
+            .then(async (result) => {
+                const credential = GoogleAuthProvider.credentialFromResult(result);
+
+                const token = credential.accessToken;
+                const u = result.user;
+
+                setUser(u);
+                localStorage.setItem("@AuthFirebase:user", JSON.stringify(u));
+                localStorage.setItem("@AuthFirebase:token", token);
+
+                console.log(u);
+
+                checkUser(u)
+            })
+            .catch((error) => {
+                // Handle Errors here.
+                const errorCode = error.code;
+                const errorMessage = error.message;
+
+                // The email of the user's account used.
+                const email = error.customData.email;
+                // The AuthCredential type that was used.
+                const credential = GoogleAuthProvider.credentialFromError(error);
+
+                console.log(errorMessage);
+                // console.log(errorMessage)
+                // console.log(email)
+                // console.log(credential)
+            });
+    };
+
     const createAccount = async (username, email, password) => {
         createUserWithEmailAndPassword(auth, email, password)
             .then((result) => {
                 const u = result.user;
-
-                {
-                    // getDownloadURL(ref(storage, 'images/stars.jpg'))
-                    //     .then((url) => {
-
-                    //     })
-
-                    // uploadBytes(ref(storage, u.uid), pfp)
-                    //     .then((snapshot) => {
-                    //         console.log("success")
-                    //     })
-                }
 
                 if (username != '') {
                     updateProfile(u, {
@@ -116,62 +145,30 @@ export const AuthGoogleProvider = ({ children }) => {
         return <Navigate to="/" />;
     };
 
-    const signInGoogle = () => {
-        signInWithPopup(auth, provider)
-            .then(async (result) => {
-                const credential = GoogleAuthProvider.credentialFromResult(result);
+    const xgpfp = async (file) => {
 
-                const token = credential.accessToken;
-                const u = result.user;
+        await uploadBytes(ref(storage, 'users_pfp/' + user.uid), file)
+            .then((snapshot) => {
+                console.log("success")
+            })
 
-                setUser(u);
-                localStorage.setItem("@AuthFirebase:user", JSON.stringify(u));
-                localStorage.setItem("@AuthFirebase:token", token);
-
-                console.log(u);
-
-                checkUser(u)
+        getDownloadURL(ref(storage, 'users_pfp/' + user.uid))
+            .then((url) => {
+                updateProfile(auth.currentUser, {
+                    photoURL: url
+                })
+                console.log('success')
             })
             .catch((error) => {
-                // Handle Errors here.
-                const errorCode = error.code;
-                const errorMessage = error.message;
-
-                // The email of the user's account used.
-                const email = error.customData.email;
-                // The AuthCredential type that was used.
-                const credential = GoogleAuthProvider.credentialFromError(error);
-
-                console.log(errorMessage);
-                // console.log(errorMessage)
-                // console.log(email)
-                // console.log(credential)
+                console.log(error)
+                // Handle any errors
             });
-    };
+    }
 
     const addCity = (city) => {
         setDoc(doc(userRef, user.uid, "cities", city), {
             nome: city,
         });
-    };
-
-    const delCity = (city) => {
-        deleteDoc(doc(userRef, user.uid, "cities", city));
-    };
-
-    const isCityFav = async (city) => {
-        const docSnap = await getDoc(doc(userRef, user.uid, "cities", city));
-
-        var x;
-
-        if (docSnap.exists()) {
-            x = true;
-        } else {
-            // docSnap.data() will be undefined in this case
-            console.log("No such document!");
-            x = false;
-        }
-        return x;
     };
 
     const addNews = (news) => {
@@ -184,16 +181,17 @@ export const AuthGoogleProvider = ({ children }) => {
             url: news.url,
             source: news.source,
             image: news.image,
+
             fav: news.fav
         });
     };
 
-    const delNews = (news) => {
-        deleteDoc(doc(userRef, user.uid, "news", news.uri));
+    const delItem = (items, item) => {
+        deleteDoc(doc(userRef, user.uid, items, item));
     };
 
-    const isNewsFav = async (news) => {
-        const docSnap = await getDoc(doc(userRef, user.uid, "news", news));
+    const isItemFav = async (items, item) => {
+        const docSnap = await getDoc(doc(userRef, user.uid, items, item));
 
         var x;
 
@@ -201,7 +199,6 @@ export const AuthGoogleProvider = ({ children }) => {
             x = true;
         } else {
             // docSnap.data() will be undefined in this case
-            console.log("No such document!");
             x = false;
         }
         return x;
@@ -225,14 +222,13 @@ export const AuthGoogleProvider = ({ children }) => {
                 signInAccount,
                 signOut,
 
-                isCityFav,
+                xgpfp,
+
                 addCity,
-                delCity,
-
-
-                isNewsFav,
                 addNews,
-                delNews
+                delItem,
+
+                isItemFav,
             }}
         >
             {children}
