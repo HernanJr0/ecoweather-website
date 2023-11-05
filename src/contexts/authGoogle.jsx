@@ -150,6 +150,7 @@ export const AuthGoogleProvider = ({ children }) => {
         await uploadBytes(ref(storage, 'users_pfp/' + user.uid), file)
             .then((snapshot) => {
                 console.log("success")
+                console.log(file)
             })
 
         getDownloadURL(ref(storage, 'users_pfp/' + user.uid))
@@ -158,6 +159,7 @@ export const AuthGoogleProvider = ({ children }) => {
                     photoURL: url
                 })
                 console.log('success')
+                console.log(url)
             })
             .catch((error) => {
                 console.log(error)

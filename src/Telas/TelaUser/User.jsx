@@ -35,14 +35,14 @@ function User() {
 	const citiesCollectionRef = collection(db, "users", user.uid, "cities");
 	const newsCollectionRef = collection(db, "users", user.uid, "news");
 
-	var newpfp
+	const [pfp, setPfp] = useState([])
 
 	const handleIMG = (e) => {
 		var reader = new FileReader();
 		var imgtag = document.getElementById("pfp");
 
 		var selectedFile = e.target.files[0];
-		newpfp = e.target.files[0]
+		setPfp(e.target.files[0])
 
 		reader.readAsDataURL(selectedFile);
 
@@ -58,7 +58,7 @@ function User() {
 	};
 
 	function save() {
-		xgpfp(newpfp)
+		xgpfp(pfp)
 	}
 
 	useEffect(() => {
