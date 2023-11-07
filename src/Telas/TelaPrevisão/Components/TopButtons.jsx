@@ -52,10 +52,10 @@ function TopButtons({ setQuery }) {
     }, []);
 
     return (
-        <div className='city-list flex items-center my-6'>
+        <div className='city-list flex items-center'>
             {cities.map((city, i) => (
                 <button key={i}
-                    className='city-button text-white text-lg font-medium'
+                    className='city-button text-white text-lg font-medium border-solid border-2 border-white rounded-md m-4 p-1 bg-transparent hover:border-gray-300 hover:text-gray-300 hover:scale-125 transition ease-out'
                     onClick={() => setQuery({ q: city.nome })}>{city.nome}
                 </button>
             ))}
