@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { useState, useEffect, useContext } from 'react'
 import "./Clima.css";
 import StarIcon from "@mui/icons-material/Star";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
@@ -16,6 +17,7 @@ var val = null;
 var prevCity = null;
 var bg = null;
 const key = "d3afafb4de8d7a76ad9ced3bed938d51";
+
 
 class Clima extends Component {
     static contextType = AuthGoogleContext;
@@ -57,7 +59,7 @@ class Clima extends Component {
     async checkCity(d) {
         const { isItemFav } = this.context;
 
-        if (await isItemFav("cities", d.name)) {
+        if (await isItemFav("cities", d)) {
             this.setState({ fav: true });
         } else {
             this.setState({ fav: false });
@@ -91,7 +93,7 @@ class Clima extends Component {
                         val = data;
 
                         this.drawWeather(data);
-                        this.checkCity(data)
+                        this.checkCity(data.name)
 
                         console.log(data);
                     }
@@ -101,7 +103,7 @@ class Clima extends Component {
                 });
         } else {
             this.drawWeather(val);
-            this.checkCity(val)
+            this.checkCity(val.name)
         }
     }
 
@@ -204,4 +206,50 @@ class Clima extends Component {
         );
     }
 }
-export default Clima;
+
+const Star = (props) => {
+    const { isItemFav, addCity, delItem } = useContext(AuthGoogleContext);
+
+    const [fav, setFav] = useState(true)
+
+    /* useEffect(() => {
+        const checkCity = async () => {
+            if (await isItemFav("cities", props.city)) {
+                setFav(true);
+            } else {
+                setFav(false);
+            }
+        }
+        checkCity()
+    }) */
+
+    const handleFav = (e) => {
+        setFav(e.target.checked);
+
+        if (e.target.checked) {
+            //registra
+            addCity(props.city);
+        } else {
+            //remove
+            delItem("cities", props.city);
+        }
+    };
+
+    return (
+        <Checkbox
+            id="starIcon"
+            onChange={handleFav}
+            checked={fav}
+            icon={<StarBorderIcon />}
+            checkedIcon={<StarIcon />}
+            sx={{
+                color: yellow[0],
+                "&.Mui-checked": {
+                    color: yellow[600],
+                },
+                "& .MuiSvgIcon-root": { fontSize: 32 },
+            }}
+        />
+    )
+}
+export { Clima, Star };

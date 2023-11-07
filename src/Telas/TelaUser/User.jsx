@@ -6,10 +6,9 @@ import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 
-import Noticia from "../../Components/Noticia/Noticia.jsx";
-import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
+import { Star } from "../../Components/Clima/Clima.jsx"
 
-import { IconButton } from "@mui/material";
+import Noticia from "../../Components/Noticia/Noticia.jsx";
 
 import {
 	collection,
@@ -17,14 +16,13 @@ import {
 	getDocs,
 } from "firebase/firestore";
 
-
 import "./User.css";
 
 function User() {
 
 	const db = getFirestore(app);
 
-	const { user, delItem, signOut } = useContext(AuthGoogleContext);
+	const { user, signOut } = useContext(AuthGoogleContext);
 
 	const username = user.displayName || "User";
 	const userImage = user.photoURL || "https://tinyurl.com/5kub7nce";
@@ -34,15 +32,6 @@ function User() {
 
 	const citiesCollectionRef = collection(db, "users", user.uid, "cities");
 	const newsCollectionRef = collection(db, "users", user.uid, "news");
-
-	
-
-	const deleteCity = (city) => {
-		//remove
-		console.log('lixo')
-		delItem("cities", city);
-	};
-
 
 	useEffect(() => {
 		const getCities = async () => {
@@ -82,12 +71,7 @@ function User() {
 							return (
 								<li key={i}>
 
-									<IconButton
-										id="deleteIcon"
-										onClick={() => deleteCity(city.nome)}
-									>
-										<RemoveCircleIcon />
-									</IconButton>
+									<Star city={city.nome} />
 									{city.nome}
 
 								</li>

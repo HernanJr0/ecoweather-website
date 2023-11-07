@@ -50,7 +50,7 @@ class Noticia extends Component {
             addNews(this.state);
         } else {
             //remove
-            delItem("news", this.state);
+            delItem("news", this.state.uri);
         }
     };
 

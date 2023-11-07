@@ -57,7 +57,8 @@
   margin: 7.5px;
 }
 
-#l-news li {
+#l-news li,
+#l-cities li {
   list-style: none;
 }
 
