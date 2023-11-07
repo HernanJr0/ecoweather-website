@@ -12,9 +12,9 @@ import { IconButton, TextField } from '@mui/material';
 import PlaceIcon from '@mui/icons-material/Place'; */
 import { AuthGoogleContext } from "../../contexts/authGoogle";
 
-var val = "";
-var prevCity = "";
-var bg = "";
+var val = null;
+var prevCity = null;
+var bg = null;
 const key = "d3afafb4de8d7a76ad9ced3bed938d51";
 
 class Clima extends Component {
@@ -40,7 +40,7 @@ class Clima extends Component {
         this.handleFav = this.handleFav.bind(this);
         this.checkCity = this.checkCity.bind(this);
     }
-    
+
     componentDidMount() {
         this.weatherBallon(this.state.loc);
         prevCity = this.state.loc;
@@ -50,6 +50,7 @@ class Clima extends Component {
         if (prevProps.locale !== this.props.locale) {
             // this.setState({loc: this.props.locale})
             this.weatherBallon(this.props.locale);
+            prevCity = this.props.locale;
         }
     }
 
@@ -77,22 +78,19 @@ class Clima extends Component {
     };
 
     weatherBallon(city) {
-        if (city != prevCity) {
+        if (city !== prevCity) {
             fetch(
                 "https://api.openweathermap.org/data/2.5/weather?lang=pt_br&q=" + city + "&appid=" + key)
                 .then(resp => {
                     return resp.json();
                 })
-                .then(async (data) => {
+                .then((data) => {
                     if (data.cod == 404) {
                         alert("Este lugar não foi encontrado");
                     } else {
-                        prevCity = data.name
-
                         val = data;
 
                         this.drawWeather(data);
-
                         this.checkCity(data)
 
                         console.log(data);
@@ -128,7 +126,7 @@ class Clima extends Component {
             tempo = "-noite";
         }
 
-        if (d.name != this.state.loc || bg == "" || bg == null) {
+        if (this.state.loc != prevCity || bg == null) {
             await fetch(
                 "https://source.unsplash.com/random/?" + valoresClima + tempo
             ).then((result) => {
@@ -172,8 +170,10 @@ class Clima extends Component {
                 </div>
 
                 <div id="stat">
-                    {/* porreessaakkkkkkkk */}
+                    {/*
+                    porreessaakkkkkkkk 
                     <div>Qualidade do ar: Razoável</div>
+                    */}
 
                     <div id="humid">Umidade: {this.state.humid}%</div>
                     <div id="vento">

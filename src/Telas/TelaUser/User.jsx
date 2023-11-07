@@ -3,13 +3,13 @@ import { AuthGoogleContext } from "../../contexts/authGoogle";
 import { useContext } from "react";
 import { Button } from "@mui/material";
 
+import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 import Noticia from "../../Components/Noticia/Noticia.jsx";
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 
 import { IconButton } from "@mui/material";
-import { red } from "@mui/material/colors";
 
 import {
 	collection,
@@ -24,7 +24,7 @@ function User() {
 
 	const db = getFirestore(app);
 
-	const { user, xgpfp, delItem, signOut } = useContext(AuthGoogleContext);
+	const { user, delItem, signOut } = useContext(AuthGoogleContext);
 
 	const username = user.displayName || "User";
 	const userImage = user.photoURL || "https://tinyurl.com/5kub7nce";
@@ -35,21 +35,7 @@ function User() {
 	const citiesCollectionRef = collection(db, "users", user.uid, "cities");
 	const newsCollectionRef = collection(db, "users", user.uid, "news");
 
-	const [pfp, setPfp] = useState([])
-
-	const handleIMG = (e) => {
-		var reader = new FileReader();
-		var imgtag = document.getElementById("pfp");
-
-		var selectedFile = e.target.files[0];
-		setPfp(e.target.files[0])
-
-		reader.readAsDataURL(selectedFile);
-
-		reader.onload = (e) => {
-			imgtag.src = e.target.result;
-		};
-	}
+	
 
 	const deleteCity = (city) => {
 		//remove
@@ -57,9 +43,6 @@ function User() {
 		delItem("cities", city);
 	};
 
-	function save() {
-		xgpfp(pfp)
-	}
 
 	useEffect(() => {
 		const getCities = async () => {
@@ -73,7 +56,7 @@ function User() {
 		getCities();
 		getNews();
 		console.log('aiai')
-	}, [cities]);
+	}, []);
 
 
 	return (
@@ -83,15 +66,11 @@ function User() {
 					id="userbg"
 					src="https://i.ytimg.com/vi/SGQULVZ8lyk/maxresdefault.jpg?7857057827"
 				/>
-				<div>
+				<div id="user-data">
 					<h2>{username}</h2>
-
-					<label htmlFor="inputFile">
+					<Link to="/home/user/edit">
 						<img src={userImage} id="pfp" />
-					</label>
-
-					<input id="inputFile" type="file" accept=".png, .jpg, .gif" onChange={handleIMG} />
-
+					</Link>
 				</div>
 			</div>
 
@@ -143,9 +122,6 @@ function User() {
 				</ul>
 			</div>
 			<div id="buttons">
-				<Button id="save" onClick={save} variant="contained" >
-					Salvar
-				</Button>
 				<Button id="sair" onClick={signOut} variant="outlined" color="error">
 					Sair
 				</Button>

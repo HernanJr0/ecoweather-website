@@ -14,6 +14,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { PrivateRoutes } from "./index.jsx";
 import Header from "../Components/Header/Header.jsx";
 import Footer from "../Components/Footer/Footer.jsx";
+import EditUser from "../Telas/TelaUser/EditUser.jsx";
 
 export const Router = () => {
 
@@ -33,6 +34,8 @@ export const Router = () => {
                     <Route path="/home" element={<PrivateRoutes />}>
                         <Route path="/home" element={<Home />} />
                         <Route path="/home/user" element={<User />} />
+                        <Route path="/home/user/edit" element={<EditUser />} />
+                            
                         <Route path="/home/conteudos" element={<Conteudos />} />
                         <Route path="/home/conteudos/:id" element={<ConteudoDetalhado />} />
                         <Route path="/home/informacoes" element={<Informacoes />} />

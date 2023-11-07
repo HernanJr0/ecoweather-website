@@ -27,9 +27,10 @@ const Previsao = () => {
                 toast.success(`Clima de ${data.name}, ${data.country} consultado com sucesso`)
 
                 setWeather(data)
+                console.log("ai")
             })
         }
-
+        console.log("ai")
         fetchWeather()
     }, [query, units])
 

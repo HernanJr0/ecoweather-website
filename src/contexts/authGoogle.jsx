@@ -25,10 +25,10 @@ import {
 
 
 import {
-	getStorage,
-	ref,
-	uploadBytes,
-	getDownloadURL,
+    getStorage,
+    ref,
+    uploadBytes,
+    getDownloadURL,
 } from "firebase/storage";
 
 const provider = new GoogleAuthProvider();
@@ -37,11 +37,12 @@ export const AuthGoogleProvider = ({ children }) => {
 
     const db = getFirestore(app);
     const auth = getAuth(app);
-	const storage = getStorage(app)
+    const storage = getStorage(app)
 
     const [user, setUser] = useState(null);
 
     const userRef = collection(db, "users")
+
 
     useEffect(() => {
         const storageUser = localStorage.getItem("@AuthFirebase:user");
@@ -49,14 +50,16 @@ export const AuthGoogleProvider = ({ children }) => {
         if (storageToken && storageUser) {
             setUser(JSON.parse(storageUser));
         }
+        console.log("ai")
     }, []);
 
-    async function checkUser(user) {
-        const docSnap = await getDoc(doc(db, "users", user.uid));
+    async function checkUser(u) {
+        const docSnap = await getDoc(doc(userRef, u.uid));
 
-        if (!docSnap.exists()) {
-            setDoc(doc(userRef, user.uid), {
-                username: user.displayName || "user",
+        if (!docSnap.exists() || u.displayName != docSnap.displayName) {
+
+            setDoc(doc(userRef, u.uid), {
+                username: u.displayName || "user",
             })
         }
     }
@@ -105,9 +108,7 @@ export const AuthGoogleProvider = ({ children }) => {
                     })
                 }
 
-                setDoc(doc(db, "users", u.uid), {
-                    username: username || "user",
-                });
+                checkUser(u)
 
                 console.log(u);
             })
@@ -145,26 +146,39 @@ export const AuthGoogleProvider = ({ children }) => {
         return <Navigate to="/" />;
     };
 
-    const xgpfp = async (file) => {
+    const xgUser = async (nome) => {
+
+        await updateProfile(auth.currentUser, {
+            displayName: nome
+        })
+
+        localStorage.setItem("@AuthFirebase:user", JSON.stringify(auth.currentUser));
+        setUser(auth.currentUser)
+        checkUser(auth.currentUser)
+
+        console.log('success')
+    }
+    const xgPfp = async (file) => {
 
         await uploadBytes(ref(storage, 'users_pfp/' + user.uid), file)
             .then((snapshot) => {
                 console.log("success")
-                console.log(file)
             })
 
         getDownloadURL(ref(storage, 'users_pfp/' + user.uid))
-            .then((url) => {
-                updateProfile(auth.currentUser, {
+            .then(async (url) => {
+                await updateProfile(auth.currentUser, {
                     photoURL: url
                 })
                 console.log('success')
-                console.log(url)
             })
             .catch((error) => {
                 console.log(error)
                 // Handle any errors
             });
+
+        localStorage.setItem("@AuthFirebase:user", JSON.stringify(auth.currentUser));
+        setUser(auth.currentUser)
     }
 
     const addCity = (city) => {
@@ -186,6 +200,7 @@ export const AuthGoogleProvider = ({ children }) => {
 
             fav: news.fav
         });
+        console.log("aiai")
     };
 
     const delItem = (items, item) => {
@@ -194,6 +209,8 @@ export const AuthGoogleProvider = ({ children }) => {
 
     const isItemFav = async (items, item) => {
         const docSnap = await getDoc(doc(userRef, user.uid, items, item));
+
+        console.log("aiai")
 
         var x;
 
@@ -224,7 +241,8 @@ export const AuthGoogleProvider = ({ children }) => {
                 signInAccount,
                 signOut,
 
-                xgpfp,
+                xgPfp,
+                xgUser,
 
                 addCity,
                 addNews,

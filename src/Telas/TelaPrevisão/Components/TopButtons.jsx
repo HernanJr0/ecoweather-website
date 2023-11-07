@@ -46,7 +46,7 @@ function TopButtons({ setQuery }) {
         const getCities = async () => {
             const data = await getDocs(citiesCollectionRef);
             setCities(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-            console.log("kk")
+            console.log("ai")
         };
         getCities();
     }, []);
