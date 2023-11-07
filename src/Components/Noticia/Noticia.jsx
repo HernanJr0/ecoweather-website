@@ -70,7 +70,7 @@ class Noticia extends Component {
 
     render() {
         return (
-            <div>
+            <div id='noticiaItemCont'>
                 <hr />
                 <a href={this.state.url} target='_blank' rel='noreferrer'>
                     <div className='noticia'>
