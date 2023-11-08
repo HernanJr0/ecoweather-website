@@ -64,14 +64,17 @@ a:active {
 }
 
 #i-city {
-  width: 0;
-  padding: 0;
-  transition: width 300ms;
-}
-#i-city:focus {
+  /* width: 0;
+  padding: 0; */
   padding-left: 14px;
   width: 100px;
+  /* transition: width 300ms; */
 }
+
+/* #i-city:focus {
+  padding-left: 14px;
+  width: 100px;
+} */
 
 #conteudo {
   display: flex;
@@ -94,7 +97,7 @@ a:active {
 #sideContent {
   width: 50%;
   height: fit-content;
-  
+
   max-width: 300px;
   padding: 15px 15px 0;
   margin: 7.5px;

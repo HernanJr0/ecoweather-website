@@ -1,52 +1,33 @@
-import { app } from "../../service/firebaseConfig.jsx";
 import { AuthGoogleContext } from "../../contexts/authGoogle";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Button } from "@mui/material";
 
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
 
 import { Star } from "../../Components/Clima/Clima.jsx"
 
 import Noticia from "../../Components/Noticia/Noticia.jsx";
 
-import {
-	collection,
-	getFirestore,
-	getDocs,
-} from "firebase/firestore";
 
 import "./User.css";
 
 function User() {
 
-	const db = getFirestore(app);
-
-	const { user, signOut } = useContext(AuthGoogleContext);
+	const { user, signOut, cities, news } = useContext(AuthGoogleContext);
 
 	const username = user.displayName || "User";
 	const userImage = user.photoURL || "https://tinyurl.com/5kub7nce";
 
-	const [cities, setCities] = useState([])
-	const [news, setNews] = useState([])
-
-	const citiesCollectionRef = collection(db, "users", user.uid, "cities");
-	const newsCollectionRef = collection(db, "users", user.uid, "news");
+	const [c, setC] = useState([]);
+	const [n, setN] = useState([]);
 
 	useEffect(() => {
-		const getCities = async () => {
-			const data = await getDocs(citiesCollectionRef);
-			setCities(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-		};
-		const getNews = async () => {
-			const data = await getDocs(newsCollectionRef);
-			setNews(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-		};
-		getCities();
-		getNews();
-		console.log('aiai')
-	}, []);
-
+		const ai = () => {
+			setC(cities)
+			setN(news)
+		}
+		ai()
+	}, [])
 
 	return (
 		<div id="userCont">
@@ -67,7 +48,7 @@ function User() {
 				<h2>Cidades Favoritas</h2>
 				<ul>
 					{
-						cities.map((city, i) => {
+						c.map((city, i) => {
 							return (
 								<li key={i}>
 
@@ -84,7 +65,7 @@ function User() {
 				<ul>
 					<h2>Notícias Salvas</h2>
 					{
-						news.map((news, i) => {
+						n.map((news, i) => {
 							return (
 								<li key={i}>
 									<Noticia

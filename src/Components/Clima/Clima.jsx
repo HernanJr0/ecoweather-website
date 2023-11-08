@@ -56,10 +56,10 @@ class Clima extends Component {
         }
     }
 
-    async checkCity(d) {
-        const { isItemFav } = this.context;
+    checkCity(d) {
+        const { isCityFav } = this.context;
 
-        if (await isItemFav("cities", d)) {
+        if (isCityFav(d)) {
             this.setState({ fav: true });
         } else {
             this.setState({ fav: false });
@@ -184,7 +184,7 @@ class Clima extends Component {
                 </div>
 
                 <div id="starCont">
-                    <Checkbox
+                    {/* <Checkbox
                         id="starIcon"
                         onChange={this.handleFav("fav")}
                         checked={this.state.fav}
@@ -197,7 +197,9 @@ class Clima extends Component {
                             },
                             "& .MuiSvgIcon-root": { fontSize: 32 },
                         }}
-                    />
+                    /> */}
+
+                    <Star city={this.state.loc} />
                 </div>
             </div>
 
@@ -208,20 +210,21 @@ class Clima extends Component {
 }
 
 const Star = (props) => {
-    const { isItemFav, addCity, delItem } = useContext(AuthGoogleContext);
+    const { addCity, delItem, isCityFav } = useContext(AuthGoogleContext);
 
     const [fav, setFav] = useState(true)
 
-    /* useEffect(() => {
-        const checkCity = async () => {
-            if (await isItemFav("cities", props.city)) {
+    useEffect(() => {
+        const checkCity = () => {
+            const a = isCityFav(props.city)
+            if (a == true) {
                 setFav(true);
             } else {
                 setFav(false);
             }
         }
         checkCity()
-    }) */
+    }, [props.city])
 
     const handleFav = (e) => {
         setFav(e.target.checked);

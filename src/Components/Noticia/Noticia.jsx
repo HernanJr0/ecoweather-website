@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './Noticia.css'
-
+import { useContext } from 'react';
+import { useState, useEffect } from 'react';
 import { Checkbox } from "@mui/material";
 import { red } from "@mui/material/colors";
 
@@ -27,20 +28,12 @@ class Noticia extends Component {
 
             fav: false
 
-            /* image: this.props.item.image,
-            title: this.props.item.title,
-            body: this.props.item.body,
-
-            uri: this.props.item.uri,
-            url: this.props.item.url,
-            source: this.props.source, */
-
         }
-        this.state.handleFav = this.handleFav.bind(this);
-        this.state.checkNews = this.checkNews.bind(this)
+        /* this.state.handleFav = this.handleFav.bind(this);
+        this.state.checkNews = this.checkNews.bind(this) */
     }
 
-    handleFav = (name) => (e) => {
+    /* handleFav = (name) => (e) => {
         this.setState({ [name]: e.target.checked });
 
         const { addNews, delItem } = this.context;
@@ -52,20 +45,20 @@ class Noticia extends Component {
             //remove
             delItem("news", this.state.uri);
         }
-    };
+    }; */
 
-    async checkNews(d) {
-        const { isItemFav } = this.context;
+    /* checkNews(d) {
+        const { isNewFav } = this.context;
 
-        if (await isItemFav("news", d)) {
+        if (isNewFav(d)) {
             this.setState({ fav: true });
         } else {
             this.setState({ fav: false });
         }
-    }
+    } */
 
     componentDidMount() {
-        this.checkNews(this.state.uri)
+        // this.checkNews(this.state.uri)
     }
 
     render() {
@@ -76,7 +69,8 @@ class Noticia extends Component {
                     <div className='noticia'>
 
                         <div id="bookmarkCont">
-                            <Checkbox
+                            <Mark news={this.state} />
+                            {/* <Checkbox
                                 id="bookmarkIcon"
                                 onChange={this.handleFav("fav")}
                                 checked={this.state.fav}
@@ -89,7 +83,7 @@ class Noticia extends Component {
                                     },
                                     "& .MuiSvgIcon-root": { fontSize: 30 },
                                 }}
-                            />
+                            /> */}
                         </div>
 
                         <img className='noticiaImg' src={this.state.image} alt={this.state.title} />
@@ -113,4 +107,54 @@ class Noticia extends Component {
         )
     }
 }
+
+
+const Mark = (props) => {
+    const { isNewFav, addNews, delItem } = useContext(AuthGoogleContext);
+
+    const [fav, setFav] = useState(true)
+
+    useEffect(() => {
+        const checkCity = () => {
+            const a = isNewFav(props.news.uri)
+            if (a == true) {
+                setFav(true);
+            } else {
+                setFav(false);
+            }
+        }
+        checkCity()
+    }, [props.news.uri])
+
+    const handleFav = (e) => {
+        setFav(e.target.checked);
+
+        if (e.target.checked) {
+            //registra
+            addNews(props.news);
+        } else {
+            //remove
+            delItem("news", props.news.uri);
+        }
+    };
+
+    return (
+        <Checkbox
+            id="bookmarkIcon"
+            onChange={handleFav}
+            checked={fav}
+            icon={<BookmarkBorderIcon />}
+            checkedIcon={<BookmarkIcon />}
+            sx={{
+                color: red[0],
+                "&.Mui-checked": {
+                    color: red[400],
+                },
+                "& .MuiSvgIcon-root": { fontSize: 30 },
+            }}
+        />
+    )
+}
+
+
 export default Noticia
