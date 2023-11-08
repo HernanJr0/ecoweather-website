@@ -1,13 +1,10 @@
 #Atalho {
     background-color: #202020;
     /* margin: 15px; */
-    margin-bottom: 15px;
     border-radius: 10px;
-    height: 230px;
-}
-
-#atalhoCont {
     padding: 15px;
+    margin-bottom: 15px;
+    height: 200px;
 }
 
 #atalhoDesc {
@@ -19,7 +16,7 @@
     margin: 0 0 10px 5px;
 }
 
-#atalhoCont hr {
+#Atalho hr {
     border: 1px solid #303030;
 }
 

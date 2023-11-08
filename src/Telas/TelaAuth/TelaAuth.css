@@ -1,5 +1,5 @@
 #formulario {
-    height: calc(100vh - 140px);
+    height: calc(100vh - 130px);
     display: flex;
     flex-direction: column;
     justify-content: center;

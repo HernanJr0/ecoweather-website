@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { useState, useEffect, useContext } from 'react'
 import "./Clima.css";
 import StarIcon from "@mui/icons-material/Star";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
@@ -12,10 +13,11 @@ import { IconButton, TextField } from '@mui/material';
 import PlaceIcon from '@mui/icons-material/Place'; */
 import { AuthGoogleContext } from "../../contexts/authGoogle";
 
-var val = "";
-var prevCity = "";
-var bg = "";
+var val = null;
+var prevCity = null;
+var bg = null;
 const key = "d3afafb4de8d7a76ad9ced3bed938d51";
+
 
 class Clima extends Component {
     static contextType = AuthGoogleContext;
@@ -24,9 +26,7 @@ class Clima extends Component {
         super(props);
 
         this.state = {
-            loc:
-                this.props.locale.charAt(0).toUpperCase() +
-                this.props.locale.slice(1),
+            loc: this.props.locale,
             clima: "",
             temp: "",
             s_ter: "",
@@ -40,6 +40,7 @@ class Clima extends Component {
         this.drawWeather = this.drawWeather.bind(this);
         this.weatherBallon = this.weatherBallon.bind(this);
         this.handleFav = this.handleFav.bind(this);
+        this.checkCity = this.checkCity.bind(this);
     }
 
     componentDidMount() {
@@ -51,49 +52,65 @@ class Clima extends Component {
         if (prevProps.locale !== this.props.locale) {
             // this.setState({loc: this.props.locale})
             this.weatherBallon(this.props.locale);
+            prevCity = this.props.locale;
         }
     }
 
+    checkCity(d) {
+        const { isCityFav } = this.context;
+
+        if (isCityFav(d)) {
+            this.setState({ fav: true });
+        } else {
+            this.setState({ fav: false });
+        }
+    }
+
+    handleFav = (name) => (e) => {
+        this.setState({ [name]: e.target.checked });
+
+        const { addCity, delItem } = this.context;
+        if (e.target.checked) {
+            //registra
+            addCity(this.state.loc);
+        } else {
+            //remove
+            delItem("cities", this.state.loc);
+        }
+    };
+
     weatherBallon(city) {
-        if (city != prevCity) {
+        if (city !== prevCity) {
             fetch(
-                "https://api.openweathermap.org/data/2.5/weather?lang=pt_br&q=" +
-                    city +
-                    "&appid=" +
-                    key
-            )
-                .then((resp) => {
+                "https://api.openweathermap.org/data/2.5/weather?lang=pt_br&q=" + city + "&appid=" + key)
+                .then(resp => {
                     return resp.json();
                 })
                 .then((data) => {
                     if (data.cod == 404) {
                         alert("Este lugar não foi encontrado");
                     } else {
-                        this.drawWeather(data);
                         val = data;
+
+                        this.drawWeather(data);
+                        this.checkCity(data.name)
+
                         console.log(data);
                     }
                 })
                 .catch((error) => {
                     console.log(error);
                 });
-            prevCity = city;
         } else {
             this.drawWeather(val);
+            this.checkCity(val.name)
         }
     }
 
+
     async drawWeather(d) {
-        const { isCityFav } = this.context;
 
-        if (await isCityFav(d.name)) {
-            this.setState({ fav: true });
-        } else {
-            this.setState({ fav: false });
-        }
-
-        let c_img =
-            "http://openweathermap.org/img/wn/" + d.weather[0].icon + ".png";
+        let c_img = "http://openweathermap.org/img/wn/" + d.weather[0].icon + ".png";
 
         let t = Math.round(parseFloat(d.main.temp) - 273.15);
 
@@ -111,13 +128,13 @@ class Clima extends Component {
             tempo = "-noite";
         }
 
-        if (d.name != this.state.loc || bg == "" || bg == null)
+        if (this.state.loc != prevCity || bg == null) {
             await fetch(
                 "https://source.unsplash.com/random/?" + valoresClima + tempo
             ).then((result) => {
                 bg = result.url;
             });
-
+        }
         this.setState({
             loc: d.name,
             clima: d.weather[0].description,
@@ -129,19 +146,6 @@ class Clima extends Component {
             wall: bg,
         });
     }
-
-    handleFav = (name) => (e) => {
-        this.setState({ [name]: e.target.checked });
-
-        const { addCity, delCity } = this.context;
-        if (e.target.checked) {
-            //registra
-            addCity(this.state.loc);
-        } else {
-            //remove
-            delCity(this.state.loc);
-        }
-    };
 
     render() {
         return (
@@ -168,13 +172,19 @@ class Clima extends Component {
                 </div>
 
                 <div id="stat">
+                    {/*
+                    porreessaakkkkkkkk 
+                    <div>Qualidade do ar: Razoável</div>
+                    */}
+
                     <div id="humid">Umidade: {this.state.humid}%</div>
                     <div id="vento">
                         Vento: {(this.state.vento * 1).toFixed(1)} m/s
                     </div>
                 </div>
-                <div id="starcont">
-                    <Checkbox
+
+                <div id="starCont">
+                    {/* <Checkbox
                         id="starIcon"
                         onChange={this.handleFav("fav")}
                         checked={this.state.fav}
@@ -185,9 +195,11 @@ class Clima extends Component {
                             "&.Mui-checked": {
                                 color: yellow[600],
                             },
-                            "& .MuiSvgIcon-root": { fontSize: 30 },
+                            "& .MuiSvgIcon-root": { fontSize: 32 },
                         }}
-                    />
+                    /> */}
+
+                    <Star city={this.state.loc} />
                 </div>
             </div>
 
@@ -196,4 +208,51 @@ class Clima extends Component {
         );
     }
 }
-export default Clima;
+
+const Star = (props) => {
+    const { addCity, delItem, isCityFav } = useContext(AuthGoogleContext);
+
+    const [fav, setFav] = useState(true)
+
+    useEffect(() => {
+        const checkCity = () => {
+            const a = isCityFav(props.city)
+            if (a == true) {
+                setFav(true);
+            } else {
+                setFav(false);
+            }
+        }
+        checkCity()
+    }, [props.city])
+
+    const handleFav = (e) => {
+        setFav(e.target.checked);
+
+        if (e.target.checked) {
+            //registra
+            addCity(props.city);
+        } else {
+            //remove
+            delItem("cities", props.city);
+        }
+    };
+
+    return (
+        <Checkbox
+            id="starIcon"
+            onChange={handleFav}
+            checked={fav}
+            icon={<StarBorderIcon />}
+            checkedIcon={<StarIcon />}
+            sx={{
+                color: yellow[0],
+                "&.Mui-checked": {
+                    color: yellow[600],
+                },
+                "& .MuiSvgIcon-root": { fontSize: 32 },
+            }}
+        />
+    )
+}
+export { Clima, Star };

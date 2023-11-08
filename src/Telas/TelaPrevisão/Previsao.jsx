@@ -27,9 +27,10 @@ const Previsao = () => {
                 toast.success(`Clima de ${data.name}, ${data.country} consultado com sucesso`)
 
                 setWeather(data)
+                console.log("ai")
             })
         }
-
+        console.log("ai")
         fetchWeather()
     }, [query, units])
 
@@ -49,7 +50,7 @@ const Previsao = () => {
                     </div>
                 )}
 
-                <ToastContainer autoClose={5000} theme='colored' newestOnTop={true} />
+                <ToastContainer autoClose={2000} theme='colored' newestOnTop={true} position='bottom-right'/>
             </div>
         </div>
     )

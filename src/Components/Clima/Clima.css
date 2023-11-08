@@ -80,7 +80,7 @@
     z-index: 1;
 }
 
-#starcont {
+#starCont {
     position: absolute;
     top: calc(70vh + 70px - 48px - 10px);
     right: 10px;
@@ -96,7 +96,7 @@
         max-height: calc(100vh - 60px); */
         height: calc(100vh - 70px);
     }
-    #starcont {
+    #starCont {
         top: calc(100vh - 48px - 10px);
     }
 }

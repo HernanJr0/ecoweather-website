@@ -9,6 +9,10 @@ import {
 
 import { useState, useEffect, useContext } from 'react';
 
+
+import 'swiper/css';
+import 'swiper/css/scrollbar';
+
 function TopButtons({ setQuery }) {
 
     /* const cities = [
@@ -42,22 +46,40 @@ function TopButtons({ setQuery }) {
         const getCities = async () => {
             const data = await getDocs(citiesCollectionRef);
             setCities(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-            console.log("kk")
+            console.log("ai")
         };
         getCities();
     }, []);
 
     return (
-        <div className='flex items-center justify-around my-6'>
+        <div className='city-list flex items-center'>
             {cities.map((city, i) => (
-                <button
-                    key={i}
-                    className='text-white text-lg font-medium'
+                <button key={i}
+                    className='city-button text-white text-lg font-medium border-solid border-2 border-white rounded-md m-4 p-1 bg-transparent hover:border-gray-300 hover:text-gray-300 hover:scale-125 transition ease-out'
                     onClick={() => setQuery({ q: city.nome })}>{city.nome}
                 </button>
             ))}
         </div>
     )
+    /* 
+<Swiper
+    scrollbar={{
+        draggable: true,
+        hide: true
+    }}
+    mousewheel
+    freeMode
+    id='cities-swiper'
+    slidesPerView={'auto'}
+    grabCursor={true}
+    modules={[Scrollbar, Mousewheel]}
+> */
+    {/* <SwiperSlide>
+                    </SwiperSlide> */}
+
+
+    /* </Swiper> */
+
 }
 
 export default TopButtons

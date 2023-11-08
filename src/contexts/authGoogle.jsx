@@ -18,11 +18,19 @@ import {
     doc,
     deleteDoc,
     getDoc,
+    getDocs,
     setDoc,
     collection,
 
 } from "firebase/firestore";
 
+
+import {
+    getStorage,
+    ref,
+    uploadBytes,
+    getDownloadURL,
+} from "firebase/storage";
 
 const provider = new GoogleAuthProvider();
 
@@ -30,45 +38,98 @@ export const AuthGoogleProvider = ({ children }) => {
 
     const db = getFirestore(app);
     const auth = getAuth(app);
-
-    const [user, setUser] = useState(null);
+    const storage = getStorage(app)
 
     const userRef = collection(db, "users")
+
+    const [user, setUser] = useState(null);
+    const [cities, setCities] = useState(null)
+    const [news, setNews] = useState(null)
+
 
     useEffect(() => {
         const storageUser = localStorage.getItem("@AuthFirebase:user");
         const storageToken = localStorage.getItem("@AuthFirebase:token");
+        const storageCities = localStorage.getItem("@AuthFirebase:cities");
+        const storageNews = localStorage.getItem("@AuthFirebase:news");
+
         if (storageToken && storageUser) {
             setUser(JSON.parse(storageUser));
+            setCities(JSON.parse(storageCities))
+            setNews(JSON.parse(storageNews))
+
+            /* async function pegacidade() {
+                setCities(await getDocs(collection(userRef, auth.currentUser.uid, "cities")))
+            }
+            pegacidade() */
+
         }
-    },[]);
+        console.log("ai")
 
-    async function checkUser(user) {
-        const docSnap = await getDoc(doc(db, "users", user.uid));
+    }, []);
 
-        if (!docSnap.exists()) {
-            setDoc(doc(userRef, user.uid), {
-                username: user.displayName || "user",
+    async function checkUser(u) {
+        const docSnap = await getDoc(doc(userRef, u.uid));
+
+        if (!docSnap.exists() || u.displayName != docSnap.displayName) {
+
+            setDoc(doc(userRef, u.uid), {
+                username: u.displayName || "user",
             })
         }
     }
+
+    async function pega(user, items) {
+        if (items == 'cities') {
+
+            const a = await getDocs(collection(userRef, user.uid, "cities"))
+
+            console.log("ai")
+            const b = a.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+
+            setCities(b)
+            localStorage.setItem("@AuthFirebase:cities", JSON.stringify(b));
+        }
+
+        if (items == 'news') {
+            const a = await getDocs(collection(userRef, user.uid, "news"))
+
+            console.log("ai")
+            const b = a.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+
+            setNews(b)
+            localStorage.setItem("@AuthFirebase:news", JSON.stringify(b));
+        }
+    }
+
+    const signInGoogle = () => {
+        signInWithPopup(auth, provider)
+            .then(async (result) => {
+                const credential = GoogleAuthProvider.credentialFromResult(result);
+
+                const token = credential.accessToken;
+                const u = result.user;
+
+                setUser(u);
+                localStorage.setItem("@AuthFirebase:user", JSON.stringify(u));
+                localStorage.setItem("@AuthFirebase:token", token);
+
+                console.log(u);
+
+                checkUser(u)
+
+                pega(u, 'cities')
+                pega(u, 'news')
+            })
+            .catch((error) => {
+                //console.log(errorMessage)
+            });
+    };
 
     const createAccount = async (username, email, password) => {
         createUserWithEmailAndPassword(auth, email, password)
             .then((result) => {
                 const u = result.user;
-
-                {
-                    // getDownloadURL(ref(storage, 'images/stars.jpg'))
-                    //     .then((url) => {
-
-                    //     })
-
-                    // uploadBytes(ref(storage, u.uid), pfp)
-                    //     .then((snapshot) => {
-                    //         console.log("success")
-                    //     })
-                }
 
                 if (username != '') {
                     updateProfile(u, {
@@ -76,9 +137,7 @@ export const AuthGoogleProvider = ({ children }) => {
                     })
                 }
 
-                setDoc(doc(db, "users", u.uid), {
-                    username: username || "user",
-                });
+                checkUser(u)
 
                 console.log(u);
             })
@@ -104,80 +163,110 @@ export const AuthGoogleProvider = ({ children }) => {
                 localStorage.setItem("@AuthFirebase:user", JSON.stringify(u));
                 localStorage.setItem("@AuthFirebase:token", token);
 
+                console.log(u);
+
                 checkUser(u)
-                // ...
+
+                pega(u, 'cities')
+                pega(u, 'news')
             })
             .catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
                 //console.log(errorMessage)
             });
 
         return <Navigate to="/" />;
     };
 
-    const signInGoogle = () => {
-        signInWithPopup(auth, provider)
-            .then(async (result) => {
-                const credential = GoogleAuthProvider.credentialFromResult(result);
+    const xgUser = async (nome) => {
 
-                const token = credential.accessToken;
-                const u = result.user;
+        await updateProfile(auth.currentUser, {
+            displayName: nome
+        })
 
-                setUser(u);
-                localStorage.setItem("@AuthFirebase:user", JSON.stringify(u));
-                localStorage.setItem("@AuthFirebase:token", token);
+        localStorage.setItem("@AuthFirebase:user", JSON.stringify(auth.currentUser));
 
-                console.log(u);
+        setUser(auth.currentUser)
+        checkUser(auth.currentUser)
 
-                checkUser(u)
+        console.log('success')
+    }
+
+    const xgPfp = async (file) => {
+
+        await uploadBytes(ref(storage, 'users_pfp/' + user.uid), file)
+            .then((snapshot) => {
+                console.log("success")
+            })
+
+        await getDownloadURL(ref(storage, 'users_pfp/' + user.uid))
+            .then(async (url) => {
+                await updateProfile(auth.currentUser, {
+                    photoURL: url
+                })
+                console.log('success')
             })
             .catch((error) => {
-                // Handle Errors here.
-                const errorCode = error.code;
-                const errorMessage = error.message;
-
-                // The email of the user's account used.
-                const email = error.customData.email;
-                // The AuthCredential type that was used.
-                const credential = GoogleAuthProvider.credentialFromError(error);
-
-                console.log(errorMessage);
-                // console.log(errorMessage)
-                // console.log(email)
-                // console.log(credential)
+                console.log(error)
+                // Handle any errors
             });
-    };
 
-    const addCity = (city) => {
-        const u = user;
+        localStorage.setItem("@AuthFirebase:user", JSON.stringify(auth.currentUser));
 
-        setDoc(doc(userRef, u.uid, "cities", city), {
-            nome: city,
+        setUser(auth.currentUser)
+    }
+
+    const addCity = async (c) => {
+        await setDoc(doc(userRef, user.uid, "cities", c), {
+            nome: c,
         });
+
+        pega(user, "cities")
     };
 
-    const delCity = (city) => {
-        const u = user;
+    const addNews = async (n) => {
+        await setDoc(doc(userRef, user.uid, "news", n.uri), {
+            uri: n.uri,
+            title: n.title,
+            body: n.body,
 
-        deleteDoc(doc(userRef, u.uid, "cities", city));
+            url: n.url,
+            source: n.source,
+            image: n.image,
+        });
+
+        pega(user, "news")
     };
 
-    const isCityFav = async (city) => {
-        const u = user;
+    const delItem = async (items, item) => {
+        await deleteDoc(doc(userRef, user.uid, items, item));
 
-        const docSnap = await getDoc(doc(userRef, u.uid, "cities", city));
+        pega(user, items)
+    };
 
-        var x;
+    const isNewFav = (item) => {
 
-        if (docSnap.exists()) {
-            x = true;
-        } else {
-            // docSnap.data() will be undefined in this case
-            console.log("No such document!");
-            x = false;
+        for (var it in news) {
+            if (item == news[it].uri) {
+                return true
+            } else {
+                continue
+            }
         }
-        return x;
+        console.log("aiai")
+        
+    }
+
+    const isCityFav = (item) => {
+
+        for (var it in cities) {
+            if (item == cities[it].nome) {
+                return true;
+            } else {
+                continue
+            }
+        }
+        console.log("aiai")
+
     };
 
     function signOut() {
@@ -198,9 +287,18 @@ export const AuthGoogleProvider = ({ children }) => {
                 signInAccount,
                 signOut,
 
-                isCityFav,
+                xgPfp,
+                xgUser,
+
+                cities,
+                news,
+
                 addCity,
-                delCity
+                addNews,
+                delItem,
+
+                isCityFav,
+                isNewFav
             }}
         >
             {children}

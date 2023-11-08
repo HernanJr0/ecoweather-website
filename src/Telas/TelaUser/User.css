@@ -28,9 +28,12 @@
 }
 
 #pfp {
-  height: 100px;
-  width: 100px;
+  max-height: 100px;
+  min-height: 100px;
+  max-width: 100px;
+  min-width: 100px;
   border-radius: 50%;
+  object-fit: cover;
 }
 
 #inputFile {
@@ -41,14 +44,36 @@
   z-index: 1;
 }
 
-#l-cities{
+#l-cities {
   margin: 30px 0 0 30px;
 }
 
-#buttons{
+#l-news ul {
+  padding: 0;
+
+  border-radius: 20px;
+  background-color: #303030;
+  padding: 15px;
+  margin: 7.5px;
+}
+
+#l-news li,
+#l-cities li {
+  list-style: none;
+}
+
+#l-news>ul>h2 {
+  margin-left: 30px;
+}
+
+#l-news #noticiaCont {
+  border: 1px solid #202020;
+}
+
+#buttons {
   display: flex;
-  justify-content: space-between;
-  width: 80%;
+  justify-content: flex-end;
+  width: 90%;
   margin: 20px auto 0;
 }
 
@@ -56,6 +81,7 @@
   #userbg {
     height: 200px;
   }
+
   #usercard div {
     height: 250px;
   }

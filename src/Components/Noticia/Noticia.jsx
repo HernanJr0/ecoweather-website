@@ -1,49 +1,160 @@
 import React, { Component } from 'react';
 import './Noticia.css'
+import { useContext } from 'react';
+import { useState, useEffect } from 'react';
+import { Checkbox } from "@mui/material";
+import { red } from "@mui/material/colors";
 
- class Noticia extends Component {
+import BookmarkIcon from "@mui/icons-material/Bookmark";
+import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
+
+import { AuthGoogleContext } from "../../contexts/authGoogle";
+
+class Noticia extends Component {
+    static contextType = AuthGoogleContext;
+
     constructor(props) {
         super(props)
-        
-        this.state = {
-            creditos: this.props.item.creditos,
-            titulo: this.props.item.title,
-            descricao: this.props.item.body,
 
-            link: this.props.item.url,
-            fonte: this.props.item.source.uri,
-            imagemSrc: this.props.item.image
+        this.state = {
+
+            image: this.props.item.image,
+            title: this.props.item.title,
+            body: this.props.item.body,
+
+            uri: this.props.item.uri,
+            url: this.props.item.url,
+            source: this.props.source,
+
+            fav: false
+
         }
+        /* this.state.handleFav = this.handleFav.bind(this);
+        this.state.checkNews = this.checkNews.bind(this) */
+    }
+
+    /* handleFav = (name) => (e) => {
+        this.setState({ [name]: e.target.checked });
+
+        const { addNews, delItem } = this.context;
+
+        if (e.target.checked) {
+            //registra
+            addNews(this.state);
+        } else {
+            //remove
+            delItem("news", this.state.uri);
+        }
+    }; */
+
+    /* checkNews(d) {
+        const { isNewFav } = this.context;
+
+        if (isNewFav(d)) {
+            this.setState({ fav: true });
+        } else {
+            this.setState({ fav: false });
+        }
+    } */
+
+    componentDidMount() {
+        // this.checkNews(this.state.uri)
     }
 
     render() {
         return (
-            <div>
+            <div id='noticiaItemCont'>
                 <hr />
-                <div className='noticiaCont'>
-                    <a className='link' href={this.state.link} target='_blank' rel='noreferrer'>
-                        <div className='noticia'>
+                <a href={this.state.url} target='_blank' rel='noreferrer'>
+                    <div className='noticia'>
 
-                            <img className='noticiaImg' src={this.state.imagemSrc} alt={this.state.titulo}/>
-
-                            <div className='noticiaDesc'>
-                                <p className='noticiaCreditos'>
-                                    Fonte: {this.state.fonte}
-                                </p>
-
-                                <h2 className='noticiaTitulo'>
-                                    {this.state.titulo}
-                                </h2>
-
-                                <p className='noticiaDescricao'>
-                                    {this.state.descricao}
-                                </p>
-                            </div>
+                        <div id="bookmarkCont">
+                            <Mark news={this.state} />
+                            {/* <Checkbox
+                                id="bookmarkIcon"
+                                onChange={this.handleFav("fav")}
+                                checked={this.state.fav}
+                                icon={<BookmarkBorderIcon />}
+                                checkedIcon={<BookmarkIcon />}
+                                sx={{
+                                    color: red[0],
+                                    "&.Mui-checked": {
+                                        color: red[400],
+                                    },
+                                    "& .MuiSvgIcon-root": { fontSize: 30 },
+                                }}
+                            /> */}
                         </div>
-                    </a>
-                </div>
+
+                        <img className='noticiaImg' src={this.state.image} alt={this.state.title} />
+
+                        <div className='noticiaDesc'>
+                            <p className='noticiaCreditos'>
+                                Fonte: {this.state.source}
+                            </p>
+
+                            <h2 className='noticiaTitulo'>
+                                {this.state.title}
+                            </h2>
+
+                            <p className='noticiaDescricao'>
+                                {this.state.body}
+                            </p>
+                        </div>
+                    </div>
+                </a>
             </div>
         )
     }
-}  
+}
+
+
+const Mark = (props) => {
+    const { isNewFav, addNews, delItem } = useContext(AuthGoogleContext);
+
+    const [fav, setFav] = useState(true)
+
+    useEffect(() => {
+        const checkCity = () => {
+            const a = isNewFav(props.news.uri)
+            if (a == true) {
+                setFav(true);
+            } else {
+                setFav(false);
+            }
+        }
+        checkCity()
+    }, [props.news.uri])
+
+    const handleFav = (e) => {
+        setFav(e.target.checked);
+
+        if (e.target.checked) {
+            //registra
+            addNews(props.news);
+        } else {
+            //remove
+            delItem("news", props.news.uri);
+        }
+    };
+
+    return (
+        <Checkbox
+            id="bookmarkIcon"
+            onChange={handleFav}
+            checked={fav}
+            icon={<BookmarkBorderIcon />}
+            checkedIcon={<BookmarkIcon />}
+            sx={{
+                color: red[0],
+                "&.Mui-checked": {
+                    color: red[400],
+                },
+                "& .MuiSvgIcon-root": { fontSize: 30 },
+            }}
+        />
+    )
+}
+
+
 export default Noticia

@@ -1,0 +1,20 @@
+#EditUser{
+    justify-content: center;
+    display: flex;
+    width: 100%;
+}
+#EditUserCont{
+    display: flex;
+    max-width: fit-content;
+    flex-direction: column;
+}
+#pfplabel{
+    align-self: center;
+}
+label{
+    width: fit-content;
+    height: fit-content;
+}
+#pfpFile{
+    display: none;
+}

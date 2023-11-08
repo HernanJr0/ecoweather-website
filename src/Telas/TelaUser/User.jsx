@@ -1,102 +1,92 @@
-import { app } from "../../service/firebaseConfig.jsx";
 import { AuthGoogleContext } from "../../contexts/authGoogle";
-import { useContext } from "react";
-import "./User.css";
+import { useContext, useEffect, useState } from "react";
 import { Button } from "@mui/material";
 
-import {
-	collection,
-	getFirestore,
-	getDocs,
-} from "firebase/firestore";
+import { Link } from "react-router-dom";
 
-import {
-    getStorage,
-    ref,
-    uploadBytes,
-    getDownloadURL
-} from "firebase/storage";
+import { Star } from "../../Components/Clima/Clima.jsx"
 
-import { useState, useEffect } from "react";
+import Noticia from "../../Components/Noticia/Noticia.jsx";
+
+
+import "./User.css";
 
 function User() {
 
-	const db = getFirestore(app);
-	const storage = getStorage(app)
-
-	const { user, signOut } = useContext(AuthGoogleContext);
+	const { user, signOut, cities, news } = useContext(AuthGoogleContext);
 
 	const username = user.displayName || "User";
 	const userImage = user.photoURL || "https://tinyurl.com/5kub7nce";
 
-
-	const [cities, setCities] = useState([])
-	const citiesCollectionRef = collection(db, "users", user.uid, "cities");
-
-	const save = () => {
-		uploadBytes(ref(storage, user.uid), inputFile.files[0])
-		    .then((snapshot) => {
-		        console.log("success")
-		    })
-	}
-
-	const handleIMG = (e) => {
-		var selectedFile = e.target.files[0];
-		var reader = new FileReader();
-
-		var imgtag = document.getElementById("pfp");
-
-		reader.onload = (e) => {
-			imgtag.src = e.target.result;
-		};
-
-		reader.readAsDataURL(selectedFile);
-	}
-
-	function clica() {
-		document.getElementById("inputFile").click()
-	}
+	const [c, setC] = useState([]);
+	const [n, setN] = useState([]);
 
 	useEffect(() => {
-		const getCities = async () => {
-			const data = await getDocs(citiesCollectionRef);
-			setCities(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-			console.log("kk")
-		};
-		getCities();
-	}, []);
+		const ai = () => {
+			setC(cities)
+			setN(news)
+		}
+		ai()
+	}, [])
 
 	return (
-		<div>
+		<div id="userCont">
 			<div id="usercard">
 				<img
 					id="userbg"
 					src="https://i.ytimg.com/vi/SGQULVZ8lyk/maxresdefault.jpg?7857057827"
 				/>
-				<div>
+				<div id="user-data">
 					<h2>{username}</h2>
-					<img src={userImage} id="pfp" onClick={clica} />
-					<input id="inputFile" type="file" onChange={handleIMG} />
-
+					<Link to="/home/user/edit">
+						<img src={userImage} id="pfp" />
+					</Link>
 				</div>
 			</div>
 
 			<div id="l-cities">
-				<h2 id="header">Cidades Favoritas</h2>
-				<ul id="">
+				<h2>Cidades Favoritas</h2>
+				<ul>
 					{
-						cities.map((city, i) => {
+						c.map((city, i) => {
 							return (
-								<li key={i}>{city.nome}</li>
+								<li key={i}>
+
+									<Star city={city.nome} />
+									{city.nome}
+
+								</li>
+							)
+						})
+					}
+				</ul>
+			</div>
+			<div id="l-news">
+				<ul>
+					<h2>Notícias Salvas</h2>
+					{
+						n.map((news, i) => {
+							return (
+								<li key={i}>
+									<Noticia
+										item={news}
+										source={news.source}
+
+									/* url={news.url}
+									uri={news.uri}
+									image={news.image}
+									title={news.title}
+									body={news.body}
+									source={news.source} */
+
+									/>
+								</li>
 							);
 						})
 					}
 				</ul>
 			</div>
 			<div id="buttons">
-				<Button id="save" onClick={save} variant="contained" >
-					Salvar
-				</Button>
 				<Button id="sair" onClick={signOut} variant="outlined" color="error">
 					Sair
 				</Button>

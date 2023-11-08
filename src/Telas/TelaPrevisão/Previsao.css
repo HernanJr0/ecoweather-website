@@ -1,3 +1,28 @@
+#cities-swiper{
+  height: 80px;
+  width: 100%;
+  background-color: slategray;
+} 
+
+#cities-swiper .swiper-slide{
+  width: fit-content;
+  display: flex;
+  align-items:center;
+  justify-content: space-around;
+}
+
+.city-list{
+    overflow-x: scroll;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.city-button{
+  min-width: max-content;
+  margin: 0 8px;
+}
+
 .previsaoCont {
   height: fit-content;
   min-height: calc(100vh - 140px);
