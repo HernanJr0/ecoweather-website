@@ -30,7 +30,7 @@ function TemperaturaEDetalhes({ weather: { details, icon, temp, temp_min, temp_m
 
                     <div className='flex font-light text-sm items-center justify-center'>
                         <UilTear size={18} className="mr-1" />
-                        Humidade:
+                        Umidade:
                         <span className='font-medium ml-1'>{`${humidity.toFixed()}%`}</span>
                     </div>
 

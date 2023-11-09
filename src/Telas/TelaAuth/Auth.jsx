@@ -39,7 +39,7 @@ export const Auth = () => {
         <div>
             <form id="formulario">
                 <h1>Seja Bem-vindo</h1>
-                {/* <div id='campos'>
+                <div id='campos'>
 
                     <div id="userCont">
                         <TextField
@@ -103,7 +103,7 @@ export const Auth = () => {
                         />
                     </div>
                 </div> 
-                <Button id='btnCriar' variant="contained" onClick={login} >Cadastrar / Logar</Button> */}
+                <Button id='btnCriar' variant="contained" onClick={login} >Cadastrar / Logar</Button>
                 <Login />
                 <ToastContainer autoClose={2000} theme='colored' newestOnTop={true} position='bottom-right'/>
             </form>
