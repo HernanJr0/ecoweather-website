@@ -6,62 +6,12 @@ import { Person, Email } from "@mui/icons-material";
 import { Login } from "./Login";
 import { useContext } from "react"
 import { AuthGoogleContext } from "../../contexts/authGoogle"
+import { ToastContainer } from 'react-toastify';
 
 import { Visibility } from "@mui/icons-material";
 import { VisibilityOff } from "@mui/icons-material";
-// import {
-//     collection,
-//     getFirestore,
-//     getDocs,
-//     addDoc,
-//     doc,
-//     deleteDoc,
-// } from "firebase/firestore";
-
-// import { getAuth } from "firebase/auth"
-// import { initializeApp } from "firebase/app";
-
-// const firebaseApp = initializeApp({
-//     apiKey: "AIzaSyDYfNOUrNRYL54saMHsTIhyVWubkmR9i_s",
-//     authDomain: "ecoweather-d0887.firebaseapp.com",
-//     projectId: "ecoweather-d0887",
-// });
 
 export const Auth = () => {
-
-    /* 
-    const db = getFirestore(firebaseApp);
-    const userCollectionRef = collection(db, "users");
-
-
-    async function criaUser() {
-
-        if (email && password != "") {
-            const user = await addDoc(userCollectionRef, {
-                email,
-                password,
-            });
-
-            console.log(user);
-            alert('Conta criada com sucesso!')
-        } else {
-            alert('Falha ao criar conta!')
-        }
-    }
-
-      useEffect(() => {
-        const getUsers = async () => {
-          const data = await getDocs(userCollectionRef);
-          setUsers(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-        };
-        getUsers();
-      }, [userCollectionRef]);
-
-    async function deleteUser(id) {
-      const userDoc = doc(db, "users", id);
-      await deleteDoc(userDoc);
-    } 
-    */
 
     // const [users, setUsers] = useState([]);
     const [user, setUser] = useState([]);
@@ -73,9 +23,6 @@ export const Auth = () => {
     const { createAccount, signInAccount } = useContext(AuthGoogleContext)
 
     const handleClickShowPassword = () => setShowPassword(!showPassword);
-
-    
-
 
     async function login() {
         await createAccount(userField.value, emailField.value, passwordField.value)
@@ -90,16 +37,15 @@ export const Auth = () => {
 
     return (
         <div>
-
             <form id="formulario">
-                <h1>Criar Conta</h1>
+                <h1>Seja Bem-vindo</h1>
                 <div id='campos'>
 
                     <div id="userCont">
                         <TextField
                             id="userField"
                             variant="outlined"
-                            label="User"
+                            label="Username"
                             value={user}
                             onChange={(e) => setUser(e.target.value)}
                             InputProps={{
@@ -156,21 +102,11 @@ export const Auth = () => {
                             required
                         />
                     </div>
-                </div>
-                <Button id='btnCriar' variant="contained" onClick={login} >Criar Usuário</Button>
+                </div> 
+                <Button id='btnCriar' variant="contained" onClick={login} >Cadastrar / Logar</Button>
                 <Login />
+                <ToastContainer autoClose={2000} theme='colored' newestOnTop={true} position='bottom-right'/>
             </form>
-            {/* <ul>
-        {users.map((user) => {
-          return (
-            <div>
-              <li>{user.email}</li>
-              <li>{user.password}</li>
-              <button onClick={() => deleteUser(user.id)}>Deletar</button>
-            </div>
-          );
-        })}
-      </ul> */}
         </div>
     );
 }
