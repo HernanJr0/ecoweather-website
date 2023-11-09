@@ -7,6 +7,9 @@ import Slide from '../../Components/Slide/Slide.jsx'
 
 import Noticias from '../../Components/Noticia/GridNoticia.jsx';
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import Noticia from '../../Components/Noticia/Noticia.jsx'
 
 import calendar from '../../assets/calendar.png';
@@ -222,13 +225,13 @@ function Home() {
                                     titulo={'Conteudos'}
                                     descricao={'Acesse aqui conteúdos sobre o meio ambiente'}
                                     imagem={'https://cdn-icons-png.flaticon.com/512/363/363256.png'}
-                                    link={'/home/conteudos'}
+                                    link={'/conteudos'}
                                 />
                                 <Atalho
                                     titulo={'Informações'}
                                     descricao={'Veja informações e dicas úteis'}
                                     imagem={'https://cdn-icons-png.flaticon.com/512/361/361892.png'}
-                                    link={'/home/informacoes'}
+                                    link={'/informacoes'}
                                 />
                                 {/* arrumar paths */}
                             </div>
@@ -237,6 +240,7 @@ function Home() {
                     </div>
                 </section>
             </div >
+            <ToastContainer autoClose={2000} theme='colored' newestOnTop={true} position='bottom-right' />
         </div>
     )
 }

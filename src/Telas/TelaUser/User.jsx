@@ -38,7 +38,7 @@ function User() {
 				/>
 				<div id="user-data">
 					<h2>{username}</h2>
-					<Link to="/home/user/edit">
+					<Link to="/user/edit">
 						<img src={userImage} id="pfp" />
 					</Link>
 				</div>

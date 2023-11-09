@@ -45,6 +45,7 @@ export const AuthGoogleProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [cities, setCities] = useState(null)
     const [news, setNews] = useState(null)
+    var signed = !!user
 
 
     useEffect(() => {
@@ -55,13 +56,14 @@ export const AuthGoogleProvider = ({ children }) => {
 
         if (storageToken && storageUser) {
             setUser(JSON.parse(storageUser));
-            setCities(JSON.parse(storageCities))
-            setNews(JSON.parse(storageNews))
 
-            /* async function pegacidade() {
-                setCities(await getDocs(collection(userRef, auth.currentUser.uid, "cities")))
+            if (storageCities == undefined || storageNews == undefined) {
+                pega(auth.currentUser, 'cities')
+                pega(auth.currentUser, 'news')
+            } else {
+                setCities(JSON.parse(storageCities))
+                setNews(JSON.parse(storageNews))
             }
-            pegacidade() */
 
         }
         console.log("ai")
@@ -120,10 +122,12 @@ export const AuthGoogleProvider = ({ children }) => {
 
                 pega(u, 'cities')
                 pega(u, 'news')
+
             })
             .catch((error) => {
                 //console.log(errorMessage)
             });
+        return <Navigate to="/" />;
     };
 
     const createAccount = async (username, email, password) => {
@@ -169,6 +173,7 @@ export const AuthGoogleProvider = ({ children }) => {
 
                 pega(u, 'cities')
                 pega(u, 'news')
+
             })
             .catch((error) => {
                 //console.log(errorMessage)
@@ -176,6 +181,13 @@ export const AuthGoogleProvider = ({ children }) => {
 
         return <Navigate to="/" />;
     };
+
+    function signOut() {
+        document.cookie = `city=;Secure`;
+        localStorage.clear();
+        setUser(null);
+        return <Navigate to="/auth" />;
+    }
 
     const xgUser = async (nome) => {
 
@@ -221,6 +233,7 @@ export const AuthGoogleProvider = ({ children }) => {
         });
 
         pega(user, "cities")
+
     };
 
     const addNews = async (n) => {
@@ -235,6 +248,7 @@ export const AuthGoogleProvider = ({ children }) => {
         });
 
         pega(user, "news")
+
     };
 
     const delItem = async (items, item) => {
@@ -242,6 +256,9 @@ export const AuthGoogleProvider = ({ children }) => {
 
         pega(user, items)
     };
+
+    //todo
+    //faz is item fav pfv
 
     const isNewFav = (item) => {
 
@@ -252,8 +269,6 @@ export const AuthGoogleProvider = ({ children }) => {
                 continue
             }
         }
-        console.log("aiai")
-        
     }
 
     const isCityFav = (item) => {
@@ -265,22 +280,13 @@ export const AuthGoogleProvider = ({ children }) => {
                 continue
             }
         }
-        console.log("aiai")
-
     };
-
-    function signOut() {
-        document.cookie = `city=;Secure`;
-        localStorage.clear();
-        setUser(null);
-        return <Navigate to="/" />;
-    }
 
     return (
         <AuthGoogleContext.Provider
             value={{
                 user,
-                signed: !!user,
+                signed,
 
                 signInGoogle,
                 createAccount,

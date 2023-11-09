@@ -13,6 +13,8 @@ import { IconButton, TextField } from '@mui/material';
 import PlaceIcon from '@mui/icons-material/Place'; */
 import { AuthGoogleContext } from "../../contexts/authGoogle";
 
+import { toast } from "react-toastify";
+
 var val = null;
 var prevCity = null;
 var bg = null;
@@ -210,31 +212,37 @@ class Clima extends Component {
 }
 
 const Star = (props) => {
-    const { addCity, delItem, isCityFav } = useContext(AuthGoogleContext);
+    const { signed, addCity, delItem, isCityFav } = useContext(AuthGoogleContext);
 
-    const [fav, setFav] = useState(true)
+    const [fav, setFav] = useState(false)
 
     useEffect(() => {
-        const checkCity = () => {
-            const a = isCityFav(props.city)
-            if (a == true) {
-                setFav(true);
-            } else {
-                setFav(false);
+        if (signed) {
+            const checkCity = () => {
+                const a = isCityFav(props.city)
+                if (a == true) {
+                    setFav(true);
+                } else {
+                    setFav(false);
+                }
             }
+            checkCity()
         }
-        checkCity()
     }, [props.city])
 
     const handleFav = (e) => {
-        setFav(e.target.checked);
+        if (signed) {
+            setFav(e.target.checked);
 
-        if (e.target.checked) {
-            //registra
-            addCity(props.city);
+            if (e.target.checked) {
+                //registra
+                addCity(props.city);
+            } else {
+                //remove
+                delItem("cities", props.city);
+            }
         } else {
-            //remove
-            delItem("cities", props.city);
+            toast.error("É necessário logar primeiro")
         }
     };
 
