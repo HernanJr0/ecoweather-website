@@ -55,18 +55,20 @@ export const AuthGoogleProvider = ({ children }) => {
         const storageNews = localStorage.getItem("@AuthFirebase:news");
 
         if (storageToken && storageUser) {
+
             setUser(JSON.parse(storageUser));
 
-            if (storageCities == undefined || storageNews == undefined) {
-                pega(auth.currentUser, 'cities')
-                pega(auth.currentUser, 'news')
-            } else {
+            if (!!storageCities || !!storageNews) {
+
                 setCities(JSON.parse(storageCities))
                 setNews(JSON.parse(storageNews))
-            }
 
+            } else {
+                pega(user.uid, 'cities')
+                pega(user.uid, 'news')
+                console.log("ai")
+            }
         }
-        console.log("ai")
 
     }, []);
 
@@ -84,7 +86,7 @@ export const AuthGoogleProvider = ({ children }) => {
     async function pega(user, items) {
         if (items == 'cities') {
 
-            const a = await getDocs(collection(userRef, user.uid, "cities"))
+            const a = await getDocs(collection(userRef, user, "cities"))
 
             console.log("ai")
             const b = a.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
@@ -94,7 +96,7 @@ export const AuthGoogleProvider = ({ children }) => {
         }
 
         if (items == 'news') {
-            const a = await getDocs(collection(userRef, user.uid, "news"))
+            const a = await getDocs(collection(userRef, user, "news"))
 
             console.log("ai")
             const b = a.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
@@ -120,9 +122,6 @@ export const AuthGoogleProvider = ({ children }) => {
 
                 checkUser(u)
 
-                pega(u, 'cities')
-                pega(u, 'news')
-
             })
             .catch((error) => {
                 //console.log(errorMessage)
@@ -147,7 +146,6 @@ export const AuthGoogleProvider = ({ children }) => {
             })
             .catch((error) => {
                 const errorCode = error.code;
-                const errorMessage = error.message;
                 // ..
                 if (errorCode == "auth/invalid-email")
                     alert("POE UM EMAIL E UMA SENHA QUE EXISTE, OTARIO");
@@ -171,9 +169,6 @@ export const AuthGoogleProvider = ({ children }) => {
 
                 checkUser(u)
 
-                pega(u, 'cities')
-                pega(u, 'news')
-
             })
             .catch((error) => {
                 //console.log(errorMessage)
@@ -186,7 +181,7 @@ export const AuthGoogleProvider = ({ children }) => {
         document.cookie = `city=;Secure`;
         localStorage.clear();
         setUser(null);
-        return <Navigate to="/auth" />;
+        return <Navigate to="/" />;
     }
 
     const xgUser = async (nome) => {
@@ -232,7 +227,7 @@ export const AuthGoogleProvider = ({ children }) => {
             nome: c,
         });
 
-        pega(user, "cities")
+        pega(user.uid, "cities")
 
     };
 
@@ -247,14 +242,14 @@ export const AuthGoogleProvider = ({ children }) => {
             image: n.image,
         });
 
-        pega(user, "news")
+        pega(user.uid, "news")
 
     };
 
     const delItem = async (items, item) => {
         await deleteDoc(doc(userRef, user.uid, items, item));
 
-        pega(user, items)
+        pega(user.uid, items)
     };
 
     //todo
