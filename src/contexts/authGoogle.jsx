@@ -57,9 +57,9 @@ export const AuthGoogleProvider = ({ children }) => {
         if (storageToken && storageUser) {
             setUser(JSON.parse(storageUser));
 
-            if (storageCities == undefined || storageNews == undefined) {
-                pega(auth.currentUser, 'cities')
-                pega(auth.currentUser, 'news')
+            if (storageCities == null || storageNews == null) {
+                pega(auth.currentUser.uid, 'cities')
+                pega(auth.currentUser.uid, 'news')
             } else {
                 setCities(JSON.parse(storageCities))
                 setNews(JSON.parse(storageNews))
@@ -84,7 +84,7 @@ export const AuthGoogleProvider = ({ children }) => {
     async function pega(user, items) {
         if (items == 'cities') {
 
-            const a = await getDocs(collection(userRef, user.uid, "cities"))
+            const a = await getDocs(collection(userRef, user, "cities"))
 
             console.log("ai")
             const b = a.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
@@ -94,7 +94,7 @@ export const AuthGoogleProvider = ({ children }) => {
         }
 
         if (items == 'news') {
-            const a = await getDocs(collection(userRef, user.uid, "news"))
+            const a = await getDocs(collection(userRef, user, "news"))
 
             console.log("ai")
             const b = a.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
@@ -120,8 +120,8 @@ export const AuthGoogleProvider = ({ children }) => {
 
                 checkUser(u)
 
-                pega(u, 'cities')
-                pega(u, 'news')
+                pega(u.uid, 'cities')
+                pega(u.uid, 'news')
 
             })
             .catch((error) => {
@@ -171,8 +171,8 @@ export const AuthGoogleProvider = ({ children }) => {
 
                 checkUser(u)
 
-                pega(u, 'cities')
-                pega(u, 'news')
+                pega(u.uid, 'cities')
+                pega(u.uid, 'news')
 
             })
             .catch((error) => {
