@@ -3,7 +3,7 @@ import { useContext } from 'react';
 import { Button, TextField } from "@mui/material";
 import { useState, useEffect } from "react";
 
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import "./EditUser.css"
@@ -23,11 +23,9 @@ function EditUser() {
 
         if (pfp != '') {
             xgPfp(pfp);
-            toast.info(' foto de perfil alterada')
         }
         if (username != '') {
             xgUser(username)
-            toast.info(' nome de usuário alterado')
         }
     }
 

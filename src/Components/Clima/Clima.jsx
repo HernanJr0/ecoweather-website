@@ -112,7 +112,7 @@ class Clima extends Component {
 
     async drawWeather(d) {
 
-        let c_img = "http://openweathermap.org/img/wn/" + d.weather[0].icon + ".png";
+        let c_img = "https://openweathermap.org/img/wn/" + d.weather[0].icon + ".png";
 
         let t = Math.round(parseFloat(d.main.temp) - 273.15);
 

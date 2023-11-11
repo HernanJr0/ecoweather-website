@@ -32,6 +32,8 @@ import {
     getDownloadURL,
 } from "firebase/storage";
 
+import { toast } from 'react-toastify';
+
 const provider = new GoogleAuthProvider();
 
 export const AuthGoogleProvider = ({ children }) => {
@@ -195,12 +197,13 @@ export const AuthGoogleProvider = ({ children }) => {
             displayName: nome
         })
 
-        localStorage.setItem("@AuthFirebase:user", JSON.stringify(auth.currentUser));
 
         setUser(auth.currentUser)
+        localStorage.setItem("@AuthFirebase:user", JSON.stringify(auth.currentUser));
         checkUser(auth.currentUser)
 
         console.log('success')
+        toast.info(' nome de usuário alterado')
     }
 
     const xgPfp = async (file) => {
@@ -216,15 +219,16 @@ export const AuthGoogleProvider = ({ children }) => {
                     photoURL: url
                 })
                 console.log('success')
+                toast.info(' foto de perfil alterada')
             })
             .catch((error) => {
                 console.log(error)
                 // Handle any errors
             });
 
-        localStorage.setItem("@AuthFirebase:user", JSON.stringify(auth.currentUser));
 
         setUser(auth.currentUser)
+        localStorage.setItem("@AuthFirebase:user", JSON.stringify(auth.currentUser));
     }
 
     const addCity = async (c) => {
@@ -261,27 +265,25 @@ export const AuthGoogleProvider = ({ children }) => {
     //faz is item fav pfv
 
     const isNewFav = (item) => {
-        var x = false
         for (var it in news) {
             if (item == news[it].uri) {
-                x = true
+                return true
             } else {
                 continue
             }
         }
-        return x
+        return false
     }
 
     const isCityFav = (item) => {
-        var x = false
         for (var it in cities) {
             if (item == cities[it].nome) {
-                x = true
+                return true
             } else {
                 continue
             }
         }
-        return x
+        return false
     };
 
     return (
