@@ -220,11 +220,7 @@ const Star = (props) => {
         if (signed) {
             const checkCity = () => {
                 const a = isCityFav(props.city)
-                if (a == true) {
-                    setFav(true);
-                } else {
-                    setFav(false);
-                }
+                setFav(a)
             }
             checkCity()
         }

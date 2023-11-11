@@ -18,16 +18,16 @@ function User() {
 	const username = user.displayName || "User";
 	const userImage = user.photoURL || "https://tinyurl.com/5kub7nce";
 
-	const [c, setC] = useState([]);
-	const [n, setN] = useState([]);
+	const [c, setC] = useState(cities);
+	const [n, setN] = useState(news);
 
-	useEffect(() => {
+	/* useEffect(() => {
 		const ai = () => {
 			setC(cities)
 			setN(news)
 		}
 		ai()
-	}, [])
+	}, []) */
 
 	return (
 		<div id="userCont">
@@ -58,6 +58,7 @@ function User() {
 								</li>
 							)
 						})
+						
 					}
 				</ul>
 			</div>

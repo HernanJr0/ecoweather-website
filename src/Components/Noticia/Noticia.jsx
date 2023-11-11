@@ -117,18 +117,15 @@ const Mark = (props) => {
     const [fav, setFav] = useState(false)
 
     useEffect(() => {
+        console.log("ai")
         const checkCity = () => {
             if (signed) {
                 const a = isNewFav(props.news.uri)
-                if (a == true) {
-                    setFav(true);
-                } else {
-                    setFav(false);
-                }
+                setFav(a)
             }
         }
         checkCity()
-    }, [props.news.uri])
+    })
 
     const handleFav = (e) => {
         if (signed) {
