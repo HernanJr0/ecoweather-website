@@ -2,7 +2,6 @@ import Home from "../Telas/TelaHome/Home.jsx";
 import User from "../Telas/TelaUser/User.jsx";
 import Informacoes from "../Telas/TelaInformacoes/Informacoes.jsx";
 import Conteudos from '../Telas/TelaConteudos/Conteudos.jsx'
-import Auth from "../Telas/TelaAuth/Auth.jsx"
 import ConteudoDetalhado from "../Telas/TelaConteudos/ConteudoDetalhado.jsx"
 import InformacoesDetalhadas from "../Telas/TelaInformacoes/InformacoesDetalhadas.jsx";
 import Previsao from "../Telas/TelaPrevisão/Previsao.jsx"
@@ -15,7 +14,8 @@ import { PrivateRoutes } from "./index.jsx";
 import Header from "../Components/Header/Header.jsx";
 import Footer from "../Components/Footer/Footer.jsx";
 import EditUser from "../Telas/TelaUser/EditUser.jsx";
-
+import { AuthRoute } from "./index.jsx";
+import Auth from "../Telas/TelaAuth/Auth.jsx";
 export const Router = () => {
 
     const darkTheme = createTheme({
@@ -30,18 +30,24 @@ export const Router = () => {
 
                 <Header />
                 <Routes>
-                    <Route path="/" element={<Auth />} />
-                    <Route path="/home" element={<PrivateRoutes />}>
-                        <Route path="/home" element={<Home />} />
-                        <Route path="/home/user" element={<User />} />
-                        <Route path="/home/user/edit" element={<EditUser />} />
-                            
-                        <Route path="/home/conteudos" element={<Conteudos />} />
-                        <Route path="/home/conteudos/:id" element={<ConteudoDetalhado />} />
-                        <Route path="/home/informacoes" element={<Informacoes />} />
-                        <Route path="/home/informacoes/:id" element={<InformacoesDetalhadas />} />
-                        <Route path="/home/previsao" element={<Previsao />} />
+                    <Route path="/" element={<Home />} />
+
+                    <Route path="/auth" element={<AuthRoute />}>
+                        <Route path="/auth" element={<Auth />} />
                     </Route>
+
+                    <Route path="/user" element={<PrivateRoutes />}>
+                        <Route path="/user" element={<User />} />
+                        <Route path="/user/edit" element={<EditUser />} />
+                    </Route>
+
+                    <Route path="/conteudos" element={<Conteudos />} />
+                    <Route path="/conteudos/:id" element={<ConteudoDetalhado />} />
+                    <Route path="/informacoes" element={<Informacoes />} />
+                    <Route path="/informacoes/:id" element={<InformacoesDetalhadas />} />
+                    <Route path="/previsao" element={<Previsao />} />
+
+
                 </Routes>
                 <Footer />
                 <Analytics />

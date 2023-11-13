@@ -61,25 +61,6 @@ function TopButtons({ setQuery }) {
             ))}
         </div>
     )
-    /* 
-<Swiper
-    scrollbar={{
-        draggable: true,
-        hide: true
-    }}
-    mousewheel
-    freeMode
-    id='cities-swiper'
-    slidesPerView={'auto'}
-    grabCursor={true}
-    modules={[Scrollbar, Mousewheel]}
-> */
-    {/* <SwiperSlide>
-                    </SwiperSlide> */}
-
-
-    /* </Swiper> */
-
 }
 
 export default TopButtons

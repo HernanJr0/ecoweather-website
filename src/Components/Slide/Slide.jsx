@@ -55,7 +55,7 @@ const swiper = () => {
                     titulo={'Conteudos'}
                     descricao={'Acesse aqui conteúdos sobre o meio ambiente'}
                     imagem={'https://cdn-icons-png.flaticon.com/512/363/363256.png'}
-                    link={'/home/conteudos'}
+                    link={'/conteudos'}
                 />
             </SwiperSlide>
 
@@ -64,7 +64,7 @@ const swiper = () => {
                     titulo={'Informações'}
                     descricao={'Veja informações e dicas úteis'}
                     imagem={'https://cdn-icons-png.flaticon.com/512/361/361892.png'}
-                    link={'/home/informacoes'} />
+                    link={'/informacoes'} />
                 {/* arrumar paths */}
             </SwiperSlide>
 

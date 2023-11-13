@@ -32,6 +32,8 @@ import {
     getDownloadURL,
 } from "firebase/storage";
 
+import { toast } from 'react-toastify';
+
 const provider = new GoogleAuthProvider();
 
 export const AuthGoogleProvider = ({ children }) => {
@@ -46,27 +48,35 @@ export const AuthGoogleProvider = ({ children }) => {
     const [cities, setCities] = useState(null)
     const [news, setNews] = useState(null)
 
-
     useEffect(() => {
-        const storageUser = localStorage.getItem("@AuthFirebase:user");
+        const storageUser = JSON.parse(localStorage.getItem("@AuthFirebase:user"))
         const storageToken = localStorage.getItem("@AuthFirebase:token");
-        const storageCities = localStorage.getItem("@AuthFirebase:cities");
-        const storageNews = localStorage.getItem("@AuthFirebase:news");
+        const storageCities = JSON.parse(localStorage.getItem("@AuthFirebase:cities"));
+        const storageNews = JSON.parse(localStorage.getItem("@AuthFirebase:news"));
 
         if (storageToken && storageUser) {
-            setUser(JSON.parse(storageUser));
-            setCities(JSON.parse(storageCities))
-            setNews(JSON.parse(storageNews))
+            setUser(storageUser);
 
-            /* async function pegacidade() {
-                setCities(await getDocs(collection(userRef, auth.currentUser.uid, "cities")))
+            if (!!storageCities && !!storageNews) {
+
+                setCities(storageCities)
+                setNews(storageNews)
+
+            } else {
+                console.log(!!user)
+                if (!!user) {
+                    console.log("ai")
+                    pega(user.uid, 'cities')
+                    pega(user.uid, 'news')
+                } else {
+                    console.log("ai")
+                    pega(storageUser.uid, 'cities')
+                    pega(storageUser.uid, 'news')
+                }
             }
-            pegacidade() */
-
         }
-        console.log("ai")
 
-    }, []);
+    },[auth.currentUser]);
 
     async function checkUser(u) {
         const docSnap = await getDoc(doc(userRef, u.uid));
@@ -80,25 +90,26 @@ export const AuthGoogleProvider = ({ children }) => {
     }
 
     async function pega(user, items) {
+
         if (items == 'cities') {
 
-            const a = await getDocs(collection(userRef, user.uid, "cities"))
+            const a = await getDocs(collection(userRef, user, "cities"))
 
             console.log("ai")
             const b = a.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
 
-            setCities(b)
             localStorage.setItem("@AuthFirebase:cities", JSON.stringify(b));
+            setCities(b)
         }
 
         if (items == 'news') {
-            const a = await getDocs(collection(userRef, user.uid, "news"))
+            const a = await getDocs(collection(userRef, user, "news"))
 
             console.log("ai")
             const b = a.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
 
-            setNews(b)
             localStorage.setItem("@AuthFirebase:news", JSON.stringify(b));
+            setNews(b)
         }
     }
 
@@ -118,12 +129,11 @@ export const AuthGoogleProvider = ({ children }) => {
 
                 checkUser(u)
 
-                pega(u, 'cities')
-                pega(u, 'news')
             })
             .catch((error) => {
                 //console.log(errorMessage)
             });
+        return <Navigate to="/" />;
     };
 
     const createAccount = async (username, email, password) => {
@@ -143,7 +153,6 @@ export const AuthGoogleProvider = ({ children }) => {
             })
             .catch((error) => {
                 const errorCode = error.code;
-                const errorMessage = error.message;
                 // ..
                 if (errorCode == "auth/invalid-email")
                     alert("POE UM EMAIL E UMA SENHA QUE EXISTE, OTARIO");
@@ -167,8 +176,6 @@ export const AuthGoogleProvider = ({ children }) => {
 
                 checkUser(u)
 
-                pega(u, 'cities')
-                pega(u, 'news')
             })
             .catch((error) => {
                 //console.log(errorMessage)
@@ -177,18 +184,26 @@ export const AuthGoogleProvider = ({ children }) => {
         return <Navigate to="/" />;
     };
 
+    function signOut() {
+        document.cookie = `city=;Secure`;
+        localStorage.clear();
+        setUser(null);
+        return <Navigate to="/" />;
+    }
+
     const xgUser = async (nome) => {
 
         await updateProfile(auth.currentUser, {
             displayName: nome
         })
 
-        localStorage.setItem("@AuthFirebase:user", JSON.stringify(auth.currentUser));
 
         setUser(auth.currentUser)
+        localStorage.setItem("@AuthFirebase:user", JSON.stringify(auth.currentUser));
         checkUser(auth.currentUser)
 
         console.log('success')
+        toast.info(' nome de usuário alterado')
     }
 
     const xgPfp = async (file) => {
@@ -204,15 +219,16 @@ export const AuthGoogleProvider = ({ children }) => {
                     photoURL: url
                 })
                 console.log('success')
+                toast.info(' foto de perfil alterada')
             })
             .catch((error) => {
                 console.log(error)
                 // Handle any errors
             });
 
-        localStorage.setItem("@AuthFirebase:user", JSON.stringify(auth.currentUser));
 
         setUser(auth.currentUser)
+        localStorage.setItem("@AuthFirebase:user", JSON.stringify(auth.currentUser));
     }
 
     const addCity = async (c) => {
@@ -220,7 +236,8 @@ export const AuthGoogleProvider = ({ children }) => {
             nome: c,
         });
 
-        pega(user, "cities")
+        pega(user.uid, "cities")
+
     };
 
     const addNews = async (n) => {
@@ -234,17 +251,20 @@ export const AuthGoogleProvider = ({ children }) => {
             image: n.image,
         });
 
-        pega(user, "news")
+        pega(user.uid, "news")
+
     };
 
     const delItem = async (items, item) => {
         await deleteDoc(doc(userRef, user.uid, items, item));
 
-        pega(user, items)
+        pega(user.uid, items)
     };
 
-    const isNewFav = (item) => {
+    //todo
+    //faz is item fav pfv
 
+    const isNewFav = (item) => {
         for (var it in news) {
             if (item == news[it].uri) {
                 return true
@@ -252,29 +272,19 @@ export const AuthGoogleProvider = ({ children }) => {
                 continue
             }
         }
-        console.log("aiai")
-        
+        return false
     }
 
     const isCityFav = (item) => {
-
         for (var it in cities) {
             if (item == cities[it].nome) {
-                return true;
+                return true
             } else {
                 continue
             }
         }
-        console.log("aiai")
-
+        return false
     };
-
-    function signOut() {
-        document.cookie = `city=;Secure`;
-        localStorage.clear();
-        setUser(null);
-        return <Navigate to="/" />;
-    }
 
     return (
         <AuthGoogleContext.Provider

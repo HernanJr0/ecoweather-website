@@ -10,6 +10,8 @@ import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 
 import { AuthGoogleContext } from "../../contexts/authGoogle";
 
+import { toast } from "react-toastify";
+
 class Noticia extends Component {
     static contextType = AuthGoogleContext;
 
@@ -110,31 +112,36 @@ class Noticia extends Component {
 
 
 const Mark = (props) => {
-    const { isNewFav, addNews, delItem } = useContext(AuthGoogleContext);
+    const { signed, isNewFav, addNews, delItem } = useContext(AuthGoogleContext);
 
-    const [fav, setFav] = useState(true)
+    const [fav, setFav] = useState(false)
 
     useEffect(() => {
+        // console.log("ai")
         const checkCity = () => {
             const a = isNewFav(props.news.uri)
-            if (a == true) {
-                setFav(true);
-            } else {
-                setFav(false);
-            }
+            setFav(a)
+            console.log(a)
         }
         checkCity()
-    }, [props.news.uri])
+    }, [props.news.uri, signed])
 
     const handleFav = (e) => {
-        setFav(e.target.checked);
+        if (signed) {
 
-        if (e.target.checked) {
-            //registra
-            addNews(props.news);
+            setFav(e.target.checked);
+
+            if (e.target.checked) {
+                //registra
+                addNews(props.news);
+            } else {
+                //remove
+                delItem("news", props.news.uri);
+            }
+
         } else {
-            //remove
-            delItem("news", props.news.uri);
+            toast.error("Faça login para realizar esta ação")
+            //É necessário logar primeiro
         }
     };
 

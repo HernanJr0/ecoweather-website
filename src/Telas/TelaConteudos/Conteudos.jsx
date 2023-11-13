@@ -12,7 +12,7 @@ function Conteudos() {
                     <AtalhoDicas
                         titulo={topico.titulo}
                         descricao={topico.descricao}
-                        link={`/home/conteudos/${topico.id}`}
+                        link={`/conteudos/${topico.id}`}
                         bg={topico.imagem}
                     />
                 ))}

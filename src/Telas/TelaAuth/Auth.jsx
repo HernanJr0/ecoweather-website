@@ -1,10 +1,11 @@
 import './TelaAuth.css';
 
-import { useEffect, useState } from "react";
+
+import GoogleIcon from '@mui/icons-material/Google';
+
+import { useEffect, useState, useContext } from "react";
 import { TextField, InputAdornment, IconButton, Button } from "@mui/material";
 import { Person, Email } from "@mui/icons-material";
-import { Login } from "./Login";
-import { useContext } from "react"
 import { AuthGoogleContext } from "../../contexts/authGoogle"
 import { ToastContainer } from 'react-toastify';
 
@@ -20,7 +21,7 @@ export const Auth = () => {
 
     const [showPassword, setShowPassword] = useState(false);
 
-    const { createAccount, signInAccount } = useContext(AuthGoogleContext)
+    const { createAccount, signInAccount, signInGoogle } = useContext(AuthGoogleContext)
 
     const handleClickShowPassword = () => setShowPassword(!showPassword);
 
@@ -102,10 +103,16 @@ export const Auth = () => {
                             required
                         />
                     </div>
-                </div> 
+                </div>
                 <Button id='btnCriar' variant="contained" onClick={login} >Cadastrar / Logar</Button>
-                <Login />
-                <ToastContainer autoClose={2000} theme='colored' newestOnTop={true} position='bottom-right'/>
+
+                <div id='btnGoogle'>
+                    <Button variant="outlined"
+                        startIcon={<GoogleIcon />}
+                        onClick={async () => await signInGoogle()}> Continuar com Google</Button>
+                </div>
+
+                <ToastContainer autoClose={2000} theme='colored' newestOnTop={true} position='bottom-right' />
             </form>
         </div>
     );

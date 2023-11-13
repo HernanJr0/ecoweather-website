@@ -32,21 +32,34 @@ function Header() {
     // }
 
     function useri() {
-        if (signed) {
-            
-            const userImage = user.photoURL || 'https://tinyurl.com/5kub7nce';
+        const userImage = signed ? user.photoURL : 'https://tinyurl.com/5kub7nce'
 
-            return (
-                < img id="usrIcon" src={userImage} />
-            )
-
-        }
+        return (
+            <img id="usrIcon" src={userImage} />
+        )
     }
+
+    /* function homelogo() {
+        if (!signed) {
+            return (
+                <Link to="/auth" id="c_logo" >
+                    <img id="logo" src={logo} alt="logo" />
+                </Link>
+            )
+        } else {
+            return (
+                <Link to="/" id="c_logo" >
+                    <img id="logo" src={logo} alt="logo" />
+                </Link>
+            )
+        }
+    } */
 
     return (
         <nav>
             <div id="topbar">
-                <Link to="/" id="c_logo">
+
+                <Link to="/" id="c_logo" >
                     <img id="logo" src={logo} alt="logo" />
                 </Link>
 
@@ -64,7 +77,7 @@ function Header() {
                     }}
                 /> */}
 
-                <Link to="/home/user">
+                <Link to="/user">
                     <IconButton id="account">
                         {useri()}
                     </IconButton>
