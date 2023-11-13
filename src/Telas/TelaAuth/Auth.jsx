@@ -7,6 +7,7 @@ import { useEffect, useState, useContext } from "react";
 import { TextField, InputAdornment, IconButton, Button } from "@mui/material";
 import { Person, Email } from "@mui/icons-material";
 import { AuthGoogleContext } from "../../contexts/authGoogle"
+
 import { ToastContainer } from 'react-toastify';
 
 import { Visibility } from "@mui/icons-material";
@@ -111,9 +112,9 @@ export const Auth = () => {
                         startIcon={<GoogleIcon />}
                         onClick={async () => await signInGoogle()}> Continuar com Google</Button>
                 </div>
-
-                <ToastContainer autoClose={2000} theme='colored' newestOnTop={true} position='bottom-right' />
             </form>
+            
+            <ToastContainer autoClose={2000} theme='colored' newestOnTop={true} position='bottom-right' />
         </div>
     );
 }

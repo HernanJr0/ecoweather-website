@@ -133,9 +133,11 @@ const Mark = (props) => {
 
             if (e.target.checked) {
                 //registra
+                toast.info('Notícia salva nos favoritos')
                 addNews(props.news);
             } else {
                 //remove
+                toast.info('Notícia removida dos favoritos')
                 delItem("news", props.news.uri);
             }
 

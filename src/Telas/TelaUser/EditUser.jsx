@@ -3,7 +3,7 @@ import { useContext } from 'react';
 import { Button, TextField } from "@mui/material";
 import { useState, useEffect } from "react";
 
-import { ToastContainer } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import "./EditUser.css"
@@ -17,7 +17,7 @@ function EditUser() {
     const save = () => {
 
         if (username == '' && pfp == '') {
-            alert('coloca alguma coisa ne krl')
+            toast.info('Nenhuma alteração realizada')
             return 0
         }
 

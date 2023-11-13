@@ -8,6 +8,7 @@ import { Star } from "../../Components/Clima/Clima.jsx"
 
 import Noticia from "../../Components/Noticia/Noticia.jsx";
 
+import { ToastContainer } from "react-toastify";
 
 import "./User.css";
 
@@ -91,7 +92,7 @@ function User() {
 				<Button id="sair" onClick={signOut} variant="outlined" color="error">
 					Sair
 				</Button>
-			</div>
+			</div>			
 		</div>
 	);
 
