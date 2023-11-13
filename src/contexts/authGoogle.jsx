@@ -155,7 +155,7 @@ export const AuthGoogleProvider = ({ children }) => {
                 const errorCode = error.code;
                 // ..
                 if (errorCode == "auth/invalid-email")
-                    alert("POE UM EMAIL E UMA SENHA QUE EXISTE, OTARIO");
+                    toast.error("Email ou senha Inválidos");
 
                 console.log(error);
             });
@@ -188,6 +188,7 @@ export const AuthGoogleProvider = ({ children }) => {
         document.cookie = `city=;Secure`;
         localStorage.clear();
         setUser(null);
+
         return <Navigate to="/" />;
     }
 
@@ -202,15 +203,15 @@ export const AuthGoogleProvider = ({ children }) => {
         localStorage.setItem("@AuthFirebase:user", JSON.stringify(auth.currentUser));
         checkUser(auth.currentUser)
 
-        console.log('success')
-        toast.info(' nome de usuário alterado')
+        console.log('Success')
+        toast.success('Nome de usuário alterado')
     }
 
     const xgPfp = async (file) => {
 
         await uploadBytes(ref(storage, 'users_pfp/' + user.uid), file)
             .then((snapshot) => {
-                console.log("success")
+                console.log("Success")
             })
 
         await getDownloadURL(ref(storage, 'users_pfp/' + user.uid))
@@ -218,8 +219,8 @@ export const AuthGoogleProvider = ({ children }) => {
                 await updateProfile(auth.currentUser, {
                     photoURL: url
                 })
-                console.log('success')
-                toast.info(' foto de perfil alterada')
+                console.log('Success')
+                toast.success('Foto de perfil alterada')
             })
             .catch((error) => {
                 console.log(error)
