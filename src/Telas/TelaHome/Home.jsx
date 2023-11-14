@@ -160,7 +160,6 @@ function Home() {
                         <div id='noticias'>
 
                             <Noticias locale={locale} />
-
                             {/* <h2 id='noticiasTitulo'>Noticias</h2>
 
 

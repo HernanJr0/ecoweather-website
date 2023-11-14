@@ -57,7 +57,7 @@ function User() {
 				);
 			})
 		} else {
-			return <p>Nenhuma noticia encontrada!</p>
+			return <p id="nenhumaNoticia">Nenhuma noticia encontrada!</p>
 		}
 	}
 
@@ -151,6 +151,9 @@ function User() {
 						1024: {
 							slidesPerView: 4,
 						},
+						1280: {
+							slidesPerView: 5,
+						}
 					}}
 					scrollbar
 				>

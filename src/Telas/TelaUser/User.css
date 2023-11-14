@@ -109,11 +109,6 @@
   place-items: center;
 }
 
-.oi p {
-  text-align: center;
-  color: #8c8c8c;
-}
-
 #srch {
   width: 100px;
   height: fit-content;

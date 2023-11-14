@@ -31,9 +31,20 @@ class Noticia extends Component {
             fav: false
 
         }
-        /* this.state.handleFav = this.handleFav.bind(this);
-        this.state.checkNews = this.checkNews.bind(this) */
+        /* this.state.handleFav = this.handleFav.bind(this);*/
+        // this.state.oi = this.oi.bind(this)
     }
+
+    /* componentDidMount(){
+        this.oi()
+    }
+
+    oi() {
+        const au = document.getElementsByClassName("noticiaIMG")
+        if (au.src == undefined) {
+            au.src = 'https://tinyurl.com/yc2ms4ts'
+        }
+    } */
 
     render() {
         return (
