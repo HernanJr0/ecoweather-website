@@ -8,18 +8,29 @@ import { Star } from "../../Components/Clima/Clima.jsx"
 
 import Noticia from "../../Components/Noticia/Noticia.jsx";
 
-import { ToastContainer } from "react-toastify";
+import Fuse from 'fuse.js'
+
+import ClearIcon from '@mui/icons-material/Clear';
+
+import InputAdornment from '@mui/material/InputAdornment';
+
+import IconButton from '@mui/material/IconButton';
 
 import "./User.css";
 import "../../Components/Noticia/Noticia.css"
 
+import 'swiper/css/free-mode';
 import 'swiper/css/scrollbar';
 import 'swiper/css';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Scrollbar } from 'swiper/modules';
+import { Scrollbar, FreeMode } from 'swiper/modules';
+
+import { TextField } from "@mui/material";
 
 function User() {
+
+	// const Fuse = require('fuse.js')
 
 	const { user, signOut, cities, news } = useContext(AuthGoogleContext);
 
@@ -30,36 +41,51 @@ function User() {
 	const [n, setN] = useState(news);
 
 	function peba() {
-		console.log(n.length)
-		console.log(n)
-		if (n.length != undefined) {
-			return n.map((news, i) => {
+
+		/* if (n.length > 0) { */
+		var ai
+
+		if (document.getElementById("srch")) {
+			ai = document.getElementById("srch").value
+		}
+		if (n.length > 0) {
+			return n.map((news) => {
 				return (
-					<SwiperSlide key={i} className="horizontal">
-						<Noticia item={news} />
+					<SwiperSlide key={Math.random()} className="horizontal">
+						<Noticia item={!!ai ? news.item : news} />
 					</SwiperSlide>
 				);
 			})
 		} else {
-			return (
-				<SwiperSlide key={Math.random()} className="horizontal">
-					<Noticia item={n} />
-				</SwiperSlide>
-			);
+			return <p>Nenhuma noticia encontrada!</p>
 		}
 	}
 
+	function clear() {
+		document.getElementById("srch").value = ''
+		setN(news)
+	}
 
 	function pesquisa(e) {
 		if (e.key == 'Enter') {
 			const ai = document.getElementById("srch").value
 
 			if (ai != '') {
-				news.map((news) => {
-					if (news.title.indexOf(ai) > -1) {
-						setN(news)
-					}
-				})
+				const options = {
+					minCharLength: 2,
+					isCaseSensitive: false,
+					threshold: 0.4,
+					keys: ['title', 'source']
+				}
+
+				const fuse = new Fuse(news, options).search(ai)
+
+				if (!!fuse) {
+					setN(fuse)
+				} else {
+
+				}
+
 			} else {
 				setN(news)
 			}
@@ -73,22 +99,47 @@ function User() {
 					id="userbg"
 					src="https://i.ytimg.com/vi/SGQULVZ8lyk/maxresdefault.jpg?7857057827"
 				/>
+
 				<div id="user-data">
+
 					<h2>{username}</h2>
 					<Link to="/user/edit">
 						<img src={userImage} id="pfp" />
 					</Link>
+
 				</div>
+
 			</div>
 
 			<div id="l-news">
-
 				<div id="news-header">
 					<h2>Notícias Salvas</h2>
-					<input id="srch" type="text" onKeyDown={pesquisa} placeholder="Pesquisar" />
+
+					<TextField id="srch"
+						onKeyDown={pesquisa}
+						placeholder="Pesquisar"
+						size="small"
+
+						InputProps={{
+							endAdornment:
+								<InputAdornment position="end" >
+									<IconButton
+										onClick={clear}
+										edge="end"
+									>
+										<ClearIcon />
+									</IconButton>
+								</InputAdornment>,
+						}}
+					/>
+
 				</div>
 
 				<Swiper className="oi"
+
+					freeMode={true}
+					spaceBetween={5}
+					modules={[FreeMode, Scrollbar]}
 					breakpoints={{
 						480: {
 
@@ -97,14 +148,11 @@ function User() {
 						768: {
 							slidesPerView: 3,
 						},
-						960: {
+						1024: {
 							slidesPerView: 4,
 						},
 					}}
-					spaceBetween={10}
 					scrollbar
-					modules={[Scrollbar]}
-
 				>
 
 					{
@@ -113,6 +161,7 @@ function User() {
 
 
 				</Swiper>
+
 			</div>
 
 			<div id="l-cities">
@@ -136,7 +185,7 @@ function User() {
 					Sair
 				</Button>
 			</div>
-		</div>
+		</div >
 	);
 
 }

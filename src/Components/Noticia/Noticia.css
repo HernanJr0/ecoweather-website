@@ -6,8 +6,8 @@
     border-radius: 19px;
 }
 
-#noticiaItemCont hr{
-  border: 1px solid #202020;
+#noticiaItemCont hr {
+    border: 1px solid #202020;
 }
 
 .noticia:hover {
@@ -41,7 +41,7 @@
     width: 100%;
 }
 
-#bookmarkCont{
+#bookmarkCont {
     position: absolute;
 
     backdrop-filter: blur(5px);
@@ -53,27 +53,29 @@
     top: 10px;
     left: 10px;
 }
-#noticiasTitulo{
+
+#noticiasTitulo {
     text-align: center;
 }
+
 hr {
     margin: 3px 10px;
 }
 
 @media (max-width: 550px) {
 
-    #bookmarkCont{
+    #bookmarkCont {
         left: unset;
         right: 10px;
     }
-    
+
     .noticia {
         flex-direction: column;
     }
 
     .noticiaImg {
         min-height: 180px;
-        min-width: calc(100% - 14px);
+        width: calc(100% - 14px);
         margin: 0 0 7px 0;
     }
 
@@ -91,19 +93,19 @@ hr {
     }
 }
 
-.horizontal{
-    #bookmarkCont{
+.horizontal {
+    #bookmarkCont {
         left: unset;
         right: 10px;
     }
-    
+
     .noticia {
         flex-direction: column;
     }
 
     .noticiaImg {
         height: 180px;
-        width: 100%;
+        width: calc(100% - 14px);
         margin: 0 0 7px 0;
     }
 
