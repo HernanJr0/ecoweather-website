@@ -125,10 +125,6 @@ a:active {
     width: calc(100% - 20px);
   }
 
-  #noticias {
-    width: unset;
-  }
-
   #sideContent {
     width: calc(100% - 45px);
     padding: 15px 15px 0;

@@ -119,7 +119,7 @@ function Home() {
                 /* this.setState({ loc: city });
                 this.weatherBallon(e.target.value) */
             } else {
-                alert("este espaço nao pode ficar em branco")
+                toast.error("Este espaço nao pode ficar em branco")
             }
         }
     }
