@@ -139,6 +139,7 @@ function Home() {
 
                             variant='outlined'
                             size='small'
+                            placeholder='Digite um local'
                             InputProps={{
                                 endAdornment: (
                                     <IconButton edge='end' onClick={() => {
