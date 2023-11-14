@@ -90,7 +90,7 @@ class Clima extends Component {
                 })
                 .then((data) => {
                     if (data.cod == 404) {
-                        alert("Este lugar não foi encontrado");
+                        toast.error("Este lugar não foi encontrado");
                     } else {
                         val = data;
 

@@ -6,6 +6,11 @@
     border-radius: 19px;
 }
 
+
+.noticia {
+    background-color: #303030;
+}
+
 #noticiaItemCont hr {
     border: 1px solid #202020;
 }
@@ -60,6 +65,13 @@
 
 hr {
     margin: 3px 10px;
+}
+
+#nenhumaNoticia {
+    color: grey;
+    font-weight: bold;
+    text-align: center;
+    margin: 20px 0;
 }
 
 @media (max-width: 550px) {

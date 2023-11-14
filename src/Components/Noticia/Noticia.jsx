@@ -46,7 +46,7 @@ class Noticia extends Component {
                             <Mark news={this.state} />
                         </div>
 
-                        <img className='noticiaImg' src={this.state.image} alt={this.state.title} />
+                        <img className='noticiaImg' src={this.state.image || 'https://tinyurl.com/yc2ms4ts'} alt={this.state.title} />
 
                         <div className='noticiaDesc'>
                             <p className='noticiaCreditos'>

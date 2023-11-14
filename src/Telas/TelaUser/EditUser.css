@@ -3,11 +3,25 @@
     display: flex;
     width: 100%;
 }
+
 #EditUserCont{
     display: flex;
     max-width: fit-content;
     flex-direction: column;
 }
+
+#pfp {
+    margin-top: 20px;
+}
+
+#editUserFieldCont {
+    margin-bottom: 15px;
+}
+
+#pfp:hover {
+    filter: brightness(0.8);
+}
+
 #pfplabel{
     align-self: center;
 }

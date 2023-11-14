@@ -119,7 +119,7 @@ function Home() {
                 /* this.setState({ loc: city });
                 this.weatherBallon(e.target.value) */
             } else {
-                alert("este espaço nao pode ficar em branco")
+                toast.error("Este espaço nao pode ficar em branco")
             }
         }
     }
@@ -139,6 +139,7 @@ function Home() {
 
                             variant='outlined'
                             size='small'
+                            placeholder='Digite um local'
                             InputProps={{
                                 endAdornment: (
                                     <IconButton edge='end' onClick={() => {

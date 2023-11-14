@@ -52,16 +52,18 @@ function EditUser() {
                     <img src={user.photoURL} id="pfp" />
                 </label>
 
-                <TextField
-                    id="editUserField"
-                    variant="outlined"
-                    label="User"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                    onKeyDown={(e) => { if (e.key == 'Enter') { save() } }}
-                />
+                <div id="editUserFieldCont">
+                    <TextField
+                        id="editUserField"
+                        variant="outlined"
+                        label="Novo nome de usuário"
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
+                        onKeyDown={(e) => { if (e.key == 'Enter') { save() } }}
+                    />
+                </div>
 
-                <Button id="save" onClick={save} variant="contained" >
+                <Button id="save" onClick={save} variant="contained">
                     Salvar
                 </Button>
             </div>
