@@ -26,41 +26,13 @@ class Noticia extends Component {
 
             uri: this.props.item.uri,
             url: this.props.item.url,
-            source: this.props.source,
+            source: this.props.item.source,
 
             fav: false
 
         }
         /* this.state.handleFav = this.handleFav.bind(this);
         this.state.checkNews = this.checkNews.bind(this) */
-    }
-
-    /* handleFav = (name) => (e) => {
-        this.setState({ [name]: e.target.checked });
-
-        const { addNews, delItem } = this.context;
-
-        if (e.target.checked) {
-            //registra
-            addNews(this.state);
-        } else {
-            //remove
-            delItem("news", this.state.uri);
-        }
-    }; */
-
-    /* checkNews(d) {
-        const { isNewFav } = this.context;
-
-        if (isNewFav(d)) {
-            this.setState({ fav: true });
-        } else {
-            this.setState({ fav: false });
-        }
-    } */
-
-    componentDidMount() {
-        // this.checkNews(this.state.uri)
     }
 
     render() {
@@ -72,20 +44,6 @@ class Noticia extends Component {
 
                         <div id="bookmarkCont">
                             <Mark news={this.state} />
-                            {/* <Checkbox
-                                id="bookmarkIcon"
-                                onChange={this.handleFav("fav")}
-                                checked={this.state.fav}
-                                icon={<BookmarkBorderIcon />}
-                                checkedIcon={<BookmarkIcon />}
-                                sx={{
-                                    color: red[0],
-                                    "&.Mui-checked": {
-                                        color: red[400],
-                                    },
-                                    "& .MuiSvgIcon-root": { fontSize: 30 },
-                                }}
-                            /> */}
                         </div>
 
                         <img className='noticiaImg' src={this.state.image} alt={this.state.title} />
@@ -117,11 +75,10 @@ const Mark = (props) => {
     const [fav, setFav] = useState(false)
 
     useEffect(() => {
-        // console.log("ai")
+        
         const checkCity = () => {
             const a = isNewFav(props.news.uri)
             setFav(a)
-            console.log(a)
         }
         checkCity()
     }, [props.news.uri, signed])

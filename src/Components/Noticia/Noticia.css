@@ -15,10 +15,8 @@
 }
 
 .noticiaImg {
-    min-height: 140px;
-    max-height: 140px;
-    min-width: 200px;
-    max-width: 200px;
+    width: 200px;
+    height: 140px;
 
     margin: 0 0 0 7px;
 
@@ -76,6 +74,36 @@ hr {
     .noticiaImg {
         min-height: 180px;
         min-width: calc(100% - 14px);
+        margin: 0 0 7px 0;
+    }
+
+    .noticiaTitulo {
+        font-size: 18px;
+    }
+
+    .noticiaDesc {
+        margin: 0 12px;
+    }
+
+    .noticiaDesc,
+    .noticiaCreditos {
+        font-size: 12px;
+    }
+}
+
+.horizontal{
+    #bookmarkCont{
+        left: unset;
+        right: 10px;
+    }
+    
+    .noticia {
+        flex-direction: column;
+    }
+
+    .noticiaImg {
+        height: 180px;
+        width: 100%;
         margin: 0 0 7px 0;
     }
 

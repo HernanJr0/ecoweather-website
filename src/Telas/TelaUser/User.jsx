@@ -11,6 +11,13 @@ import Noticia from "../../Components/Noticia/Noticia.jsx";
 import { ToastContainer } from "react-toastify";
 
 import "./User.css";
+import "../../Components/Noticia/Noticia.css"
+
+import 'swiper/css/scrollbar';
+import 'swiper/css';
+
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Scrollbar } from 'swiper/modules';
 
 function User() {
 
@@ -22,13 +29,42 @@ function User() {
 	const [c, setC] = useState(cities);
 	const [n, setN] = useState(news);
 
-	/* useEffect(() => {
-		const ai = () => {
-			setC(cities)
-			setN(news)
+	function peba() {
+		console.log(n.length)
+		console.log(n)
+		if (n.length != undefined) {
+			return n.map((news, i) => {
+				return (
+					<SwiperSlide key={i} className="horizontal">
+						<Noticia item={news} />
+					</SwiperSlide>
+				);
+			})
+		} else {
+			return (
+				<SwiperSlide key={Math.random()} className="horizontal">
+					<Noticia item={n} />
+				</SwiperSlide>
+			);
 		}
-		ai()
-	}, []) */
+	}
+
+
+	function pesquisa(e) {
+		if (e.key == 'Enter') {
+			const ai = document.getElementById("srch").value
+
+			if (ai != '') {
+				news.map((news) => {
+					if (news.title.indexOf(ai) > -1) {
+						setN(news)
+					}
+				})
+			} else {
+				setN(news)
+			}
+		}
+	}
 
 	return (
 		<div id="userCont">
@@ -45,6 +81,40 @@ function User() {
 				</div>
 			</div>
 
+			<div id="l-news">
+
+				<div id="news-header">
+					<h2>Notícias Salvas</h2>
+					<input id="srch" type="text" onKeyDown={pesquisa} placeholder="Pesquisar" />
+				</div>
+
+				<Swiper className="oi"
+					breakpoints={{
+						480: {
+
+							slidesPerView: 2,
+						},
+						768: {
+							slidesPerView: 3,
+						},
+						960: {
+							slidesPerView: 4,
+						},
+					}}
+					spaceBetween={10}
+					scrollbar
+					modules={[Scrollbar]}
+
+				>
+
+					{
+						peba()
+					}
+
+
+				</Swiper>
+			</div>
+
 			<div id="l-cities">
 				<h2>Cidades Favoritas</h2>
 				<ul>
@@ -52,39 +122,12 @@ function User() {
 						c.map((city, i) => {
 							return (
 								<li key={i}>
-
 									<Star city={city.nome} />
 									{city.nome}
-
 								</li>
 							)
 						})
-						
-					}
-				</ul>
-			</div>
-			<div id="l-news">
-				<ul>
-					<h2>Notícias Salvas</h2>
-					{
-						n.map((news, i) => {
-							return (
-								<li key={i}>
-									<Noticia
-										item={news}
-										source={news.source}
 
-									/* url={news.url}
-									uri={news.uri}
-									image={news.image}
-									title={news.title}
-									body={news.body}
-									source={news.source} */
-
-									/>
-								</li>
-							);
-						})
 					}
 				</ul>
 			</div>
@@ -92,7 +135,7 @@ function User() {
 				<Button id="sair" onClick={signOut} variant="outlined" color="error">
 					Sair
 				</Button>
-			</div>			
+			</div>
 		</div>
 	);
 

@@ -34,13 +34,24 @@ function TopButtons({ setQuery }) {
         }
     ] */
 
-    const db = getFirestore(app);
-    const { user } = useContext(AuthGoogleContext);
+    // const db = getFirestore(app);
+    const { cities } = useContext(AuthGoogleContext);
 
-    const citiesCollectionRef = collection(db, "users", user.uid, "cities");
+    function oi() {
+        if (!!cities) {
+            return cities.map((city, i) => (
+                <button key={i}
+                    className='city-button text-white text-lg font-medium border-solid border-2 border-white rounded-md m-4 p-1 bg-transparent hover:border-gray-300 hover:text-gray-300 hover:scale-125 transition ease-out'
+                    onClick={() => setQuery({ q: city.nome })}>{city.nome}
+                </button>
+            ))
+        }
+    }
+
+    // const citiesCollectionRef = collection(db, "users", user.uid, "cities");
 
 
-    const [cities, setCities] = useState([])
+    /* const [cities, setCities] = useState([])
 
     useEffect(() => {
         const getCities = async () => {
@@ -49,16 +60,14 @@ function TopButtons({ setQuery }) {
             console.log("ai")
         };
         getCities();
-    }, []);
+    }, []); */
+
 
     return (
         <div className='city-list flex items-center'>
-            {cities.map((city, i) => (
-                <button key={i}
-                    className='city-button text-white text-lg font-medium border-solid border-2 border-white rounded-md m-4 p-1 bg-transparent hover:border-gray-300 hover:text-gray-300 hover:scale-125 transition ease-out'
-                    onClick={() => setQuery({ q: city.nome })}>{city.nome}
-                </button>
-            ))}
+            {
+                oi()
+            }
         </div>
     )
 }
