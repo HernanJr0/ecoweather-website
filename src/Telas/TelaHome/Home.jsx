@@ -158,9 +158,9 @@ function Home() {
                     <div id='conteudo'>
                         <div id='noticias'>
 
-                            {/* <Noticias locale={locale} /> */}
+                            <Noticias locale={locale} />
 
-                            <h2 id='noticiasTitulo'>Noticias</h2>
+                            {/* <h2 id='noticiasTitulo'>Noticias</h2>
 
 
                             <Noticia
@@ -212,7 +212,7 @@ function Home() {
 
                                     uri: "7818364940"
                                 }} source="kxxv.com"
-                            />
+                            /> */}
 
                         </div>
                         <div id='sideContent'>

@@ -44,9 +44,9 @@ export const AuthGoogleProvider = ({ children }) => {
 
     const userRef = collection(db, "users")
 
-    const [user, setUser] = useState(null);
-    const [cities, setCities] = useState(null)
-    const [news, setNews] = useState(null)
+    const [user, setUser] = useState();
+    const [cities, setCities] = useState()
+    const [news, setNews] = useState()
 
     useEffect(() => {
         const storageUser = JSON.parse(localStorage.getItem("@AuthFirebase:user"))
@@ -251,6 +251,7 @@ export const AuthGoogleProvider = ({ children }) => {
             source: n.source,
             image: n.image,
         });
+
 
         pega(user.uid, "news")
 

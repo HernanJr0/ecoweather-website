@@ -1,4 +1,4 @@
-#userCont{
+#userCont {
   padding-bottom: 30px;
 }
 
@@ -52,22 +52,30 @@
   margin: 30px 0 0 30px;
 }
 
-#l-news ul {
-  padding: 0;
-
-  border-radius: 20px;
-  background-color: #303030;
-  padding: 15px;
-  margin: 7.5px;
-}
-
-#l-news li,
 #l-cities li {
   list-style: none;
 }
 
-#l-news>ul>h2 {
-  margin-left: 30px;
+
+#l-news ul {
+  display: flex;
+  overflow-x: scroll;
+}
+
+#l-news {
+  border-radius: 20px;
+  background-color: #303030;
+  padding: 15px;
+  margin: 7.5px;
+  margin-top: 30px;
+}
+
+.oi{
+  padding-bottom: 15px;
+}
+
+#news-header>h2 {
+  margin-left: 15px;
 }
 
 #l-news #noticiaCont {
@@ -89,4 +97,18 @@
   #usercard div {
     height: 250px;
   }
+}
+
+
+
+
+#news-header{
+  display: flex;
+  justify-content: space-between;
+  place-items: center;
+}
+
+#srch{
+  width: 100px;
+  height: fit-content;
 }

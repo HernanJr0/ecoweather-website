@@ -106,6 +106,7 @@ class Clima extends Component {
         } else {
             this.drawWeather(val);
             this.checkCity(val.name)
+            console.log(val);
         }
     }
 
@@ -137,6 +138,7 @@ class Clima extends Component {
                 bg = result.url;
             });
         }
+
         this.setState({
             loc: d.name,
             clima: d.weather[0].description,
@@ -151,8 +153,6 @@ class Clima extends Component {
 
     render() {
         return (
-            /* <Swiper id='clima-swiper'>
-                <SwiperSlide className='clima-swiper-slide'> */
 
             <div id="head">
                 <img className="bg" src={this.state.wall} alt="bg" />
@@ -174,6 +174,7 @@ class Clima extends Component {
                 </div>
 
                 <div id="stat">
+
                     {/*
                     porreessaakkkkkkkk 
                     <div>Qualidade do ar: Razoável</div>
@@ -186,27 +187,9 @@ class Clima extends Component {
                 </div>
 
                 <div id="starCont">
-                    {/* <Checkbox
-                        id="starIcon"
-                        onChange={this.handleFav("fav")}
-                        checked={this.state.fav}
-                        icon={<StarBorderIcon />}
-                        checkedIcon={<StarIcon />}
-                        sx={{
-                            color: yellow[0],
-                            "&.Mui-checked": {
-                                color: yellow[600],
-                            },
-                            "& .MuiSvgIcon-root": { fontSize: 32 },
-                        }}
-                    /> */}
-
                     <Star city={this.state.loc} />
                 </div>
             </div>
-
-            /* </SwiperSlide>
-        </Swiper> */
         );
     }
 }
@@ -217,14 +200,13 @@ const Star = (props) => {
     const [fav, setFav] = useState(false)
 
     useEffect(() => {
-        if (signed) {
-            const checkCity = () => {
-                const a = isCityFav(props.city)
-                setFav(a)
-            }
-            checkCity()
+
+        const checkCity = () => {
+            const a = isCityFav(props.city)
+            setFav(a)
         }
-    }, [props.city])
+        checkCity()
+    }, [props.city, signed])
 
     const handleFav = (e) => {
         if (signed) {
