@@ -31,9 +31,20 @@ class Noticia extends Component {
             fav: false
 
         }
-        /* this.state.handleFav = this.handleFav.bind(this);
-        this.state.checkNews = this.checkNews.bind(this) */
+        /* this.state.handleFav = this.handleFav.bind(this);*/
+        // this.state.oi = this.oi.bind(this)
     }
+
+    /* componentDidMount(){
+        this.oi()
+    }
+
+    oi() {
+        const au = document.getElementsByClassName("noticiaIMG")
+        if (au.src == undefined) {
+            au.src = 'https://tinyurl.com/yc2ms4ts'
+        }
+    } */
 
     render() {
         return (
@@ -75,7 +86,7 @@ const Mark = (props) => {
     const [fav, setFav] = useState(false)
 
     useEffect(() => {
-        
+
         const checkCity = () => {
             const a = isNewFav(props.news.uri)
             setFav(a)
@@ -90,11 +101,9 @@ const Mark = (props) => {
 
             if (e.target.checked) {
                 //registra
-                toast.info('Notícia salva nos favoritos')
                 addNews(props.news);
             } else {
                 //remove
-                toast.info('Notícia removida dos favoritos')
                 delItem("news", props.news.uri);
             }
 

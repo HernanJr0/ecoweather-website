@@ -56,6 +56,10 @@
   list-style: none;
 }
 
+#l-cities ul {
+  max-height: 300px;
+  overflow-y: scroll;
+}
 
 #l-news ul {
   display: flex;
@@ -63,19 +67,13 @@
 }
 
 #l-news {
+
   border-radius: 20px;
   background-color: #303030;
-  padding: 15px;
+  padding: 7.5px;
   margin: 7.5px;
+
   margin-top: 30px;
-}
-
-.oi{
-  padding-bottom: 15px;
-}
-
-#news-header>h2 {
-  margin-left: 15px;
 }
 
 #l-news #noticiaCont {
@@ -99,16 +97,19 @@
   }
 }
 
+.swiper-wrapper {
+  padding-bottom: 12px;
+}
 
-
-
-#news-header{
+#news-header {
+  margin: 0 auto;
+  width: 97%;
   display: flex;
   justify-content: space-between;
   place-items: center;
 }
 
-#srch{
+#srch {
   width: 100px;
   height: fit-content;
 }

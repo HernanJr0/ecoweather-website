@@ -6,6 +6,7 @@
     border-radius: 19px;
 }
 
+
 .noticia {
     background-color: #303030;
 }
@@ -86,7 +87,7 @@ hr {
 
     .noticiaImg {
         min-height: 180px;
-        min-width: calc(100% - 14px);
+        width: calc(100% - 14px);
         margin: 0 0 7px 0;
     }
 
@@ -116,7 +117,7 @@ hr {
 
     .noticiaImg {
         height: 180px;
-        width: 100%;
+        width: calc(100% - 14px);
         margin: 0 0 7px 0;
     }
 

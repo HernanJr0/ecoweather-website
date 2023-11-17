@@ -111,6 +111,10 @@ a:active {
 }
 
 @media (max-width: 900px) {
+  #noticias {
+    width: calc(100% - 30px);
+  }
+
   #merda {
     display: unset;
   }
