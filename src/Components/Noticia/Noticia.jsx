@@ -81,18 +81,17 @@ class Noticia extends Component {
 
 
 const Mark = (props) => {
-    const { signed, isNewFav, addNews, delItem } = useContext(AuthGoogleContext);
+    const { news, signed, isNewFav, addNews, delItem } = useContext(AuthGoogleContext);
 
     const [fav, setFav] = useState(false)
 
     useEffect(() => {
-
         const checkCity = () => {
             const a = isNewFav(props.news.uri)
             setFav(a)
         }
         checkCity()
-    }, [props.news.uri, signed])
+    }, [news])
 
     const handleFav = (e) => {
         if (signed) {

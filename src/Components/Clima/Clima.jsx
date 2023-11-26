@@ -5,7 +5,7 @@ import StarIcon from "@mui/icons-material/Star";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 
 import { yellow } from "@mui/material/colors";
-import { Checkbox } from "@mui/material";
+import { Checkbox, ToggleButton } from "@mui/material";
 
 /* import calendar from '../../assets/calendar.png';
 
@@ -241,4 +241,44 @@ const Star = (props) => {
         />
     )
 }
-export { Clima, Star };
+
+const CityButton = (props) => {
+    const { signed, addCity, delItem, isCityFav } = useContext(AuthGoogleContext);
+
+    const [selected, setSelected] = useState(false)
+
+    useEffect(() => {
+
+        const checkCity = () => {
+            const a = isCityFav(props.city)
+            setSelected(a)
+        }
+        checkCity()
+    }, [props.city, signed])
+
+    const handleFav = async (e) => {
+        setSelected(!selected);
+        const sel = !selected;
+
+        if (sel) {
+            //registra
+            addCity(props.city);
+        } else {
+            //remove
+            delItem("cities", props.city);
+        }
+    };
+
+    return (
+        <ToggleButton
+            id="city-button"
+            onChange={handleFav}
+            selected={selected}
+            color="primary"
+            value={props.city}
+        >
+            {props.city}
+        </ToggleButton>
+    )
+}
+export { Clima, Star, CityButton };

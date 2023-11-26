@@ -35,13 +35,29 @@ function TopButtons({ setQuery }) {
     ] */
 
     // const db = getFirestore(app);
+
     const { cities } = useContext(AuthGoogleContext);
+
+
+    useEffect(() => {
+
+		if (!!document.getElementById("city-list")) {
+			var item = document.getElementById("city-list");
+
+			item.addEventListener("wheel", function (e) {
+				item.scrollLeft += (e.deltaY / 2);
+				e.preventDefault();
+			});
+		}
+	},[])
+
 
     function oi() {
         if (!!cities) {
+
             return cities.map((city, i) => (
-                <button key={i}
-                    className='city-button text-white text-lg font-medium border-solid border-2 border-white rounded-md m-4 p-1 bg-transparent hover:border-gray-300 hover:text-gray-300 hover:scale-125 transition ease-out'
+                <button key={i} id='city-button'
+                    className='text-white text-lg font-medium border-solid border-2 border-white rounded-md m-4 p-1 bg-transparent hover:border-gray-300 hover:text-gray-200 hover:scale-110 transition ease-out'
                     onClick={() => setQuery({ q: city.nome })}>{city.nome}
                 </button>
             ))
@@ -64,11 +80,9 @@ function TopButtons({ setQuery }) {
 
 
     return (
-        <div className='city-list flex items-center'>
-            {
-                oi()
-            }
-        </div>
+        <div id='city-list' className='flex items-center'>
+            {oi()}
+        </div >
     )
 }
 

@@ -11,7 +11,7 @@ const Dicas = () => {
           <AtalhoDicas
             titulo={topico.titulo}
             descricao={topico.descricao}
-            link={`/home/informacoes/${topico.id}`}
+            link={`/informacoes/${topico.id}`}
             bg={topico.imagem}
           />
         ))}

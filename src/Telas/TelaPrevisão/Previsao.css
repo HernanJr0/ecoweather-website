@@ -11,21 +11,18 @@
   justify-content: space-around;
 }
 
-.city-list{
+#city-list{
     overflow-x: scroll;
-    display: flex;
-    justify-content: space-between;
     width: 100%;
 }
 
-.city-button{
+#city-button{
   min-width: max-content;
-  margin: 0 8px;
 }
 
 .previsaoCont {
   height: fit-content;
-  min-height: calc(100vh - 140px);
+  min-height: calc(100vh - 130px);
 }
 
 .clima2 {

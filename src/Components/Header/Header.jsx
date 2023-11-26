@@ -35,7 +35,7 @@ function Header() {
         const userImage = signed ? user.photoURL : 'https://tinyurl.com/5kub7nce'
 
         return (
-            <img id="usrIcon" src={userImage} />
+            <img id="usrIcon" src={userImage || 'https://tinyurl.com/5kub7nce'} />
         )
     }
 

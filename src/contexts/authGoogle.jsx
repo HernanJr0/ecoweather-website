@@ -44,15 +44,17 @@ export const AuthGoogleProvider = ({ children }) => {
 
     const userRef = collection(db, "users")
 
-    const [user, setUser] = useState(null);
-    const [cities, setCities] = useState(null)
-    const [news, setNews] = useState(null)
+    const storageUser = JSON.parse(localStorage.getItem("@AuthFirebase:user"))
+    const storageToken = localStorage.getItem("@AuthFirebase:token");
+    const storageCities = JSON.parse(localStorage.getItem("@AuthFirebase:cities"));
+    const storageNews = JSON.parse(localStorage.getItem("@AuthFirebase:news"));
+
+
+    const [user, setUser] = useState(storageUser);
+    const [cities, setCities] = useState(storageCities)
+    const [news, setNews] = useState(storageNews)
 
     useEffect(() => {
-        const storageUser = JSON.parse(localStorage.getItem("@AuthFirebase:user"))
-        const storageToken = localStorage.getItem("@AuthFirebase:token");
-        const storageCities = JSON.parse(localStorage.getItem("@AuthFirebase:cities"));
-        const storageNews = JSON.parse(localStorage.getItem("@AuthFirebase:news"));
 
         if (storageToken && storageUser) {
             setUser(storageUser);
@@ -63,20 +65,14 @@ export const AuthGoogleProvider = ({ children }) => {
                 setNews(storageNews)
 
             } else {
-                console.log(!!user)
-                if (!!user) {
-                    console.log("ai")
-                    pega(user.uid, 'cities')
-                    pega(user.uid, 'news')
-                } else {
-                    console.log("ai")
-                    pega(storageUser.uid, 'cities')
-                    pega(storageUser.uid, 'news')
-                }
+                console.log("ai")
+
+                pega(user.uid, 'cities')
+                pega(user.uid, 'news')
             }
         }
 
-    },[auth.currentUser]);
+    }, [auth.currentUser]);
 
     async function checkUser(u) {
         const docSnap = await getDoc(doc(userRef, u.uid));
@@ -238,7 +234,7 @@ export const AuthGoogleProvider = ({ children }) => {
         });
 
         pega(user.uid, "cities")
-
+        console.log("adc")
     };
 
     const addNews = async (n) => {
@@ -254,13 +250,14 @@ export const AuthGoogleProvider = ({ children }) => {
 
 
         pega(user.uid, "news")
-
+        console.log("adc")
     };
 
     const delItem = async (items, item) => {
         await deleteDoc(doc(userRef, user.uid, items, item));
 
         pega(user.uid, items)
+        console.log("del")
     };
 
     //todo

@@ -1,10 +1,10 @@
 import { AuthGoogleContext } from "../../contexts/authGoogle";
 import { useContext, useEffect, useState } from "react";
-import { Button } from "@mui/material";
+import { Button, ToggleButtonGroup, ToggleButton } from "@mui/material";
 
 import { Link } from "react-router-dom";
 
-import { Star } from "../../Components/Clima/Clima.jsx"
+import { CityButton, Star } from "../../Components/Clima/Clima.jsx"
 
 import Noticia from "../../Components/Noticia/Noticia.jsx";
 
@@ -40,7 +40,19 @@ function User() {
 	const [c, setC] = useState(cities);
 	const [n, setN] = useState(news);
 
-	function peba() {
+	useEffect(() => {
+
+		if (!!document.getElementById("cities")) {
+			var item = document.getElementById("cities");
+
+			item.addEventListener("wheel", function (e) {
+				item.scrollLeft += (e.deltaY / 2);
+				e.preventDefault();
+			});
+		}
+	},[])
+
+	function loadNews() {
 
 		/* if (n.length > 0) { */
 		var ai
@@ -48,17 +60,39 @@ function User() {
 		if (document.getElementById("srch")) {
 			ai = document.getElementById("srch").value
 		}
-		if (n.length > 0) {
-			return n.map((news) => {
-				return (
-					<SwiperSlide key={Math.random()} className="horizontal">
-						<Noticia item={!!ai ? news.item : news} />
-					</SwiperSlide>
-				);
-			})
-		} else {
+
+		if (!!n)
+			if (n.length > 0) {
+				return n.map((news,i) => {
+					return (
+						<SwiperSlide key={Math.random()} className="horizontal">
+							<Noticia item={!!ai ? news.item : news} />
+						</SwiperSlide>
+					);
+				})
+			} else {
+				return <p id="nenhumaNoticia">Nenhuma noticia encontrada!</p>
+			}
+		else
 			return <p id="nenhumaNoticia">Nenhuma noticia encontrada!</p>
+	}
+
+	function loadCities() {
+		if (!!c) {
+
+			if (c.length > 0) {
+				return c.map((city, i) => {
+					return (
+						<CityButton id="balalau" city={city.nome} key={Math.random()} />
+					)
+				})
+
+			} else {
+				return <p id="nenhumaNoticia">Nenhuma cidade encontrada!</p>
+			}
 		}
+		else
+			return <p id="nenhumaNoticia">Nenhuma cidade encontrada!</p>
 	}
 
 	function clear() {
@@ -74,17 +108,12 @@ function User() {
 				const options = {
 					minCharLength: 2,
 					isCaseSensitive: false,
-					threshold: 0.4,
+					threshold: 0.5,
 					keys: ['title', 'source']
 				}
 
 				const fuse = new Fuse(news, options).search(ai)
-
-				if (!!fuse) {
-					setN(fuse)
-				} else {
-
-				}
+				setN(fuse)
 
 			} else {
 				setN(news)
@@ -112,7 +141,7 @@ function User() {
 			</div>
 
 			<div id="l-news">
-				<div id="news-header">
+				<div className="s-header">
 					<h2>Notícias Salvas</h2>
 
 					<TextField id="srch"
@@ -135,10 +164,9 @@ function User() {
 
 				</div>
 
-				<Swiper className="oi"
-
+				<Swiper
+					id="oi"
 					freeMode={true}
-					spaceBetween={5}
 					modules={[FreeMode, Scrollbar]}
 					breakpoints={{
 						480: {
@@ -155,33 +183,26 @@ function User() {
 							slidesPerView: 5,
 						}
 					}}
-					scrollbar
+					scrollbar={{
+						draggable: true
+					}}
 				>
-
-					{
-						peba()
-					}
-
+					{loadNews()}
 
 				</Swiper>
 
 			</div>
 
 			<div id="l-cities">
-				<h2>Cidades Favoritas</h2>
-				<ul>
-					{
-						c.map((city, i) => {
-							return (
-								<li key={i}>
-									<Star city={city.nome} />
-									{city.nome}
-								</li>
-							)
-						})
+				<div className="s-header">
+					<h2>Cidades Favoritas</h2>
+				</div>
 
-					}
-				</ul>
+				<div id="cities">
+
+					{loadCities()}
+				</div>
+
 			</div>
 			<div id="buttons">
 				<Button id="sair" onClick={signOut} variant="outlined" color="error">

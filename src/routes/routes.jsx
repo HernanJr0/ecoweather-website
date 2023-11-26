@@ -10,12 +10,12 @@ import { Analytics } from "@vercel/analytics/react";
 
 import "../index.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { PrivateRoutes } from "./index.jsx";
+import { PrivateRoutes, AuthRoute } from "./index.jsx";
 import Header from "../Components/Header/Header.jsx";
 import Footer from "../Components/Footer/Footer.jsx";
 import EditUser from "../Telas/TelaUser/EditUser.jsx";
-import { AuthRoute } from "./index.jsx";
 import Auth from "../Telas/TelaAuth/Auth.jsx";
+
 export const Router = () => {
 
     const darkTheme = createTheme({
