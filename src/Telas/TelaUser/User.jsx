@@ -40,18 +40,6 @@ function User() {
 	const [c, setC] = useState(cities);
 	const [n, setN] = useState(news);
 
-	useEffect(() => {
-
-		if (!!document.getElementById("cities")) {
-			var item = document.getElementById("cities");
-
-			item.addEventListener("wheel", function (e) {
-				item.scrollLeft += (e.deltaY / 2);
-				e.preventDefault();
-			});
-		}
-	},[])
-
 	function loadNews() {
 
 		/* if (n.length > 0) { */
@@ -83,7 +71,7 @@ function User() {
 			if (c.length > 0) {
 				return c.map((city, i) => {
 					return (
-						<CityButton id="balalau" city={city.nome} key={Math.random()} />
+						<CityButton city={city.nome} key={Math.random()} />
 					)
 				})
 
@@ -166,11 +154,10 @@ function User() {
 
 				<Swiper
 					id="oi"
-					freeMode={true}
-					modules={[FreeMode, Scrollbar]}
+					/* freeMode={true} */ 
+					modules={[/* FreeMode, */ Scrollbar]}
 					breakpoints={{
-						480: {
-
+						500: {
 							slidesPerView: 2,
 						},
 						768: {

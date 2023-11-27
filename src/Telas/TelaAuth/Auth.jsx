@@ -33,7 +33,7 @@ export const Auth = () => {
             () => {
                 signInAccount(emailField.value, passwordField.value)
             },
-            1000
+            500
         );
     }
 

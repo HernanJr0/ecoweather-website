@@ -71,8 +71,10 @@
 #cities {
   width: 100%;
   margin: 7.5px;
-  display: flex;
-  overflow-x: scroll;
+}
+
+#city-button {
+  margin: 5px !important;
 }
 
 .MuiToggleButton-root {
@@ -96,15 +98,16 @@
   }
 }
 
-#oi {
-  padding-bottom: 18px;
-}
 
 #oi .swiper-scrollbar-drag,
 #oi .swiper-scrollbar {
-  height: 8px !important;
+  height: 10px !important;
 }
 
+#oi .swiper-scrollbar {
+  position: relative;
+  bottom: auto;
+}
 
 #srch {
   width: 100px;

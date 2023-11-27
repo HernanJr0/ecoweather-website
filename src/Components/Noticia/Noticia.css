@@ -4,12 +4,9 @@
     display: flex;
     place-items: center;
     border-radius: 19px;
-}
-
-
-.noticia {
     background-color: #303030;
 }
+
 
 #noticiaItemCont hr {
     border: 1px solid #202020;

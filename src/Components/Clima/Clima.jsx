@@ -206,7 +206,7 @@ const Star = (props) => {
             setFav(a)
         }
         checkCity()
-    }, [props.city, signed])
+    }, [props])
 
     const handleFav = (e) => {
         if (signed) {
