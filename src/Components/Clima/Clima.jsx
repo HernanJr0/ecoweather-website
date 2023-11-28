@@ -201,11 +201,8 @@ const Star = (props) => {
 
     useEffect(() => {
 
-        const checkCity = () => {
-            const a = isCityFav(props.city)
-            setFav(a)
-        }
-        checkCity()
+        setFav(isCityFav(props.city))
+
     }, [props])
 
     const handleFav = (e) => {
@@ -224,6 +221,7 @@ const Star = (props) => {
         }
     };
 
+    console.log('c')
     return (
         <Checkbox
             id="starIcon"
@@ -243,20 +241,11 @@ const Star = (props) => {
 }
 
 const CityButton = (props) => {
-    const { signed, addCity, delItem, isCityFav } = useContext(AuthGoogleContext);
+    const { addCity, delItem, isCityFav } = useContext(AuthGoogleContext);
 
-    const [selected, setSelected] = useState(false)
+    const [selected, setSelected] = useState(isCityFav(props.city))
 
-    useEffect(() => {
-
-        const checkCity = () => {
-            const a = isCityFav(props.city)
-            setSelected(a)
-        }
-        checkCity()
-    }, [props.city, signed])
-
-    const handleFav = async (e) => {
+    const handleFav = () => {
         setSelected(!selected);
         const sel = !selected;
 
@@ -268,7 +257,8 @@ const CityButton = (props) => {
             delItem("cities", props.city);
         }
     };
-
+    
+    console.log('c')
     return (
         <ToggleButton
             id="city-button"

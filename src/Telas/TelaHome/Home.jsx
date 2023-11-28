@@ -116,6 +116,7 @@ function Home() {
 
                 document.cookie = `city = ${cidade};Secure`
 
+                e.target.value = ''
                 /* this.setState({ loc: city });
                 this.weatherBallon(e.target.value) */
             } else {

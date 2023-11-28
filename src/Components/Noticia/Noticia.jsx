@@ -47,6 +47,7 @@ class Noticia extends Component {
     } */
 
     render() {
+        console.log('n')
         return (
             <div id='noticiaItemCont'>
                 <hr />
@@ -83,15 +84,7 @@ class Noticia extends Component {
 const Mark = (props) => {
     const { signed, isNewFav, addNews, delItem } = useContext(AuthGoogleContext);
 
-    const [fav, setFav] = useState(false)
-
-    useEffect(() => {
-        const checkCity = () => {
-            const a = isNewFav(props.news.uri)
-            setFav(a)
-        }
-        checkCity()
-    }, [props])
+    const [fav, setFav] = useState(isNewFav(props.news.uri))
 
     const handleFav = (e) => {
         if (signed) {

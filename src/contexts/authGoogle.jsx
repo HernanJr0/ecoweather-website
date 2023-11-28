@@ -44,14 +44,15 @@ export const AuthGoogleProvider = ({ children }) => {
 
     const userRef = collection(db, "users")
 
-    const storageUser = JSON.parse(localStorage.getItem("@AuthFirebase:user"))
     const storageToken = localStorage.getItem("@AuthFirebase:token");
-    const storageCities = JSON.parse(localStorage.getItem("@AuthFirebase:cities"));
-    const storageNews = JSON.parse(localStorage.getItem("@AuthFirebase:news"));
 
-
+    const storageUser = JSON.parse(localStorage.getItem("@AuthFirebase:user"))
     const [user, setUser] = useState(storageUser);
+
+    const storageCities = JSON.parse(localStorage.getItem("@AuthFirebase:cities"));
     const [cities, setCities] = useState(storageCities)
+
+    const storageNews = JSON.parse(localStorage.getItem("@AuthFirebase:news"));
     const [news, setNews] = useState(storageNews)
 
     useEffect(() => {
@@ -85,29 +86,7 @@ export const AuthGoogleProvider = ({ children }) => {
         }
     }
 
-    async function pega(user, items) {
 
-        if (items == 'cities') {
-
-            const a = await getDocs(collection(userRef, user, "cities"))
-
-            console.log("ai")
-            const b = a.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
-
-            localStorage.setItem("@AuthFirebase:cities", JSON.stringify(b));
-            setCities(b)
-        }
-
-        if (items == 'news') {
-            const a = await getDocs(collection(userRef, user, "news"))
-
-            console.log("ai")
-            const b = a.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
-
-            localStorage.setItem("@AuthFirebase:news", JSON.stringify(b));
-            setNews(b)
-        }
-    }
 
     const signInGoogle = () => {
         signInWithPopup(auth, provider)
@@ -228,6 +207,30 @@ export const AuthGoogleProvider = ({ children }) => {
         localStorage.setItem("@AuthFirebase:user", JSON.stringify(auth.currentUser));
     }
 
+    async function pega(user, items) {
+
+        if (items == 'cities') {
+
+            const a = await getDocs(collection(userRef, user, "cities"))
+
+            console.log("ai")
+            const b = a.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+
+            localStorage.setItem("@AuthFirebase:cities", JSON.stringify(b));
+            setCities(b)
+        }
+
+        if (items == 'news') {
+            const a = await getDocs(collection(userRef, user, "news"))
+
+            console.log("ai")
+            const b = a.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+
+            localStorage.setItem("@AuthFirebase:news", JSON.stringify(b));
+            setNews(b)
+        }
+    }
+
     const addCity = async (c) => {
         await setDoc(doc(userRef, user.uid, "cities", c), {
             nome: c,
@@ -267,8 +270,6 @@ export const AuthGoogleProvider = ({ children }) => {
         for (var it in news) {
             if (item == news[it].uri) {
                 return true
-            } else {
-                continue
             }
         }
         return false
@@ -278,8 +279,6 @@ export const AuthGoogleProvider = ({ children }) => {
         for (var it in cities) {
             if (item == cities[it].nome) {
                 return true
-            } else {
-                continue
             }
         }
         return false
@@ -299,6 +298,9 @@ export const AuthGoogleProvider = ({ children }) => {
                 xgPfp,
                 xgUser,
 
+
+                storageCities,
+                storageNews,
                 cities,
                 news,
 
