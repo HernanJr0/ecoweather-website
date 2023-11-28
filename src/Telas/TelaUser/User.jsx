@@ -16,7 +16,7 @@ import 'swiper/css/scrollbar';
 import 'swiper/css';
 
 import MyCities from "./MyCities.jsx";
-import MyNews from "./myNews.jsx";
+import MyNews from "./MyNews.jsx";
 
 function User() {
 
