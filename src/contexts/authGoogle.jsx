@@ -33,6 +33,7 @@ import {
 } from "firebase/storage";
 
 import { toast } from 'react-toastify';
+import { blue } from "@mui/material/colors";
 
 const provider = new GoogleAuthProvider();
 
@@ -60,10 +61,10 @@ export const AuthGoogleProvider = ({ children }) => {
         if (storageToken && storageUser) {
             setUser(storageUser);
 
-            pega("cities", true)
             pega("news", true)
+            pega("cities", true)
         }
-    }, [storageToken]);
+    }, [!!user]);
 
     async function checkUser(u) {
         const docSnap = await getDoc(doc(userRef, u.uid));
@@ -206,14 +207,17 @@ export const AuthGoogleProvider = ({ children }) => {
         const b = a.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
 
         if (items == "cities") {
-            localStorage.setItem("@AuthFirebase:cities", JSON.stringify(b));
+
             if (t) setCities(b)
+            else localStorage.setItem("@AuthFirebase:cities", JSON.stringify(b));
         }
 
         if (items == "news") {
-            localStorage.setItem("@AuthFirebase:news", JSON.stringify(b));
+
             if (t) setNews(b)
+            else localStorage.setItem("@AuthFirebase:news", JSON.stringify(b));
         }
+
     }
 
     const addCity = async (c) => {
@@ -221,7 +225,7 @@ export const AuthGoogleProvider = ({ children }) => {
             nome: c,
         });
 
-        pega("cities", false)
+        pega("cities")
         console.log("adc")
     };
 
@@ -237,14 +241,14 @@ export const AuthGoogleProvider = ({ children }) => {
         });
 
 
-        pega("news", false)
+        pega("news")
         console.log("adn")
     };
 
     const delItem = async (items, item) => {
         await deleteDoc(doc(userRef, user.uid, items, item));
 
-        pega(items, false)
+        pega(items)
         console.log("del")
     };
 
