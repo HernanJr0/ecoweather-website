@@ -69,8 +69,8 @@
 }
 
 #cities {
-  width: 100%;
-  margin: 7.5px;
+  margin: 7.5px auto;
+  width: calc(100% - 15px);
 }
 
 #city-button {

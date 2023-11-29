@@ -22,7 +22,6 @@ const key = "d3afafb4de8d7a76ad9ced3bed938d51";
 
 
 class Clima extends Component {
-    static contextType = AuthGoogleContext;
 
     constructor(props) {
         super(props);
@@ -41,8 +40,6 @@ class Clima extends Component {
 
         this.drawWeather = this.drawWeather.bind(this);
         this.weatherBallon = this.weatherBallon.bind(this);
-        this.handleFav = this.handleFav.bind(this);
-        this.checkCity = this.checkCity.bind(this);
     }
 
     componentDidMount() {
@@ -58,29 +55,6 @@ class Clima extends Component {
         }
     }
 
-    checkCity(d) {
-        const { isCityFav } = this.context;
-
-        if (isCityFav(d)) {
-            this.setState({ fav: true });
-        } else {
-            this.setState({ fav: false });
-        }
-    }
-
-    handleFav = (name) => (e) => {
-        this.setState({ [name]: e.target.checked });
-
-        const { addCity, delItem } = this.context;
-        if (e.target.checked) {
-            //registra
-            addCity(this.state.loc);
-        } else {
-            //remove
-            delItem("cities", this.state.loc);
-        }
-    };
-
     weatherBallon(city) {
         if (city !== prevCity) {
             fetch(
@@ -95,8 +69,6 @@ class Clima extends Component {
                         val = data;
 
                         this.drawWeather(data);
-                        this.checkCity(data.name)
-
                         console.log(data);
                     }
                 })
@@ -105,13 +77,13 @@ class Clima extends Component {
                 });
         } else {
             this.drawWeather(val);
-            this.checkCity(val.name)
             console.log(val);
         }
     }
 
 
     async drawWeather(d) {
+        document.cookie = `city=${d.name};Secure`
 
         let c_img = "https://openweathermap.org/img/wn/" + d.weather[0].icon + ".png";
 
@@ -202,8 +174,7 @@ const Star = (props) => {
     useEffect(() => {
 
         setFav(isCityFav(props.city))
-
-    }, [props])
+    }, [props.city])
 
     const handleFav = (e) => {
         if (signed) {
@@ -257,8 +228,8 @@ const CityButton = (props) => {
             delItem("cities", props.city);
         }
     };
-    
-    console.log('c')
+
+    console.log('c2')
     return (
         <ToggleButton
             id="city-button"

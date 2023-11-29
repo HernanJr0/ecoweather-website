@@ -2,13 +2,17 @@ import { useState } from "react";
 import { useContext } from "react";
 import { AuthGoogleContext } from "../../contexts/authGoogle";
 import { CityButton } from "../../Components/Clima/Clima";
+import { useEffect } from "react";
 
 
 
 export function MyCities() {
-    const { storageCities/* cities */ } = useContext(AuthGoogleContext);
+    const { cities/* cities */, pega } = useContext(AuthGoogleContext);
+    const [c] = useState(cities);
 
-    const [c] = useState(storageCities);
+    useEffect(() => {
+        pega("cities", true)
+    }, [])
 
     function oi() {
         if (!!c) {

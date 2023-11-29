@@ -9,7 +9,6 @@ import { AuthGoogleContext } from "../../contexts/authGoogle";
 import { useContext } from "react"
 
 function Header() {
-
     const { user, signed } = useContext(AuthGoogleContext)
 
     // function useri() {

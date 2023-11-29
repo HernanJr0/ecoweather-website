@@ -10,13 +10,18 @@ import ClearIcon from '@mui/icons-material/Clear';
 import Noticia from "../../Components/Noticia/Noticia.jsx";
 
 import Fuse from 'fuse.js'
+import { useEffect } from "react";
 
 export function MyNews() {
 
-    const {storageNews/* news */ } = useContext(AuthGoogleContext);
-    const [n, setN] = useState(storageNews);
+    const { news/* news */, pega } = useContext(AuthGoogleContext);
+    const [n, setN] = useState(news);
 
     const [q, setQ] = useState(false)
+
+    useEffect(() => {
+        pega("news", true)
+    }, [])
 
     function loadNews() {
 
