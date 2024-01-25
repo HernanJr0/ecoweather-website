@@ -13,19 +13,14 @@ import Fuse from 'fuse.js'
 import { useEffect } from "react";
 
 export function MyNews() {
+    const { news } = useContext(AuthGoogleContext);
 
-    const { news/* news */, /* pega */ } = useContext(AuthGoogleContext);
     const [n, setN] = useState(news);
-
     const [q, setQ] = useState(false)
-
-    /* useEffect(() => {
-        pega("news")
-    }, []) */
 
     function loadNews() {
 
-        if (!!n) {
+        if (n) {
             if (n.length > 0) {
                 return n.map((news) => {
                     return (

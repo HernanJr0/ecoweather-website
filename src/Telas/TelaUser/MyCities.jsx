@@ -5,18 +5,13 @@ import { CityButton } from "../../Components/Clima/Clima";
 import { useEffect } from "react";
 
 
-
 export function MyCities() {
-    const { cities/* cities */, /* pega */ } = useContext(AuthGoogleContext);
+    const { cities} = useContext(AuthGoogleContext);
     const [c] = useState(cities);
 
-    /* useEffect(() => {
-        pega("cities")
-    }, []) */
+    function loadCities() {
 
-    function oi() {
-        if (!!c) {
-
+        if (c) {
             if (c.length > 0) {
                 return c.map((city) => {
                     return (
@@ -40,7 +35,7 @@ export function MyCities() {
             </div>
 
             <div id="cities">
-                {oi()}
+                {loadCities()}
             </div>
         </div >
     )
