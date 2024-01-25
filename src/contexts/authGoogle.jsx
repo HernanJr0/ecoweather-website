@@ -49,12 +49,8 @@ export const AuthGoogleProvider = ({ children }) => {
     const storageUser = JSON.parse(localStorage.getItem("@AuthFirebase:user"))
     const [user, setUser] = useState(storageUser);
 
-
     const storageCities = JSON.parse(localStorage.getItem("@AuthFirebase:cities"));
     const storageNews = JSON.parse(localStorage.getItem("@AuthFirebase:news"));
-    /* 
-        const [cidades, setCidades] = useState(storageCities)
-        const [noticias, setNoticias] = useState(storageNews) */
 
     const [cities, setCities] = useState(storageCities)
     const [news, setNews] = useState(storageNews);
@@ -65,9 +61,9 @@ export const AuthGoogleProvider = ({ children }) => {
 
             pega("cities")
             pega("news")
-            console.log(children)
+            // console.log(children)
         }
-    }, []);
+    }, [storageToken]);
 
     async function checkUser(u) {
         const docSnap = await getDoc(doc(userRef, u.uid));
@@ -197,6 +193,22 @@ export const AuthGoogleProvider = ({ children }) => {
 
         setUser(auth.currentUser)
         localStorage.setItem("@AuthFirebase:user", JSON.stringify(auth.currentUser));
+    }
+
+    async function pega2(items) {
+        console.log("oi")
+
+        const a = await getDocs(collection(userRef, user.uid, items))
+
+        const b = a.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+
+        if (items == "cities") {
+            localStorage.setItem("@AuthFirebase:cities", JSON.stringify(b));
+        }
+
+        if (items == "news") {
+            localStorage.setItem("@AuthFirebase:news", JSON.stringify(b));
+        }
     }
 
     async function pega(items) {

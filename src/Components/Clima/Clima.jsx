@@ -171,7 +171,7 @@ const Star = (props) => {
     const [fav, setFav] = useState(isItemFav('cities', props.city))
 
     useEffect(() => {
-
+        
         setFav(isItemFav('cities', props.city))
 
     }, [props.city])
@@ -192,6 +192,7 @@ const Star = (props) => {
         }
     };
 
+    console.log('c')
     return (
         <Checkbox
             id="starIcon"
@@ -217,9 +218,8 @@ const CityButton = (props) => {
 
     const handleFav = () => {
         setSelected(!selected);
-        const sel = !selected;
 
-        if (sel) {
+        if (!selected) {
             //registra
             addCity(props.city);
         } else {
