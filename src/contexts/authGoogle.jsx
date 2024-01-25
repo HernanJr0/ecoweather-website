@@ -53,8 +53,12 @@ export const AuthGoogleProvider = ({ children }) => {
     const storageCities = JSON.parse(localStorage.getItem("@AuthFirebase:cities"));
     const storageNews = JSON.parse(localStorage.getItem("@AuthFirebase:news"));
 
-    const [cities, setCities] = useState(storageCities)
-    const [news, setNews] = useState(storageNews)
+    const [cidades, setCidades] = useState(storageCities)
+    const [noticias, setNoticias] = useState(storageNews)
+
+    const
+        cities = cidades,
+        news = noticias;
 
     useEffect(() => {
         if (storageToken && storageUser) {
@@ -62,8 +66,9 @@ export const AuthGoogleProvider = ({ children }) => {
 
             pega("cities", true)
             pega("news", true)
+            console.log(children)
         }
-    }, [storageToken]);
+    }, []);
 
     async function checkUser(u) {
         const docSnap = await getDoc(doc(userRef, u.uid));
@@ -195,7 +200,7 @@ export const AuthGoogleProvider = ({ children }) => {
         localStorage.setItem("@AuthFirebase:user", JSON.stringify(auth.currentUser));
     }
 
-    async function pega(items, t) {
+    async function pega(items) {
 
         // console.log(items)
 
@@ -207,12 +212,12 @@ export const AuthGoogleProvider = ({ children }) => {
 
         if (items == "cities") {
             localStorage.setItem("@AuthFirebase:cities", JSON.stringify(b));
-            if (t) setCities(b)
+            setCidades(b)
         }
 
         if (items == "news") {
             localStorage.setItem("@AuthFirebase:news", JSON.stringify(b));
-            if (t) setNews(b)
+            setNoticias(b)
         }
     }
 
@@ -221,7 +226,7 @@ export const AuthGoogleProvider = ({ children }) => {
             nome: c,
         });
 
-        pega("cities", false)
+        pega("cities")
         console.log("adc")
     };
 
@@ -237,38 +242,43 @@ export const AuthGoogleProvider = ({ children }) => {
         });
 
 
-        pega("news", false)
+        pega("news")
         console.log("adn")
     };
 
     const delItem = async (items, item) => {
         await deleteDoc(doc(userRef, user.uid, items, item));
 
-        pega(items, false)
+        pega(items)
         console.log("del")
     };
 
     //todo
     //faz is item fav pfv
 
-    const isNewFav = (item) => {
-        for (var it in news) {
-            if (item == news[it].uri) {
-                return true
+    const isItemFav = (items,item) => {
+
+        if (items == 'cities') {
+
+            for (var it in cities) {
+                if (item == cities[it].nome) {
+                    return true
+                }
             }
+            return false
+
         }
-        return false
+        if (items == 'news') {
+
+            for (var it in news) {
+                if (item == news[it].uri) {
+                    return true
+                }
+            }
+            return false
+
+        }
     }
-
-    const isCityFav = (item) => {
-        for (var it in cities) {
-            if (item == cities[it].nome) {
-                return true
-            }
-        }
-        return false
-    };
-
     return (
         <AuthGoogleContext.Provider
             value={{
@@ -290,9 +300,7 @@ export const AuthGoogleProvider = ({ children }) => {
                 addNews,
                 delItem,
 
-                isCityFav,
-                isNewFav,
-                pega
+                isItemFav
             }}
         >
             {children}

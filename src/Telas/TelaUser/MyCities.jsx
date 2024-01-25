@@ -7,12 +7,12 @@ import { useEffect } from "react";
 
 
 export function MyCities() {
-    const { cities/* cities */, pega } = useContext(AuthGoogleContext);
+    const { cities/* cities */, /* pega */ } = useContext(AuthGoogleContext);
     const [c] = useState(cities);
 
-    useEffect(() => {
-        pega("cities", true)
-    }, [])
+    /* useEffect(() => {
+        pega("cities")
+    }, []) */
 
     function oi() {
         if (!!c) {

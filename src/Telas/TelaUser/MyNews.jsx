@@ -14,14 +14,14 @@ import { useEffect } from "react";
 
 export function MyNews() {
 
-    const { news/* news */, pega } = useContext(AuthGoogleContext);
+    const { news/* news */, /* pega */ } = useContext(AuthGoogleContext);
     const [n, setN] = useState(news);
 
     const [q, setQ] = useState(false)
 
-    useEffect(() => {
-        pega("news", true)
-    }, [])
+    /* useEffect(() => {
+        pega("news")
+    }, []) */
 
     function loadNews() {
 
@@ -56,7 +56,7 @@ export function MyNews() {
                     threshold: 0.5,
                     keys: ['title', 'source']
                 }
-                const fuse = new Fuse(storageNews, options).search(ai)
+                const fuse = new Fuse(news, options).search(ai)
                 setN(fuse)
 
             } else {
@@ -68,7 +68,7 @@ export function MyNews() {
     function clear() {
         document.getElementById('srch').value = ''
         setQ(false)
-        setN(storageNews)
+        setN(news)
     }
 
 

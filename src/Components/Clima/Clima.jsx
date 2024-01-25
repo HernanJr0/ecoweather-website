@@ -167,14 +167,9 @@ class Clima extends Component {
 }
 
 const Star = (props) => {
-    const { signed, addCity, delItem, isCityFav } = useContext(AuthGoogleContext);
+    const { signed, addCity, delItem, isItemFav } = useContext(AuthGoogleContext);
 
-    const [fav, setFav] = useState(false)
-
-    useEffect(() => {
-
-        setFav(isCityFav(props.city))
-    }, [props.city])
+    const [fav, setFav] = useState(isItemFav('cities', props.city))
 
     const handleFav = (e) => {
         if (signed) {
@@ -212,9 +207,9 @@ const Star = (props) => {
 }
 
 const CityButton = (props) => {
-    const { addCity, delItem, isCityFav } = useContext(AuthGoogleContext);
+    const { addCity, delItem, isItemFav } = useContext(AuthGoogleContext);
 
-    const [selected, setSelected] = useState(isCityFav(props.city))
+    const [selected, setSelected] = useState(isItemFav('cities', props.city))
 
     const handleFav = () => {
         setSelected(!selected);
