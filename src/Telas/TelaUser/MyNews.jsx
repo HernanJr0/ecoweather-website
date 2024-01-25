@@ -13,9 +13,9 @@ import Fuse from 'fuse.js'
 import { useEffect } from "react";
 
 export function MyNews() {
-    const { news } = useContext(AuthGoogleContext);
+    const { noticias } = useContext(AuthGoogleContext);
 
-    const [n, setN] = useState(news);
+    const [n, setN] = useState(noticias);
     const [q, setQ] = useState(false)
 
     function loadNews() {

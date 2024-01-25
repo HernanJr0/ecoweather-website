@@ -6,8 +6,8 @@ import { useEffect } from "react";
 
 
 export function MyCities() {
-    const { cities} = useContext(AuthGoogleContext);
-    const [c] = useState(cities);
+    const { cidades } = useContext(AuthGoogleContext);
+    const [c] = useState(cidades);
 
     function loadCities() {
 

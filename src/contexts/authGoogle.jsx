@@ -52,20 +52,19 @@ export const AuthGoogleProvider = ({ children }) => {
 
     const storageCities = JSON.parse(localStorage.getItem("@AuthFirebase:cities"));
     const storageNews = JSON.parse(localStorage.getItem("@AuthFirebase:news"));
+    /* 
+        const [cidades, setCidades] = useState(storageCities)
+        const [noticias, setNoticias] = useState(storageNews) */
 
-    const [cidades, setCidades] = useState(storageCities)
-    const [noticias, setNoticias] = useState(storageNews)
-
-    const
-        cities = cidades,
-        news = noticias;
+    const [cities, setCities] = useState(storageCities)
+    const [news, setNews] = useState(storageNews);
 
     useEffect(() => {
         if (storageToken && storageUser) {
             setUser(storageUser);
 
-            pega("cities", true)
-            pega("news", true)
+            pega("cities")
+            pega("news")
             console.log(children)
         }
     }, []);
@@ -212,12 +211,12 @@ export const AuthGoogleProvider = ({ children }) => {
 
         if (items == "cities") {
             localStorage.setItem("@AuthFirebase:cities", JSON.stringify(b));
-            setCidades(b)
+            setCities(b)
         }
 
         if (items == "news") {
             localStorage.setItem("@AuthFirebase:news", JSON.stringify(b));
-            setNoticias(b)
+            setNews(b)
         }
     }
 
@@ -227,7 +226,7 @@ export const AuthGoogleProvider = ({ children }) => {
         });
 
         pega("cities")
-        console.log("adc")
+        console.log("ad city")
     };
 
     const addNews = async (n) => {
@@ -243,21 +242,20 @@ export const AuthGoogleProvider = ({ children }) => {
 
 
         pega("news")
-        console.log("adn")
+        console.log("ad new")
     };
 
     const delItem = async (items, item) => {
         await deleteDoc(doc(userRef, user.uid, items, item));
 
         pega(items)
-        console.log("del")
+        console.log("del " + items)
     };
 
     //todo
     //faz is item fav pfv
 
-    const isItemFav = (items,item) => {
-
+    const isItemFav = (items, item) => {
         if (items == 'cities') {
 
             for (var it in cities) {
@@ -293,8 +291,8 @@ export const AuthGoogleProvider = ({ children }) => {
                 xgPfp,
                 xgUser,
 
-                cities,
-                news,
+                cidades: cities,
+                noticias: news,
 
                 addCity,
                 addNews,

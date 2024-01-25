@@ -35,7 +35,6 @@ class Clima extends Component {
             vento: "",
             cimg: "",
             wall: "",
-            fav: false,
         };
 
         this.drawWeather = this.drawWeather.bind(this);
@@ -105,7 +104,7 @@ class Clima extends Component {
 
         if (this.state.loc != prevCity || bg == null) {
             await fetch(
-                "https://source.unsplash.com/random/?" + valoresClima + tempo
+                "https://source.unsplash.com/random/?" + valoresClima + tempo 
             ).then((result) => {
                 bg = result.url;
             });
@@ -127,7 +126,7 @@ class Clima extends Component {
         return (
 
             <div id="head">
-                <img className="bg" src={this.state.wall} alt="bg" />
+                <img className="bg" src={this.state.wall} rel="preload" alt="bg" />
 
                 <h1 id="clima">
                     {this.state.clima.charAt(0).toUpperCase() +
@@ -171,6 +170,12 @@ const Star = (props) => {
 
     const [fav, setFav] = useState(isItemFav('cities', props.city))
 
+    useEffect(() => {
+
+        setFav(isItemFav('cities', props.city))
+
+    }, [props.city])
+
     const handleFav = (e) => {
         if (signed) {
             setFav(e.target.checked);
@@ -187,7 +192,6 @@ const Star = (props) => {
         }
     };
 
-    console.log('c')
     return (
         <Checkbox
             id="starIcon"

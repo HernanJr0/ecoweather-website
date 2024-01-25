@@ -35,6 +35,7 @@ class Noticia extends Component {
     }
 
     render() {
+        console.log('n')
         return (
             <div id='noticiaItemCont'>
                 <hr />
@@ -73,8 +74,7 @@ const Mark = (props) => {
 
     const [fav, setFav] = useState(isItemFav('news', props.news.uri))
 
-    console.log('n')
-    
+
     const handleFav = (e) => {
         if (signed) {
 
