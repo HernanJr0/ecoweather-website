@@ -51,7 +51,7 @@ export function MyNews() {
                     threshold: 0.5,
                     keys: ['title', 'source']
                 }
-                const fuse = new Fuse(news, options).search(ai)
+                const fuse = new Fuse(noticias, options).search(ai)
                 setN(fuse)
 
             } else {
@@ -63,7 +63,7 @@ export function MyNews() {
     function clear() {
         document.getElementById('srch').value = ''
         setQ(false)
-        setN(news)
+        setN(noticias)
     }
 
 

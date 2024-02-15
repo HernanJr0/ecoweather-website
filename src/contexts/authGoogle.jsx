@@ -195,22 +195,6 @@ export const AuthGoogleProvider = ({ children }) => {
         localStorage.setItem("@AuthFirebase:user", JSON.stringify(auth.currentUser));
     }
 
-    async function pega2(items) {
-        console.log("oi")
-
-        const a = await getDocs(collection(userRef, user.uid, items))
-
-        const b = a.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
-
-        if (items == "cities") {
-            localStorage.setItem("@AuthFirebase:cities", JSON.stringify(b));
-        }
-
-        if (items == "news") {
-            localStorage.setItem("@AuthFirebase:news", JSON.stringify(b));
-        }
-    }
-
     async function pega(items) {
 
         // console.log(items)
