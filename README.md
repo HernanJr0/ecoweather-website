@@ -1,0 +1,1 @@
+deploy: ecoweather.vercel.app
