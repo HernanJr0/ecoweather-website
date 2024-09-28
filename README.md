@@ -1,1 +1,1 @@
-deploy: ecoweather.vercel.app
+deploy: https://ecoweather.vercel.app
